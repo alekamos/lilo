@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="it.lifelog.mybatis.mappers.ModuleListMapper" >
+  <resultMap id="BaseResultMap" type="it.lifelog.mybatis.bean.ModuleList" >
+    <result column="ID_MODULE" property="idModule" jdbcType="INTEGER" />
+    <result column="ID_ELEMENT" property="idElement" jdbcType="INTEGER" />
+    <result column="ID_LIST_CONTENT" property="idListContent" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="insert" parameterType="it.lifelog.mybatis.bean.ModuleList" >
+    <selectKey resultType="java.lang.Integer" keyProperty="idModule" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into MODULES_LIST (ID_ELEMENT, ID_LIST_CONTENT)
+    values (#{idElement,jdbcType=INTEGER}, #{idListContent,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="it.lifelog.mybatis.bean.ModuleList" >
+    <selectKey resultType="java.lang.Integer" keyProperty="idModule" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into MODULES_LIST
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="idElement != null" >
+        ID_ELEMENT,
+      </if>
+      <if test="idListContent != null" >
+        ID_LIST_CONTENT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="idElement != null" >
+        #{idElement,jdbcType=INTEGER},
+      </if>
+      <if test="idListContent != null" >
+        #{idListContent,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

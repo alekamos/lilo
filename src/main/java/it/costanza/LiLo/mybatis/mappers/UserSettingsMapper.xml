@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="it.lifelog.mybatis.mappers.UserSettingsMapper" >
+  <resultMap id="BaseResultMap" type="it.lifelog.mybatis.bean.UserSettings" >
+    <id column="ID_USER" property="idUser" jdbcType="INTEGER" />
+    <result column="ID_PROPERTY" property="idProperty" jdbcType="INTEGER" />
+    <result column="VALUE" property="value" jdbcType="VARCHAR" />
+    <result column="INSERT_TIMESTAMP" property="insertTimestamp" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIMESTAMP" property="updateTimestamp" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID_USER, ID_PROPERTY, VALUE, INSERT_TIMESTAMP, UPDATE_TIMESTAMP
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from USER_SETTINGS
+    where ID_USER = #{idUser,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from USER_SETTINGS
+    where ID_USER = #{idUser,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="it.lifelog.mybatis.bean.UserSettings" >
+    insert into USER_SETTINGS (ID_USER, ID_PROPERTY, VALUE, 
+      INSERT_TIMESTAMP, UPDATE_TIMESTAMP)
+    values (#{idUser,jdbcType=INTEGER}, #{idProperty,jdbcType=INTEGER}, #{value,jdbcType=VARCHAR}, 
+      #{insertTimestamp,jdbcType=TIMESTAMP}, #{updateTimestamp,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="it.lifelog.mybatis.bean.UserSettings" >
+    insert into USER_SETTINGS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="idUser != null" >
+        ID_USER,
+      </if>
+      <if test="idProperty != null" >
+        ID_PROPERTY,
+      </if>
+      <if test="value != null" >
+        VALUE,
+      </if>
+      <if test="insertTimestamp != null" >
+        INSERT_TIMESTAMP,
+      </if>
+      <if test="updateTimestamp != null" >
+        UPDATE_TIMESTAMP,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="idUser != null" >
+        #{idUser,jdbcType=INTEGER},
+      </if>
+      <if test="idProperty != null" >
+        #{idProperty,jdbcType=INTEGER},
+      </if>
+      <if test="value != null" >
+        #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="insertTimestamp != null" >
+        #{insertTimestamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTimestamp != null" >
+        #{updateTimestamp,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="it.lifelog.mybatis.bean.UserSettings" >
+    update USER_SETTINGS
+    <set >
+      <if test="idProperty != null" >
+        ID_PROPERTY = #{idProperty,jdbcType=INTEGER},
+      </if>
+      <if test="value != null" >
+        VALUE = #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="insertTimestamp != null" >
+        INSERT_TIMESTAMP = #{insertTimestamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTimestamp != null" >
+        UPDATE_TIMESTAMP = #{updateTimestamp,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID_USER = #{idUser,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="it.lifelog.mybatis.bean.UserSettings" >
+    update USER_SETTINGS
+    set ID_PROPERTY = #{idProperty,jdbcType=INTEGER},
+      VALUE = #{value,jdbcType=VARCHAR},
+      INSERT_TIMESTAMP = #{insertTimestamp,jdbcType=TIMESTAMP},
+      UPDATE_TIMESTAMP = #{updateTimestamp,jdbcType=TIMESTAMP}
+    where ID_USER = #{idUser,jdbcType=INTEGER}
+  </update>
+</mapper>
