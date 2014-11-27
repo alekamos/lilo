@@ -1,0 +1,45 @@
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="" namespace="/" extends="mainPackage">
+
+
+		<global-results>
+
+			<result name="error">errorPage.jsp</result>
+		</global-results>
+
+
+
+
+		<action name="startup" class="it.costanza.LiLo.action.StartupAction"
+			method="startupMethod">
+			<result name="success" type="tiles">HomepageExt</result>
+		</action>
+
+		<action name="gotoSignInPage">
+			<result type="redirect">/jsp/user/signInForm.jsp</result>
+		</action>
+
+		<action name="gotoSignUpPage">
+			<result type="redirect">/jsp/user/signUpForm.jsp</result>
+		</action>
+
+		<action name="signIn" class="it.costanza.LiLo.action.UserAction"
+			method="signIn">
+			<result name="input">/jsp/user/signInForm.jsp</result>
+			<result name="success">/jsp/site/homepage_lifelog.jsp</result>
+		</action>
+
+		<action name="signUp" class="it.costanza.LiLo.action.UserAction"
+			method="signUp">
+			<result name="input">/jsp/user/signUpForm.jsp</result>
+			<result name="success">/jsp/user/successefullSingUp.jsp</result>
+		</action>
+
+
+
+	</package>
+</struts>

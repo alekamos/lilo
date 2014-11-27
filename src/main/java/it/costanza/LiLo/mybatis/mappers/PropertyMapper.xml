@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="it.lifelog.mybatis.mappers.PropertyMapper" >
+  <resultMap id="BaseResultMap" type="it.lifelog.mybatis.bean.Property" >
+    <id column="ID_PROPERTY" property="idProperty" jdbcType="INTEGER" />
+    <result column="NAME_PROPERTY" property="nameProperty" jdbcType="VARCHAR" />
+    <result column="DESCR_PROPERTY" property="descrProperty" jdbcType="VARCHAR" />
+    <result column="AVAILABLE_VALUES" property="availableValues" jdbcType="VARCHAR" />
+    <result column="INSERT_TIMESTAMP" property="insertTimestamp" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIMESTAMP" property="updateTimestamp" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID_PROPERTY, NAME_PROPERTY, DESCR_PROPERTY, AVAILABLE_VALUES, INSERT_TIMESTAMP, UPDATE_TIMESTAMP
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from PROPERTIES
+    where ID_PROPERTY = #{idProperty,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from PROPERTIES
+    where ID_PROPERTY = #{idProperty,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="it.lifelog.mybatis.bean.Property" >
+    <selectKey resultType="java.lang.Integer" keyProperty="idProperty" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into PROPERTIES (NAME_PROPERTY, DESCR_PROPERTY, AVAILABLE_VALUES, 
+      INSERT_TIMESTAMP, UPDATE_TIMESTAMP)
+    values (#{nameProperty,jdbcType=VARCHAR}, #{descrProperty,jdbcType=VARCHAR}, #{availableValues,jdbcType=VARCHAR}, 
+      #{insertTimestamp,jdbcType=TIMESTAMP}, #{updateTimestamp,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="it.lifelog.mybatis.bean.Property" >
+    <selectKey resultType="java.lang.Integer" keyProperty="idProperty" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into PROPERTIES
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="nameProperty != null" >
+        NAME_PROPERTY,
+      </if>
+      <if test="descrProperty != null" >
+        DESCR_PROPERTY,
+      </if>
+      <if test="availableValues != null" >
+        AVAILABLE_VALUES,
+      </if>
+      <if test="insertTimestamp != null" >
+        INSERT_TIMESTAMP,
+      </if>
+      <if test="updateTimestamp != null" >
+        UPDATE_TIMESTAMP,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="nameProperty != null" >
+        #{nameProperty,jdbcType=VARCHAR},
+      </if>
+      <if test="descrProperty != null" >
+        #{descrProperty,jdbcType=VARCHAR},
+      </if>
+      <if test="availableValues != null" >
+        #{availableValues,jdbcType=VARCHAR},
+      </if>
+      <if test="insertTimestamp != null" >
+        #{insertTimestamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTimestamp != null" >
+        #{updateTimestamp,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="it.lifelog.mybatis.bean.Property" >
+    update PROPERTIES
+    <set >
+      <if test="nameProperty != null" >
+        NAME_PROPERTY = #{nameProperty,jdbcType=VARCHAR},
+      </if>
+      <if test="descrProperty != null" >
+        DESCR_PROPERTY = #{descrProperty,jdbcType=VARCHAR},
+      </if>
+      <if test="availableValues != null" >
+        AVAILABLE_VALUES = #{availableValues,jdbcType=VARCHAR},
+      </if>
+      <if test="insertTimestamp != null" >
+        INSERT_TIMESTAMP = #{insertTimestamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTimestamp != null" >
+        UPDATE_TIMESTAMP = #{updateTimestamp,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID_PROPERTY = #{idProperty,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="it.lifelog.mybatis.bean.Property" >
+    update PROPERTIES
+    set NAME_PROPERTY = #{nameProperty,jdbcType=VARCHAR},
+      DESCR_PROPERTY = #{descrProperty,jdbcType=VARCHAR},
+      AVAILABLE_VALUES = #{availableValues,jdbcType=VARCHAR},
+      INSERT_TIMESTAMP = #{insertTimestamp,jdbcType=TIMESTAMP},
+      UPDATE_TIMESTAMP = #{updateTimestamp,jdbcType=TIMESTAMP}
+    where ID_PROPERTY = #{idProperty,jdbcType=INTEGER}
+  </update>
+</mapper>

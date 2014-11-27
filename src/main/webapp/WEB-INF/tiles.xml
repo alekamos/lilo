@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+
+	<definition name="standard" template="/jsp/template/standard.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="header" value="/jsp/template/empty.jsp" />
+		<put-attribute name="menu" value="/jsp/template/empty.jsp" />
+		<put-attribute name="body" value="/jsp/template/empty.jsp" />
+		<put-attribute name="footer" value="/jsp/template/empty.jsp" />
+	</definition>
+
+
+	<definition name="SignInPage" extends="standard">
+		<put-attribute name="title" value="Lifelog - Sign in" />
+		<put-attribute name="body" value="/jsp/user/signInForm.jsp" />
+	</definition>
+
+	<definition name="SignUpPage" extends="standard">
+		<put-attribute name="title" value="Lifelog - Sign Up" />
+		<put-attribute name="body" value="/jsp/user/signUpForm.jsp" />
+	</definition>
+
+	<definition name="HomepageExt" extends="standard">
+		<put-attribute name="title" value="Lifelog - Homepage" />
+		<put-attribute name="menu" value="/jsp/menu/extMenu.jsp" />
+		<put-attribute name="body" value="/jsp/site/homepageExt.jsp" />
+	</definition>
+
+</tiles-definitions>
