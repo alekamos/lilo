@@ -26,6 +26,36 @@ public class UserDao extends MyBatisDAO<User, Integer>{
 			}   
 			return userOut;
 	    }
+
+	public User searchByUsername(User userIn) {
+    	SqlSession session = MyBatisLoader.getSqlSession();
+    	User userOut;
+		try
+		{					
+			String query = Const.NS_PREFIX+this.getClass().getSimpleName().replace("Dao", "")+Const.NS_SUFFIX+"."+"selectByUsername";
+			userOut = session.selectOne(query,userIn); 
+		}
+		finally
+		{
+			session.close();
+		}   
+		return userOut;
+    }
+	
+	public User searchByEmail(User userIn) {
+    	SqlSession session = MyBatisLoader.getSqlSession();
+    	User userOut;
+		try
+		{					
+			String query = Const.NS_PREFIX+this.getClass().getSimpleName().replace("Dao", "")+Const.NS_SUFFIX+"."+"selectByEmail";
+			userOut = session.selectOne(query,userIn); 
+		}
+		finally
+		{
+			session.close();
+		}   
+		return userOut;
+    }
 	
 
 }

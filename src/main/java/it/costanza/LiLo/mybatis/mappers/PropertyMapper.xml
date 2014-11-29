@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="it.lifelog.mybatis.mappers.PropertyMapper" >
-  <resultMap id="BaseResultMap" type="it.lifelog.mybatis.bean.Property" >
+<mapper namespace="it.costanza.LiLo.mybatis.mappers.PropertyMapper" >
+  <resultMap id="BaseResultMap" type="it.costanza.LiLo.mybatis.bean.Property" >
     <id column="ID_PROPERTY" property="idProperty" jdbcType="INTEGER" />
     <result column="NAME_PROPERTY" property="nameProperty" jdbcType="VARCHAR" />
     <result column="DESCR_PROPERTY" property="descrProperty" jdbcType="VARCHAR" />
@@ -22,7 +22,7 @@
     delete from PROPERTIES
     where ID_PROPERTY = #{idProperty,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="it.lifelog.mybatis.bean.Property" >
+  <insert id="insert" parameterType="it.costanza.LiLo.mybatis.bean.Property" >
     <selectKey resultType="java.lang.Integer" keyProperty="idProperty" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -31,7 +31,7 @@
     values (#{nameProperty,jdbcType=VARCHAR}, #{descrProperty,jdbcType=VARCHAR}, #{availableValues,jdbcType=VARCHAR}, 
       #{insertTimestamp,jdbcType=TIMESTAMP}, #{updateTimestamp,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="it.lifelog.mybatis.bean.Property" >
+  <insert id="insertSelective" parameterType="it.costanza.LiLo.mybatis.bean.Property" >
     <selectKey resultType="java.lang.Integer" keyProperty="idProperty" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -71,7 +71,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="it.lifelog.mybatis.bean.Property" >
+  <update id="updateByPrimaryKeySelective" parameterType="it.costanza.LiLo.mybatis.bean.Property" >
     update PROPERTIES
     <set >
       <if test="nameProperty != null" >
@@ -92,7 +92,7 @@
     </set>
     where ID_PROPERTY = #{idProperty,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="it.lifelog.mybatis.bean.Property" >
+  <update id="updateByPrimaryKey" parameterType="it.costanza.LiLo.mybatis.bean.Property" >
     update PROPERTIES
     set NAME_PROPERTY = #{nameProperty,jdbcType=VARCHAR},
       DESCR_PROPERTY = #{descrProperty,jdbcType=VARCHAR},

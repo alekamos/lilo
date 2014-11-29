@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE configuration 
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+	<!-- <typeAliases> -->
+	<!-- <typeAlias type="bean.UtenteBean" alias="utente" /> -->
+	<!-- </typeAliases> -->
+
+
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" value="com.mysql.jdbc.Driver" />
+				<property name="url" value="jdbc:mysql://localhost:3306/A1DB" />
+				<property name="username" value="root" />
+				<property name="password" value="maverick02" />
+			</dataSource>
+		</environment>
+	</environments>
+
+	<mappers>
+		<mapper resource="it/costanza/LiLo/mybatis/mappers/CalendarMapper.xml" />
+		<mapper resource="it/costanza/LiLo/mybatis/mappers/ListElementMapper.xml" />
+		<mapper resource="it/costanza/LiLo/mybatis/mappers/ModuleClusterMapper.xml" />
+		<mapper resource="it/costanza/LiLo/mybatis/mappers/ModuleDatetimeMapper.xml" />
+		<mapper resource="it/costanza/LiLo/mybatis/mappers/ModuleHeaderMapper.xml" />
+		<mapper resource="it/costanza/LiLo/mybatis/mappers/ModuleListMapper.xml" />
+		<mapper resource="it/costanza/LiLo/mybatis/mappers/ModuleNumericMapper.xml" />
+		<mapper resource="it/costanza/LiLo/mybatis/mappers/ModuleTextMapper.xml" />
+		<mapper resource="it/costanza/LiLo/mybatis/mappers/ModuleTypeMapper.xml" />
+		<mapper resource="it/costanza/LiLo/mybatis/mappers/ModuleTypeSettingsMapper.xml" />
+		<mapper resource="it/costanza/LiLo/mybatis/mappers/PropertyMapper.xml" />
+		<mapper resource="it/costanza/LiLo/mybatis/mappers/UserMapper.xml" />
+		<mapper resource="it/costanza/LiLo/mybatis/mappers/UserSettingsMapper.xml" />
+		<mapper resource="it/costanza/LiLo/mybatis/customMappers/ModuleTypeFinderMapper.xml" />
+		<mapper resource="it/costanza/LiLo/mybatis/customMappers/ModuleHeaderFinderMapper.xml" />
+		<mapper resource="it/costanza/LiLo/mybatis/customMappers/ModuleClusterFinderMapper.xml" />
+		<mapper resource="it/costanza/LiLo/mybatis/customMappers/UserFinderMapper.xml" />
+		<mapper resource="it/costanza/LiLo/mybatis/customMappers/ModuleListFinderMapper.xml" />
+		<mapper resource="it/costanza/LiLo/mybatis/customMappers/ListElementFinderMapper.xml" />
+
+	</mappers>
+
+
+
+</configuration>

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="it.lifelog.mybatis.mappers.ModuleDatetimeMapper" >
-  <resultMap id="BaseResultMap" type="it.lifelog.mybatis.bean.ModuleDatetime" >
+<mapper namespace="it.costanza.LiLo.mybatis.mappers.ModuleDatetimeMapper" >
+  <resultMap id="BaseResultMap" type="it.costanza.LiLo.mybatis.bean.ModuleDatetime" >
     <result column="ID_MODULE" property="idModule" jdbcType="INTEGER" />
     <result column="DATETIME_1_VALUE" property="datetime1Value" jdbcType="TIMESTAMP" />
     <result column="DATETIME_2_VALUE" property="datetime2Value" jdbcType="TIMESTAMP" />
     <result column="DATETIME_3_VALUE" property="datetime3Value" jdbcType="TIMESTAMP" />
   </resultMap>
-  <insert id="insert" parameterType="it.lifelog.mybatis.bean.ModuleDatetime" >
+  <insert id="insert" parameterType="it.costanza.LiLo.mybatis.bean.ModuleDatetime" >
     <selectKey resultType="java.lang.Integer" keyProperty="idModule" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -16,7 +16,7 @@
     values (#{datetime1Value,jdbcType=TIMESTAMP}, #{datetime2Value,jdbcType=TIMESTAMP}, 
       #{datetime3Value,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="it.lifelog.mybatis.bean.ModuleDatetime" >
+  <insert id="insertSelective" parameterType="it.costanza.LiLo.mybatis.bean.ModuleDatetime" >
     <selectKey resultType="java.lang.Integer" keyProperty="idModule" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>

@@ -20,11 +20,11 @@
 		</action>
 
 		<action name="gotoSignInPage">
-			<result type="redirect">/jsp/user/signInForm.jsp</result>
+			<result type="tiles">SignInPage</result>
 		</action>
 
 		<action name="gotoSignUpPage">
-			<result type="redirect">/jsp/user/signUpForm.jsp</result>
+			<result type="tiles">SignUpPage</result>
 		</action>
 
 		<action name="signIn" class="it.costanza.LiLo.action.UserAction"

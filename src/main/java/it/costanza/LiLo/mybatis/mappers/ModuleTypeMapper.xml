@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="it.lifelog.mybatis.mappers.ModuleTypeMapper" >
-  <resultMap id="BaseResultMap" type="it.lifelog.mybatis.bean.ModuleType" >
+<mapper namespace="it.costanza.LiLo.mybatis.mappers.ModuleTypeMapper" >
+  <resultMap id="BaseResultMap" type="it.costanza.LiLo.mybatis.bean.ModuleType" >
     <id column="ID_MODULE_TYPE" property="idModuleType" jdbcType="INTEGER" />
     <result column="ID_USER" property="idUser" jdbcType="INTEGER" />
     <result column="NAME" property="name" jdbcType="VARCHAR" />
@@ -49,7 +49,7 @@
     delete from MODULES_TYPES
     where ID_MODULE_TYPE = #{idModuleType,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="it.lifelog.mybatis.bean.ModuleType" >
+  <insert id="insert" parameterType="it.costanza.LiLo.mybatis.bean.ModuleType" >
     <selectKey resultType="java.lang.Integer" keyProperty="idModuleType" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -76,7 +76,7 @@
       #{datetimeContent3Name,jdbcType=VARCHAR}, #{datetimeContent3Type,jdbcType=VARCHAR}, 
       #{insertTimestamp,jdbcType=TIMESTAMP}, #{updateTimestamp,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="it.lifelog.mybatis.bean.ModuleType" >
+  <insert id="insertSelective" parameterType="it.costanza.LiLo.mybatis.bean.ModuleType" >
     <selectKey resultType="java.lang.Integer" keyProperty="idModuleType" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -242,7 +242,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="it.lifelog.mybatis.bean.ModuleType" >
+  <update id="updateByPrimaryKeySelective" parameterType="it.costanza.LiLo.mybatis.bean.ModuleType" >
     update MODULES_TYPES
     <set >
       <if test="idUser != null" >
@@ -326,7 +326,7 @@
     </set>
     where ID_MODULE_TYPE = #{idModuleType,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="it.lifelog.mybatis.bean.ModuleType" >
+  <update id="updateByPrimaryKey" parameterType="it.costanza.LiLo.mybatis.bean.ModuleType" >
     update MODULES_TYPES
     set ID_USER = #{idUser,jdbcType=INTEGER},
       NAME = #{name,jdbcType=VARCHAR},

@@ -19,7 +19,7 @@ public class Const {
 
 	//costanti per mybatis
 	public static final String NS_SUFFIX = "Mapper";
-	public static final String NS_PREFIX = "it.lifelog.mybatis.mappers.";
+	public static final String NS_PREFIX = "it.costanza.LiLo.mybatis.mappers.";
 	public static final String PREFIX_SELECT_QUERY = "selectByPrimaryKey"; 
 	public static final String PREFIX_INSERT_QUERY = "insertSelective";
 	public static final String PREFIX_UPDATE_QUERY = "updateByPrimaryKeySelective";  
