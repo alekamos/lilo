@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="it.lifelog.mybatis.mappers.UserMapper" >
-  <resultMap id="BaseResultMap" type="it.lifelog.mybatis.bean.User" >
+<mapper namespace="it.costanza.LiLo.mybatis.mappers.UserMapper" >
+  <resultMap id="BaseResultMap" type="it.costanza.LiLo.mybatis.bean.User" >
     <id column="ID_USER" property="idUser" jdbcType="INTEGER" />
     <result column="NAME" property="name" jdbcType="VARCHAR" />
     <result column="SURNAME" property="surname" jdbcType="VARCHAR" />
@@ -26,7 +26,7 @@
     delete from USERS
     where ID_USER = #{idUser,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="it.lifelog.mybatis.bean.User" >
+  <insert id="insert" parameterType="it.costanza.LiLo.mybatis.bean.User" >
     <selectKey resultType="java.lang.Integer" keyProperty="idUser" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -37,7 +37,7 @@
       #{birthDate,jdbcType=DATE}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{insertTimestamp,jdbcType=TIMESTAMP}, #{updateTimestamp,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="it.lifelog.mybatis.bean.User" >
+  <insert id="insertSelective" parameterType="it.costanza.LiLo.mybatis.bean.User" >
     <selectKey resultType="java.lang.Integer" keyProperty="idUser" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -95,7 +95,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="it.lifelog.mybatis.bean.User" >
+  <update id="updateByPrimaryKeySelective" parameterType="it.costanza.LiLo.mybatis.bean.User" >
     update USERS
     <set >
       <if test="name != null" >
@@ -125,7 +125,7 @@
     </set>
     where ID_USER = #{idUser,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="it.lifelog.mybatis.bean.User" >
+  <update id="updateByPrimaryKey" parameterType="it.costanza.LiLo.mybatis.bean.User" >
     update USERS
     set NAME = #{name,jdbcType=VARCHAR},
       SURNAME = #{surname,jdbcType=VARCHAR},

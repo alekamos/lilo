@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="it.lifelog.mybatis.mappers.ModuleClusterMapper" >
-  <resultMap id="BaseResultMap" type="it.lifelog.mybatis.bean.ModuleCluster" >
+<mapper namespace="it.costanza.LiLo.mybatis.mappers.ModuleClusterMapper" >
+  <resultMap id="BaseResultMap" type="it.costanza.LiLo.mybatis.bean.ModuleCluster" >
     <id column="ID_MODULE_CLUSTER" property="idModuleCluster" jdbcType="INTEGER" />
     <result column="ID_USER" property="idUser" jdbcType="INTEGER" />
     <result column="ID_MODULE_TYPE" property="idModuleType" jdbcType="INTEGER" />
@@ -22,7 +22,7 @@
     delete from MODULES_CLUSTER
     where ID_MODULE_CLUSTER = #{idModuleCluster,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="it.lifelog.mybatis.bean.ModuleCluster" >
+  <insert id="insert" parameterType="it.costanza.LiLo.mybatis.bean.ModuleCluster" >
     <selectKey resultType="java.lang.Integer" keyProperty="idModuleCluster" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -31,7 +31,7 @@
     values (#{idUser,jdbcType=INTEGER}, #{idModuleType,jdbcType=INTEGER}, #{idModule,jdbcType=INTEGER}, 
       #{insertTimestamp,jdbcType=TIMESTAMP}, #{updateTimestamp,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="it.lifelog.mybatis.bean.ModuleCluster" >
+  <insert id="insertSelective" parameterType="it.costanza.LiLo.mybatis.bean.ModuleCluster" >
     <selectKey resultType="java.lang.Integer" keyProperty="idModuleCluster" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -71,7 +71,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="it.lifelog.mybatis.bean.ModuleCluster" >
+  <update id="updateByPrimaryKeySelective" parameterType="it.costanza.LiLo.mybatis.bean.ModuleCluster" >
     update MODULES_CLUSTER
     <set >
       <if test="idUser != null" >
@@ -92,7 +92,7 @@
     </set>
     where ID_MODULE_CLUSTER = #{idModuleCluster,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="it.lifelog.mybatis.bean.ModuleCluster" >
+  <update id="updateByPrimaryKey" parameterType="it.costanza.LiLo.mybatis.bean.ModuleCluster" >
     update MODULES_CLUSTER
     set ID_USER = #{idUser,jdbcType=INTEGER},
       ID_MODULE_TYPE = #{idModuleType,jdbcType=INTEGER},

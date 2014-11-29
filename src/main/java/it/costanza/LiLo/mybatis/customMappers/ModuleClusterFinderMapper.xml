@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="it.lifelog.mybatis.mappers.ModuleClusterMapper">
+<mapper namespace="it.costanza.LiLo.mybatis.mappers.ModuleClusterMapper">
 
 
 
@@ -13,7 +13,7 @@
 	</select>
 
 	<select id="selectByUserAndCluster" resultMap="BaseResultMap"
-		parameterType="it.lifelog.mybatis.bean.ModuleCluster">
+		parameterType="it.costanza.LiLo.mybatis.bean.ModuleCluster">
 		select
 		<include refid="Base_Column_List" />
 		from MODULES_CLUSTER
@@ -28,7 +28,7 @@
 	</select>
 
 	<select id="selectIfExistIdClusterForUserAndIdModuleAndDate"
-		resultType="java.lang.Integer" parameterType="it.lifelog.bean.ModuleExtended">
+		resultType="java.lang.Integer" parameterType="it.costanza.LiLo.bean.ModuleExtended">
 		select
 		ID_MODULE_CLUSTER
 		from MODULES_CLUSTER WHERE ID_MODULE =

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="it.lifelog.mybatis.mappers.CalendarMapper" >
-  <resultMap id="BaseResultMap" type="it.lifelog.mybatis.bean.Calendar" >
+<mapper namespace="it.costanza.LiLo.mybatis.mappers.CalendarMapper" >
+  <resultMap id="BaseResultMap" type="it.costanza.LiLo.mybatis.bean.Calendar" >
     <id column="DATE" property="date" jdbcType="DATE" />
     <result column="DAY_OF_WEEK" property="dayOfWeek" jdbcType="VARCHAR" />
   </resultMap>
@@ -18,11 +18,11 @@
     delete from CALENDAR
     where DATE = #{date,jdbcType=DATE}
   </delete>
-  <insert id="insert" parameterType="it.lifelog.mybatis.bean.Calendar" >
+  <insert id="insert" parameterType="it.costanza.LiLo.mybatis.bean.Calendar" >
     insert into CALENDAR (DATE, DAY_OF_WEEK)
     values (#{date,jdbcType=DATE}, #{dayOfWeek,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="it.lifelog.mybatis.bean.Calendar" >
+  <insert id="insertSelective" parameterType="it.costanza.LiLo.mybatis.bean.Calendar" >
     insert into CALENDAR
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="date != null" >
@@ -41,7 +41,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="it.lifelog.mybatis.bean.Calendar" >
+  <update id="updateByPrimaryKeySelective" parameterType="it.costanza.LiLo.mybatis.bean.Calendar" >
     update CALENDAR
     <set >
       <if test="dayOfWeek != null" >
@@ -50,7 +50,7 @@
     </set>
     where DATE = #{date,jdbcType=DATE}
   </update>
-  <update id="updateByPrimaryKey" parameterType="it.lifelog.mybatis.bean.Calendar" >
+  <update id="updateByPrimaryKey" parameterType="it.costanza.LiLo.mybatis.bean.Calendar" >
     update CALENDAR
     set DAY_OF_WEEK = #{dayOfWeek,jdbcType=VARCHAR}
     where DATE = #{date,jdbcType=DATE}

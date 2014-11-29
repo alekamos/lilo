@@ -1,5 +1,7 @@
 package it.costanza.LiLo.mybatis.bean;
 
+import it.costanza.LiLo.util.Utility;
+
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -13,7 +15,7 @@ public class User {
     private String surname;
 
     private String email;
-
+    			 
     private Date birthDate;
 
     private String username;
@@ -127,7 +129,7 @@ public class User {
     	valori.add(insertTimestamp+"");
     	valori.add(updateTimestamp+"");
     	
-    	return "";//Utility.toStringPerBean(chiavi, valori);
+    	return Utility.toStringPerBean(chiavi, valori);
     	
     }
 }
