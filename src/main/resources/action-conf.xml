@@ -29,14 +29,14 @@
 
 		<action name="signIn" class="it.costanza.LiLo.action.UserAction"
 			method="signIn">
-			<result name="input">/jsp/user/signInForm.jsp</result>
-			<result name="success">/jsp/site/homepage_lifelog.jsp</result>
+			<result name="input" type="tiles">SignInPage</result>
+			<result name="success" type="tiles">HomepageInt</result>
 		</action>
 
 		<action name="signUp" class="it.costanza.LiLo.action.UserAction"
 			method="signUp">
-			<result name="input">/jsp/user/signUpForm.jsp</result>
-			<result name="success">/jsp/user/successefullSingUp.jsp</result>
+			<result name="input" type="tiles">SignUpPage</result>
+			<result name="success" type="tiles">SuccessefullLogin</result>
 		</action>
 
 

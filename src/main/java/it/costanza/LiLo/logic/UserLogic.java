@@ -41,6 +41,8 @@ public class UserLogic {
 
 
 	public void mettiUtenteInSessione(User user){
+		log.debug(Const.IN);
+		log.debug("Oggetto arrivato al metodo: "+user.toString());
 		ActionContext.getContext().getSession().put("user", user);
 	}
 

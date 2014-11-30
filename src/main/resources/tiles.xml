@@ -23,6 +23,11 @@
 		<put-attribute name="body" value="/jsp/user/signUpForm.jsp" />
 	</definition>
 
+	<definition name="SuccessefullLogin" extends="standard">
+		<put-attribute name="title" value="Lifelog - Successeful Login" />
+		<put-attribute name="body" value="/jsp/user/successfullSingUp.jsp" />
+	</definition>
+
 	<definition name="HomepageExt" extends="standard">
 		<put-attribute name="title" value="Lifelog - Homepage" />
 		<put-attribute name="menu" value="/jsp/menu/extMenu.jsp" />
