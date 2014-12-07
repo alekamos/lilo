@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class ModuleLogic {
 
 	/**
-	 * Crea un arraylist con la lista di tabelle che il metodo getModuleExtended deve caricare.
+	 * Crea un arraylist con la lista di tabelle che il metodo ModuleExtended.getModuleExtended deve caricare.
 	 * @param idModuleType del type di modulo
 	 * @return lista di tabelle da caricare
 	 */

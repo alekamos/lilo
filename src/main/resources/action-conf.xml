@@ -39,6 +39,10 @@
 			<result name="success" type="tiles">SuccessefullLogin</result>
 		</action>
 
+		<action name="gotoModuleTypeManagement" class="it.costanza.LiLo.action.ModuleAction"
+			method="gotoModuleTypeManagement">
+			<result name="success" type="tiles">ModuleTypeManagement</result>
+		</action>
 
 
 	</package>
