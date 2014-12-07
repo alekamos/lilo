@@ -30,6 +30,10 @@ public class UserLogic {
 	}
 
 
+	/**
+	 * Salva l'untete sul DB
+	 * @param user
+	 */
 	public void salvaUtente(User user){
 		log.debug(Const.IN);
 
@@ -39,14 +43,33 @@ public class UserLogic {
 
 	}
 
-
-	public void mettiUtenteInSessione(User user){
+/**
+ * Mette l'untete in sessione
+ * @param user
+ */
+	public void putUserInSession(User user){
 		log.debug(Const.IN);
 		log.debug("Oggetto arrivato al metodo: "+user.toString());
 		ActionContext.getContext().getSession().put("user", user);
 	}
+	
+	/**
+	 * Prende l'utente dalla sessione
+	 * @return
+	 */
+	public User getUserInSession(){
+		User user = (User) ActionContext.getContext().getSession().get("user");
+		return user;
+	}
+	
+	
 
-
+/**
+ * Verifica se l'utente è già presente controllando mail ed username, risponde un message resource
+ * indicando se è duplicato l'username o la password
+ * @param user
+ * @return
+ */
 	public String verificaUtenteGiaPresente(User user) {
 		log.debug(Const.IN);
 		String out = "";

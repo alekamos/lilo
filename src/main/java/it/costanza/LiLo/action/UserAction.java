@@ -31,7 +31,7 @@ public class UserAction extends ActionSupport{
 		log.debug(usrEstratto);
 		if(usrEstratto!=null){
 			log.debug("Estratto utente non null, credenziali valide");
-			ul.mettiUtenteInSessione(usrEstratto);
+			ul.putUserInSession(usrEstratto);
 			log.debug("Utente inserito in sessione sotto oggetto user");
 			
 			log.debug(Const.OUT);
