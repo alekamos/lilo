@@ -64,6 +64,22 @@ public class Utility {
 
 		return out;
 	}
+	
+	/**
+	 * Controlla se la stringa è vuota. risponde alla domanda: la stringa in input è vuota o nulla?
+	 * isEmpty se è nulla
+	 * isEmpty se è vuota
+	 * @param string
+	 * @return
+	 */
+	public static boolean isEmpty(String string){
+		
+		if(string!=null && !string.equals(""))
+			return false;
+		else
+			return true;
+		
+	}
 
 
 

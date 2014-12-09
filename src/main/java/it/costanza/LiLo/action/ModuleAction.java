@@ -24,6 +24,7 @@ public class ModuleAction extends ActionSupport{
 	
 	//Campo in arrivo dalla jsp
 	private ArrayList<ModuleType> moduleTypeList = new ArrayList<ModuleType>();
+	private ModuleType moduleType = new ModuleType();
 
 
 	//Classe logica 
@@ -31,18 +32,36 @@ public class ModuleAction extends ActionSupport{
 	private UserLogic ul = new UserLogic();
 
 
+	
+	
+	
+	
+	
 	public String gotoModuleTypeManagement(){
 		log.debug(Const.IN);
 		User user = ul.getUserInSession();
 		log.debug("User estratto dalla sessione: "+user.toString());
+		moduleTypeList = ml.getListaModuliTypeUtente(user);
+		
+		//Aggiungo i moduli di default
+		moduleTypeList = ml.getModuliDefault(moduleTypeList);
 
-		
-		
 		return SUCCESS;
 	}
 	
 	
-	
+	public String createModuleType(){
+		log.debug(Const.IN);
+		User user = ul.getUserInSession();
+		log.debug("User estratto dalla sessione: "+user.toString());
+		moduleType.setIdUser(user.getIdUser());
+		moduleType = ml.normalizzaCampi(moduleType);
+		
+		
+		ml.salvaModuloType(moduleType);
+
+		return SUCCESS;
+	}
 	
 	
 	
@@ -54,6 +73,15 @@ public class ModuleAction extends ActionSupport{
 
 	public void setModuleTypeList(ArrayList<ModuleType> moduleTypeList) {
 		this.moduleTypeList = moduleTypeList;
+	}
+
+
+	public ModuleType getModuleType() {
+		return moduleType;
+	}
+
+	public void setModuleType(ModuleType moduleType) {
+		this.moduleType = moduleType;
 	}
 
 
