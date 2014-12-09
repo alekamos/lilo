@@ -32,5 +32,8 @@ public class Const {
 	//costanti per i log
 	public static final Object IN = "<------   IN   ------>";
 	public static final Object OUT = "<------   OUT   ------>";
+	
+	//Costanti allineate con il DB
+	public static final int[] ARRAY_MODULI_DEFAULT = {1};
 
 }
