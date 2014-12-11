@@ -25,7 +25,7 @@
 				<td>x</td>
 				<td>x</td>
 				<td><c:out value="${mt.name}" /></td>
-				<td><c:out value="${mt.desc}" /></td>
+				<td><c:out value="${mt.description}" /></td>
 			</tr>
 		</c:forEach>
 	</tbody>

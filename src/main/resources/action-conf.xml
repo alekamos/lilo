@@ -50,7 +50,7 @@
 		
 		<action name="createModuleType" class="it.costanza.LiLo.action.ModuleAction"
 			method="createModuleType">
-			<result name="success" type="redirect-action">gotoModuleTypeManagement</result>
+			<result name="success" type="redirect">gotoModuleTypeManagement</result>
 		</action>
 		
 		
