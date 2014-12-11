@@ -3,16 +3,11 @@
         "http://struts.apache.org/dtds/struts-2.0.dtd">
 
 <struts>
-	<package name="" namespace="/" extends="mainPackage">
-
+	<package name="standardPackage" namespace="/" extends="mainPackage">
 
 		<global-results>
-
 			<result name="error">errorPage.jsp</result>
 		</global-results>
-
-
-
 
 		<action name="startup" class="it.costanza.LiLo.action.StartupAction"
 			method="startupMethod">
@@ -39,22 +34,47 @@
 			<result name="success" type="tiles">SuccessefullLogin</result>
 		</action>
 
+	</package>
+
+	<package name="authenticationCheckAction" namespace="/"
+		extends="mainPackage">
+
+		<!-- definizione interceptors -->
+		<interceptors>
+			<interceptor class="it.costanza.interceptors.LoginInterceptor"
+				name="loginInterceptor">
+			</interceptor>
+			<interceptor-stack name="loginStack">
+				<interceptor-ref name="loginInterceptor" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+
+		<!-- definizione interceptor all'interno del package -->
+		<default-interceptor-ref name="loginStack" />
+
+		<!-- risultati globali all'interno del package -->
+		<global-results>
+			<result name="error">errorPage.jsp</result>
+			<result name="login" type="redirect">signIn</result>
+		</global-results>
+
 		<action name="gotoModuleTypeManagement" class="it.costanza.LiLo.action.ModuleAction"
 			method="gotoModuleTypeManagement">
 			<result name="success" type="tiles">ModuleTypeManagement</result>
 		</action>
-		
+
 		<action name="gotoNewModuleType">
 			<result type="tiles">ModuleTypeCreation</result>
 		</action>
-		
+
 		<action name="createModuleType" class="it.costanza.LiLo.action.ModuleAction"
 			method="createModuleType">
 			<result name="success" type="redirect">gotoModuleTypeManagement</result>
 		</action>
-		
-		
-
 
 	</package>
+
+
+
 </struts>
