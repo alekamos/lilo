@@ -33,10 +33,6 @@ public class ModuleAction extends ActionSupport{
 
 
 	
-	
-	
-	
-	
 	public String gotoModuleTypeManagement(){
 		log.debug(Const.IN);
 		User user = ul.getUserInSession();
