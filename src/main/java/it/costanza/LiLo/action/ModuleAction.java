@@ -46,7 +46,7 @@ public class ModuleAction extends ActionSupport{
 	}
 	
 	
-	public String createModuleType(){
+	public String createNewModuleType(){
 		log.debug(Const.IN);
 		User user = ul.getUserInSession();
 		log.debug("User estratto dalla sessione: "+user.toString());
