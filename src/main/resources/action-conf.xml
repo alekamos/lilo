@@ -63,6 +63,11 @@
 			method="gotoModuleTypeManagement">
 			<result name="success" type="tiles">ModuleTypeManagement</result>
 		</action>
+		
+		<action name="createNewModuleType" class="it.costanza.LiLo.action.ModuleAction"
+			method="createNewModuleType">
+			<result name="success" type="redirect">gotoModuleTypeManagement</result>
+		</action>
 
 		<action name="gotoNewModuleType">
 			<result type="tiles">ModuleTypeCreation</result>

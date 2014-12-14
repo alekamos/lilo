@@ -23,7 +23,10 @@
 			<tr>
 				<td><c:out value="${i.count}" /></td>
 				<td>x</td>
-				<td>x</td>
+				<td><a
+					href="<s:url action="gotoUseModule.action" >
+    <s:param name="moduleType.idModuleType">${mt.idModuleType}</s:param>
+</s:url>">use</a></td>
 				<td><c:out value="${mt.name}" /></td>
 				<td><c:out value="${mt.description}" /></td>
 			</tr>
