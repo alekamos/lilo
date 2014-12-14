@@ -60,7 +60,14 @@ public class ModuleAction extends ActionSupport{
 	}
 	
 	
-	
+	public String gotoUseModule(){
+		log.debug(Const.IN);
+		User user = ul.getUserInSession();
+		log.debug("User estratto dalla sessione: "+user.toString());
+log.debug("idModuleType: "+moduleType.getIdModuleType());
+
+		return SUCCESS;
+	}
 	
 	public ArrayList<ModuleType> getModuleTypeList() {
 		return moduleTypeList;
