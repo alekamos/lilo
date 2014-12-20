@@ -31,7 +31,7 @@
       #{updateTimestamp,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="it.costanza.LiLo.mybatis.bean.ModuleHeader" >
-    <selectKey resultType="java.lang.Integer" keyProperty="idModule" order="AFTER" >
+    <selectKey resultType="java.lang.Integer" keyProperty="idModule" order="AFTER">
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into MODULES_HEADER
