@@ -130,9 +130,11 @@ public class ModuleLogic {
 	}
 
 
-	public int checkIfDateExistYet(ModuleExtended moduleExtended){
+	public int checkIfDateExistYet(ModuleExtended moduleExtendedIn){
 		ModuleClusterDao dao = new ModuleClusterDao();
-		int idModuleCluster = dao.searchIfExistClusterYet(moduleExtended);
+		ModuleExtended moduleExtendedProbe = moduleExtendedIn;
+		moduleExtendedProbe.getModuleHeader().setIdModule(Const.ID_MAIN_DAY_MODULE);
+		int idModuleCluster = dao.searchIfExistClusterYet(moduleExtendedProbe);
 		return idModuleCluster;
 	}
 
@@ -177,7 +179,9 @@ public class ModuleLogic {
 		//Vuol dire che non cè un cluster
 		if(idModuleCluster == 0){
 			ModuleExtended mainDay = creaModuleExtenderPerMainDay(moduleExtended);
+			idModuleCluster = mainDay.getModuleCluster().getIdModuleCluster();
 			dao.saveModuleExtended(mainDay);
+			
 		}
 
 		//Una volta salvati i dati della giornata principale (mainDay) ci si occupa di salvare la giornata
