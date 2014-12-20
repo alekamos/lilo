@@ -1,28 +1,31 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="/struts-tags" prefix="s"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-
-<s:form method="post" action="createNewModuleType.action"
-	validate="false">
+<s:form method="post" action="saveModule.action" validate="false">
 	<br />
-	<h3>naming</h3>
-	<s:textfield label="Naming - name" name="moduleType.name"
-		placeholder="name" autocomplete="off" />
-	<s:textarea label="Naming - description" name="moduleType.description"
-		placeholder="description" autocomplete="off" />
+
+	<h1>${moduleType.name}</h1>
+	<h5>${moduleType.description}</h5>
+
 
 	<br />
 	<h3>text content</h3>
-	<s:textfield label="Text content-field name 1"
-		name="moduleType.textContent1Name" placeholder="field name"
-		autocomplete="off" />
-	<s:textfield label="Text content- field name 2"
-		name="moduleType.textContent2Name" placeholder="field name"
-		autocomplete="off" />
-	<s:textfield label="Text content- field name 3"
-		name="moduleType.textContent3Name" placeholder="field name"
-		autocomplete="off" />
+	<c:if test="${moduleType.textContent1Name ne ''}">
+		<s:textarea label="%{moduleType.textContent1Name}"
+			name="moduleExtended.moduleText.text1Value" autocomplete="off" />
+	</c:if>
+
+	<c:if test="${moduleType.textContent2Name ne '' }">
+		<s:textarea label="%{moduleType.textContent2Name}"
+			name="moduleExtended.moduleText.text2Value" autocomplete="off" />
+	</c:if>
+
+	<c:if test="${moduleType.textContent3Name ne '' }">
+		<s:textarea label="%{moduleType.textContent3Name}"
+			name="moduleExtended.moduleText.text3Value" autocomplete="off" />
+	</c:if>
 
 	<br />
 	<h3>list content</h3>
@@ -38,49 +41,44 @@
 
 	<br />
 	<h3>numeric content</h3>
-	<s:textfield label="Numeric content-field name 1"
-		name="moduleType.numericDataContent1Name" placeholder="field name"
-		autocomplete="off" />
-	<s:select label="Numeric contentfield type 1"
-		list="#{'int':'int', 'double':'double'}"
-		name="moduleType.numericDataContent1Type" value="int" />
+	<c:if test="${moduleType.numericDataContent1Name ne '' }">
+		<s:textfield label="%{moduleType.numericDataContent1Name}"
+			name="moduleExtended.moduleNumeric.numericData1Value"
+			autocomplete="off" />
+	</c:if>
 
-	<s:textfield label="Numeric content-field name"
-		name="moduleType.numericDataContent2Name" placeholder="field name"
-		autocomplete="off" />
-	<s:select label="Numeric content - field type 2"
-		list="#{'int':'int', 'double':'double'}"
-		name="moduleType.numericDataContent2Type" value="int" />
+	<c:if test="${moduleType.numericDataContent2Name ne '' }">
+		<s:textfield label="%{moduleType.numericDataContent2Name}"
+			name="moduleExtended.moduleNumeric.numericData2Value"
+			autocomplete="off" />
+	</c:if>
 
-	<s:textfield label="Numeric content-field name"
-		name="moduleType.numericDataContent3Name" placeholder="field name"
-		autocomplete="off" />
-	<s:select label="Numeric content-field type 3"
-		list="#{'int':'int', 'double':'double'}"
-		name="moduleType.numericDataContent3Type" value="int" />
+	<c:if test="${moduleType.numericDataContent3Name ne '' }">
+		<s:textfield label="%{moduleType.numericDataContent3Name}"
+			name="moduleExtended.moduleNumeric.numericData3Value"
+			autocomplete="off" />
+	</c:if>
 
-	<br />
+
 	<h3>date and time content</h3>
-	<s:textfield label="Date and time content-field name 1"
-		name="moduleType.datetimeContent1Name" placeholder="field name"
-		autocomplete="off" />
-	<s:select label="Date and time content-field type 1"
-		list="#{'date':'date', 'time':'time', 'datetime':'date&time' }"
-		name="moduleType.datetimeContent1Type" value="date" />
+	<c:if test="${moduleType.datetimeContent1Name ne '' }">
+		<s:textfield label="%{moduleType.datetimeContent1Name}"
+			name="moduleExtended.moduleDatetime.datetime1Value"
+			autocomplete="off" />
+	</c:if>
 
-	<s:textfield label="Date and time content-field name 2"
-		name="moduleType.datetimeContent2Name" placeholder="field name"
-		autocomplete="off" />
-	<s:select label="Date and time content-field type 2"
-		list="#{'date':'date', 'time':'time', 'datetime':'date&time' }"
-		name="moduleType.datetimeContent2Type" value="date" />
+	<c:if test="${moduleType.datetimeContent2Name ne '' }">
+		<s:textfield label="%{moduleType.datetimeContent2Name}"
+			name="moduleExtended.moduleDatetime.datetime2Value"
+			autocomplete="off" />
+	</c:if>
 
-	<s:textfield label="Date and time content-field name 3"
-		name="moduleType.datetimeContent3Name" placeholder="field name"
-		autocomplete="off" />
-	<s:select label="Date and time content-field type 3"
-		list="#{'date':'date', 'time':'time', 'datetime':'date&time' }"
-		name="moduleType.datetimeContent3Type" value="date" />
+	<c:if test="${moduleType.datetimeContent3Name ne '' }">
+		<s:textfield label="%{moduleType.datetimeContent3Name}"
+			name="moduleExtended.moduleDatetime.datetime3Value"
+			autocomplete="off" />
+	</c:if>
+
 
 	<br />
 

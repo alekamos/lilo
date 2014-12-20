@@ -1,5 +1,8 @@
 package it.costanza.LiLo.mybatis.bean;
 
+import it.costanza.LiLo.util.Utility;
+
+import java.util.ArrayList;
 import java.util.Date;
 
 public class ModuleType {
@@ -271,5 +274,71 @@ public class ModuleType {
 
     public void setUpdateTimestamp(Date updateTimestamp) {
         this.updateTimestamp = updateTimestamp;
+    }
+    
+    @Override
+    public String toString() {
+    	
+    	ArrayList<String> chiavi = new ArrayList<String>();
+    	ArrayList<String> valori = new ArrayList<String>();
+
+		chiavi.add("idModuleType");
+    	chiavi.add("idUser");
+    	chiavi.add("name");
+    	chiavi.add("description");
+    	chiavi.add("textContent1Name");
+    	chiavi.add("textContent2Name");
+    	chiavi.add("textContent3Name");
+    	chiavi.add("listContent1Name");
+    	chiavi.add("listContent1Type");
+    	chiavi.add("listContent2Name");
+    	chiavi.add("listContent2Type");
+    	chiavi.add("listContent3Name");
+    	chiavi.add("listContent3Type");
+    	chiavi.add("numericDataContent1Name");
+    	chiavi.add("numericDataContent1Type");
+    	chiavi.add("numericDataContent2Name");
+    	chiavi.add("numericDataContent2Type");
+    	chiavi.add("numericDataContent3Name");
+    	chiavi.add("numericDataContent3Type");
+    	chiavi.add("datetimeContent1Name");
+    	chiavi.add("datetimeContent1Type");
+    	chiavi.add("datetimeContent2Name");
+    	chiavi.add("datetimeContent2Type");
+    	chiavi.add("datetimeContent3Name");
+    	chiavi.add("datetimeContent3Type");
+    	chiavi.add("insertTimestamp");
+    	chiavi.add("updateTimestamp");
+
+		valori.add(idModuleType+"");
+    	valori.add(idUser+"");
+    	valori.add(name);
+    	valori.add(description);
+    	valori.add(textContent1Name);
+    	valori.add(textContent2Name);
+    	valori.add(textContent3Name);
+    	valori.add(listContent1Name);
+    	valori.add(listContent1Type);
+    	valori.add(listContent2Name);
+    	valori.add(listContent2Type);
+    	valori.add(listContent3Name);
+    	valori.add(listContent3Type);
+    	valori.add(numericDataContent1Name);
+    	valori.add(numericDataContent1Type);
+    	valori.add(numericDataContent2Name);
+    	valori.add(numericDataContent2Type);
+    	valori.add(numericDataContent3Name);
+    	valori.add(numericDataContent3Type);
+    	valori.add(datetimeContent1Name);
+    	valori.add(datetimeContent1Type);
+    	valori.add(datetimeContent2Name);
+    	valori.add(datetimeContent2Type);
+    	valori.add(datetimeContent3Name);
+    	valori.add(datetimeContent3Type);
+    	valori.add(insertTimestamp+"");
+    	valori.add(updateTimestamp+"");
+    	
+    	return Utility.toStringPerBean(chiavi, valori);
+    	
     }
 }
