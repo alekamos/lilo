@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.apache.log4j.Logger;
 
+import it.costanza.LiLo.bean.ModuleExtended;
 import it.costanza.LiLo.logic.ModuleLogic;
 import it.costanza.LiLo.logic.UserLogic;
 import it.costanza.LiLo.mybatis.bean.ModuleType;
@@ -25,6 +26,7 @@ public class ModuleAction extends ActionSupport{
 	//Campo in arrivo dalla jsp
 	private ArrayList<ModuleType> moduleTypeList = new ArrayList<ModuleType>();
 	private ModuleType moduleType = new ModuleType();
+	private ModuleExtended moduleExtended = new ModuleExtended();
 
 
 	//Classe logica 
@@ -64,8 +66,8 @@ public class ModuleAction extends ActionSupport{
 		log.debug(Const.IN);
 		User user = ul.getUserInSession();
 		log.debug("User estratto dalla sessione: "+user.toString());
-log.debug("idModuleType: "+moduleType.getIdModuleType());
-
+		moduleType = ml.getModuleType(moduleType);
+		log.debug("ModuleType caricato: "+moduleType.toString());
 		return SUCCESS;
 	}
 	
@@ -85,6 +87,16 @@ log.debug("idModuleType: "+moduleType.getIdModuleType());
 
 	public void setModuleType(ModuleType moduleType) {
 		this.moduleType = moduleType;
+	}
+
+
+	public ModuleExtended getModuleExtended() {
+		return moduleExtended;
+	}
+
+
+	public void setModuleExtended(ModuleExtended moduleExtended) {
+		this.moduleExtended = moduleExtended;
 	}
 
 

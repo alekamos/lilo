@@ -85,7 +85,7 @@ public class ModuleLogic {
 	/**
 	 * Si occupa di sistemare i dati del modulo prima del salvataggio sul DB.
 	 * Ad esempio se i campi listType non sono settati li setta lui.
-	 * In futuro se serve, si può mettere qui il fatto di rendere null i campi con stringa vuota.
+	 * In futuro se serve, si puï¿½ mettere qui il fatto di rendere null i campi con stringa vuota.
 	 * @param moduleType
 	 * @return
 	 */
@@ -105,6 +105,17 @@ public class ModuleLogic {
 
 		
 		return moduleType;
+	}
+
+	/**
+	 * Carica il modulo type invocando il dao
+	 * @param moduleType
+	 * @return
+	 */
+	public ModuleType getModuleType(ModuleType moduleTypeIn) {
+		ModuleTypeDao dao = new ModuleTypeDao();	
+		ModuleType moduleTypeOut = dao.selectById(moduleTypeIn.getIdModuleType());
+		return moduleTypeOut;
 	}
 
 
