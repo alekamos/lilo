@@ -28,6 +28,11 @@
 			<result name="success" type="tiles">HomepageInt</result>
 		</action>
 
+		<action name="logout" class="it.costanza.LiLo.action.UserAction"
+			method="logout">
+			<result name="success" type="tiles">HomepageExt</result>
+		</action>
+
 		<action name="signUp" class="it.costanza.LiLo.action.UserAction"
 			method="signUp">
 			<result name="input" type="tiles">SignUpPage</result>
@@ -63,7 +68,7 @@
 			method="gotoModuleTypeManagement">
 			<result name="success" type="tiles">ModuleTypeManagement</result>
 		</action>
-		
+
 		<action name="createNewModuleType" class="it.costanza.LiLo.action.ModuleAction"
 			method="createNewModuleType">
 			<result name="success" type="redirect">gotoModuleTypeManagement</result>
@@ -78,10 +83,17 @@
 			<result name="success" type="tiles">UseModule</result>
 		</action>
 
+		<action name="saveModule" class="it.costanza.LiLo.action.ModuleAction"
+			method="saveModule">
+			<result name="success" type="redirect">gotoModuleTypeManagement</result>
+		</action>
 		
-	
 		
-		
+
+
+
+
+
 	</package>
 
 

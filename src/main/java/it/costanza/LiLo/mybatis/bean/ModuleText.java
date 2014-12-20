@@ -1,5 +1,9 @@
 package it.costanza.LiLo.mybatis.bean;
 
+import it.costanza.LiLo.util.Utility;
+
+import java.util.ArrayList;
+
 public class ModuleText {
     private Integer idModule;
 
@@ -39,5 +43,29 @@ public class ModuleText {
 
     public void setText1Value(String text1Value) {
         this.text1Value = text1Value;
+    }
+    
+
+    
+    @Override
+    public String toString() {
+
+    	ArrayList<String> chiavi = new ArrayList<String>();
+    	ArrayList<String> valori = new ArrayList<String>();
+    	
+    	chiavi.add("idModule");
+    	chiavi.add("text1Value");
+    	chiavi.add("text2Value");
+    	chiavi.add("text3Value");
+
+
+    	
+    	valori.add(idModule+"");
+    	valori.add(text1Value);
+    	valori.add(text2Value);
+    	valori.add(text3Value);
+    	
+    	return Utility.toStringPerBean(chiavi, valori);
+    	
     }
 }

@@ -1,5 +1,8 @@
 package it.costanza.LiLo.mybatis.bean;
 
+import it.costanza.LiLo.util.Utility;
+
+import java.util.ArrayList;
 import java.util.Date;
 
 public class ModuleHeader {
@@ -51,5 +54,28 @@ public class ModuleHeader {
 
     public void setUpdateTimestamp(Date updateTimestamp) {
         this.updateTimestamp = updateTimestamp;
+    }
+    
+    @Override
+    public String toString() {
+
+    	ArrayList<String> chiavi = new ArrayList<String>();
+    	ArrayList<String> valori = new ArrayList<String>();
+    	
+    	chiavi.add("idModule");
+    	chiavi.add("idModuleType");
+    	chiavi.add("idUser");
+    	chiavi.add("insertTimestamp");
+    	chiavi.add("updateTimestamp");
+
+    	
+    	valori.add(idModule+"");
+    	valori.add(idModuleType+"");
+    	valori.add(idUser+"");
+    	valori.add(insertTimestamp+"");
+    	valori.add(updateTimestamp+"");
+    	
+    	return Utility.toStringPerBean(chiavi, valori);
+    	
     }
 }

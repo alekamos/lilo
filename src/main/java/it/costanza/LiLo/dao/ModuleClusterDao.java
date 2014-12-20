@@ -54,13 +54,15 @@ public class ModuleClusterDao extends MyBatisDAO<ModuleCluster, Integer>{
 		try
 		{					
 			String query = Const.NS_PREFIX+this.getClass().getSimpleName().replace("Dao", "")+Const.NS_SUFFIX+"."+"selectMaxIdCluster";
-			max = session.selectOne(query); 
+			max = session.selectOne(query);
+			if(max==null)
+				max = 0;
 		}
 		finally
 		{
 			session.close();
 		}   
-		return max;
+		return max+1;
     }
     
     /**
@@ -68,22 +70,26 @@ public class ModuleClusterDao extends MyBatisDAO<ModuleCluster, Integer>{
      * @param Al metodo occorre passare un module extended definito così:
      * in moduleHeader cè riempito l'idModulo e l'idUser
      * in Module datetime al campo 1 c'è la data da cercare.
-     * @return
+     * @return idCluster con la data, se 0 vuol dire che non cè un cluster
      * @throws PersistenceException
      */
     public Integer searchIfExistClusterYet(ModuleExtended me) throws PersistenceException {
     	SqlSession session = MyBatisLoader.getSqlSession();
-    	Integer max;
+    	Integer idCluster;
 		try
 		{					
 			String query = Const.NS_PREFIX+this.getClass().getSimpleName().replace("Dao", "")+Const.NS_SUFFIX+"."+"selectIfExistIdClusterForUserAndIdModuleAndDate";
-			max = session.selectOne(query,me); 
+			idCluster = session.selectOne(query,me); 
+			
+			if(idCluster==null){
+				idCluster = 0;
+			}
 		}
 		finally
 		{
 			session.close();
 		}   
-		return max;
+		return idCluster;
     }
     
     

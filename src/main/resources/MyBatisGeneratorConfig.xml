@@ -55,8 +55,6 @@
 			domainObjectName="ModuleCluster" enableCountByExample="false"
 			enableSelectByExample="false" enableDeleteByExample="false"
 			enableUpdateByExample="false" selectByExampleQueryId="false">
-			<generatedKey column="ID_MODULE_CLUSTER" sqlStatement="MySql"
-				identity="true" />
 
 		</table>
 		<table schema="A1DB" tableName="MODULES_TYPES" domainObjectName="ModuleType"

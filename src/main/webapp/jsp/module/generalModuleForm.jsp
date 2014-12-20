@@ -6,9 +6,14 @@
 <s:form method="post" action="saveModule.action" validate="false">
 	<br />
 
+
+
 	<h1>${moduleType.name}</h1>
 	<h5>${moduleType.description}</h5>
-
+	<s:hidden name="moduleExtended.moduleHeader.idModuleType"
+		value="%{moduleType.idModuleType}" />
+	<s:textfield label="data Main Day" name="moduleExtended.dataMainDay"
+		placeholder="data" autocomplete="off"/>
 
 	<br />
 	<h3>text content</h3>
@@ -29,15 +34,7 @@
 
 	<br />
 	<h3>list content</h3>
-	<s:textfield label="List content-field name 1"
-		name="moduleType.listContent1Name" placeholder="field name"
-		autocomplete="off" />
-	<s:textfield label="List content-field name 2"
-		name="moduleType.listContent2Name" placeholder="field name"
-		autocomplete="off" />
-	<s:textfield label="List content-field name 3"
-		name="moduleType.listContent3Name" placeholder="field name"
-		autocomplete="off" />
+
 
 	<br />
 	<h3>numeric content</h3>

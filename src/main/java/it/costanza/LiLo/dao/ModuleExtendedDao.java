@@ -71,7 +71,7 @@ public class ModuleExtendedDao{
 
 
 	/**
-	 * DA UTILIZZARE PER IL CARICAMENTO ACCOPPIATO CON UN METODO DI LOGICA(arricchimento dei dati,
+	 * DA UTILIZZARE PER IL SALVATAGGIO ACCOPPIATO CON UN METODO DI LOGICA(arricchimento dei dati,
 	 * annullamento delle tabelle non utilizzate, generazione dei cluster se già esistenti)
 	 * Salvataggio di un modulo extended in tutte le sue tabelle, se un campo interno e null non verrà salvato
 	 * @param idModule
@@ -82,22 +82,27 @@ public class ModuleExtendedDao{
 		int idModule = 0;
 		if (me.getModuleHeader()!=null) {
 			ModuleHeaderDao dao = new ModuleHeaderDao();
-			idModule = dao.insert(me.getModuleHeader());
+			dao.insert(me.getModuleHeader());
+			idModule = me.getModuleHeader().getIdModule();
 		}
 		if (me.getModuleCluster()!=null) {
 			ModuleClusterDao dao = new ModuleClusterDao();
+			me.getModuleCluster().setIdModule(idModule);
 			dao.insert(me.getModuleCluster());
 		}
 		if (me.getModuleDatetime()!=null) {
 			ModuleDatetimeDao dao = new ModuleDatetimeDao();
+			me.getModuleDatetime().setIdModule(idModule);
 			dao.insert(me.getModuleDatetime());
 		}
 		if (me.getModuleText()!=null) {
 			ModuleTextDao dao = new ModuleTextDao();
+			me.getModuleText().setIdModule(idModule);
 			dao.insert(me.getModuleText());
 		}
 		if (me.getModuleNumeric()!=null) {
 			ModuleNumericDao dao = new ModuleNumericDao();
+			me.getModuleNumeric().setIdModule(idModule);
 			dao.insert(me.getModuleNumeric());
 		}
 		if(me.getModuleListExtended()!= null && me.getModuleListExtended().size()>0){

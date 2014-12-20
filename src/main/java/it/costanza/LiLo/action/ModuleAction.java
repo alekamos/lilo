@@ -22,7 +22,7 @@ public class ModuleAction extends ActionSupport{
 
 	//Campo in arrivo dalla jsp
 
-	
+
 	//Campo in arrivo dalla jsp
 	private ArrayList<ModuleType> moduleTypeList = new ArrayList<ModuleType>();
 	private ModuleType moduleType = new ModuleType();
@@ -34,34 +34,45 @@ public class ModuleAction extends ActionSupport{
 	private UserLogic ul = new UserLogic();
 
 
-	
+
 	public String gotoModuleTypeManagement(){
 		log.debug(Const.IN);
 		User user = ul.getUserInSession();
 		log.debug("User estratto dalla sessione: "+user.toString());
 		moduleTypeList = ml.getListaModuliTypeUtente(user);
-		
+
 		//Aggiungo i moduli di default
 		moduleTypeList = ml.getModuliDefault(moduleTypeList);
 
 		return SUCCESS;
 	}
-	
-	
+
+
 	public String createNewModuleType(){
 		log.debug(Const.IN);
 		User user = ul.getUserInSession();
 		log.debug("User estratto dalla sessione: "+user.toString());
 		moduleType.setIdUser(user.getIdUser());
 		moduleType = ml.normalizzaCampi(moduleType);
-		
-		
+
+
 		ml.salvaModuloType(moduleType);
 
 		return SUCCESS;
 	}
-	
-	
+
+
+	public String saveModule(){
+		log.debug(Const.IN);
+		User user = ul.getUserInSession();
+		log.debug("User estratto dalla sessione: "+user.toString());
+		moduleExtended.getModuleHeader().setIdUser(user.getIdUser());
+		log.debug("Modulo in arrivo da jsP: "+moduleExtended.toString());
+		ml.salvaModuloExtended(moduleExtended);
+
+		return SUCCESS;
+	}
+
 	public String gotoUseModule(){
 		log.debug(Const.IN);
 		User user = ul.getUserInSession();
@@ -70,7 +81,7 @@ public class ModuleAction extends ActionSupport{
 		log.debug("ModuleType caricato: "+moduleType.toString());
 		return SUCCESS;
 	}
-	
+
 	public ArrayList<ModuleType> getModuleTypeList() {
 		return moduleTypeList;
 	}
