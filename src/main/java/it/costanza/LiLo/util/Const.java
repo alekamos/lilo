@@ -35,5 +35,6 @@ public class Const {
 	
 	//Costanti allineate con il DB
 	public static final int[] ARRAY_MODULI_DEFAULT = {1};
+	public static int ID_MAIN_DAY_MODULE = 7;
 
 }

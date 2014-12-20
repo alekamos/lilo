@@ -43,16 +43,16 @@ public class UserLogic {
 
 	}
 
-/**
- * Mette l'untete in sessione
- * @param user
- */
+	/**
+	 * Mette l'untete in sessione
+	 * @param user
+	 */
 	public void putUserInSession(User user){
 		log.debug(Const.IN);
 		log.debug("Oggetto arrivato al metodo: "+user.toString());
 		ActionContext.getContext().getSession().put("user", user);
 	}
-	
+
 	/**
 	 * Prende l'utente dalla sessione
 	 * @return
@@ -61,15 +61,15 @@ public class UserLogic {
 		User user = (User) ActionContext.getContext().getSession().get("user");
 		return user;
 	}
-	
-	
 
-/**
- * Verifica se l'utente è già presente controllando mail ed username, risponde un message resource
- * indicando se è duplicato l'username o la password
- * @param user
- * @return
- */
+
+
+	/**
+	 * Verifica se l'utente è già presente controllando mail ed username, risponde un message resource
+	 * indicando se è duplicato l'username o la password
+	 * @param user
+	 * @return
+	 */
 	public String verificaUtenteGiaPresente(User user) {
 		log.debug(Const.IN);
 		String out = "";
@@ -82,8 +82,16 @@ public class UserLogic {
 			if(utenteEstratto!=null)
 				out = "email.presente";
 		}
-		
+
 		return out;
+	}
+
+	/**
+	 * Rimuove l'utente dalla sessione, logout
+	 */
+	public void logout() {
+		ActionContext.getContext().getSession().remove("user");
+
 	}
 
 

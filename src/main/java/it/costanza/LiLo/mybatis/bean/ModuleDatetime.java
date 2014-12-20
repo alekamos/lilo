@@ -1,5 +1,8 @@
 package it.costanza.LiLo.mybatis.bean;
 
+import it.costanza.LiLo.util.Utility;
+
+import java.util.ArrayList;
 import java.util.Date;
 
 public class ModuleDatetime {
@@ -41,5 +44,27 @@ public class ModuleDatetime {
 
     public void setDatetime3Value(Date datetime3Value) {
         this.datetime3Value = datetime3Value;
+    }
+    
+    @Override
+    public String toString() {
+
+    	ArrayList<String> chiavi = new ArrayList<String>();
+    	ArrayList<String> valori = new ArrayList<String>();
+    	
+    	chiavi.add("idModule");
+    	chiavi.add("datetime1Value");
+    	chiavi.add("datetime2Value");
+    	chiavi.add("datetime3Value");
+
+
+    	
+    	valori.add(idModule+"");
+    	valori.add(datetime1Value+"");
+    	valori.add(datetime2Value+"");
+    	valori.add(datetime3Value+"");
+    	
+    	return Utility.toStringPerBean(chiavi, valori);
+    	
     }
 }

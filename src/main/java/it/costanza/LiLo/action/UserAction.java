@@ -58,6 +58,16 @@ public class UserAction extends ActionSupport{
 
 		return SUCCESS;
 	}
+	
+	public String logout(){
+		log.debug(Const.IN);
+		
+			ul.logout();
+
+
+
+		return SUCCESS;
+	}
 
 
 

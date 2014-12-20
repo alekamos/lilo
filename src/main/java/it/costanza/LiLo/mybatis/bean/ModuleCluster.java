@@ -1,5 +1,8 @@
 package it.costanza.LiLo.mybatis.bean;
 
+import it.costanza.LiLo.util.Utility;
+
+import java.util.ArrayList;
 import java.util.Date;
 
 public class ModuleCluster {
@@ -62,4 +65,32 @@ public class ModuleCluster {
     public void setUpdateTimestamp(Date updateTimestamp) {
         this.updateTimestamp = updateTimestamp;
     }
+    
+
+    @Override
+    public String toString() {
+
+    	ArrayList<String> chiavi = new ArrayList<String>();
+    	ArrayList<String> valori = new ArrayList<String>();
+    	
+    	chiavi.add("idModuleCluster");
+    	chiavi.add("idUser");
+    	chiavi.add("idModuleType");
+    	chiavi.add("idModule");
+       	chiavi.add("insertTimestamp");
+    	chiavi.add("updateTimestamp");
+
+
+    	
+    	valori.add(idModuleCluster+"");
+    	valori.add(idUser+"");
+    	valori.add(idModuleType+"");
+    	valori.add(idModule+"");
+    	valori.add(insertTimestamp+"");
+    	valori.add(updateTimestamp+"");
+    	
+    	return Utility.toStringPerBean(chiavi, valori);
+    	
+    }
+    
 }
