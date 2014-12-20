@@ -1,47 +1,59 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="it.costanza.LiLo.mybatis.mappers.ModuleDatetimeMapper" >
-  <resultMap id="BaseResultMap" type="it.costanza.LiLo.mybatis.bean.ModuleDatetime" >
-    <result column="ID_MODULE" property="idModule" jdbcType="INTEGER" />
-    <result column="DATETIME_1_VALUE" property="datetime1Value" jdbcType="TIMESTAMP" />
-    <result column="DATETIME_2_VALUE" property="datetime2Value" jdbcType="TIMESTAMP" />
-    <result column="DATETIME_3_VALUE" property="datetime3Value" jdbcType="TIMESTAMP" />
-  </resultMap>
-  <insert id="insert" parameterType="it.costanza.LiLo.mybatis.bean.ModuleDatetime" >
-    <selectKey resultType="java.lang.Integer" keyProperty="idModule" order="AFTER" >
-      SELECT LAST_INSERT_ID()
-    </selectKey>
-    insert into MODULES_DATETIME (DATETIME_1_VALUE, DATETIME_2_VALUE, 
-      DATETIME_3_VALUE)
-    values (#{datetime1Value,jdbcType=TIMESTAMP}, #{datetime2Value,jdbcType=TIMESTAMP}, 
-      #{datetime3Value,jdbcType=TIMESTAMP})
-  </insert>
-  <insert id="insertSelective" parameterType="it.costanza.LiLo.mybatis.bean.ModuleDatetime" >
-    <selectKey resultType="java.lang.Integer" keyProperty="idModule" order="AFTER" >
-      SELECT LAST_INSERT_ID()
-    </selectKey>
-    insert into MODULES_DATETIME
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="datetime1Value != null" >
-        DATETIME_1_VALUE,
-      </if>
-      <if test="datetime2Value != null" >
-        DATETIME_2_VALUE,
-      </if>
-      <if test="datetime3Value != null" >
-        DATETIME_3_VALUE,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="datetime1Value != null" >
-        #{datetime1Value,jdbcType=TIMESTAMP},
-      </if>
-      <if test="datetime2Value != null" >
-        #{datetime2Value,jdbcType=TIMESTAMP},
-      </if>
-      <if test="datetime3Value != null" >
-        #{datetime3Value,jdbcType=TIMESTAMP},
-      </if>
-    </trim>
-  </insert>
+<mapper namespace="it.costanza.LiLo.mybatis.mappers.ModuleDatetimeMapper">
+	<resultMap id="BaseResultMap" type="it.costanza.LiLo.mybatis.bean.ModuleDatetime">
+		<result column="ID_MODULE" property="idModule" jdbcType="INTEGER" />
+		<result column="DATETIME_1_VALUE" property="datetime1Value"
+			jdbcType="TIMESTAMP" />
+		<result column="DATETIME_2_VALUE" property="datetime2Value"
+			jdbcType="TIMESTAMP" />
+		<result column="DATETIME_3_VALUE" property="datetime3Value"
+			jdbcType="TIMESTAMP" />
+	</resultMap>
+	<insert id="insert" parameterType="it.costanza.LiLo.mybatis.bean.ModuleDatetime">
+		<selectKey resultType="java.lang.Integer" keyProperty="idModule"
+			order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into MODULES_DATETIME (DATETIME_1_VALUE, DATETIME_2_VALUE,
+		DATETIME_3_VALUE)
+		values (#{datetime1Value,jdbcType=TIMESTAMP},
+		#{datetime2Value,jdbcType=TIMESTAMP},
+		#{datetime3Value,jdbcType=TIMESTAMP})
+	</insert>
+	<insert id="insertSelective" parameterType="it.costanza.LiLo.mybatis.bean.ModuleDatetime">
+		<selectKey resultType="java.lang.Integer" keyProperty="idModule"
+			order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into MODULES_DATETIME
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="idModule != null">
+				ID_MODULE,
+			</if>
+			<if test="datetime1Value != null">
+				DATETIME_1_VALUE,
+			</if>
+			<if test="datetime2Value != null">
+				DATETIME_2_VALUE,
+			</if>
+			<if test="datetime3Value != null">
+				DATETIME_3_VALUE,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="idModule != null">
+				#{idModule,jdbcType=TIMESTAMP},
+			</if>
+			<if test="datetime1Value != null">
+				#{datetime1Value,jdbcType=TIMESTAMP},
+			</if>
+			<if test="datetime2Value != null">
+				#{datetime2Value,jdbcType=TIMESTAMP},
+			</if>
+			<if test="datetime3Value != null">
+				#{datetime3Value,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
 </mapper>

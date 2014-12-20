@@ -1,47 +1,61 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="it.costanza.LiLo.mybatis.mappers.ModuleNumericMapper" >
-  <resultMap id="BaseResultMap" type="it.costanza.LiLo.mybatis.bean.ModuleNumeric" >
-    <result column="ID_MODULE" property="idModule" jdbcType="INTEGER" />
-    <result column="NUMERIC_DATA_1_VALUE" property="numericData1Value" jdbcType="DOUBLE" />
-    <result column="NUMERIC_DATA_2_VALUE" property="numericData2Value" jdbcType="DOUBLE" />
-    <result column="NUMERIC_DATA_3_VALUE" property="numericData3Value" jdbcType="DOUBLE" />
-  </resultMap>
-  <insert id="insert" parameterType="it.costanza.LiLo.mybatis.bean.ModuleNumeric" >
-    <selectKey resultType="java.lang.Integer" keyProperty="idModule" order="AFTER" >
-      SELECT LAST_INSERT_ID()
-    </selectKey>
-    insert into MODULES_NUMERIC_DATA (NUMERIC_DATA_1_VALUE, NUMERIC_DATA_2_VALUE, 
-      NUMERIC_DATA_3_VALUE)
-    values (#{numericData1Value,jdbcType=DOUBLE}, #{numericData2Value,jdbcType=DOUBLE}, 
-      #{numericData3Value,jdbcType=DOUBLE})
-  </insert>
-  <insert id="insertSelective" parameterType="it.costanza.LiLo.mybatis.bean.ModuleNumeric" >
-    <selectKey resultType="java.lang.Integer" keyProperty="idModule" order="AFTER" >
-      SELECT LAST_INSERT_ID()
-    </selectKey>
-    insert into MODULES_NUMERIC_DATA
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="numericData1Value != null" >
-        NUMERIC_DATA_1_VALUE,
-      </if>
-      <if test="numericData2Value != null" >
-        NUMERIC_DATA_2_VALUE,
-      </if>
-      <if test="numericData3Value != null" >
-        NUMERIC_DATA_3_VALUE,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="numericData1Value != null" >
-        #{numericData1Value,jdbcType=DOUBLE},
-      </if>
-      <if test="numericData2Value != null" >
-        #{numericData2Value,jdbcType=DOUBLE},
-      </if>
-      <if test="numericData3Value != null" >
-        #{numericData3Value,jdbcType=DOUBLE},
-      </if>
-    </trim>
-  </insert>
+<mapper namespace="it.costanza.LiLo.mybatis.mappers.ModuleNumericMapper">
+	<resultMap id="BaseResultMap" type="it.costanza.LiLo.mybatis.bean.ModuleNumeric">
+		<result column="ID_MODULE" property="idModule" jdbcType="INTEGER" />
+		<result column="NUMERIC_DATA_1_VALUE" property="numericData1Value"
+			jdbcType="DOUBLE" />
+		<result column="NUMERIC_DATA_2_VALUE" property="numericData2Value"
+			jdbcType="DOUBLE" />
+		<result column="NUMERIC_DATA_3_VALUE" property="numericData3Value"
+			jdbcType="DOUBLE" />
+	</resultMap>
+	<insert id="insert" parameterType="it.costanza.LiLo.mybatis.bean.ModuleNumeric">
+		<selectKey resultType="java.lang.Integer" keyProperty="idModule"
+			order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into MODULES_NUMERIC_DATA (NUMERIC_DATA_1_VALUE,
+		NUMERIC_DATA_2_VALUE,
+		NUMERIC_DATA_3_VALUE)
+		values
+		(#{numericData1Value,jdbcType=DOUBLE},
+		#{numericData2Value,jdbcType=DOUBLE},
+		#{numericData3Value,jdbcType=DOUBLE})
+	</insert>
+	<insert id="insertSelective" parameterType="it.costanza.LiLo.mybatis.bean.ModuleNumeric">
+		<selectKey resultType="java.lang.Integer" keyProperty="idModule"
+			order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into MODULES_NUMERIC_DATA
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="idModule != null">
+				ID_MODULE,
+			</if>
+			<if test="numericData1Value != null">
+				NUMERIC_DATA_1_VALUE,
+			</if>
+			<if test="numericData2Value != null">
+				NUMERIC_DATA_2_VALUE,
+			</if>
+			<if test="numericData3Value != null">
+				NUMERIC_DATA_3_VALUE,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="idModule != null">
+				#{idModule,jdbcType=INTEGER},
+			</if>
+			<if test="numericData1Value != null">
+				#{numericData1Value,jdbcType=DOUBLE},
+			</if>
+			<if test="numericData2Value != null">
+				#{numericData2Value,jdbcType=DOUBLE},
+			</if>
+			<if test="numericData3Value != null">
+				#{numericData3Value,jdbcType=DOUBLE},
+			</if>
+		</trim>
+	</insert>
 </mapper>

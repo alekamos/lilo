@@ -30,11 +30,11 @@
 	<select id="selectIfExistIdClusterForUserAndIdModuleAndDate"
 		resultType="java.lang.Integer" parameterType="it.costanza.LiLo.bean.ModuleExtended">
 		select
-		ID_MODULE_CLUSTER
-		from MODULES_CLUSTER WHERE ID_MODULE =
-		(SELECT ID_MODULE FROM MODULES_HEADER HE,MODULES_DATETIME DA
+		MC.ID_MODULE_CLUSTER
+		from MODULES_CLUSTER MC WHERE MC.ID_MODULE =
+		(SELECT HE.ID_MODULE FROM MODULES_HEADER HE,MODULES_DATETIME DA
 		WHERE HE.ID_MODULE = DA.ID_MODULE
-		AND HE.ID_MODULE_TYPE = 1
+		AND HE.ID_MODULE_TYPE = #{moduleHeader.idModuleType,jdbcType=INTEGER}
 		AND HE.ID_USER = #{moduleHeader.idUser,jdbcType=INTEGER}
 		AND DA.DATETIME_1_VALUE = #{moduleDatetime.datetime1Value,jdbcType=DATE})
 	</select>
