@@ -14,10 +14,16 @@ $.datepicker.regional['it'] = {clearText: 'Effacer', clearStatus: '',
     dayNamesShort: ['Dom','Lun','Mar','Mer','Gio','Ven','Sab'],
     dayNamesMin: ['Do','Lu','Ma','Me','Gi','Ve','Sa'],
     dayStatus: 'Utiliser DD comme premier jour de la semaine', dateStatus: 'Choisir le DD, MM d',
-    dateFormat: 'dd/mm/yy', firstDay: 1, 
+    dateFormat: 'dd/mm/yy', firstDay: 1,
+    yearRange: "-100:+0",
+    changeMonth: true,
+    changeYear: true,
+    showButtonPanel: true,
     initStatus: 'Choisir la date', isRTL: false};
  $.datepicker.setDefaults($.datepicker.regional['it']);
 
+
+ 
 
 $(document).ready(function() {
 
