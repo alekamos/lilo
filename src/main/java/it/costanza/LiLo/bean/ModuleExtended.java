@@ -15,7 +15,7 @@ import it.costanza.LiLo.mybatis.bean.ModuleType;
 
 public class ModuleExtended {
 
-	private Date dataMainDay;
+	private ModuleDayHost moduleDayHost;
 	private ModuleHeader moduleHeader;
 	private ModuleDatetime moduleDatetime;
 	private ModuleText moduleText;
@@ -23,20 +23,23 @@ public class ModuleExtended {
 	private ModuleType moduleType;
 	private ModuleCluster moduleCluster;
 	private ArrayList<ModuleListExtended> moduleListExtended;
-	
-	
+
+
 	@Override
 	public String toString() {
-		String msg = "\nDataMainDay: "+dataMainDay;
+		String msg = "";
+
+		if(moduleDayHost!=null)
+			msg += "Module DayHost: "+moduleDayHost.toString();
 		if(moduleHeader!=null)
-		msg += "Module Header: "+moduleHeader.toString();
+			msg += "Module Header: "+moduleHeader.toString();
 		if(moduleCluster!=null)
-		msg += "Module Cluster: "+moduleCluster.toString();
+			msg += "Module Cluster: "+moduleCluster.toString();
 		if(moduleText!=null)
-		msg += "Module moduleText: "+moduleText.toString();
+			msg += "Module moduleText: "+moduleText.toString();
 		if(moduleDatetime!=null)
-		msg += "Module moduleDatetime: "+moduleDatetime.toString();
-		
+			msg += "Module moduleDatetime: "+moduleDatetime.toString();
+
 		return msg;
 	}
 
@@ -82,12 +85,15 @@ public class ModuleExtended {
 	public void setModuleCluster(ModuleCluster moduleCluster) {
 		this.moduleCluster = moduleCluster;
 	}
-	public Date getDataMainDay() {
-		return dataMainDay;
+
+	public ModuleDayHost getModuleDayHost() {
+		return moduleDayHost;
 	}
-	public void setDataMainDay(Date dataMainDay) {
-		this.dataMainDay = dataMainDay;
+
+	public void setModuleDayHost(ModuleDayHost moduleDayHost) {
+		this.moduleDayHost = moduleDayHost;
 	}
-	
-	
+
+
+
 }

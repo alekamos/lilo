@@ -68,29 +68,23 @@
 			domainObjectName="ModuleNumeric" enableCountByExample="false"
 			enableSelectByExample="false" enableDeleteByExample="false"
 			enableUpdateByExample="false" selectByExampleQueryId="false">
-			<generatedKey column="ID_MODULE" sqlStatement="MySql"
-				identity="true" />
+			
 		</table>
 		<table schema="A1DB" tableName="MODULES_DATETIME"
 			domainObjectName="ModuleDatetime" enableCountByExample="false"
 			enableSelectByExample="false" enableDeleteByExample="false"
 			enableUpdateByExample="false" selectByExampleQueryId="false">
-			<generatedKey column="ID_MODULE" sqlStatement="MySql"
-				identity="true" />
+
 		</table>
 		<table schema="A1DB" tableName="MODULES_TEXT" domainObjectName="ModuleText"
 			enableCountByExample="false" enableSelectByExample="false"
 			enableDeleteByExample="false" enableUpdateByExample="false"
 			selectByExampleQueryId="false">
-			<generatedKey column="ID_MODULE" sqlStatement="MySql"
-				identity="true" />
 		</table>
 		<table schema="A1DB" tableName="MODULES_LIST" domainObjectName="ModuleList"
 			enableCountByExample="false" enableSelectByExample="false"
 			enableDeleteByExample="false" enableUpdateByExample="false"
 			selectByExampleQueryId="false">
-			<generatedKey column="ID_MODULE" sqlStatement="MySql"
-				identity="true" />
 		</table>
 		<table schema="A1DB" tableName="LIST_ELEMENTS" domainObjectName="ListElement"
 			enableCountByExample="false" enableSelectByExample="false"

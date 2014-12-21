@@ -4,6 +4,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<!-- import -->
+<link rel="stylesheet" type="text/css" href="/include/jquery-ui-1.9.2.custom/css/ui-darkness/jquery-ui-1.9.2.custom.css">
+<script type="text/javascript" src="/include/jquery-ui-1.9.2.custom/js/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="/include/jquery-ui-1.9.2.custom/js/jquery-ui-1.9.2.custom.js"></script>
+<script type="text/javascript" src="/LiLo/js/scriptComuni.js"></script>
+
 
 <title><tiles:insertAttribute name="title" /></title>
 

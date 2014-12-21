@@ -129,12 +129,24 @@ public class ModuleLogic {
 		return moduleTypeOut;
 	}
 
-
+	/**
+	 * Costruisce un oggetto adatto per il dao arraggiandosi con i soli dati in arrivo. Invoca il dao e restituisce un idModuleLCuster
+	 * @param moduleExtendedIn
+	 * @return 0 se non trova niente, !0 se la data è già presente
+	 */
 	public int checkIfDateExistYet(ModuleExtended moduleExtendedIn){
+		int idModuleCluster = 0;
+
+
 		ModuleClusterDao dao = new ModuleClusterDao();
-		ModuleExtended moduleExtendedProbe = moduleExtendedIn;
+		ModuleExtended moduleExtendedProbe = new ModuleExtended();
+		moduleExtendedProbe.setModuleHeader(moduleExtendedIn.getModuleHeader());
 		moduleExtendedProbe.getModuleHeader().setIdModule(Const.ID_MAIN_DAY_MODULE);
-		int idModuleCluster = dao.searchIfExistClusterYet(moduleExtendedProbe);
+
+		ModuleDatetime moduleDatetimeToAdd = new ModuleDatetime();
+		moduleDatetimeToAdd.setDatetime1Value(moduleExtendedIn.getModuleDayHost().getDateDayHost());
+		moduleExtendedProbe.setModuleDatetime(moduleDatetimeToAdd);
+		idModuleCluster = dao.searchIfExistClusterYet(moduleExtendedProbe);
 		return idModuleCluster;
 	}
 
@@ -158,7 +170,7 @@ public class ModuleLogic {
 		moduleMainDay.setModuleCluster(moduleClusterMainDay);
 
 		ModuleDatetime moduleDatetimeMainDay = new ModuleDatetime();
-		moduleDatetimeMainDay.setDatetime1Value(moduleExtended.getDataMainDay());
+		moduleDatetimeMainDay.setDatetime1Value(moduleExtended.getModuleDayHost().getDateDayHost());
 		moduleMainDay.setModuleDatetime(moduleDatetimeMainDay);
 		log.debug("Sto per salvare il modulo MainDay: "+moduleMainDay.toString());
 
@@ -181,13 +193,14 @@ public class ModuleLogic {
 			ModuleExtended mainDay = creaModuleExtenderPerMainDay(moduleExtended);
 			idModuleCluster = mainDay.getModuleCluster().getIdModuleCluster();
 			dao.saveModuleExtended(mainDay);
-			
+
 		}
 
 		//Una volta salvati i dati della giornata principale (mainDay) ci si occupa di salvare la giornata
 		ModuleCluster moduleClusterToAdd = new ModuleCluster();
 		moduleClusterToAdd.setIdModuleCluster(idModuleCluster);
 		moduleClusterToAdd.setIdUser(moduleExtended.getModuleHeader().getIdUser());
+		moduleClusterToAdd.setIdModuleType(moduleExtended.getModuleHeader().getIdModuleType());
 		moduleExtended.setModuleCluster(moduleClusterToAdd);
 		dao.saveModuleExtended(moduleExtended);
 
