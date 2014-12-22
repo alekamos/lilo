@@ -206,6 +206,16 @@ public class ModuleLogic {
 
 	}
 
+	public boolean checkModuleOwnership(User user, ModuleHeader moduleHeader) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public ModuleExtended getModule(ModuleHeader moduleHeader) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 
 
