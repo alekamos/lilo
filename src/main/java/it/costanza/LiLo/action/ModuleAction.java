@@ -39,10 +39,10 @@ public class ModuleAction extends ActionSupport{
 		log.debug(Const.IN);
 		User user = ul.getUserInSession();
 		log.debug("User estratto dalla sessione: "+user.toString());
-		moduleTypeList = ml.getListaModuliTypeUtente(user);
+		moduleTypeList = ml.getUserModuleType(user);
 
 		//Aggiungo i moduli di default
-		moduleTypeList = ml.getModuliDefault(moduleTypeList);
+		moduleTypeList = ml.getDefaultModuleType(moduleTypeList);
 
 		return SUCCESS;
 	}
@@ -53,10 +53,10 @@ public class ModuleAction extends ActionSupport{
 		User user = ul.getUserInSession();
 		log.debug("User estratto dalla sessione: "+user.toString());
 		moduleType.setIdUser(user.getIdUser());
-		moduleType = ml.normalizzaCampi(moduleType);
+		moduleType = ml.cleanModuleType(moduleType);
 
 
-		ml.salvaModuloType(moduleType);
+		ml.insertModuleType(moduleType);
 
 		return SUCCESS;
 	}
@@ -68,7 +68,7 @@ public class ModuleAction extends ActionSupport{
 		log.debug("User estratto dalla sessione: "+user.toString());
 		moduleExtended.getModuleHeader().setIdUser(user.getIdUser());
 		log.debug("Modulo in arrivo da jsP: "+moduleExtended.toString());
-		ml.salvaModuloExtended(moduleExtended);
+		ml.insertModuleExtended(moduleExtended);
 
 		return SUCCESS;
 	}

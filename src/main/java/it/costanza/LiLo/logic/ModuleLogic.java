@@ -33,7 +33,7 @@ public class ModuleLogic {
 	 * @param idModuleType del type di modulo
 	 * @return lista di tabelle da caricare
 	 */
-	public ArrayList<String> creaListaModuliDaCaricare(Integer idModuleType){
+	public ArrayList<String> buildTableNameListToLoad(Integer idModuleType){
 		ArrayList<String> listaTabelle = new ArrayList<String>();
 		ModuleTypeDao dao = new ModuleTypeDao();
 		ModuleType mt = dao.selectById(idModuleType);
@@ -58,7 +58,7 @@ public class ModuleLogic {
 	 * @param user
 	 * @return
 	 */
-	public ArrayList<ModuleType> getListaModuliTypeUtente(User user){
+	public ArrayList<ModuleType> getUserModuleType(User user){
 
 		ModuleTypeDao dao = new ModuleTypeDao();
 		ArrayList<ModuleType> moduliTypeList = dao.searchByUserId(user.getIdUser());
@@ -72,7 +72,7 @@ public class ModuleLogic {
 	 * @param moduleTypeList 
 	 * @return
 	 */
-	public ArrayList<ModuleType> getModuliDefault(ArrayList<ModuleType> moduleTypeList) {
+	public ArrayList<ModuleType> getDefaultModuleType(ArrayList<ModuleType> moduleTypeList) {
 		ModuleTypeDao dao = new ModuleTypeDao();
 
 		for (int idModuloType : Const.ARRAY_MODULI_DEFAULT){ 
@@ -86,11 +86,9 @@ public class ModuleLogic {
 	 * Salva moduloType sul db
 	 * @param moduleType
 	 */
-	public void salvaModuloType(ModuleType moduleType) {
+	public void insertModuleType(ModuleType moduleType) {
 		ModuleTypeDao dao = new ModuleTypeDao();
-
 		dao.insert(moduleType);
-
 	}
 
 	/**
@@ -100,7 +98,7 @@ public class ModuleLogic {
 	 * @param moduleType
 	 * @return
 	 */
-	public ModuleType normalizzaCampi(ModuleType moduleType) {
+	public ModuleType cleanModuleType(ModuleType moduleType) {
 
 		String listName1 = moduleType.getDatetimeContent1Name();
 		if(!Utility.isEmpty(listName1))
@@ -119,8 +117,8 @@ public class ModuleLogic {
 	}
 
 	/**
-	 * Carica il modulo type invocando il dao
-	 * @param moduleType
+	 * Carica il modulo type invocando il dao, tramite id
+	 * @param moduleType contenente l'id
 	 * @return
 	 */
 	public ModuleType getModuleType(ModuleType moduleTypeIn) {
@@ -130,11 +128,13 @@ public class ModuleLogic {
 	}
 
 	/**
-	 * Costruisce un oggetto adatto per il dao arraggiandosi con i soli dati in arrivo. Invoca il dao e restituisce un idModuleLCuster
+	 * Costruisce un oggetto adatto per il dao arraggiandosi con i soli dati in arrivo. 
+	 * Invoca il dao e restituisce un idModuleLCuster
+	 * Controlla se � presente un dayHost
 	 * @param moduleExtendedIn
 	 * @return 0 se non trova niente, !0 se la data è già presente
 	 */
-	public int checkIfDateExistYet(ModuleExtended moduleExtendedIn){
+	public int checkDayHostExist(ModuleExtended moduleExtendedIn){
 		int idModuleCluster = 0;
 
 
@@ -150,7 +150,7 @@ public class ModuleLogic {
 		return idModuleCluster;
 	}
 
-	public ModuleExtended creaModuleExtenderPerMainDay(ModuleExtended moduleExtended){
+	public ModuleExtended buildDayHostModuleExtended(ModuleExtended moduleExtended){
 
 		ModuleClusterDao daoCluster = new ModuleClusterDao();
 		int idModuleCluster = daoCluster.searchMaxIdCluster();
@@ -184,13 +184,13 @@ public class ModuleLogic {
 	 * si salva il modulo. I campi non presenti vengono annullati. Se già presente una mainDay viene usato quello per il salvataggio.
 	 * @param moduleExtended
 	 */
-	public void salvaModuloExtended(ModuleExtended moduleExtended) {
+	public void insertModuleExtended(ModuleExtended moduleExtended) {
 
 		ModuleExtendedDao dao = new ModuleExtendedDao();
-		int idModuleCluster = checkIfDateExistYet(moduleExtended);
+		int idModuleCluster = checkDayHostExist(moduleExtended);
 		//Vuol dire che non cè un cluster
 		if(idModuleCluster == 0){
-			ModuleExtended mainDay = creaModuleExtenderPerMainDay(moduleExtended);
+			ModuleExtended mainDay = buildDayHostModuleExtended(moduleExtended);
 			idModuleCluster = mainDay.getModuleCluster().getIdModuleCluster();
 			dao.saveModuleExtended(mainDay);
 
