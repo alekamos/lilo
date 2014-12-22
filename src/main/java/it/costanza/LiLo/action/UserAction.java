@@ -27,7 +27,7 @@ public class UserAction extends ActionSupport{
 		log.debug(Const.IN);
 		log.debug("Utente in arrivo da JSP "+user.toString());
 
-		User usrEstratto = ul.estraiUtenteByLoginAndPassword(user);
+		User usrEstratto = ul.getUserByUsrPwd(user);
 		log.debug(usrEstratto);
 		if(usrEstratto!=null){
 			log.debug("Estratto utente non null, credenziali valide");
@@ -48,10 +48,10 @@ public class UserAction extends ActionSupport{
 		log.debug(Const.IN);
 		log.debug("Utente in arrivo da JSP "+user.toString());
 		log.debug("Verifico che l'utente non sia già iscritto con stesso user e stessa mail");
-		String errori = ul.verificaUtenteGiaPresente(user);
+		String errori = ul.checkUserExist(user);
 		log.debug("Errori segnalati dalle verifiche: ");
 		if(errori!=null && errori.equals(""))
-			ul.salvaUtente(user);
+			ul.insertUser(user);
 		else
 			return INPUT;
 
@@ -62,7 +62,7 @@ public class UserAction extends ActionSupport{
 	public String logout(){
 		log.debug(Const.IN);
 		
-			ul.logout();
+			ul.deleteUserInSession();
 
 
 

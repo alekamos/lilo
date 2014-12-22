@@ -20,7 +20,7 @@ public class UserLogic {
 	 * @param user
 	 * @return
 	 */
-	public User estraiUtenteByLoginAndPassword(User user){
+	public User getUserByUsrPwd(User user){
 		log.debug(Const.IN);
 
 		user.setPassword(Encryption.toMD5(user.getPassword()));
@@ -34,7 +34,7 @@ public class UserLogic {
 	 * Salva l'untete sul DB
 	 * @param user
 	 */
-	public void salvaUtente(User user){
+	public void insertUser(User user){
 		log.debug(Const.IN);
 
 		user.setPassword(Encryption.toMD5(user.getPassword()));
@@ -70,7 +70,7 @@ public class UserLogic {
 	 * @param user
 	 * @return
 	 */
-	public String verificaUtenteGiaPresente(User user) {
+	public String checkUserExist(User user) {
 		log.debug(Const.IN);
 		String out = "";
 
@@ -89,7 +89,7 @@ public class UserLogic {
 	/**
 	 * Rimuove l'utente dalla sessione, logout
 	 */
-	public void logout() {
+	public void deleteUserInSession() {
 		ActionContext.getContext().getSession().remove("user");
 
 	}
