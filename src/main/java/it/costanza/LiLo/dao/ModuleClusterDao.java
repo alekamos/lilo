@@ -91,6 +91,29 @@ public class ModuleClusterDao extends MyBatisDAO<ModuleCluster, Integer>{
 		}   
 		return idCluster;
     }
+
+
+    /**
+     * Carica il modulo cluster cercando per idCluster,idModuleType and idUser
+     * @param moduleClusterIn
+     * @return
+     */
+	public ModuleCluster searchByIdClusterAndModuleTypeAndUser(
+			ModuleCluster moduleClusterIn) {
+    	SqlSession session = MyBatisLoader.getSqlSession();
+    	ModuleCluster moduleCluster = new ModuleCluster();
+		try
+		{					
+			String query = Const.NS_PREFIX+this.getClass().getSimpleName().replace("Dao", "")+Const.NS_SUFFIX+"."+"selectModuleClusterByIdModuleTypeAndIdClusterAndIdUser";
+			moduleCluster = session.selectOne(query,moduleClusterIn); 
+			
+		}
+		finally
+		{
+			session.close();
+		}   
+		return moduleCluster;
+    }
     
     
     

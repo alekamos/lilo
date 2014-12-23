@@ -10,6 +10,26 @@
 		<result column="DATETIME_3_VALUE" property="datetime3Value"
 			jdbcType="TIMESTAMP" />
 	</resultMap>
+
+
+	<sql id="Base_Column_List">
+		ID_MODULE, DATETIME_1_VALUE, DATETIME_2_VALUE, DATETIME_3_VALUE
+	</sql>
+
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from MODULES_DATETIME
+		where ID_MODULE = #{idModule,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from MODULES_DATETIME
+		where ID_MODULE = #{idModule,jdbcType=INTEGER}
+	</delete>
+
+
+
 	<insert id="insert" parameterType="it.costanza.LiLo.mybatis.bean.ModuleDatetime">
 		<selectKey resultType="java.lang.Integer" keyProperty="idModule"
 			order="AFTER">

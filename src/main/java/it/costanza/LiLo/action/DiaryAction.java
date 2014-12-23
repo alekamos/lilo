@@ -7,7 +7,6 @@ import it.costanza.LiLo.bean.ModuleExtended;
 import it.costanza.LiLo.bean.ModuleFinder;
 import it.costanza.LiLo.logic.ModuleLogic;
 import it.costanza.LiLo.logic.UserLogic;
-import it.costanza.LiLo.mybatis.bean.ModuleHeader;
 import it.costanza.LiLo.mybatis.bean.User;
 import it.costanza.LiLo.util.Const;
 
@@ -30,42 +29,36 @@ public class DiaryAction extends ActionSupport{
 
 	public String viewDayHost(){
 		log.debug(Const.IN);
-		//occorre capire se ï¿½ arrivato un id o una data da cercare
+		//occorre capire se è arrivato un id o una data da cercare
 		if(moduleExtended.getModuleCluster().getIdModuleCluster()!=0){
-			//Qui occorre la logica per vedere se la giornata ï¿½ la sua e prendere tutti i moduli	
+			//Qui occorre la logica per vedere se la giornata è la sua e prendere tutti i moduli	
 		}
 
 		return SUCCESS;
 	}
 
-
-
 	public String viewModule(){
 		log.debug(Const.IN);
 
-		
-			User user = ul.getUserInSession();
-			log.debug("User estratto dalla sessione: "+user.toString());
+		User user = ul.getUserInSession();
+		log.debug("User estratto dalla sessione: "+user.toString());
+		log.debug("Module finder in arrivo: "+moduleFinder.toString());
+		boolean allowView =  ml.checkModuleOwnership(user,moduleFinder.getIdModule());
 
-			boolean allowView =  ml.checkModuleOwnership(user,moduleFinder.getIdModule());
-			if(allowView){
-				moduleExtended = ml.getModule(moduleFinder.getIdModule());
-				Integer idModuleDayHost = ml.getIdModuleDayHostFromIdCluster(moduleExtended.getModuleCluster().getIdModuleCluster());
-				ModuleDayHost dayHost = ml.getDayHost(idModuleDayHost);
-				moduleExtended.setModuleDayHost(dayHost);
-				return SUCCESS;
-			}else
-				return "forbidden";
+		if(allowView){
+			moduleExtended = ml.getModule(moduleFinder.getIdModule());
+			Integer idModuleDayHost = ml.getIdModuleDayHostFromIdCluster(moduleExtended.getModuleCluster().getIdModuleCluster(),user).getIdModule();
+			ModuleDayHost dayHost = ml.getDayHost(idModuleDayHost);
+			moduleExtended.setModuleDayHost(dayHost);
+			return SUCCESS;
+		}else
+			return "forbidden";
 
 	}
 
 
 
 
-
-	
-	
-	
 	public ModuleExtended getModuleExtended() {
 		return moduleExtended;
 	}
