@@ -3,7 +3,9 @@
  */
 package it.costanza.LiLo.logic;
 
+import it.costanza.LiLo.bean.ModuleDayHost;
 import it.costanza.LiLo.bean.ModuleExtended;
+import it.costanza.LiLo.bean.ModuleFinder;
 import it.costanza.LiLo.dao.ModuleClusterDao;
 import it.costanza.LiLo.dao.ModuleExtendedDao;
 import it.costanza.LiLo.dao.ModuleTypeDao;
@@ -33,7 +35,7 @@ public class ModuleLogic {
 	 * @param idModuleType del type di modulo
 	 * @return lista di tabelle da caricare
 	 */
-	public ArrayList<String> buildTableNameListToLoad(Integer idModuleType){
+	private ArrayList<String> buildTableNameListToLoad(Integer idModuleType){
 		ArrayList<String> listaTabelle = new ArrayList<String>();
 		ModuleTypeDao dao = new ModuleTypeDao();
 		ModuleType mt = dao.selectById(idModuleType);
@@ -130,7 +132,7 @@ public class ModuleLogic {
 	/**
 	 * Costruisce un oggetto adatto per il dao arraggiandosi con i soli dati in arrivo. 
 	 * Invoca il dao e restituisce un idModuleLCuster
-	 * Controlla se � presente un dayHost
+	 * Controlla se � presente un dayHost
 	 * @param moduleExtendedIn
 	 * @return 0 se non trova niente, !0 se la data è già presente
 	 */
@@ -141,7 +143,7 @@ public class ModuleLogic {
 		ModuleClusterDao dao = new ModuleClusterDao();
 		ModuleExtended moduleExtendedProbe = new ModuleExtended();
 		moduleExtendedProbe.setModuleHeader(moduleExtendedIn.getModuleHeader());
-		moduleExtendedProbe.getModuleHeader().setIdModule(Const.ID_MAIN_DAY_MODULE);
+		moduleExtendedProbe.getModuleHeader().setIdModule(Const.ID_TYPE_DAY_HOST);
 
 		ModuleDatetime moduleDatetimeToAdd = new ModuleDatetime();
 		moduleDatetimeToAdd.setDatetime1Value(moduleExtendedIn.getModuleDayHost().getDateDayHost());
@@ -159,12 +161,12 @@ public class ModuleLogic {
 		ModuleExtended moduleMainDay = new ModuleExtended();
 		ModuleHeader moduleHeaderMainDay = new ModuleHeader();
 		moduleHeaderMainDay.setIdUser(moduleExtended.getModuleHeader().getIdUser());
-		moduleHeaderMainDay.setIdModuleType(Const.ID_MAIN_DAY_MODULE);
+		moduleHeaderMainDay.setIdModuleType(Const.ID_TYPE_DAY_HOST);
 		moduleMainDay.setModuleHeader(moduleHeaderMainDay);
 
 
 		ModuleCluster moduleClusterMainDay = new ModuleCluster();
-		moduleClusterMainDay.setIdModuleType(Const.ID_MAIN_DAY_MODULE);
+		moduleClusterMainDay.setIdModuleType(Const.ID_TYPE_DAY_HOST);
 		moduleClusterMainDay.setIdUser(moduleExtended.getModuleHeader().getIdUser());
 		moduleClusterMainDay.setIdModuleCluster(idModuleCluster);
 		moduleMainDay.setModuleCluster(moduleClusterMainDay);
@@ -206,12 +208,52 @@ public class ModuleLogic {
 
 	}
 
-	public boolean checkModuleOwnership(User user, ModuleHeader moduleHeader) {
+	/**
+	 * Controlla se l'idModulo in input appartiene all'utente
+	 * @param user
+	 * @param moduleFinder
+	 * @return
+	 */
+	public boolean checkModuleOwnership(User user, Integer idModule) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-	public ModuleExtended getModule(ModuleHeader moduleHeader) {
+	/**
+	 * Si occupa di caricare il modulo identificato dall'idModule all'interno del moduleFinder
+	 * @param moduleFinder
+	 * @return
+	 */
+	public ModuleExtended getModule(Integer idModule) {
+		ModuleExtendedDao dao = new ModuleExtendedDao();
+		ArrayList<String> tableNameList = buildTableNameListToLoad(idModule);
+		ModuleExtended moduleExtended = dao.getModuleExtended(idModule, tableNameList);
+		return moduleExtended;
+	}
+	
+	
+	/**
+	 * Carica il modulo dayhost sotto forma di modulo extended e poi lo casta in ModuleDayHost
+	 * @param idDayHost
+	 * @return
+	 */
+	public ModuleDayHost getDayHost(Integer idDayHost){
+		ModuleExtended dayHostExtended = new ModuleExtended();
+		ModuleDayHost dayHost = new ModuleDayHost();
+		dayHost.setDateDayHost(dayHostExtended.getModuleDatetime().getDatetime1Value());
+		dayHost.setIdModule(idDayHost);
+		dayHost.setIdModuleType(Const.ID_TYPE_DAY_HOST);
+		
+		return dayHost;
+	}
+
+	/**
+	 * Partendo dall'idCluster necessariamente presente in tutti i moduli lui va a cercarsi l'id del modulo 
+	 * dayHost. Ovviamente è necessario conoscere l'idModuleType del modulo DayHost
+	 * @param idModuleCluster
+	 * @return
+	 */
+	public Integer getIdModuleDayHostFromIdCluster(Integer idModuleCluster) {
 		// TODO Auto-generated method stub
 		return null;
 	}

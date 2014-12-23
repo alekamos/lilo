@@ -25,6 +25,9 @@ public class ModuleExtended {
 	private ArrayList<ModuleListExtended> moduleListExtended;
 
 
+	//costruttore vuoto
+	public ModuleExtended(){};
+	
 	@Override
 	public String toString() {
 		String msg = "";
