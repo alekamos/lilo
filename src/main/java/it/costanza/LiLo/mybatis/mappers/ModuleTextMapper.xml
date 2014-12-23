@@ -13,6 +13,25 @@
 	<sql id="Blob_Column_List">
 		TEXT_1_VALUE
 	</sql>
+	<sql id="Base_Column_List" >
+    ID_MODULE, TEXT_1_VALUE, TEXT_2_VALUE, TEXT_3_VALUE
+  	</sql>
+	 
+	 
+   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from MODULES_TEXT
+    where ID_MODULE = #{idModule,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from MODULES_TEXT
+    where ID_MODULE = #{idModule,jdbcType=INTEGER}
+  </delete>
+	
+	
+	
+	
 	<insert id="insert" parameterType="it.costanza.LiLo.mybatis.bean.ModuleText">
 		<selectKey resultType="java.lang.Integer" keyProperty="idModule"
 			order="AFTER">

@@ -1,5 +1,8 @@
 package it.costanza.LiLo.bean;
 
+import it.costanza.LiLo.util.Utility;
+
+import java.util.ArrayList;
 import java.util.Date;
 /**
  * Oggetto che serve dal form per portarsi i campi di ricerca
@@ -36,4 +39,26 @@ public class ModuleFinder {
 		this.dateDayHost = dateDayHost;
 	}
 
+	
+	@Override
+	public String toString() {
+    	
+    	ArrayList<String> chiavi = new ArrayList<String>();
+    	ArrayList<String> valori = new ArrayList<String>();
+    	
+    	
+    	chiavi.add("idModule");
+    	chiavi.add("idModuleType");
+    	chiavi.add("dateDayHost");
+
+    	
+    	valori.add(idModule+"");
+    	valori.add(idModuleType+"");
+    	valori.add(dateDayHost+"");
+
+    	
+    	return Utility.toStringPerBean(chiavi, valori);
+    	
+    }
+	
 }

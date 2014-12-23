@@ -6,7 +6,8 @@
 	<package name="standardPackage" namespace="/" extends="mainPackage">
 
 		<global-results>
-			<result name="error">errorPage.jsp</result>
+			<result name="error">\jsp\template\errorPage.jsp</result>
+			<result name="forbidden">\jsp\template\forbidden.jsp</result>
 		</global-results>
 
 		<action name="startup" class="it.costanza.LiLo.action.StartupAction"
@@ -87,8 +88,13 @@
 			method="saveModule">
 			<result name="success" type="redirect">gotoModuleTypeManagement</result>
 		</action>
-		
-		
+
+		<action name="viewModule" class="it.costanza.LiLo.action.DiaryAction"
+			method="viewModule">
+			<result name="success" type="tiles">ViewModule</result>
+		</action>
+
+
 
 
 

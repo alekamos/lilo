@@ -8,6 +8,7 @@ import it.costanza.LiLo.bean.ModuleExtended;
 import it.costanza.LiLo.bean.ModuleFinder;
 import it.costanza.LiLo.dao.ModuleClusterDao;
 import it.costanza.LiLo.dao.ModuleExtendedDao;
+import it.costanza.LiLo.dao.ModuleHeaderDao;
 import it.costanza.LiLo.dao.ModuleTypeDao;
 import it.costanza.LiLo.mybatis.bean.ModuleCluster;
 import it.costanza.LiLo.mybatis.bean.ModuleDatetime;
@@ -215,8 +216,14 @@ public class ModuleLogic {
 	 * @return
 	 */
 	public boolean checkModuleOwnership(User user, Integer idModule) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean allowView = false;
+		ModuleHeaderDao dao = new ModuleHeaderDao();
+		ModuleHeader moduleHeaderEstratto = dao.selectById(idModule);
+
+		if(moduleHeaderEstratto!=null && moduleHeaderEstratto.getIdUser().equals(user.getIdUser()))
+			allowView = true;
+
+		return allowView;
 	}
 
 	/**
@@ -226,12 +233,17 @@ public class ModuleLogic {
 	 */
 	public ModuleExtended getModule(Integer idModule) {
 		ModuleExtendedDao dao = new ModuleExtendedDao();
-		ArrayList<String> tableNameList = buildTableNameListToLoad(idModule);
+		ModuleHeaderDao headerDao = new ModuleHeaderDao();
+		ModuleHeader moduloHeaderEstratto = headerDao.selectById(idModule);
+		Integer idModuleType = moduloHeaderEstratto.getIdModuleType();
+		ArrayList<String> tableNameList = buildTableNameListToLoad(idModuleType);
+		//In questo modo ho già estratto il moduleHeader ma lo riestraggo,le cose corrette prevederebbero che eliminassi
+		//il modulo header dalla tableNameList e settarlo poi da quello che mi sono estratto qua sopra(moduloHeaderEstratto)
 		ModuleExtended moduleExtended = dao.getModuleExtended(idModule, tableNameList);
 		return moduleExtended;
 	}
-	
-	
+
+
 	/**
 	 * Carica il modulo dayhost sotto forma di modulo extended e poi lo casta in ModuleDayHost
 	 * @param idDayHost
@@ -243,19 +255,27 @@ public class ModuleLogic {
 		dayHost.setDateDayHost(dayHostExtended.getModuleDatetime().getDatetime1Value());
 		dayHost.setIdModule(idDayHost);
 		dayHost.setIdModuleType(Const.ID_TYPE_DAY_HOST);
-		
+
 		return dayHost;
 	}
 
 	/**
 	 * Partendo dall'idCluster necessariamente presente in tutti i moduli lui va a cercarsi l'id del modulo 
-	 * dayHost. Ovviamente Ã¨ necessario conoscere l'idModuleType del modulo DayHost
+	 * dayHost. Ovviamente è necessario conoscere l'idModuleType del modulo DayHost, e l'utente che possiede il modulo.
 	 * @param idModuleCluster
+	 * @param user
 	 * @return
 	 */
-	public Integer getIdModuleDayHostFromIdCluster(Integer idModuleCluster) {
-		// TODO Auto-generated method stub
-		return null;
+	public ModuleCluster getIdModuleDayHostFromIdCluster(Integer idModuleCluster,User user) {
+
+		ModuleCluster moduleClusterIn = new ModuleCluster();
+		moduleClusterIn.setIdModuleCluster(idModuleCluster);
+		moduleClusterIn.setIdModuleType(Const.ID_TYPE_DAY_HOST);
+		moduleClusterIn.setIdUser(user.getIdUser());
+
+		ModuleClusterDao dao = new ModuleClusterDao();
+		ModuleCluster moduleClusterOut = dao.searchByIdClusterAndModuleTypeAndUser(moduleClusterIn);
+		return moduleClusterOut;
 	}
 
 

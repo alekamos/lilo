@@ -17,6 +17,7 @@ public class ModuleHeaderDao extends MyBatisDAO<ModuleHeader, Integer>{
 		super(ModuleHeader.class);
 	}
 	
+	
     public ArrayList<ModuleHeader> searchByUserId(Integer idUser) throws PersistenceException {
     	SqlSession session = MyBatisLoader.getSqlSession();
     	List<ModuleHeader> list;
@@ -32,7 +33,12 @@ public class ModuleHeaderDao extends MyBatisDAO<ModuleHeader, Integer>{
 		return (ArrayList<ModuleHeader>) list;
     }
     
-    
+    /**
+     * Cerca tutti i moduli header per tipo e utente.
+     * @param moduleHeader
+     * @return
+     * @throws PersistenceException
+     */
     public ArrayList<ModuleHeader> searchByUserAndType(ModuleHeader moduleHeader) throws PersistenceException {
     	SqlSession session = MyBatisLoader.getSqlSession();
     	List<ModuleHeader> list;

@@ -38,5 +38,17 @@
 		AND HE.ID_USER = #{moduleHeader.idUser,jdbcType=INTEGER}
 		AND DA.DATETIME_1_VALUE = #{moduleDatetime.datetime1Value,jdbcType=DATE})
 	</select>
+	
+	<select id="selectModuleClusterByIdModuleTypeAndIdClusterAndIdUser"
+		resultMap="BaseResultMap" parameterType="it.costanza.LiLo.mybatis.bean.ModuleCluster">
+		select
+		<include refid="Base_Column_List" />
+		from MODULES_CLUSTER MC 
+		WHERE MC.ID_MODULE_TYPE = #{idModuleType,jdbcType=INTEGER}
+		AND MC.ID_MODULE_CLUSTER = #{idModuleCluster,jdbcType=INTEGER}
+		AND MC.ID_USER = #{idUser,jdbcType=INTEGER}
+	</select>
+	
+	
 
 </mapper>
