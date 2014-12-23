@@ -2,7 +2,9 @@ package it.costanza.LiLo.action;
 
 import org.apache.log4j.Logger;
 
+import it.costanza.LiLo.bean.ModuleDayHost;
 import it.costanza.LiLo.bean.ModuleExtended;
+import it.costanza.LiLo.bean.ModuleFinder;
 import it.costanza.LiLo.logic.ModuleLogic;
 import it.costanza.LiLo.logic.UserLogic;
 import it.costanza.LiLo.mybatis.bean.ModuleHeader;
@@ -17,7 +19,7 @@ public class DiaryAction extends ActionSupport{
 	private static final Logger log = Logger.getLogger("lifelogLogger");
 
 	//Campo in arrivo dalla jsp
-	private ModuleHeader moduleHeader = new ModuleHeader();
+	private ModuleFinder moduleFinder = new ModuleFinder();
 
 	//Campo in uscita dalla jsp
 	private ModuleExtended moduleExtended = new ModuleExtended();
@@ -28,9 +30,9 @@ public class DiaryAction extends ActionSupport{
 
 	public String viewDayHost(){
 		log.debug(Const.IN);
-		//occorre capire se è arrivato un id o una data da cercare
+		//occorre capire se ï¿½ arrivato un id o una data da cercare
 		if(moduleExtended.getModuleCluster().getIdModuleCluster()!=0){
-			//Qui occorre la logica per vedere se la giornata è la sua e prendere tutti i moduli	
+			//Qui occorre la logica per vedere se la giornata ï¿½ la sua e prendere tutti i moduli	
 		}
 
 		return SUCCESS;
@@ -41,18 +43,20 @@ public class DiaryAction extends ActionSupport{
 	public String viewModule(){
 		log.debug(Const.IN);
 
-		if(moduleExtended.getModuleHeader()!=null && moduleExtended.getModuleHeader().getIdModule()!=0){
+		
 			User user = ul.getUserInSession();
 			log.debug("User estratto dalla sessione: "+user.toString());
 
-			boolean allowView =  ml.checkModuleOwnership(user,moduleHeader);
+			boolean allowView =  ml.checkModuleOwnership(user,moduleFinder.getIdModule());
 			if(allowView){
-				moduleExtended = ml.getModule(moduleHeader);
+				moduleExtended = ml.getModule(moduleFinder.getIdModule());
+				Integer idModuleDayHost = ml.getIdModuleDayHostFromIdCluster(moduleExtended.getModuleCluster().getIdModuleCluster());
+				ModuleDayHost dayHost = ml.getDayHost(idModuleDayHost);
+				moduleExtended.setModuleDayHost(dayHost);
 				return SUCCESS;
 			}else
 				return "forbidden";
-		}else
-			return ERROR;
+
 	}
 
 
@@ -68,11 +72,11 @@ public class DiaryAction extends ActionSupport{
 	public void setModuleExtended(ModuleExtended moduleExtended) {
 		this.moduleExtended = moduleExtended;
 	}
-	public ModuleHeader getModuleHeader() {
-		return moduleHeader;
+	public ModuleFinder getModuleFinder() {
+		return moduleFinder;
 	}
-	public void setModuleHeader(ModuleHeader moduleHeader) {
-		this.moduleHeader = moduleHeader;
+	public void setModuleFinder(ModuleFinder moduleFinder) {
+		this.moduleFinder = moduleFinder;
 	}
 
 }
