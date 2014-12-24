@@ -2,12 +2,9 @@ package it.costanza.LiLo.test;
 
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
-
 import it.costanza.LiLo.dao.ModuleTextDao;
-import it.costanza.LiLo.dao.ModuleTypeDao;
 import it.costanza.LiLo.mybatis.bean.ModuleText;
-import it.costanza.LiLo.mybatis.bean.ModuleType;
+
 
 import org.junit.Test;
 
