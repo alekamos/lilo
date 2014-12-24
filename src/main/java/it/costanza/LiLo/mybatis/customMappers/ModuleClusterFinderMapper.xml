@@ -49,6 +49,14 @@
 		AND MC.ID_USER = #{idUser,jdbcType=INTEGER}
 	</select>
 	
+		<select id="selectByIdModule"
+		resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from MODULES_CLUSTER MC 
+		WHERE MC.ID_MODULE = #{idModule,jdbcType=INTEGER}
+	</select>
+	
 	
 
 </mapper>

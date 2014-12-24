@@ -40,17 +40,22 @@ public class ModuleLogic {
 		ArrayList<String> listaTabelle = new ArrayList<String>();
 		ModuleTypeDao dao = new ModuleTypeDao();
 		ModuleType mt = dao.selectById(idModuleType);
+		
+		//Sempre module Header e moduleCluster:
+		listaTabelle.add(Const.MODULE_HEADER);
+		listaTabelle.add(Const.MODULES_CLUSTER);
+		
 		//Controllo sui testi
-		if(mt.getTextContent1Name()!=null || mt.getTextContent2Name()!=null || mt.getTextContent3Name()!=null)
+		if(!Utility.isEmpty(mt.getTextContent1Name()) || !Utility.isEmpty(mt.getTextContent2Name()) || !Utility.isEmpty(mt.getTextContent3Name()))
 			listaTabelle.add(Const.MODULES_TEXT);
 		//Controllo sulle date
-		if(mt.getDatetimeContent1Name()!=null)
+		if(!Utility.isEmpty(mt.getDatetimeContent1Name()))
 			listaTabelle.add(Const.MODULES_DATETIME);
 		//Controllo sulle liste
-		if(mt.getListContent1Name()!=null)
+		if(!Utility.isEmpty(mt.getListContent1Name()))
 			listaTabelle.add(Const.MODULES_LIST);
 		//Controllo sui dati numerici
-		if(mt.getNumericDataContent1Name()!=null)
+		if(!Utility.isEmpty(mt.getNumericDataContent1Name()))
 			listaTabelle.add(Const.MODULES_NUMERIC_DATA);
 		return listaTabelle;
 
@@ -237,7 +242,7 @@ public class ModuleLogic {
 		ModuleHeader moduloHeaderEstratto = headerDao.selectById(idModule);
 		Integer idModuleType = moduloHeaderEstratto.getIdModuleType();
 		ArrayList<String> tableNameList = buildTableNameListToLoad(idModuleType);
-		//In questo modo ho già estratto il moduleHeader ma lo riestraggo,le cose corrette prevederebbero che eliminassi
+		//In questo modo ho giï¿½ estratto il moduleHeader ma lo riestraggo,le cose corrette prevederebbero che eliminassi
 		//il modulo header dalla tableNameList e settarlo poi da quello che mi sono estratto qua sopra(moduloHeaderEstratto)
 		ModuleExtended moduleExtended = dao.getModuleExtended(idModule, tableNameList);
 		return moduleExtended;
@@ -246,14 +251,13 @@ public class ModuleLogic {
 
 	/**
 	 * Carica il modulo dayhost sotto forma di modulo extended e poi lo casta in ModuleDayHost
-	 * @param idDayHost
+	 * @param moduleExtendedDayHost
 	 * @return
 	 */
-	public ModuleDayHost getDayHost(Integer idDayHost){
-		ModuleExtended dayHostExtended = new ModuleExtended();
+	public ModuleDayHost getDayHost(ModuleExtended moduleExtendedDayHost){
 		ModuleDayHost dayHost = new ModuleDayHost();
-		dayHost.setDateDayHost(dayHostExtended.getModuleDatetime().getDatetime1Value());
-		dayHost.setIdModule(idDayHost);
+		dayHost.setDateDayHost(moduleExtendedDayHost.getModuleDatetime().getDatetime1Value());
+		dayHost.setIdModule(moduleExtendedDayHost.getModuleHeader().getIdModule());
 		dayHost.setIdModuleType(Const.ID_TYPE_DAY_HOST);
 
 		return dayHost;
@@ -261,7 +265,7 @@ public class ModuleLogic {
 
 	/**
 	 * Partendo dall'idCluster necessariamente presente in tutti i moduli lui va a cercarsi l'id del modulo 
-	 * dayHost. Ovviamente è necessario conoscere l'idModuleType del modulo DayHost, e l'utente che possiede il modulo.
+	 * dayHost. Ovviamente ï¿½ necessario conoscere l'idModuleType del modulo DayHost, e l'utente che possiede il modulo.
 	 * @param idModuleCluster
 	 * @param user
 	 * @return
