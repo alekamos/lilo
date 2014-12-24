@@ -26,6 +26,16 @@ public class ModuleExtendedDao{
 
 		for (String tabella : tabelleDaCaricare) {
 			switch (tabella) {
+			case Const.MODULE_HEADER:
+				ModuleHeaderDao headerDao = new ModuleHeaderDao();
+				outModule.setModuleHeader(headerDao.selectById(idModule));
+				break;
+			
+			case Const.MODULES_CLUSTER:
+				ModuleClusterDao clusterDao = new ModuleClusterDao();
+				outModule.setModuleCluster(clusterDao.searchByIdModule(idModule));
+				break;
+			
 			case Const.MODULES_DATETIME:
 				ModuleDatetimeDao datetimeDao = new ModuleDatetimeDao();
 				outModule.setModuleDatetime(datetimeDao.selectById(idModule));

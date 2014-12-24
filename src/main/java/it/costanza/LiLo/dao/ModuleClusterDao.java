@@ -115,8 +115,23 @@ public class ModuleClusterDao extends MyBatisDAO<ModuleCluster, Integer>{
 		return moduleCluster;
     }
     
-    
-    
+	
+	public ModuleCluster searchByIdModule(
+			Integer	idModule) {
+    	SqlSession session = MyBatisLoader.getSqlSession();
+    	ModuleCluster moduleCluster = new ModuleCluster();
+		try
+		{					
+			String query = Const.NS_PREFIX+this.getClass().getSimpleName().replace("Dao", "")+Const.NS_SUFFIX+"."+"selectByIdModule";
+			moduleCluster = session.selectOne(query,idModule); 
+			
+		}
+		finally
+		{
+			session.close();
+		}   
+		return moduleCluster;
+    }
     
     
     
