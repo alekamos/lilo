@@ -94,6 +94,17 @@
 			<result name="success" type="tiles">ViewModule</result>
 		</action>
 
+		<action name="gotoSearchModule" class="it.costanza.LiLo.action.DiaryAction"
+			method="gotoSearchModule">
+			<result name="success" type="tiles">SearchModulePage</result>
+		</action>
+
+		<action name="searchModule" class="it.costanza.LiLo.action.DiaryAction"
+			method="searchModule">
+			<result name="success" type="tiles">SearchModulePage</result>
+			<result name="found" type="tiles">ViewModule</result>
+		</action>
+
 
 
 

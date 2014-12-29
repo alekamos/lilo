@@ -40,11 +40,11 @@ public class ModuleLogic {
 		ArrayList<String> listaTabelle = new ArrayList<String>();
 		ModuleTypeDao dao = new ModuleTypeDao();
 		ModuleType mt = dao.selectById(idModuleType);
-		
+
 		//Sempre module Header e moduleCluster:
 		listaTabelle.add(Const.MODULE_HEADER);
 		listaTabelle.add(Const.MODULES_CLUSTER);
-		
+
 		//Controllo sui testi
 		if(!Utility.isEmpty(mt.getTextContent1Name()) || !Utility.isEmpty(mt.getTextContent2Name()) || !Utility.isEmpty(mt.getTextContent3Name()))
 			listaTabelle.add(Const.MODULES_TEXT);
@@ -149,12 +149,12 @@ public class ModuleLogic {
 		ModuleClusterDao dao = new ModuleClusterDao();
 		ModuleExtended moduleExtendedProbe = new ModuleExtended();
 		moduleExtendedProbe.setModuleHeader(moduleExtendedIn.getModuleHeader());
-		moduleExtendedProbe.getModuleHeader().setIdModule(Const.ID_TYPE_DAY_HOST);
+		moduleExtendedProbe.getModuleHeader().setIdModuleType(Const.ID_TYPE_DAY_HOST);
 
 		ModuleDatetime moduleDatetimeToAdd = new ModuleDatetime();
 		moduleDatetimeToAdd.setDatetime1Value(moduleExtendedIn.getModuleDayHost().getDateDayHost());
 		moduleExtendedProbe.setModuleDatetime(moduleDatetimeToAdd);
-		idModuleCluster = dao.searchIfExistClusterYet(moduleExtendedProbe);
+		idModuleCluster = dao.searchIdClusterByDate(moduleExtendedProbe);
 		return idModuleCluster;
 	}
 
@@ -232,8 +232,8 @@ public class ModuleLogic {
 	}
 
 	/**
-	 * Si occupa di caricare il modulo identificato dall'idModule all'interno del moduleFinder
-	 * @param moduleFinder
+	 * Il metodo estrae il moduloExtended con tutto quello che c'è da estrarre basandosi solo sul idModule.
+	 * @param idModule
 	 * @return
 	 */
 	public ModuleExtended getModule(Integer idModule) {
@@ -283,7 +283,59 @@ public class ModuleLogic {
 	}
 
 
+	/**
+	 * Il metodo estrae i moduliExtended che matchano con i parametri di ricerca contenuti nel moduleFinder
+	 * @param moduleFinder se c'è un id si va per id. Se c'è una data si va per data ecc ecc.
+	 * @return Lista di moduli. Se ne trova uno solo ci sarà un solo elemento
+	 */
+	public ArrayList<ModuleExtended> getModuleExtended(ModuleFinder moduleFinder,User user) {
+		ArrayList<ModuleExtended> moduleExtendedList = new ArrayList<ModuleExtended>();
+		ModuleClusterDao mcDao = new ModuleClusterDao();
 
+		if(moduleFinder.getIdModule()!=null && moduleFinder.getIdModule()!=0){
+			checkModuleOwnership(user, moduleFinder.getIdModule());
+			moduleExtendedList.add(getModuleExtended(moduleFinder.getIdModule(), user));
+		}
+
+		if(moduleFinder.getDateDayHost() != null){
+			ModuleExtended moduleExtended = new ModuleExtended();
+			ModuleHeader moduleHeader = new ModuleHeader();
+			ModuleDatetime moduleDatetime = new ModuleDatetime();
+
+			moduleHeader.setIdUser(user.getIdUser());
+			moduleHeader.setIdModuleType(Const.ID_TYPE_DAY_HOST);
+			moduleExtended.setModuleHeader(moduleHeader);
+			moduleDatetime.setDatetime1Value(moduleFinder.getDateDayHost());
+			moduleExtended.setModuleDatetime(moduleDatetime);
+
+			Integer idCluster = mcDao.searchIdClusterByDate(moduleExtended);
+			//TODO Qui dall'idCluster devo poi prendere tutti i moduli
+		}
+
+
+
+
+
+
+		return moduleExtendedList;
+	}
+	/**
+	 * Il metodo estrae in modo totalmente esaustivo un modulo in tutte le sue componenti compreso il dayHost
+	 * @param idModule l'id del modulo da caricare
+	 * @param user serve per velocizzare le ricerche
+	 * @return
+	 */
+	public ModuleExtended getModuleExtended(Integer idModule, User user){
+
+		ModuleExtended moduleExtended = getModule(idModule);
+		ModuleCluster moduleClusterDayHost = getIdModuleDayHostFromIdCluster(moduleExtended.getModuleCluster().getIdModuleCluster(),user);
+		Integer idModuleDayHost = moduleClusterDayHost.getIdModule();
+		ModuleExtended moduleExtendedDayHost = getModule(idModuleDayHost);
+		ModuleDayHost dayHost = getDayHost(moduleExtendedDayHost);
+		moduleExtended.setModuleDayHost(dayHost);
+
+		return moduleExtended; 
+	}
 
 
 

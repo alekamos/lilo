@@ -12,6 +12,14 @@
 		<put-attribute name="footer" value="/jsp/template/empty.jsp" />
 	</definition>
 
+	<definition name="standardWithForm" template="/jsp/template/standardWithForm.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="header" value="/jsp/template/empty.jsp" />
+		<put-attribute name="menu" value="/jsp/template/empty.jsp" />
+		<put-attribute name="form" value="/jsp/template/empty.jsp" />
+		<put-attribute name="body" value="/jsp/template/empty.jsp" />
+		<put-attribute name="footer" value="/jsp/template/empty.jsp" />
+	</definition>
 
 	<definition name="SignInPage" extends="standard">
 		<put-attribute name="title" value="Lifelog - Sign in" />
@@ -59,12 +67,21 @@
 		<put-attribute name="menu" value="/jsp/menu/intMenu.jsp" />
 		<put-attribute name="body" value="/jsp/module/generalModuleForm.jsp" />
 	</definition>
-	
-		<definition name="ViewModule" extends="standard">
+
+	<definition name="ViewModule" extends="standard">
 		<put-attribute name="title" value="Lifelog - Diary - view module" />
 		<put-attribute name="menu" value="/jsp/menu/intMenu.jsp" />
 		<put-attribute name="body" value="/jsp/diary/generalViewModule.jsp" />
 	</definition>
+
+	<definition name="SearchModulePage" extends="standardWithForm">
+		<put-attribute name="title" value="Lifelog - Diary - search Module" />
+		<put-attribute name="menu" value="/jsp/menu/intMenu.jsp" />
+		<put-attribute name="form" value="/jsp/diary/formModuleSearching.jsp" />
+		<put-attribute name="body" value="/jsp/diary/listModuleFound.jsp" />
+	</definition>
+
+
 
 
 
