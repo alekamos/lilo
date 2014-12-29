@@ -5,6 +5,7 @@
 <ul>
 	<li><a href="logout">logout</a></li>
 	<li><a href="gotoModuleTypeManagement">module type management</a></li>
+	<li><a href="gotoSearchModule">search module</a></li>
 
 </ul>
 
