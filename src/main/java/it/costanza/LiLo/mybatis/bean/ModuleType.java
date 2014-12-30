@@ -59,6 +59,17 @@ public class ModuleType {
     private Date insertTimestamp;
 
     private Date updateTimestamp;
+    
+    
+    //Costruttore default
+    public ModuleType(){}
+    
+    //costrutttore con idModuleType
+    public ModuleType(Integer idModuleType){
+    	this.idModuleType = idModuleType;
+    }
+    
+    
 
     public Integer getIdModuleType() {
         return idModuleType;

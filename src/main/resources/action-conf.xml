@@ -7,7 +7,7 @@
 
 		<global-results>
 			<result name="error">\jsp\template\errorPage.jsp</result>
-			<result name="forbidden">\jsp\template\forbidden.jsp</result>
+			<result name="unauthorized_content">\jsp\template\unauthorizedContent.jsp</result>
 		</global-results>
 
 		<action name="startup" class="it.costanza.LiLo.action.StartupAction"
@@ -98,6 +98,7 @@
 			method="gotoSearchModule">
 			<result name="success" type="tiles">SearchModulePage</result>
 		</action>
+
 
 		<action name="searchModule" class="it.costanza.LiLo.action.DiaryAction"
 			method="searchModule">

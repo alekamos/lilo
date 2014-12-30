@@ -36,5 +36,8 @@ public class Const {
 	//Costanti allineate con il DB
 	public static final int[] ARRAY_MODULI_DEFAULT = {1};
 	public static int ID_TYPE_DAY_HOST = 7;
+	
+	//Nomi costanti struts2
+	public static final String UNAUTHORIZED_CONTENT = "unauthorized_content";
 
 }

@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 import it.costanza.LiLo.bean.ModuleDayHost;
 import it.costanza.LiLo.bean.ModuleExtended;
 import it.costanza.LiLo.bean.ModuleFinder;
+import it.costanza.LiLo.exception.UnauthorizedContent;
 import it.costanza.LiLo.logic.ModuleLogic;
 import it.costanza.LiLo.logic.UserLogic;
 import it.costanza.LiLo.mybatis.bean.ModuleCluster;
@@ -31,8 +32,8 @@ public class DiaryAction extends ActionSupport{
 	//Classe logica 
 	private ModuleLogic ml = new ModuleLogic();
 	private UserLogic ul = new UserLogic();
-	
-	
+
+
 
 	public String viewDayHost(){
 		log.debug(Const.IN);
@@ -44,51 +45,56 @@ public class DiaryAction extends ActionSupport{
 		return SUCCESS;
 	}
 
-	public String viewModule(){
+	public String viewModule() throws UnauthorizedContent{
 		log.debug(Const.IN);
 
 		User user = ul.getUserInSession();
 		log.debug("User estratto dalla sessione: "+user.toString());
 		log.debug("Module finder in arrivo: "+moduleFinder.toString());
-		boolean allowView =  ml.checkModuleOwnership(user,moduleFinder.getIdModule());
+		ml.checkModuleOwnership(user,moduleFinder.getIdModule());
 
-		if(allowView){
-			moduleExtended = ml.getModuleExtended(moduleFinder.getIdModule(), user);
-			return SUCCESS;
-		}else
-			return "forbidden";
+		moduleExtended = ml.getModuleExtended(moduleFinder.getIdModule(), user);
+		return SUCCESS;
+
 
 	}
-	
+
 	public String gotoSearchModule(){
 		log.debug(Const.IN);
 
 		User user = ul.getUserInSession();
 		log.debug("User estratto dalla sessione: "+user.toString());
 		userModuleType = ml.getUserModuleType(user);
-		
+
 		return SUCCESS;
 	}
-	
+
+
+
 	public String searchModule(){
 		log.debug(Const.IN);
 
 		User user = ul.getUserInSession();
 		log.debug("User estratto dalla sessione: "+user.toString());
-		ArrayList<ModuleExtended> moduleList = ml.getModuleExtended(moduleFinder,user);
-		
+		ArrayList<ModuleExtended> moduleList;
+		try {
+			moduleList = ml.getModuleExtended(moduleFinder,user);
+		} catch (UnauthorizedContent e) {
+			return Const.UNAUTHORIZED_CONTENT;
+		}
+
 		if(moduleList == null || moduleList.size()==0){}
-			
-			
+
+
 		if(moduleList != null && moduleList.size()==1){
 			moduleExtended = moduleList.get(0);
 			return "found";
 		}
-		
-		
+
+
 		return SUCCESS;
 	}
-	
+
 
 
 
