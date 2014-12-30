@@ -10,6 +10,7 @@ import it.costanza.LiLo.dao.ModuleClusterDao;
 import it.costanza.LiLo.dao.ModuleExtendedDao;
 import it.costanza.LiLo.dao.ModuleHeaderDao;
 import it.costanza.LiLo.dao.ModuleTypeDao;
+import it.costanza.LiLo.exception.UnauthorizedContent;
 import it.costanza.LiLo.mybatis.bean.ModuleCluster;
 import it.costanza.LiLo.mybatis.bean.ModuleDatetime;
 import it.costanza.LiLo.mybatis.bean.ModuleHeader;
@@ -214,21 +215,21 @@ public class ModuleLogic {
 
 	}
 
-	/**
-	 * Controlla se l'idModulo in input appartiene all'utente
-	 * @param user
-	 * @param moduleFinder
-	 * @return
-	 */
-	public boolean checkModuleOwnership(User user, Integer idModule) {
-		boolean allowView = false;
+/**
+ * Controlla se l'idModulo esiste ed è dell'utente che vuole visualizzarlo.
+ * Se il modulo non è visualizzabile per l'utente in questione viene lanciata un eccezione	
+ * @param user utente che ambisce a visualizzare il modulo
+ * @param idModule id del modulo che si deve visualizzare
+ * @throws UnauthorizedContent
+ */
+	public void checkModuleOwnership(User user, Integer idModule) throws UnauthorizedContent{
+		
 		ModuleHeaderDao dao = new ModuleHeaderDao();
 		ModuleHeader moduleHeaderEstratto = dao.selectById(idModule);
 
-		if(moduleHeaderEstratto!=null && moduleHeaderEstratto.getIdUser().equals(user.getIdUser()))
-			allowView = true;
+		if(moduleHeaderEstratto==null || !moduleHeaderEstratto.getIdUser().equals(user.getIdUser()))
+			throw new UnauthorizedContent();
 
-		return allowView;
 	}
 
 	/**
@@ -282,17 +283,18 @@ public class ModuleLogic {
 		return moduleClusterOut;
 	}
 
-
+//TODO Questo metodo deve essere rivisto, è troppo confuso deve avere solo un id in input
 	/**
 	 * Il metodo estrae i moduliExtended che matchano con i parametri di ricerca contenuti nel moduleFinder
 	 * @param moduleFinder se c'è un id si va per id. Se c'è una data si va per data ecc ecc.
 	 * @return Lista di moduli. Se ne trova uno solo ci sarà un solo elemento
 	 */
-	public ArrayList<ModuleExtended> getModuleExtended(ModuleFinder moduleFinder,User user) {
+	public ArrayList<ModuleExtended> getModuleExtended(ModuleFinder moduleFinder,User user) throws UnauthorizedContent{
 		ArrayList<ModuleExtended> moduleExtendedList = new ArrayList<ModuleExtended>();
 		ModuleClusterDao mcDao = new ModuleClusterDao();
 
 		if(moduleFinder.getIdModule()!=null && moduleFinder.getIdModule()!=0){
+			
 			checkModuleOwnership(user, moduleFinder.getIdModule());
 			moduleExtendedList.add(getModuleExtended(moduleFinder.getIdModule(), user));
 		}
@@ -313,14 +315,10 @@ public class ModuleLogic {
 		}
 
 
-
-
-
-
 		return moduleExtendedList;
 	}
 	/**
-	 * Il metodo estrae in modo totalmente esaustivo un modulo in tutte le sue componenti compreso il dayHost
+	 * Il metodo estrae in modo totalmente esaustivo un modulo in tutte le sue componenti compreso il dayHost ed il moduleType
 	 * @param idModule l'id del modulo da caricare
 	 * @param user serve per velocizzare le ricerche
 	 * @return
@@ -333,6 +331,9 @@ public class ModuleLogic {
 		ModuleExtended moduleExtendedDayHost = getModule(idModuleDayHost);
 		ModuleDayHost dayHost = getDayHost(moduleExtendedDayHost);
 		moduleExtended.setModuleDayHost(dayHost);
+		ModuleType moduleType = getModuleType(new ModuleType(moduleExtended.getModuleHeader().getIdModuleType()));
+		moduleExtended.setModuleType(moduleType);
+
 
 		return moduleExtended; 
 	}
