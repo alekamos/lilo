@@ -36,7 +36,7 @@
 		WHERE HE.ID_MODULE = DA.ID_MODULE
 		AND HE.ID_MODULE_TYPE = #{moduleHeader.idModuleType,jdbcType=INTEGER}
 		AND HE.ID_USER = #{moduleHeader.idUser,jdbcType=INTEGER}
-		AND DA.DATETIME_1_VALUE = #{moduleDatetime.datetime1Value,jdbcType=DATE})
+		AND DATE(DA.DATETIME_1_VALUE) = DATE(#{moduleDatetime.datetime1Value,jdbcType=DATE}))
 	</select>
 	
 	<select id="selectModuleClusterByIdModuleTypeAndIdClusterAndIdUser"

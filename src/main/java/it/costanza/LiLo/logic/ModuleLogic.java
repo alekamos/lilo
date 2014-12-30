@@ -20,6 +20,7 @@ import it.costanza.LiLo.util.Const;
 import it.costanza.LiLo.util.Utility;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import org.apache.log4j.Logger;
 
@@ -126,7 +127,7 @@ public class ModuleLogic {
 	}
 
 	/**
-	 * Carica il modulo type invocando il dao, tramite id
+	 * Carica il modulo type invocando il dao, tramite idModuleType
 	 * @param moduleType contenente l'id
 	 * @return
 	 */
@@ -137,10 +138,9 @@ public class ModuleLogic {
 	}
 
 	/**
-	 * Costruisce un oggetto adatto per il dao arraggiandosi con i soli dati in arrivo. 
-	 * Invoca il dao e restituisce un idModuleLCuster
-	 * Controlla se ÔøΩ presente un dayHost
-	 * @param moduleExtendedIn
+	 * Invoca il dao e restituisce un idModuleLCuster se trova gi‡ un cluster per la giornata in questione
+	 * Controlla se Ë gi‡ presente un dayHost dunque
+	 * @param moduleExtendedIn che deve contenere la data
 	 * @return 0 se non trova niente, !0 se la data √® gi√† presente
 	 */
 	public int checkDayHostExist(ModuleExtended moduleExtendedIn){
@@ -189,8 +189,8 @@ public class ModuleLogic {
 
 	/**
 	 * Si occupa di salvare il modulo extended.
-	 * Dappirma se non √® presente si salva il modulo mainDay necessario al funzionamento del diario, successivamente
-	 * si salva il modulo. I campi non presenti vengono annullati. Se gi√† presente una mainDay viene usato quello per il salvataggio.
+	 * Dappirma se non √® presente si salva il modulo dayHost necessario al funzionamento del diario, successivamente
+	 * si salva il modulo. I campi non presenti vengono annullati. Se gi√† presente una dayHost viene usato quello per il salvataggio.
 	 * @param moduleExtended
 	 */
 	public void insertModuleExtended(ModuleExtended moduleExtended) {
@@ -215,15 +215,15 @@ public class ModuleLogic {
 
 	}
 
-/**
- * Controlla se l'idModulo esiste ed Ë dell'utente che vuole visualizzarlo.
- * Se il modulo non Ë visualizzabile per l'utente in questione viene lanciata un eccezione	
- * @param user utente che ambisce a visualizzare il modulo
- * @param idModule id del modulo che si deve visualizzare
- * @throws UnauthorizedContent
- */
+	/**
+	 * Controlla se l'idModulo esiste ed Ë dell'utente che vuole visualizzarlo.
+	 * Se il modulo non Ë visualizzabile per l'utente in questione viene lanciata un eccezione	
+	 * @param user utente che ambisce a visualizzare il modulo
+	 * @param idModule id del modulo che si deve visualizzare
+	 * @throws UnauthorizedContent
+	 */
 	public void checkModuleOwnership(User user, Integer idModule) throws UnauthorizedContent{
-		
+
 		ModuleHeaderDao dao = new ModuleHeaderDao();
 		ModuleHeader moduleHeaderEstratto = dao.selectById(idModule);
 
@@ -249,13 +249,13 @@ public class ModuleLogic {
 		return moduleExtended;
 	}
 
-
 	/**
-	 * Carica il modulo dayhost sotto forma di modulo extended e poi lo casta in ModuleDayHost
+	 * Costruisce il bean dayhost. 
+	 * Riceve in input i dati "raw" sotto forma di modulo extended da qui parte per costruire ModuleDayHost
 	 * @param moduleExtendedDayHost
 	 * @return
 	 */
-	public ModuleDayHost getDayHost(ModuleExtended moduleExtendedDayHost){
+	public ModuleDayHost buildDayHostFromModuleExtended(ModuleExtended moduleExtendedDayHost){
 		ModuleDayHost dayHost = new ModuleDayHost();
 		dayHost.setDateDayHost(moduleExtendedDayHost.getModuleDatetime().getDatetime1Value());
 		dayHost.setIdModule(moduleExtendedDayHost.getModuleHeader().getIdModule());
@@ -266,7 +266,7 @@ public class ModuleLogic {
 
 	/**
 	 * Partendo dall'idCluster necessariamente presente in tutti i moduli lui va a cercarsi l'id del modulo 
-	 * dayHost. Ovviamente ÔøΩ necessario conoscere l'idModuleType del modulo DayHost, e l'utente che possiede il modulo.
+	 * dayHost. Ovviamente Ë necessario conoscere l'idModuleType del modulo DayHost, e l'utente che possiede il modulo.
 	 * @param idModuleCluster
 	 * @param user
 	 * @return
@@ -283,59 +283,73 @@ public class ModuleLogic {
 		return moduleClusterOut;
 	}
 
-//TODO Questo metodo deve essere rivisto, Ë troppo confuso deve avere solo un id in input
 	/**
-	 * Il metodo estrae i moduliExtended che matchano con i parametri di ricerca contenuti nel moduleFinder
-	 * @param moduleFinder se c'Ë un id si va per id. Se c'Ë una data si va per data ecc ecc.
-	 * @return Lista di moduli. Se ne trova uno solo ci sar‡ un solo elemento
-	 */
-	public ArrayList<ModuleExtended> getModuleExtended(ModuleFinder moduleFinder,User user) throws UnauthorizedContent{
-		ArrayList<ModuleExtended> moduleExtendedList = new ArrayList<ModuleExtended>();
-		ModuleClusterDao mcDao = new ModuleClusterDao();
-
-		if(moduleFinder.getIdModule()!=null && moduleFinder.getIdModule()!=0){
-			
-			checkModuleOwnership(user, moduleFinder.getIdModule());
-			moduleExtendedList.add(getModuleExtended(moduleFinder.getIdModule(), user));
-		}
-
-		if(moduleFinder.getDateDayHost() != null){
-			ModuleExtended moduleExtended = new ModuleExtended();
-			ModuleHeader moduleHeader = new ModuleHeader();
-			ModuleDatetime moduleDatetime = new ModuleDatetime();
-
-			moduleHeader.setIdUser(user.getIdUser());
-			moduleHeader.setIdModuleType(Const.ID_TYPE_DAY_HOST);
-			moduleExtended.setModuleHeader(moduleHeader);
-			moduleDatetime.setDatetime1Value(moduleFinder.getDateDayHost());
-			moduleExtended.setModuleDatetime(moduleDatetime);
-
-			Integer idCluster = mcDao.searchIdClusterByDate(moduleExtended);
-			//TODO Qui dall'idCluster devo poi prendere tutti i moduli
-		}
-
-
-		return moduleExtendedList;
-	}
-	/**
-	 * Il metodo estrae in modo totalmente esaustivo un modulo in tutte le sue componenti compreso il dayHost ed il moduleType
-	 * @param idModule l'id del modulo da caricare
-	 * @param user serve per velocizzare le ricerche
+	 *  Il metodo estrae in modo totalmente esaustivo un modulo in tutte le sue componenti compreso  il moduleType
+	 * @param idModule Ë l'id del modulo che occorre estrarre
+	 * @param user Ë l'user che possiede il modulo
+	 *  se != null viene impostato al moduloExtended in uscita quello passato al metodo
 	 * @return
 	 */
 	public ModuleExtended getModuleExtended(Integer idModule, User user){
 
-		ModuleExtended moduleExtended = getModule(idModule);
-		ModuleCluster moduleClusterDayHost = getIdModuleDayHostFromIdCluster(moduleExtended.getModuleCluster().getIdModuleCluster(),user);
-		Integer idModuleDayHost = moduleClusterDayHost.getIdModule();
-		ModuleExtended moduleExtendedDayHost = getModule(idModuleDayHost);
-		ModuleDayHost dayHost = getDayHost(moduleExtendedDayHost);
-		moduleExtended.setModuleDayHost(dayHost);
+		ModuleExtended moduleExtended = getModule(idModule);	
+		
+		
 		ModuleType moduleType = getModuleType(new ModuleType(moduleExtended.getModuleHeader().getIdModuleType()));
 		moduleExtended.setModuleType(moduleType);
 
+		
+		ModuleCluster moduleClusterDayHost = getIdModuleDayHostFromIdCluster(moduleExtended.getModuleCluster().getIdModuleCluster(),user);
+		Integer idModuleDayHost = moduleClusterDayHost.getIdModule();
+		ModuleExtended moduleExtendedDayHost = getModule(idModuleDayHost);
+		ModuleDayHost dayHost = buildDayHostFromModuleExtended(moduleExtendedDayHost);
+		moduleExtended.setModuleDayHost(dayHost);
 
 		return moduleExtended; 
+	}
+
+
+
+
+	/**
+	 * Carica tutto il dayHost, tutti i moduli appartenenti al dayHost identificato dal idModuleCluster
+	 * @param idModuleCluster Ë il cluster che accomuna tutti i moduli del dayHost
+	 * @param user Ë l'utente che possiede il cluster
+	 * @return La lista di tutti i moduli appartenenti al dayHost completo (La giornata)
+	 */
+	public ArrayList<ModuleExtended> getModuleExtendList(Integer idModuleCluster, User user){
+		ArrayList<ModuleExtended> moduleExtendedList = new ArrayList<ModuleExtended>();
+		ModuleClusterDao mcDao = new ModuleClusterDao();
+
+		ArrayList<ModuleCluster> moduleClusterList = mcDao.searchByUserAndIdCluster(new ModuleCluster(idModuleCluster,user.getIdUser()));
+		for (ModuleCluster moduleCluster : moduleClusterList) {
+			moduleExtendedList.add(getModuleExtended(moduleCluster.getIdModule(), user));
+		}
+
+		return moduleExtendedList;
+	}
+
+
+	/**
+	 * Il metodo restituisce l'idCluster(dayHost) partendo da una data e dall'user che ambisce a vedere il cluster
+	 * Avendo cercato successivamente al metodo non occorre autenticazione del cluster
+	 * @param date la data che dovrebbe contenere un dayHost o cluster
+	 * @param user l'user che ambisce a visualizzare questo dayHost
+	 * @return ilCluster 0 se non ha trovato niente, != 0 se trova qualcosa
+	 */
+	public Integer getIdClusterFromDate(Date date,User user){
+		ModuleExtended moduleExtended = new ModuleExtended();
+		ModuleHeader moduleHeader = new ModuleHeader();
+		ModuleDatetime moduleDatetime = new ModuleDatetime();
+		ModuleClusterDao mcDao = new ModuleClusterDao();
+
+		moduleHeader.setIdUser(user.getIdUser());
+		moduleHeader.setIdModuleType(Const.ID_TYPE_DAY_HOST);
+		moduleExtended.setModuleHeader(moduleHeader);
+		moduleDatetime.setDatetime1Value(date);
+		moduleExtended.setModuleDatetime(moduleDatetime);
+
+		return mcDao.searchIdClusterByDate(moduleExtended);
 	}
 
 

@@ -5,10 +5,9 @@
 
 	<!-- ********** APPENDER OK********** -->
 	<appender name="lifelog.appender" class="org.apache.log4j.FileAppender">
-<!-- 	    Path windows 
-		<param name="File" value="E:/workspace_personale/N_Lifelog/lflg.log" />
--->
-<!-- path linux -->
+		<!-- Path windows <param name="File" value="E:/workspace_personale/N_Lifelog/lflg.log" 
+			/> -->
+		<!-- path linux -->
 		<param name="File" value="/home/costanza/LiLo.log" />
 		<param name="Append" value="true" />
 		<layout class="org.apache.log4j.PatternLayout">
@@ -22,7 +21,6 @@
 		</layout>
 	</appender>
 
-
 	<!-- logger relativo ai wsMonitor -->
 	<logger name="lifelogLogger" additivity="false">
 		<level value="debug" />
@@ -31,7 +29,7 @@
 	</logger>
 
 	<root>
-		<priority value="error" />
+		<priority value="TRACE" />
 		<appender-ref ref="lifelog.appender" />
 		<appender-ref ref="lifelogConsole.appender" />
 	</root>

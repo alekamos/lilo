@@ -71,7 +71,7 @@
 	<definition name="ViewModule" extends="standard">
 		<put-attribute name="title" value="Lifelog - Diary - view module" />
 		<put-attribute name="menu" value="/jsp/menu/intMenu.jsp" />
-		<put-attribute name="body" value="/jsp/diary/generalViewModule.jsp" />
+		<put-attribute name="body" value="/jsp/diary/singularModuleView.jsp" />
 	</definition>
 
 	<definition name="SearchModulePage" extends="standardWithForm">
