@@ -27,6 +27,7 @@ public class DiaryAction extends ActionSupport{
 
 	//Campo in uscita dalla jsp
 	private ModuleExtended moduleExtended = new ModuleExtended();
+	private ArrayList<ModuleExtended> moduleExtendedList = new ArrayList<ModuleExtended>();
 	private ArrayList<ModuleType> userModuleType;
 
 	//Classe logica 
@@ -45,15 +46,30 @@ public class DiaryAction extends ActionSupport{
 		return SUCCESS;
 	}
 
+
+
+
+
 	public String viewModule() throws UnauthorizedContent{
 		log.debug(Const.IN);
 
 		User user = ul.getUserInSession();
 		log.debug("User estratto dalla sessione: "+user.toString());
 		log.debug("Module finder in arrivo: "+moduleFinder.toString());
-		ml.checkModuleOwnership(user,moduleFinder.getIdModule());
 
-		moduleExtended = ml.getModuleExtended(moduleFinder.getIdModule(), user);
+
+		if(moduleFinder.getIdModule()!=null && moduleFinder.getIdModule()!=0){
+			//caso in cui arriva direttamente un idModulo
+			ml.checkModuleOwnership(user,moduleFinder.getIdModule());
+			moduleExtended = ml.getModuleExtended(moduleFinder.getIdModule(), user);
+		}else if (moduleFinder.getDateDayHost()!=null) {
+			//caso in cui arriva una data TODO provare se metto una data ed un idModulo cosa succede se entra
+			//da entrambe le parti
+			Integer idCluster = ml.getIdClusterFromDate(moduleFinder.getDateDayHost(), user);
+			moduleExtendedList = ml.getModuleExtendList(idCluster, user);
+
+		}
+
 		return SUCCESS;
 
 
@@ -71,34 +87,6 @@ public class DiaryAction extends ActionSupport{
 
 
 
-	public String searchModule(){
-		log.debug(Const.IN);
-
-		User user = ul.getUserInSession();
-		log.debug("User estratto dalla sessione: "+user.toString());
-		ArrayList<ModuleExtended> moduleList;
-		try {
-			moduleList = ml.getModuleExtended(moduleFinder,user);
-		} catch (UnauthorizedContent e) {
-			return Const.UNAUTHORIZED_CONTENT;
-		}
-
-		if(moduleList == null || moduleList.size()==0){}
-
-
-		if(moduleList != null && moduleList.size()==1){
-			moduleExtended = moduleList.get(0);
-			return "found";
-		}
-
-
-		return SUCCESS;
-	}
-
-
-
-
-
 	public ModuleExtended getModuleExtended() {
 		return moduleExtended;
 	}
@@ -111,13 +99,17 @@ public class DiaryAction extends ActionSupport{
 	public void setModuleFinder(ModuleFinder moduleFinder) {
 		this.moduleFinder = moduleFinder;
 	}
-
 	public ArrayList<ModuleType> getUserModuleType() {
 		return userModuleType;
 	}
-
 	public void setUserModuleType(ArrayList<ModuleType> userModuleType) {
 		this.userModuleType = userModuleType;
+	}
+	public ArrayList<ModuleExtended> getModuleExtendedList() {
+		return moduleExtendedList;
+	}
+	public void setModuleExtendedList(ArrayList<ModuleExtended> moduleExtendedList) {
+		this.moduleExtendedList = moduleExtendedList;
 	}
 
 }

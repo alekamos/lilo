@@ -6,7 +6,7 @@
 
 
 
-<s:form action="searchModule">
+<s:form action="viewModule">
 
 
 	<s:textfield name="moduleFinder.dateDayHost" id="datePicker"

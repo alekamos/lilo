@@ -18,6 +18,15 @@ public class ModuleCluster {
 
     private Date updateTimestamp;
 
+    public ModuleCluster(){};
+    
+    public ModuleCluster(Integer idModuleCluster,Integer idUser){
+    	this.idModuleCluster = idModuleCluster;
+    	this.idUser = idUser;
+    }
+    
+    
+    
     public Integer getIdModuleCluster() {
         return idModuleCluster;
     }

@@ -54,8 +54,6 @@ public class ModuleAction extends ActionSupport{
 		log.debug("User estratto dalla sessione: "+user.toString());
 		moduleType.setIdUser(user.getIdUser());
 		moduleType = ml.cleanModuleType(moduleType);
-
-
 		ml.insertModuleType(moduleType);
 
 		return SUCCESS;
