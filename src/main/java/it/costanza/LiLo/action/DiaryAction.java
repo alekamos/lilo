@@ -47,9 +47,6 @@ public class DiaryAction extends ActionSupport{
 	}
 
 
-
-
-
 	public String viewModule() throws UnauthorizedContent{
 		log.debug(Const.IN);
 
@@ -62,15 +59,16 @@ public class DiaryAction extends ActionSupport{
 			//caso in cui arriva direttamente un idModulo
 			ml.checkModuleOwnership(user,moduleFinder.getIdModule());
 			moduleExtended = ml.getModuleExtended(moduleFinder.getIdModule(), user);
+			return Const.SINGULAR_MODULE_VIEW;
 		}else if (moduleFinder.getDateDayHost()!=null) {
 			//caso in cui arriva una data TODO provare se metto una data ed un idModulo cosa succede se entra
 			//da entrambe le parti
 			Integer idCluster = ml.getIdClusterFromDate(moduleFinder.getDateDayHost(), user);
 			moduleExtendedList = ml.getModuleExtendList(idCluster, user);
-
+			return Const.MULTIPLE_MODULE_VIEW;
 		}
 
-		return SUCCESS;
+		return ERROR;
 
 
 	}

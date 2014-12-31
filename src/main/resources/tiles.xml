@@ -68,10 +68,16 @@
 		<put-attribute name="body" value="/jsp/module/generalModuleForm.jsp" />
 	</definition>
 
-	<definition name="ViewModule" extends="standard">
+	<definition name="ViewSingularModule" extends="standard">
 		<put-attribute name="title" value="Lifelog - Diary - view module" />
 		<put-attribute name="menu" value="/jsp/menu/intMenu.jsp" />
 		<put-attribute name="body" value="/jsp/diary/singularModuleView.jsp" />
+	</definition>
+
+	<definition name="ViewMultipleModule" extends="standard">
+		<put-attribute name="title" value="Lifelog - Diary - view module" />
+		<put-attribute name="menu" value="/jsp/menu/intMenu.jsp" />
+		<put-attribute name="body" value="/jsp/diary/multipleModuleView.jsp" />
 	</definition>
 
 	<definition name="SearchModulePage" extends="standardWithForm">

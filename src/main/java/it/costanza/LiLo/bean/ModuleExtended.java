@@ -28,6 +28,12 @@ public class ModuleExtended {
 	//costruttore vuoto
 	public ModuleExtended(){};
 	
+	//costruttore utile
+	public ModuleExtended(ModuleHeader moduleHeader,ModuleDatetime moduleDatetime){
+		this.moduleHeader = moduleHeader;
+		this.moduleDatetime = moduleDatetime;
+	}
+	
 	@Override
 	public String toString() {
 		String msg = "";

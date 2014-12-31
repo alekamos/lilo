@@ -39,5 +39,7 @@ public class Const {
 	
 	//Nomi costanti struts2
 	public static final String UNAUTHORIZED_CONTENT = "unauthorized_content";
+	public static final String SINGULAR_MODULE_VIEW = "singular_module_view";
+	public static final String MULTIPLE_MODULE_VIEW = "multiple_module_view";
 
 }

@@ -91,7 +91,8 @@
 
 		<action name="viewModule" class="it.costanza.LiLo.action.DiaryAction"
 			method="viewModule">
-			<result name="success" type="tiles">ViewModule</result>
+			<result name="singular_module_view" type="tiles">ViewSingularModule</result>
+			<result name="multiple_module_view" type="tiles">ViewMultipleModule</result>
 		</action>
 
 		<action name="gotoSearchModule" class="it.costanza.LiLo.action.DiaryAction"

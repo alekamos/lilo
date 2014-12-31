@@ -140,23 +140,23 @@ public class ModuleLogic {
 	/**
 	 * Invoca il dao e restituisce un idModuleLCuster se trova gi‡ un cluster per la giornata in questione
 	 * Controlla se Ë gi‡ presente un dayHost dunque
-	 * @param moduleExtendedIn che deve contenere la data
+	 * @param mextdIn che deve contenere la data
 	 * @return 0 se non trova niente, !0 se la data √® gi√† presente
 	 */
-	public int checkDayHostExist(ModuleExtended moduleExtendedIn){
-		int idModuleCluster = 0;
-
-
+	public int checkDayHostExist(Integer idUser,Date dateDayHost){
 		ModuleClusterDao dao = new ModuleClusterDao();
 		ModuleExtended moduleExtendedProbe = new ModuleExtended();
-		moduleExtendedProbe.setModuleHeader(moduleExtendedIn.getModuleHeader());
-		moduleExtendedProbe.getModuleHeader().setIdModuleType(Const.ID_TYPE_DAY_HOST);
-
-		ModuleDatetime moduleDatetimeToAdd = new ModuleDatetime();
-		moduleDatetimeToAdd.setDatetime1Value(moduleExtendedIn.getModuleDayHost().getDateDayHost());
-		moduleExtendedProbe.setModuleDatetime(moduleDatetimeToAdd);
-		idModuleCluster = dao.searchIdClusterByDate(moduleExtendedProbe);
-		return idModuleCluster;
+		ModuleHeader mh = new ModuleHeader();
+		ModuleDatetime mdt = new ModuleDatetime();
+		
+		mh.setIdUser(idUser);
+		mh.setIdModuleType(Const.ID_TYPE_DAY_HOST);
+		mdt.setDatetime1Value(dateDayHost);
+		
+		moduleExtendedProbe.setModuleHeader(mh);
+		moduleExtendedProbe.setModuleDatetime(mdt);
+		
+		return dao.searchIdClusterByDate(moduleExtendedProbe);
 	}
 
 	public ModuleExtended buildDayHostModuleExtended(ModuleExtended moduleExtended){
@@ -196,7 +196,7 @@ public class ModuleLogic {
 	public void insertModuleExtended(ModuleExtended moduleExtended) {
 
 		ModuleExtendedDao dao = new ModuleExtendedDao();
-		int idModuleCluster = checkDayHostExist(moduleExtended);
+		int idModuleCluster = checkDayHostExist(moduleExtended.getModuleHeader().getIdUser(),moduleExtended.getModuleDayHost().getDateDayHost());
 		//Vuol dire che non c√® un cluster
 		if(idModuleCluster == 0){
 			ModuleExtended mainDay = buildDayHostModuleExtended(moduleExtended);
