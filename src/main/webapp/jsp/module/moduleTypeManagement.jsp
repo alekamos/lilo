@@ -4,10 +4,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 
-<a href="gotoNewModuleType">new module type</a>
-
+<a class="btn btn-large btn-primary" type="button" href="gotoNewModuleType">New Module Type</a>
 <h2>Module List</h2>
-<table>
+<table class="table">
 	<thead>
 		<tr>
 
