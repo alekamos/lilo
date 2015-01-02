@@ -46,7 +46,7 @@
 <br />
 
 <c:if
-	test="${moduleExtended.moduleType.textContent1Name != null || moduleExtended.moduleType.textContent2Name != null || moduleExtended.moduleType.textContent3Name != null}">
+	test="${(moduleExtended.moduleType.textContent1Name != null && moduleExtended.moduleType.textContent1Name != '') || (moduleExtended.moduleType.textContent2Name != null && moduleExtended.moduleType.textContent2Name != '') || (moduleExtended.moduleType.textContent3Name != null && moduleExtended.moduleType.textContent3Name != '')}">
 	<h3>Module text</h3>
 	<c:if test="${moduleExtended.moduleType.textContent1Name != null}">
 		<s:label value="%{moduleExtended.moduleType.textContent1Name}" />
@@ -67,7 +67,7 @@
 </c:if>
 
 <c:if
-	test="${moduleExtended.moduleType.numericDataContent1Name != null || moduleExtended.moduleType.numericDataContent2Name != null || moduleExtended.moduleType.numericDataContent3Name != null}">
+	test="${(moduleExtended.moduleType.numericDataContent1Name != null && moduleExtended.moduleType.numericDataContent1Name != '') || (moduleExtended.moduleType.numericDataContent2Name != null && moduleExtended.moduleType.numericDataContent2Name != '') || (moduleExtended.moduleType.numericDataContent3Name != null && moduleExtended.moduleType.numericDataContent3Name != '')}">
 	<h3>Module Numeric</h3>
 	<c:if
 		test="${moduleExtended.moduleType.numericDataContent1Name != null}">
@@ -91,7 +91,7 @@
 </c:if>
 
 <c:if
-	test="${moduleExtended.moduleType.datetimeContent1Name != null || moduleExtended.moduleType.datetimeContent2Name != null || moduleExtended.moduleType.datetimeContent3Name != null}">
+	test="${(moduleExtended.moduleType.datetimeContent1Name != null && moduleExtended.moduleType.datetimeContent1Name != '') || (moduleExtended.moduleType.datetimeContent2Name != null && moduleExtended.moduleType.datetimeContent2Name != '') || (moduleExtended.moduleType.datetimeContent3Name != null && moduleExtended.moduleType.datetimeContent3Name != '')}">
 	<h3>Module Datetime</h3>
 	<c:if test="${moduleExtended.moduleType.datetimeContent1Name != null}">
 		<s:label value="%{moduleExtended.moduleType.datetimeContent1Name}" />
