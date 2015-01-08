@@ -1,4 +1,4 @@
-
+/*
 $.datepicker.regional['it'] = {clearText: 'Effacer', clearStatus: '',
     closeText: 'Chiudi', closeStatus: 'Chiudi senza modificare',
     prevText: '<Prec', prevStatus: 'Mese precendente',
@@ -21,7 +21,7 @@ $.datepicker.regional['it'] = {clearText: 'Effacer', clearStatus: '',
     showButtonPanel: true,
     initStatus: 'Choisir la date', isRTL: false};
  $.datepicker.setDefaults($.datepicker.regional['it']);
-
+*/
 
  
 
