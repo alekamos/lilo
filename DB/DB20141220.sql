@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generato il: Dic 21, 2014 alle 00:52
+-- Generato il: Gen 08, 2015 alle 01:31
 -- Versione del server: 5.6.15
 -- Versione PHP: 5.3.10-1ubuntu3.14
 
@@ -19,8 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `A1DB`
 --
-CREATE DATABASE `A1DB` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `A1DB`;
 
 -- --------------------------------------------------------
 
@@ -7907,16 +7905,10 @@ CREATE TABLE IF NOT EXISTS `MODULES_CLUSTER` (
 --
 
 INSERT INTO `MODULES_CLUSTER` (`ID_MODULE_CLUSTER`, `ID_USER`, `ID_MODULE_TYPE`, `ID_MODULE`, `INSERT_TIMESTAMP`, `UPDATE_TIMESTAMP`) VALUES
-(1, 41, 7, 1, '2014-12-20 18:20:47', '2014-12-20 18:20:47'),
-(2, 41, 7, 9, '2014-12-20 23:27:11', '2014-12-20 23:27:11'),
-(3, 41, 7, 10, '2014-12-20 23:27:11', '2014-12-20 23:27:11'),
-(0, 41, NULL, 11, '2014-12-20 23:27:11', '2014-12-20 23:27:11'),
-(0, 41, NULL, 12, '2014-12-20 23:27:11', '2014-12-20 23:27:11'),
-(4, 41, 7, 13, '2014-12-20 23:27:23', '2014-12-20 23:27:23'),
-(0, 41, NULL, 14, '2014-12-20 23:27:23', '2014-12-20 23:27:23'),
-(5, 41, 7, 15, '2014-12-20 23:30:55', '2014-12-20 23:30:55'),
-(0, 41, NULL, 16, '2014-12-20 23:33:20', '2014-12-20 23:33:20'),
-(6, 41, 7, 17, '2014-12-20 23:43:05', '2014-12-20 23:43:05');
+(1, 41, 7, 29, '2014-12-21 11:08:41', '2014-12-21 11:08:41'),
+(1, 41, 8, 30, '2014-12-21 11:08:41', '2014-12-21 11:08:41'),
+(2, 41, 7, 31, '2015-01-03 22:23:30', '2015-01-03 22:23:30'),
+(2, 41, 9, 32, '2015-01-03 22:23:31', '2015-01-03 22:23:31');
 
 -- --------------------------------------------------------
 
@@ -7937,12 +7929,21 @@ CREATE TABLE IF NOT EXISTS `MODULES_DATETIME` (
 --
 
 INSERT INTO `MODULES_DATETIME` (`ID_MODULE`, `DATETIME_1_VALUE`, `DATETIME_2_VALUE`, `DATETIME_3_VALUE`) VALUES
-(NULL, '2014-01-15 00:00:00', NULL, NULL),
-(NULL, '2014-01-15 00:00:00', NULL, NULL),
-(NULL, '2009-01-15 00:00:00', NULL, NULL),
-(NULL, '2009-01-17 00:00:00', NULL, NULL),
-(17, '2009-01-16 00:00:00', NULL, NULL);
+(29, '2009-01-03 00:00:00', NULL, NULL),
+(31, '2015-01-03 00:00:00', NULL, NULL);
 
+-- --------------------------------------------------------
+
+--
+-- Struttura stand-in per le viste `MODULES_DAYHOST`
+--
+CREATE TABLE IF NOT EXISTS `MODULES_DAYHOST` (
+`ID_MODULE_CLUSTER` int(11)
+,`ID_MODULE` int(11)
+,`ID_MODULE_TYPE` int(11)
+,`ID_USER` int(11)
+,`DATE_DAYHOST` date
+);
 -- --------------------------------------------------------
 
 --
@@ -7958,30 +7959,17 @@ CREATE TABLE IF NOT EXISTS `MODULES_HEADER` (
   PRIMARY KEY (`ID_MODULE`),
   KEY `FK_ID_MODULE_TYPE_IDX` (`ID_MODULE_TYPE`),
   KEY `ID_USER` (`ID_USER`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='LA TABELLA CONTIENE I MODULI, QUI VANNO GLI ID LEGATI ALLE A' AUTO_INCREMENT=18 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='LA TABELLA CONTIENE I MODULI, QUI VANNO GLI ID LEGATI ALLE A' AUTO_INCREMENT=33 ;
 
 --
 -- Dump dei dati per la tabella `MODULES_HEADER`
 --
 
 INSERT INTO `MODULES_HEADER` (`ID_MODULE`, `ID_MODULE_TYPE`, `ID_USER`, `INSERT_TIMESTAMP`, `UPDATE_TIMESTAMP`) VALUES
-(1, 1, 1, '2014-10-17 16:49:22', '2014-10-17 16:49:22'),
-(2, 7, 41, '2014-12-20 18:08:08', '2014-12-20 18:08:08'),
-(3, 7, 41, '2014-12-20 18:15:50', '2014-12-20 18:15:50'),
-(4, 7, 41, '2014-12-20 18:20:47', '2014-12-20 18:20:47'),
-(5, 8, 41, '2014-12-20 18:20:47', '2014-12-20 18:20:47'),
-(6, 7, 41, '2014-12-20 18:32:58', '2014-12-20 18:32:58'),
-(7, 7, 41, '2014-12-20 18:36:27', '2014-12-20 18:36:27'),
-(8, 7, 41, '2014-12-20 19:39:30', '2014-12-20 19:39:30'),
-(9, 7, 41, '2014-12-20 23:27:11', '2014-12-20 23:27:11'),
-(10, 7, 41, '2014-12-20 23:27:11', '2014-12-20 23:27:11'),
-(11, 7, 41, '2014-12-20 23:27:11', '2014-12-20 23:27:11'),
-(12, 7, 41, '2014-12-20 23:27:11', '2014-12-20 23:27:11'),
-(13, 7, 41, '2014-12-20 23:27:23', '2014-12-20 23:27:23'),
-(14, 7, 41, '2014-12-20 23:27:23', '2014-12-20 23:27:23'),
-(15, 7, 41, '2014-12-20 23:30:21', '2014-12-20 23:30:21'),
-(16, 7, 41, '2014-12-20 23:32:43', '2014-12-20 23:32:43'),
-(17, 7, 41, '2014-12-20 23:43:02', '2014-12-20 23:43:02');
+(29, 7, 41, '2014-12-21 11:08:41', '2014-12-21 11:08:41'),
+(30, 8, 41, '2014-12-21 11:08:41', '2014-12-21 11:08:41'),
+(31, 7, 41, '2015-01-03 22:23:30', '2015-01-03 22:23:30'),
+(32, 9, 41, '2015-01-03 22:23:30', '2015-01-03 22:23:30');
 
 -- --------------------------------------------------------
 
@@ -8011,6 +7999,13 @@ CREATE TABLE IF NOT EXISTS `MODULES_NUMERIC_DATA` (
   KEY `MODU_ID_MODULE_FK_IDX` (`ID_MODULE`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='TABELLA SALVA I DATI NUMERICI DEI MODULI';
 
+--
+-- Dump dei dati per la tabella `MODULES_NUMERIC_DATA`
+--
+
+INSERT INTO `MODULES_NUMERIC_DATA` (`ID_MODULE`, `NUMERIC_DATA_1_VALUE`, `NUMERIC_DATA_2_VALUE`, `NUMERIC_DATA_3_VALUE`) VALUES
+(32, 3, NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -8030,10 +8025,8 @@ CREATE TABLE IF NOT EXISTS `MODULES_TEXT` (
 --
 
 INSERT INTO `MODULES_TEXT` (`ID_MODULE`, `TEXT_1_VALUE`, `TEXT_2_VALUE`, `TEXT_3_VALUE`) VALUES
-(NULL, '', NULL, NULL),
-(NULL, '', NULL, NULL),
-(NULL, 'dgdfgdfg', NULL, NULL),
-(NULL, 'dfgdfgdfg', NULL, NULL);
+(30, 'tetsttesggghdhs', NULL, NULL),
+(32, 'giornata vbell', 'mgsimpa', NULL);
 
 -- --------------------------------------------------------
 
@@ -8071,7 +8064,7 @@ CREATE TABLE IF NOT EXISTS `MODULES_TYPES` (
   `UPDATE_TIMESTAMP` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`ID_MODULE_TYPE`),
   KEY `FK_ID_USER_IDX` (`ID_USER`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='TABELLA CHE DEFINISCE I MODULI.' AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='TABELLA CHE DEFINISCE I MODULI.' AUTO_INCREMENT=10 ;
 
 --
 -- Dump dei dati per la tabella `MODULES_TYPES`
@@ -8084,7 +8077,8 @@ INSERT INTO `MODULES_TYPES` (`ID_MODULE_TYPE`, `ID_USER`, `NAME`, `DESCRIPTION`,
 (5, 41, 'test module 1', 'test modulo', 'campo testuale corto', 'campo testuale lungo', '', '', NULL, '', NULL, '', NULL, '', 'int', '', 'int', '', 'int', '', 'date', '', 'date', '', 'date', '2014-12-14 15:47:18', '2014-12-14 15:47:18'),
 (6, 41, 'WORK', 'Descrizione giornata di lavoro', 'Descrizione', '', '', '', NULL, '', NULL, '', NULL, '', 'int', '', 'int', '', 'int', 'Ora ingresso', 'ORA_INGRESSO', 'Ora uscita', 'ORA_USCITA', '', 'date', '2014-12-20 11:17:39', '2014-12-20 11:17:39'),
 (7, 1, 'MAIN_DAY', 'main module for day', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'DAY_DATE', 'DATE', NULL, NULL, NULL, NULL, '2014-12-20 17:25:37', '2014-12-20 17:25:37'),
-(8, 41, 'TEST MODULO DESCRITTIVO', 'test per un modulo descrittivo', 'DESCRIZIONE', '', '', '', NULL, '', NULL, '', NULL, '', 'int', '', 'int', '', 'int', '', 'date', '', 'date', '', 'date', '2014-12-20 17:45:17', '2014-12-20 17:45:17');
+(8, 41, 'TEST MODULO DESCRITTIVO', 'test per un modulo descrittivo', 'DESCRIZIONE', '', '', '', NULL, '', NULL, '', NULL, '', 'int', '', 'int', '', 'int', '', 'date', '', 'date', '', 'date', '2014-12-20 17:45:17', '2014-12-20 17:45:17'),
+(9, 41, 'MG', 'tempo trascorso cn mg', 'descrizione', 'tag', '', '', NULL, '', NULL, '', NULL, 'qta sesso', 'int', '', 'int', '', 'int', '', 'date', '', 'date', '', 'date', '2015-01-03 22:20:52', '2015-01-03 22:20:52');
 
 -- --------------------------------------------------------
 
@@ -8167,7 +8161,7 @@ INSERT INTO `USERS` (`ID_USER`, `NAME`, `SURNAME`, `EMAIL`, `BIRTH_DATE`, `USERN
 (36, 'Ermanno', 'Baffi', 'abc@hotmail.it.861', '2014-10-18', 'username.861', 'password', '2014-10-18 09:56:15', '2014-10-18 09:56:15'),
 (39, 'er', 'tert', 'tert?g@gmail.com', '1989-06-02', 'sdfer', '8fb32ee31ccdae8907713c9922c0f344', '2014-11-29 18:04:25', '2014-11-29 18:04:25'),
 (40, 'asdd', 'asddd', 'ookk@j.iy', '2002-09-02', 'ddsasd', 'debce2337baf2a6a21c441670f57c303', '2014-11-29 18:35:43', '2014-11-29 18:35:43'),
-(41, 'ale', 'costan', 'spinore@lloo.it', '1980-10-18', 'test', '098f6bcd4621d373cade4e832627b4f6', '2014-11-30 18:11:07', '2014-11-30 18:11:07');
+(41, 'User', 'Test', 'spinore@lloo.it', '1980-10-18', 'test', '098f6bcd4621d373cade4e832627b4f6', '2014-11-30 18:11:07', '2015-01-02 22:44:12');
 
 -- --------------------------------------------------------
 
@@ -8184,6 +8178,15 @@ CREATE TABLE IF NOT EXISTS `USER_SETTINGS` (
   PRIMARY KEY (`ID_USER`),
   UNIQUE KEY `ID_PROPERTY_UNIQUE` (`ID_PROPERTY`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Struttura per la vista `MODULES_DAYHOST`
+--
+DROP TABLE IF EXISTS `MODULES_DAYHOST`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `MODULES_DAYHOST` AS select `MC`.`ID_MODULE_CLUSTER` AS `ID_MODULE_CLUSTER`,`MC`.`ID_MODULE` AS `ID_MODULE`,`MC`.`ID_MODULE_TYPE` AS `ID_MODULE_TYPE`,`MC`.`ID_USER` AS `ID_USER`,cast(`MD`.`DATETIME_1_VALUE` as date) AS `DATE_DAYHOST` from (`MODULES_CLUSTER` `MC` join `MODULES_DATETIME` `MD`) where ((`MC`.`ID_MODULE` = `MD`.`ID_MODULE`) and (`MC`.`ID_MODULE_TYPE` = 7));
 
 --
 -- Limiti per le tabelle scaricate
@@ -8253,3 +8256,7 @@ ALTER TABLE `MODULE_TYPE_SETTINGS`
 ALTER TABLE `USER_SETTINGS`
   ADD CONSTRAINT `FK_ID_PROPERTY` FOREIGN KEY (`ID_PROPERTY`) REFERENCES `PROPERTIES` (`ID_PROPERTY`) ON DELETE CASCADE ON UPDATE NO ACTION,
   ADD CONSTRAINT `FK_ID_USERS_USER_SETTINGS` FOREIGN KEY (`ID_USER`) REFERENCES `USERS` (`ID_USER`) ON DELETE CASCADE ON UPDATE NO ACTION;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -10,6 +10,22 @@
 		<result column="NUMERIC_DATA_3_VALUE" property="numericData3Value"
 			jdbcType="DOUBLE" />
 	</resultMap>
+	<sql id="Base_Column_List">
+		ID_MODULE, NUMERIC_DATA_1_VALUE, NUMERIC_DATA_2_VALUE, NUMERIC_DATA_3_VALUE
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from MODULES_NUMERIC_DATA
+		where ID_MODULE = #{idModule,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from MODULES_NUMERIC_DATA
+		where ID_MODULE = #{idModule,jdbcType=INTEGER}
+	</delete>
+
+
 	<insert id="insert" parameterType="it.costanza.LiLo.mybatis.bean.ModuleNumeric">
 		<selectKey resultType="java.lang.Integer" keyProperty="idModule"
 			order="AFTER">
