@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="it.costanza.LiLo.mybatis.mappers.ModuleDayHostMapper">
+
+
+
+	<select id="selectListDayHostInDateRange" resultMap="BaseResultMap"
+		parameterType="it.costanza.LiLo.bean.NavigatorSearch">
+		select ca.date,dh.id_module,dh.id_module_cluster from CALENDAR ca
+		left
+		join MODULES_DAYHOST dh on ca.date = dh.date_dayhost and dh.id_user =
+		#{navigatorSearch.idUser,jdbcType=INTEGER}
+		where ca.date <![CDATA[ >= ]]>
+		#{navigatorSearch.dateStart,jdbcType=DATE}
+		and ca.date <![CDATA[<= ]]>
+		#{navigatorSearch.dateEnd,jdbcType=DATE}
+	</select>
+
+
+
+
+</mapper>

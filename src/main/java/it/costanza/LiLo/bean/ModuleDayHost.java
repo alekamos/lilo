@@ -7,6 +7,7 @@ public class ModuleDayHost {
 	private Date dateDayHost;
 	private long idModule;
 	private long idModuleType;
+	private long idModuleCluster;
 	
 	
 	
@@ -28,6 +29,12 @@ public class ModuleDayHost {
 	}
 	public void setIdModuleType(long idModuleType) {
 		this.idModuleType = idModuleType;
+	}
+	public long getIdModuleCluster() {
+		return idModuleCluster;
+	}
+	public void setIdModuleCluster(long idModuleCluster) {
+		this.idModuleCluster = idModuleCluster;
 	}
 	
 	
