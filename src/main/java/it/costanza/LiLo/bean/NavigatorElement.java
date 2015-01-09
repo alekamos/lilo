@@ -8,6 +8,11 @@ public class NavigatorElement {
 	private long idCluster;
 	private long idModuleType;
 	private long idModule;
+	private long idUser;
+	
+	//Costruttore pubblico
+	
+	public NavigatorElement(){};
 	
 	
 	
@@ -34,6 +39,12 @@ public class NavigatorElement {
 	}
 	public void setIdModule(long idModule) {
 		this.idModule = idModule;
+	}
+	public long getIdUser() {
+		return idUser;
+	}
+	public void setIdUser(long idUser) {
+		this.idUser = idUser;
 	}
 	
 	

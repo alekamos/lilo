@@ -15,8 +15,6 @@ import com.opensymphony.xwork2.ActionSupport;
 
 public class ModuleAction extends ActionSupport{
 
-
-
 	private static final long serialVersionUID = 3258340637887790849L;
 	private static final Logger log = Logger.getLogger("lifelogLogger");
 
@@ -24,19 +22,15 @@ public class ModuleAction extends ActionSupport{
 
 
 	//Campo in arrivo dalla jsp
-	private ArrayList<ModuleType> moduleTypeList = new ArrayList<ModuleType>();
-	private ModuleType moduleType = new ModuleType();
-	private ModuleExtended moduleExtended = new ModuleExtended();
+	private ArrayList<ModuleType> moduleTypeList;
+	private ModuleType moduleType;
+	private ModuleExtended moduleExtended;
 
-
-	//Classe logica 
-	private ModuleLogic ml = new ModuleLogic();
-	private UserLogic ul = new UserLogic();
-
-
-
+	
 	public String gotoModuleTypeManagement(){
 		log.debug(Const.IN);
+		ModuleLogic ml = new ModuleLogic();
+		UserLogic ul = new UserLogic();
 		User user = ul.getUserInSession();
 		log.debug("User estratto dalla sessione: "+user.toString());
 		moduleTypeList = ml.getUserModuleType(user);
@@ -50,6 +44,8 @@ public class ModuleAction extends ActionSupport{
 
 	public String createNewModuleType(){
 		log.debug(Const.IN);
+		ModuleLogic ml = new ModuleLogic();
+		UserLogic ul = new UserLogic();
 		User user = ul.getUserInSession();
 		log.debug("User estratto dalla sessione: "+user.toString());
 		moduleType.setIdUser(user.getIdUser());
@@ -62,6 +58,8 @@ public class ModuleAction extends ActionSupport{
 
 	public String saveModule(){
 		log.debug(Const.IN);
+		ModuleLogic ml = new ModuleLogic();
+		UserLogic ul = new UserLogic();
 		User user = ul.getUserInSession();
 		log.debug("User estratto dalla sessione: "+user.toString());
 		moduleExtended.getModuleHeader().setIdUser(user.getIdUser());
@@ -73,6 +71,8 @@ public class ModuleAction extends ActionSupport{
 
 	public String gotoUseModule(){
 		log.debug(Const.IN);
+		ModuleLogic ml = new ModuleLogic();
+		UserLogic ul = new UserLogic();
 		User user = ul.getUserInSession();
 		log.debug("User estratto dalla sessione: "+user.toString());
 		moduleType = ml.getModuleType(moduleType);

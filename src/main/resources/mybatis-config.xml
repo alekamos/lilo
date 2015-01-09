@@ -52,6 +52,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 			resource="it/costanza/LiLo/mybatis/customMappers/ModuleListFinderMapper.xml" />
 		<mapper
 			resource="it/costanza/LiLo/mybatis/customMappers/ListElementFinderMapper.xml" />
+		<mapper
+			resource="it/costanza/LiLo/mybatis/customMappers/ModuleDayHostFinderMapper.xml" />
 
 	</mappers>
 

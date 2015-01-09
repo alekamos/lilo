@@ -2,7 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="/struts-tags" prefix="s"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 
 
@@ -20,9 +20,17 @@
 		label="ModuleType"></s:select>
 
 	<s:submit value="Search" />
-	
-	
+
+
 </s:form>
+
+
+<c:forEach items="${navigatorElementList}" var="element">
+<c:out value="${element.dateDay}"></c:out>
+		<a href="viewModule?moduleFinder.idModule=${element.idModule}"><fmt:formatDate
+				value="${element.dateDay}" pattern="yyyy/MM/dd" /></a>
+<br/>
+</c:forEach>
 
 
 
