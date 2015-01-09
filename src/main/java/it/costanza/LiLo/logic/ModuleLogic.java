@@ -6,7 +6,10 @@ package it.costanza.LiLo.logic;
 import it.costanza.LiLo.bean.ModuleDayHost;
 import it.costanza.LiLo.bean.ModuleExtended;
 import it.costanza.LiLo.bean.ModuleFinder;
+import it.costanza.LiLo.bean.NavigatorElement;
+import it.costanza.LiLo.bean.NavigatorSearch;
 import it.costanza.LiLo.dao.ModuleClusterDao;
+import it.costanza.LiLo.dao.ModuleDayHostDao;
 import it.costanza.LiLo.dao.ModuleExtendedDao;
 import it.costanza.LiLo.dao.ModuleHeaderDao;
 import it.costanza.LiLo.dao.ModuleTypeDao;
@@ -138,8 +141,8 @@ public class ModuleLogic {
 	}
 
 	/**
-	 * Invoca il dao e restituisce un idModuleLCuster se trova già un cluster per la giornata in questione
-	 * Controlla se è già presente un dayHost dunque
+	 * Invoca il dao e restituisce un idModuleLCuster se trova giï¿½ un cluster per la giornata in questione
+	 * Controlla se ï¿½ giï¿½ presente un dayHost dunque
 	 * @param mextdIn che deve contenere la data
 	 * @return 0 se non trova niente, !0 se la data Ã¨ giÃ  presente
 	 */
@@ -216,8 +219,8 @@ public class ModuleLogic {
 	}
 
 	/**
-	 * Controlla se l'idModulo esiste ed è dell'utente che vuole visualizzarlo.
-	 * Se il modulo non è visualizzabile per l'utente in questione viene lanciata un eccezione	
+	 * Controlla se l'idModulo esiste ed ï¿½ dell'utente che vuole visualizzarlo.
+	 * Se il modulo non ï¿½ visualizzabile per l'utente in questione viene lanciata un eccezione	
 	 * @param user utente che ambisce a visualizzare il modulo
 	 * @param idModule id del modulo che si deve visualizzare
 	 * @throws UnauthorizedContent
@@ -233,7 +236,7 @@ public class ModuleLogic {
 	}
 
 	/**
-	 * Il metodo estrae il moduloExtended con tutto quello che c'è da estrarre basandosi solo sul idModule.
+	 * Il metodo estrae il moduloExtended con tutto quello che c'ï¿½ da estrarre basandosi solo sul idModule.
 	 * @param idModule
 	 * @return
 	 */
@@ -266,7 +269,7 @@ public class ModuleLogic {
 
 	/**
 	 * Partendo dall'idCluster necessariamente presente in tutti i moduli lui va a cercarsi l'id del modulo 
-	 * dayHost. Ovviamente è necessario conoscere l'idModuleType del modulo DayHost, e l'utente che possiede il modulo.
+	 * dayHost. Ovviamente ï¿½ necessario conoscere l'idModuleType del modulo DayHost, e l'utente che possiede il modulo.
 	 * @param idModuleCluster
 	 * @param user
 	 * @return
@@ -285,8 +288,8 @@ public class ModuleLogic {
 
 	/**
 	 *  Il metodo estrae in modo totalmente esaustivo un modulo in tutte le sue componenti compreso  il moduleType
-	 * @param idModule è l'id del modulo che occorre estrarre
-	 * @param user è l'user che possiede il modulo
+	 * @param idModule ï¿½ l'id del modulo che occorre estrarre
+	 * @param user ï¿½ l'user che possiede il modulo
 	 *  se != null viene impostato al moduloExtended in uscita quello passato al metodo
 	 * @return
 	 */
@@ -313,8 +316,8 @@ public class ModuleLogic {
 
 	/**
 	 * Carica tutto il dayHost, tutti i moduli appartenenti al dayHost identificato dal idModuleCluster
-	 * @param idModuleCluster è il cluster che accomuna tutti i moduli del dayHost
-	 * @param user è l'utente che possiede il cluster
+	 * @param idModuleCluster ï¿½ il cluster che accomuna tutti i moduli del dayHost
+	 * @param user ï¿½ l'utente che possiede il cluster
 	 * @return La lista di tutti i moduli appartenenti al dayHost completo (La giornata)
 	 */
 	public ArrayList<ModuleExtended> getModuleExtendList(Integer idModuleCluster, User user){
@@ -350,6 +353,21 @@ public class ModuleLogic {
 		moduleExtended.setModuleDatetime(moduleDatetime);
 
 		return mcDao.searchIdClusterByDate(moduleExtended);
+	}
+
+	/**
+	 * Il metodo restituisce l'oggetto navigatore
+	 * @param user
+	 * @return
+	 */
+	public ArrayList<NavigatorElement> buildNavigator(User user,Date startDate,Date endDate) {
+		ModuleDayHostDao dhdao = new ModuleDayHostDao();
+		NavigatorSearch navigatorSearch = new NavigatorSearch();
+		navigatorSearch.setIdUser(user.getIdUser());
+		navigatorSearch.setDateStart(startDate);
+		navigatorSearch.setDateEnd(endDate);
+		ArrayList<NavigatorElement> dayHostList = dhdao.searchDayHostList(navigatorSearch);
+		return dayHostList;
 	}
 
 

@@ -1,12 +1,14 @@
 package it.costanza.LiLo.action;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import org.apache.log4j.Logger;
 
 import it.costanza.LiLo.bean.ModuleDayHost;
 import it.costanza.LiLo.bean.ModuleExtended;
 import it.costanza.LiLo.bean.ModuleFinder;
+import it.costanza.LiLo.bean.NavigatorElement;
 import it.costanza.LiLo.exception.UnauthorizedContent;
 import it.costanza.LiLo.logic.ModuleLogic;
 import it.costanza.LiLo.logic.UserLogic;
@@ -14,6 +16,7 @@ import it.costanza.LiLo.mybatis.bean.ModuleCluster;
 import it.costanza.LiLo.mybatis.bean.ModuleType;
 import it.costanza.LiLo.mybatis.bean.User;
 import it.costanza.LiLo.util.Const;
+import it.costanza.LiLo.util.Utility;
 
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -26,21 +29,17 @@ public class DiaryAction extends ActionSupport{
 	private ModuleFinder moduleFinder = new ModuleFinder();
 
 	//Campo in uscita dalla jsp
-	private ModuleExtended moduleExtended = new ModuleExtended();
-	private ArrayList<ModuleExtended> moduleExtendedList = new ArrayList<ModuleExtended>();
+	private ModuleExtended moduleExtended;
+	private ArrayList<ModuleExtended> moduleExtendedList;
 	private ArrayList<ModuleType> userModuleType;
-
-	//Classe logica 
-	private ModuleLogic ml = new ModuleLogic();
-	private UserLogic ul = new UserLogic();
-
+	private ArrayList<NavigatorElement> navigatorElementList;
 
 
 	public String viewDayHost(){
 		log.debug(Const.IN);
-		//occorre capire se è arrivato un id o una data da cercare
+		//occorre capire se ï¿½ arrivato un id o una data da cercare
 		if(moduleExtended.getModuleCluster().getIdModuleCluster()!=0){
-			//Qui occorre la logica per vedere se la giornata è la sua e prendere tutti i moduli	
+			//Qui occorre la logica per vedere se la giornata ï¿½ la sua e prendere tutti i moduli	
 		}
 
 		return SUCCESS;
@@ -49,7 +48,8 @@ public class DiaryAction extends ActionSupport{
 
 	public String viewModule() throws UnauthorizedContent{
 		log.debug(Const.IN);
-
+		UserLogic ul = new UserLogic();
+		ModuleLogic ml = new ModuleLogic();
 		User user = ul.getUserInSession();
 		log.debug("User estratto dalla sessione: "+user.toString());
 		log.debug("Module finder in arrivo: "+moduleFinder.toString());
@@ -75,10 +75,12 @@ public class DiaryAction extends ActionSupport{
 
 	public String gotoSearchModule(){
 		log.debug(Const.IN);
-
+		ModuleLogic ml = new ModuleLogic();
+		UserLogic ul = new UserLogic();
 		User user = ul.getUserInSession();
 		log.debug("User estratto dalla sessione: "+user.toString());
 		userModuleType = ml.getUserModuleType(user);
+		navigatorElementList = ml.buildNavigator(user,new Date(),Utility.aggiungiTogliGiorno(new Date(), -14));
 
 		return SUCCESS;
 	}
@@ -108,6 +110,16 @@ public class DiaryAction extends ActionSupport{
 	}
 	public void setModuleExtendedList(ArrayList<ModuleExtended> moduleExtendedList) {
 		this.moduleExtendedList = moduleExtendedList;
+	}
+
+
+	public ArrayList<NavigatorElement> getNavigatorElementList() {
+		return navigatorElementList;
+	}
+
+
+	public void setNavigatorElementList(ArrayList<NavigatorElement> navigatorElementList) {
+		this.navigatorElementList = navigatorElementList;
 	}
 
 }
