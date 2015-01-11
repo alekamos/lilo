@@ -4,7 +4,7 @@
 
 	<resultMap id="BaseResultMap" type="it.costanza.LiLo.bean.NavigatorElement">
 		<id column="ID_CLUSTER" property="idCluster" jdbcType="INTEGER" />
-		<result column="ID_MODULE" property="idModule" jdbcType="INTEGER" />
+		<result column="ID_MODULE_CLUSTER" property="idModule" jdbcType="INTEGER" />
 		<result column="ID_MODULE_TYPE" property="idModuleType"
 			jdbcType="INTEGER" />
 		<result column="ID_USER" property="idUser" jdbcType="VARCHAR" />
@@ -13,7 +13,7 @@
 	
 	<select id="selectListDayHostInDateRange" resultMap="BaseResultMap"
 		parameterType="it.costanza.LiLo.bean.NavigatorSearch">
-		select ca.date,dh.id_module,dh.id_module_cluster from CALENDAR ca
+		select ca.date as DATE_DAYHOST,dh.id_module as ID_MODULE ,dh.id_module_cluster as ID_MODULE_CLUSTER from CALENDAR ca
 		left
 		join MODULES_DAYHOST dh on ca.date = dh.date_dayhost and dh.id_user =
 		#{idUser,jdbcType=INTEGER}
