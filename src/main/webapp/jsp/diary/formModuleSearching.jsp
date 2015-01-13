@@ -23,14 +23,28 @@
 
 
 </s:form>
-
-
-<c:forEach items="${navigatorElementList}" var="element">
-<c:out value="${element.dateDay}"></c:out>
-		<a href="viewModule?moduleFinder.idModule=${element.idModule}"><fmt:formatDate
-				value="${element.dateDay}" pattern="yyyy/MM/dd" /></a>
 <br/>
-</c:forEach>
+
+	<table class="table table-bordered">
+		<tr>
+			<c:forEach items="${navigatorElementList}" var="element">
+				<c:set var="link"
+					value="viewModule?moduleFinder.idModule=${element.idModule}" />
+				<td><c:choose>
+						<c:when test="${element.idModule != 0}">
+							<a href="${link}"><fmt:formatDate value="${element.dateDay}"
+									pattern="yyyy/MM/dd" /></a>
+						</c:when>
+						<c:when test="${element.idModule == 0}">
+							<fmt:formatDate value="${element.dateDay}" pattern="yyyy/MM/dd" />
+						</c:when>
+					</c:choose></td>
+
+			</c:forEach>
+		</tr>
+	</table>
+
+
 
 
 
