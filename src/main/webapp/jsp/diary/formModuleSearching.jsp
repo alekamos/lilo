@@ -29,13 +29,13 @@
 		<tr>
 			<c:forEach items="${navigatorElementList}" var="element">
 				<c:set var="link"
-					value="viewModule?moduleFinder.idModule=${element.idModule}" />
+					value="viewModule?moduleFinder.idModuleCluster=${element.idModuleCluster}" />
 				<td><c:choose>
-						<c:when test="${element.idModule != 0}">
+						<c:when test="${element.idModuleCluster != 0}">
 							<a href="${link}"><fmt:formatDate value="${element.dateDay}"
 									pattern="yyyy/MM/dd" /></a>
 						</c:when>
-						<c:when test="${element.idModule == 0}">
+						<c:when test="${element.idModuleCluster == 0}">
 							<fmt:formatDate value="${element.dateDay}" pattern="yyyy/MM/dd" />
 						</c:when>
 					</c:choose></td>

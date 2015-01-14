@@ -5,7 +5,7 @@ import java.util.Date;
 public class NavigatorElement {
 
 	private Date dateDay;
-	private long idCluster;
+	private long idModuleCluster;
 	private long idModuleType;
 	private long idModule;
 	private long idUser;
@@ -22,12 +22,7 @@ public class NavigatorElement {
 	public void setDateDay(Date dateDay) {
 		this.dateDay = dateDay;
 	}
-	public long getIdCluster() {
-		return idCluster;
-	}
-	public void setIdCluster(long idCluster) {
-		this.idCluster = idCluster;
-	}
+
 	public long getIdModuleType() {
 		return idModuleType;
 	}
@@ -45,6 +40,12 @@ public class NavigatorElement {
 	}
 	public void setIdUser(long idUser) {
 		this.idUser = idUser;
+	}
+	public long getIdModuleCluster() {
+		return idModuleCluster;
+	}
+	public void setIdModuleCluster(long idModuleCluster) {
+		this.idModuleCluster = idModuleCluster;
 	}
 	
 	

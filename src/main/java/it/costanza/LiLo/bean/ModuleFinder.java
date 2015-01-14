@@ -13,6 +13,7 @@ public class ModuleFinder {
 	
 	
 	private Integer idModule;
+	private Integer idModuleCluster;
 	private Integer idModuleType;
 	private Date dateDayHost;
 	
@@ -60,5 +61,15 @@ public class ModuleFinder {
     	return Utility.toStringPerBean(chiavi, valori);
     	
     }
+
+
+	public Integer getIdModuleCluster() {
+		return idModuleCluster;
+	}
+
+
+	public void setIdModuleCluster(Integer idModuleCluster) {
+		this.idModuleCluster = idModuleCluster;
+	}
 	
 }

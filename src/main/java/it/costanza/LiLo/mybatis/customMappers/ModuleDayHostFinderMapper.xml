@@ -3,8 +3,8 @@
 <mapper namespace="it.costanza.LiLo.mybatis.mappers.ModuleDayHostMapper">
 
 	<resultMap id="BaseResultMap" type="it.costanza.LiLo.bean.NavigatorElement">
-		<id column="ID_CLUSTER" property="idCluster" jdbcType="INTEGER" />
-		<result column="ID_MODULE_CLUSTER" property="idModule" jdbcType="INTEGER" />
+		<id column="ID_MODULE_CLUSTER" property="idModuleCluster" jdbcType="INTEGER" />
+		<result column="ID_MODULE" property="idModule" jdbcType="INTEGER" />
 		<result column="ID_MODULE_TYPE" property="idModuleType"
 			jdbcType="INTEGER" />
 		<result column="ID_USER" property="idUser" jdbcType="VARCHAR" />
