@@ -67,6 +67,11 @@ public class DiaryAction extends ActionSupport{
 			moduleExtendedList = ml.getModuleExtendList(idCluster, user);
 			return Const.MULTIPLE_MODULE_VIEW;
 		}
+		else if (moduleFinder.getIdModuleCluster()!=null) {
+			//caso in cui arriva direttamente un idCluster
+			moduleExtendedList = ml.getModuleExtendList(moduleFinder.getIdModuleCluster(), user);
+			return Const.MULTIPLE_MODULE_VIEW;
+		}
 
 		return ERROR;
 
