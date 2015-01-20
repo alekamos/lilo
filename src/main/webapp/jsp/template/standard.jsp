@@ -9,7 +9,7 @@
 <!-- import -->
 
 
-<script type="text/javascript" src="/LiLo/js/scriptComuni.js"></script>
+<script type="text/javascript" src="/LiLo/Personaljs/scriptComuni.js"></script>
 <link href="/LiLo/bootstrap/css/bootstrap.min.css" rel="stylesheet"
 	media="screen">
 	<link href="/LiLo/customCss/clean-blog.css" rel="stylesheet">
@@ -24,22 +24,19 @@
 <body>
 
 
-	<div id="header">
+
 		<tiles:insertAttribute name="header" />
-	</div>
 
-	<div id="menuDiv">
+
+
 		<tiles:insertAttribute name="menu" />
-	</div>
-	<div class="container-fluid">
-		<div id="body">
-			<tiles:insertAttribute name="body" />
-		</div>
-	</div>
 
-	<div id="footer">
+			<tiles:insertAttribute name="body" />
+
+
+
 		<tiles:insertAttribute name="footer" />
-	</div>
+
 
 </body>
 </html>
