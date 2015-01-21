@@ -1,31 +1,42 @@
 <%@ taglib uri="/struts-tags" prefix="s"%>
+<div class="container-fluid">
+ 
 
-<h1>Sing In</h1>
+
 
 <s:form cssClass="form-horizontal" method="post" action="signIn.action"
 	validate="true">
+	
+	
+<fieldset>
+
+<!-- Form Name -->
+<legend>Sign in</legend>
+	
+	
 	<div class="form-group">
 
-		<s:label cssClass="col-sm-2 control-label" name="user.username" value="Username"/>
-		<div class="col-sm-10">
+		<s:label cssClass="col-sm-4 control-label" name="user.username" value="Username"/>
+		<div class="col-sm-4">
 			<s:textfield cssClass="form-control"
 				name="user.username" placeholder="username" autocomplete="off" />
 		</div>
 
 	</div>
 	<div class="form-group">
-		<s:label cssClass="col-sm-2 control-label" name="user.password"
+		<s:label cssClass="col-sm-4 control-label" name="user.password"
 			value="Password" />
-		<div class="col-sm-10">
+		<div class="col-sm-4">
 			<s:password cssClass="form-control"
 				name="user.password" placeholder="Password" autocomplete="off" />
 		</div>
 	</div>
 	<div class="form-group">
-		<div class="col-sm-offset-2 col-sm-10">
-			<s:submit cssClass="btn btn-default" value="Sign in" />
+		<div class="col-sm-offset-4 col-sm-10">
+			<s:submit cssClass="btn btn-light" value="Sign in" />
 		</div>
 	</div>
+	</fieldset>
 </s:form>
-
+</div>
 

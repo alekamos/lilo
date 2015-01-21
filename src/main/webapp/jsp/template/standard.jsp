@@ -14,7 +14,7 @@
 <script src="/LiLo/bootstrap/js/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css" href="/LiLo/include/jquery-ui-1.9.2.custom/css/ui-darkness/jquery-ui-1.9.2.custom.css">
 <script type="text/javascript" src="/LiLo/include/jquery-ui-1.9.2.custom/js/jquery-ui-1.9.2.custom.js"></script>
-
+<link href="/LiLo/customCss/stylish-portfolio.css" rel="stylesheet">
 
 <title><tiles:insertAttribute name="title" /></title>
 </head>
