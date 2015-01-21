@@ -36,11 +36,11 @@
     <!-- Header -->
     <header id="top" class="header">
         <div class="text-vertical-center">
-            <h1>LiLo</h1>
-            <h3><strong>Li</strong>ve<strong>,Lo</strong>g.</h3>
+            <h1>Lifelog</h1>
+            <h3><strong>Li</strong>ve,<strong>Fe</strong>el,<strong>Lo</strong>g</h3>
             <br>
             <a href="gotoSignInPage" class="btn btn-dark btn-light">Sign In</a>
-            <a href="gotoSignUpPage" class="btn btn-dark btn-dark">Sing Up</a>
+            <a href="gotoSignUpPage" class="btn btn-dark btn-light">Sing Up</a>
         </div>
     </header>
 
@@ -49,8 +49,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2>...</h2>
-                    <p class="lead">...</p>
+                    <h2>Lifelog is brand new personal diary</h2>
+                    <p class="lead">Modular-organized, secure, private Lifelog help you to trace your life-data and memories</p>
                 </div>
             </div>
             <!-- /.row -->
@@ -63,7 +63,8 @@
     <!-- Callout -->
     <aside class="callout">
         <div class="text-vertical-center">
-            <h1>Slider here</h1>
+            <h1>Data and memories of your life.</br>
+            That's Lifelog</h1>
         </div>
     </aside>
 
@@ -73,11 +74,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-10 col-lg-offset-1 text-center">
-                    <h3><strong>LiLo</strong>
+                    <h3><strong>Lifelog</strong>
                     </h3>
-                    <h5>Designed and made by Alessandro Costanza</h5>
+                    <h5>Conceived, designed and made by Alessandro Costanza</h5>
                     <ul class="list-unstyled">
-                        <li><i class="fa fa-envelope-o fa-fw"></i>  <a href="mailto:spinore@gmail.com">spinore@gmail.com</a>
+                        <li><a href="mailto:spinore@gmail.com">assistance@lifelog.com</a>
                         </li>
                     </ul>
                     <br>
