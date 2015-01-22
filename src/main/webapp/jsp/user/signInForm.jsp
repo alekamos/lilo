@@ -1,19 +1,11 @@
 <%@ taglib uri="/struts-tags" prefix="s"%>
-<div class="container-fluid">
- 
-
-
+<div class="container-fluid" id="signInFormDiv">
 
 <s:form cssClass="form-horizontal" method="post" action="signIn.action"
 	validate="true">
-	
-	
-<fieldset>
-
+	<legend>Sign in</legend>
 <!-- Form Name -->
-<legend>Sign in</legend>
-	
-	
+
 	<div class="form-group">
 
 		<s:label cssClass="col-sm-4 control-label" name="user.username" value="Username"/>
@@ -36,7 +28,7 @@
 			<s:submit cssClass="btn btn-light" value="Sign in" />
 		</div>
 	</div>
-	</fieldset>
+
 </s:form>
 </div>
 

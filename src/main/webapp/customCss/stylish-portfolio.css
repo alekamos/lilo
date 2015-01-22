@@ -47,7 +47,7 @@ body {
 }
 
 .btn-light {
-    border-radius: 0;
+    border-radius: 5px;
     color: black;
     background-color: #3C3F45;
 }
@@ -159,4 +159,23 @@ legend {
     -moz-border-bottom-colors: none;
     -moz-border-left-colors: none;
     border-image: none;
+}
+
+#signInFormDiv{
+	display: table;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: url(../img/1600x1067Commuters.jpg) no-repeat center center scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+
+.row-fluid 
+{height: 100%; 
+display:table-cell; 
+vertical-align: middle;
+
 }
