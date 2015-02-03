@@ -10,13 +10,14 @@ html,
 body {
     width: 100%;
     height: 100%;
-    background-color: #26292E;
+    background-color: #2F3238;
     color: #7F8289;
+    padding-top: 50px;
 }
 
-body {
-
-}
+a:hover, a:active, a:focus {
+  outline: 0;
+ }
 
 .text-vertical-center {
     display: table-cell;
@@ -32,20 +33,11 @@ body {
 }
 
 /* Custom Button Styles */
-
 .btn-dark {
     border-radius: 0;
     color: #fff;
     background-color: rgba(167,167,123,0.4);
 }
-
-.btn-dark:hover,
-.btn-dark:focus,
-.btn-dark:active {
-    color: #fff;
-    background-color: rgba(222,94,96,0.7);
-}
-
 .btn-light {
     border-radius: 5px;
     color: black;
@@ -60,13 +52,11 @@ body {
 }
 
 /* Custom Horizontal Rule */
-
 hr.small {
     max-width: 100px;
 }
 
 /* Header */
-
 .header {
     display: table;
     position: relative;
@@ -84,9 +74,7 @@ hr.small {
 .about {
     padding: 100px 0;
 }
-
 /* Services */
-
 .services {
     padding: 100px 0;
 }
@@ -94,9 +82,7 @@ hr.small {
 .service-item {
     margin-bottom: 30px;
 }
-
 /* Callout */
-
 .callout {
     display: table;
     width: 100%;
@@ -109,13 +95,15 @@ hr.small {
     -o-background-size: cover;
 }
 
-
-
 /* Footer */
 
 footer {
     padding: 100px 0;
 }
+
+
+
+
 
 /* Estesi da bootstrap*/
 .form-control {
@@ -142,7 +130,6 @@ footer {
   -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
           box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
 }
-
 legend {
     display: block;
     width: 100%;
@@ -172,10 +159,22 @@ legend {
     background-size: cover;
     -o-background-size: cover;
 }
-
-.row-fluid 
-{height: 100%; 
+.row-fluid {
+height: 100%; 
 display:table-cell; 
 vertical-align: middle;
+}
 
+/*Menu*/
+.navbar-default {
+    background-color: #26292E;
+    border-color: #26292E; 
+}
+
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    color: #DE5E60;
+   
+}
+.dropdown-menu{
+	background-color: #26292E;
 }

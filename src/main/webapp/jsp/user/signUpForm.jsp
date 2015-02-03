@@ -15,15 +15,13 @@
 			
 		</div>
 		
-		
-		
-		
 		<div class="form-group">
 			<s:label cssClass="col-sm-4 control-label" name="user.surname"
 				value="Surname" />
 			<div class="col-sm-4">
 				<s:textfield cssClass="form-control" name="user.surname" placeholder="surname"
 					autocomplete="off" />
+					<p class="help-block"><s:fielderror fieldName="user.surname" /></p>
 			</div>
 		</div>
 		<div class="form-group">
@@ -32,6 +30,7 @@
 			<div class="col-sm-4">
 				<s:textfield cssClass="form-control" name="user.email" placeholder="email"
 					autocomplete="off" />
+					<p class="help-block"><s:fielderror fieldName="user.email" /></p>
 			</div>
 		</div>
 		<div class="form-group">
@@ -40,6 +39,7 @@
 			<div class="col-sm-4">
 				<s:textfield cssClass="form-control" name="user.birthDate" placeholder="birthDate"
 					autocomplete="off" id="datePicker" />
+					<p class="help-block"><s:fielderror fieldName="user.birthDate" /></p>
 			</div>
 		</div>
 		<div class="form-group">
@@ -48,6 +48,7 @@
 			<div class="col-sm-4">
 				<s:textfield cssClass="form-control" name="user.username" placeholder="username"
 					autocomplete="off" />
+					<p class="help-block"><s:fielderror fieldName="user.username" /></p>
 			</div>
 		</div>
 		<div class="form-group">
@@ -56,6 +57,7 @@
 			<div class="col-sm-4">
 				<s:password cssClass="form-control" name="user.password" placeholder="password"
 					autocomplete="off" />
+					<p class="help-block"><s:fielderror fieldName="user.password" /></p>
 			</div>
 		</div>
 		<div class="form-group">

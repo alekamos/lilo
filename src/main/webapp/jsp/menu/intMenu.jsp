@@ -25,7 +25,7 @@
 				<li class="divider"></li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown" role="button" aria-expanded="false"><c:out
-							value="${session.user.name} ${session.user.surname}" /> <span
+ 							value="${session.user.name} ${session.user.surname}" /> <span 
 						class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
 						<li><a href="#">Action</a></li>
@@ -39,19 +39,4 @@
 	<!-- /.container-fluid -->
 </nav>
 
-    <!-- Page Header -->
-    <!-- Set your background image for this header on the line below. -->
-    <header class="intro-header" style="background-image: url('img/bg.jpg')">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <div class="post-heading">
-                        <h1>Man must explore, and this is exploration at its greatest</h1>
-                        <h2 class="subheading">Problems look mighty small from 150 miles up</h2>
-                        <span class="meta">Posted by <a href="#">Start Bootstrap</a> on August 24, 2014</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
 
