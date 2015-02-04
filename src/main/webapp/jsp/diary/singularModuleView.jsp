@@ -5,7 +5,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 
-
+<div class="container-fluid">
 <h1>
 	<c:out value="${moduleExtended.moduleType.name}" />
 </h1>
@@ -169,4 +169,5 @@
 	<br />
 	<br />
 </c:if>
+</div>
 
