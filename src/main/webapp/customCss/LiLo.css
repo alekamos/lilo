@@ -56,7 +56,6 @@ hr.small {
     max-width: 100px;
 }
 
-/* Header */
 .header {
     display: table;
     position: relative;
@@ -165,6 +164,8 @@ display:table-cell;
 vertical-align: middle;
 }
 
+
+
 /*Menu*/
 .navbar-default {
     background-color: #26292E;
@@ -172,8 +173,7 @@ vertical-align: middle;
 }
 
 .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
-    color: #DE5E60;
-   
+    color: #DE5E60; 
 }
 .dropdown-menu{
 	background-color: #26292E;

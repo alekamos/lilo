@@ -21,11 +21,11 @@
 		<c:forEach items="${moduleTypeList}" var="mt" varStatus="i">
 			<tr>
 				<td><c:out value="${i.count}" /></td>
-				<td><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></td>
+				<td><span class="glyphicon glyphicon-eye-open"></span></td>
 				<td><a
 					href="<s:url action="gotoUseModule.action" >
     <s:param name="moduleType.idModuleType">${mt.idModuleType}</s:param>
-</s:url>"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></a></td>
+</s:url>"><span class="glyphicon glyphicon-plus-sign"></span></a></td>
 				<td><c:out value="${mt.name}" /></td>
 				<td><c:out value="${mt.description}" /></td>
 			</tr>

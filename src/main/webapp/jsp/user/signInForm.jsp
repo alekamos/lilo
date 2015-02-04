@@ -11,7 +11,7 @@
 		<s:label cssClass="col-sm-4 control-label" name="user.username" value="Username"/>
 		<div class="col-sm-4">
 			<s:textfield cssClass="form-control"
-				name="user.username" placeholder="username" autocomplete="off" />
+				name="user.username" placeholder="Username" autocomplete="off" />
 		</div>
 
 	</div>
