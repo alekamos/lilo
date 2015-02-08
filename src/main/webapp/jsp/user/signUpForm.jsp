@@ -1,5 +1,5 @@
 <%@ taglib uri="/struts-tags" prefix="s"%>
-<div class="container-fluid" id="signUpFormDiv">
+<div class="container-fluid padding-top">
 
 	<s:form cssClass="form-horizontal" method="post" action="signUp"
 		validate="true">

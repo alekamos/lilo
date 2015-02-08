@@ -5,7 +5,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 
-<div class="container-fluid">
+<div class="container-fluid padding-top">
 	<s:form cssClass="form-horizontal" action="viewModule">
 		<legend>Search day</legend>
 
@@ -26,16 +26,17 @@
 					placeholder="Id Module"></s:textfield>
 			</div>
 		</div>
-		
-<div class="form-group">
-<s:label cssClass="col-sm-4 control-label"
+
+		<div class="form-group">
+			<s:label cssClass="col-sm-4 control-label"
 				name="moduleFinder.idModuleType" value="Module Type" />
-<div class="col-sm-4">
-		<s:select list="userModuleType" listValue="name"
-			listKey="idModuleType" headerKey="-1" headerValue="Choice"
-			name="moduleFinder.idModuleType" label="ModuleType" cssClass="form-control"></s:select>
-			
-				</div>
+			<div class="col-sm-4">
+				<s:select list="userModuleType" listValue="name"
+					listKey="idModuleType" headerKey="-1" headerValue="Choice"
+					name="moduleFinder.idModuleType" label="ModuleType"
+					cssClass="form-control"></s:select>
+
+			</div>
 		</div>
 
 		<div class="form-group">
@@ -46,23 +47,11 @@
 	</s:form>
 	<br />
 
-	<table class="table">
-		<tr>
-			<c:forEach items="${navigatorElementList}" var="element">
-				<c:set var="link"
-					value="viewModule?moduleFinder.idModuleCluster=${element.idModuleCluster}" />
-				<td><c:choose>
-						<c:when test="${element.idModuleCluster != 0}">
-							<a href="${link}"><fmt:formatDate value="${element.dateDay}"
-									pattern="yy/MM/dd" /></a>
-						</c:when>
-						<c:when test="${element.idModuleCluster == 0}">
-							<fmt:formatDate value="${element.dateDay}" pattern="yy/MM/dd" />
-						</c:when>
-					</c:choose></td>
-			</c:forEach>
-		</tr>
-	</table>
+	<!-- START DAY NAVIGATOR -->
+	<c:set var="navigatorElementList" scope="request"
+		value="${navigatorElementList}" />
+	<jsp:include page="dayNavigator.jsp" />
+	<!-- END DAY NAVIGATOR -->
 </div>
 
 

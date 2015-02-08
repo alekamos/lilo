@@ -2,103 +2,123 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="/struts-tags" prefix="s"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<div class="container-fluid padding-top">
+<s:form method="post" cssClass="form-horizontal" action="saveModule.action" validate="false">
 
-<s:form method="post" action="saveModule.action" validate="false">
-
-
-	<br />
-
-
-
-	<h1>${moduleType.name}</h1>
-	<h5>${moduleType.description}</h5>
+<legend><span class="upper-case"><strong>${moduleType.name}</strong></span></legend>
+	
+<br/>
+<span><small>${moduleType.description}</small></span>
+<br/>
+	
 	<s:hidden name="moduleExtended.moduleHeader.idModuleType"
 		value="%{moduleType.idModuleType}" />
-	<s:textfield label="data Main Day" id="datePicker"
-		name="moduleExtended.moduleDayHost.dateDayHost" placeholder="data"
-		autocomplete="off" />
+
+		<div class="form-group">
+			<s:label cssClass="col-sm-4 control-label"
+				name="moduleExtended.moduleDayHost.dateDayHost" value="Day date" />
+			<div class="col-sm-4">
+				<s:textfield id="datePicker" cssClass="form-control"
+					name="moduleExtended.moduleDayHost.dateDayHost" placeholder="Date"
+					autocomplete="off" />
+				<p class="help-block">
+					<s:fielderror fieldName="user.name" />
+				</p>
+			</div>
+		</div>
 
 
-	<c:if
-		test="${moduleType.textContent1Name != null && moduleType.textContent1Name != ''}">
-		<br />
-		<h3>text content</h3>
-		<s:label name="moduleExtended.moduleText.text1Value"
+		<c:if test="${moduleType.textContent1Name != null && moduleType.textContent1Name != ''}">
+		<h4 class="upper-case">text content</h4>
+
+		<div class="form-group"><s:label cssClass="col-sm-4 control-label" name="moduleExtended.moduleText.text1Value"
 			value="%{moduleType.textContent1Name}" />
-		<s:textarea name="moduleExtended.moduleText.text1Value"
-			autocomplete="off" />
+			<div class="col-sm-4">
+		<s:textarea rows="3" cssClass="form-control" name="moduleExtended.moduleText.text1Value"
+			autocomplete="off" /></div>
+			</div>
 	</c:if>
 
 	<c:if
 		test="${moduleType.textContent2Name != null && moduleType.textContent2Name != '' }">
-		<s:label name="moduleExtended.moduleText.text2Value"
+		<div class="form-group"><s:label cssClass="col-sm-4 control-label" name="moduleExtended.moduleText.text2Value"
 			value="%{moduleType.textContent2Name}" />
-		<s:textarea name="moduleExtended.moduleText.text2Value"
-			autocomplete="off" />
+			<div class="col-sm-4">
+		<s:textarea rows="3" cssClass="form-control" name="moduleExtended.moduleText.text2Value"
+			autocomplete="off" /></div>
+			</div>
 	</c:if>
 
 	<c:if
 		test="${moduleType.textContent3Name != null && moduleType.textContent3Name != ''}">
 
-		<s:label name="moduleExtended.moduleText.text3Value"
+		<div class="form-group"><s:label cssClass="col-sm-4 control-label" name="moduleExtended.moduleText.text3Value"
 			value="%{moduleType.textContent3Name}" />
-		<s:textarea name="moduleExtended.moduleText.text3Value"
+		<div class="col-sm-4"><s:textarea rows="3" cssClass="form-control" name="moduleExtended.moduleText.text3Value"
 			autocomplete="off" />
+			</div></div>
 	</c:if>
 
 
 	<c:if
 		test="${moduleType.numericDataContent1Name != null && moduleType.numericDataContent1Name != ''}">
-		<h3>numeric content</h3>
+		<h4 class="upper-case">numeric content</h4>
 		<br />
-		<s:label value="%{moduleType.numericDataContent1Name}" name="moduleExtended.moduleNumeric.numericData1Value"/>
-		<s:textfield name="moduleExtended.moduleNumeric.numericData1Value"
-			autocomplete="off" />
+		<div class="form-group"><s:label cssClass="col-sm-4 control-label" value="%{moduleType.numericDataContent1Name}" name="moduleExtended.moduleNumeric.numericData1Value"/>
+		<div class="col-sm-4"><s:textfield cssClass="form-control" name="moduleExtended.moduleNumeric.numericData1Value"
+			autocomplete="off" /></div>
+			</div>
 	</c:if>
 
 	<c:if
 		test="${moduleType.numericDataContent2Name != null && moduleType.numericDataContent2Name != ''}">
-		<s:label value="%{moduleType.numericDataContent2Name}" name="moduleExtended.moduleNumeric.numericData2Value"/>
-		<s:textfield name="moduleExtended.moduleNumeric.numericData2Value"
-			autocomplete="off" />
+		<div class="form-group"><s:label cssClass="col-sm-4 control-label" value="%{moduleType.numericDataContent2Name}" name="moduleExtended.moduleNumeric.numericData2Value"/>
+		<div class="col-sm-4"><s:textfield cssClass="form-control" name="moduleExtended.moduleNumeric.numericData2Value"
+			autocomplete="off" /></div></div>
 	</c:if>
 
 	<c:if
 		test="${moduleType.numericDataContent3Name != null && moduleType.numericDataContent3Name != ''}">
-		<s:label value="%{moduleType.numericDataContent3Name}" name="moduleExtended.moduleNumeric.numericData3Value"/>
-		<s:textfield name="moduleExtended.moduleNumeric.numericData3Value"
-			autocomplete="off" />
+		<div class="form-group"><s:label cssClass="col-sm-4 control-label" value="%{moduleType.numericDataContent3Name}" name="moduleExtended.moduleNumeric.numericData3Value"/>
+		<div class="col-sm-4"><s:textfield cssClass="form-control" name="moduleExtended.moduleNumeric.numericData3Value"
+			autocomplete="off" /></div></div>
 	</c:if>
 
 
 
 	<c:if
 		test="${moduleType.datetimeContent1Name != null && moduleType.datetimeContent1Name != ''}">
-		<h3>date and time content</h3>
+		<h4 class="upper-case">date and time content</h4>
 		<br />
-		<s:label value="%{moduleType.datetimeContent1Name}"/>
-		<s:textfield name="moduleExtended.moduleDatetime.datetime1Value"
-			autocomplete="off" />
+		<div class="form-group"><s:label cssClass="col-sm-4 control-label" value="%{moduleType.datetimeContent1Name}"/>
+		<div class="col-sm-4"><s:textfield cssClass="form-control" name="moduleExtended.moduleDatetime.datetime1Value"
+			autocomplete="off" /></div></div>
 	</c:if>
 
 	<c:if
 		test="${moduleType.datetimeContent2Name != null && moduleType.datetimeContent2Name != ''}">
-		<s:textfield label="%{moduleType.datetimeContent2Name}"
+		<div class="form-group"><s:label cssClass="col-sm-4 control-label" value="%{moduleType.datetimeContent2Name}"/>
+		<div class="col-sm-4"><s:textfield cssClass="form-control" label="%{moduleType.datetimeContent2Name}"
 			name="moduleExtended.moduleDatetime.datetime2Value"
-			autocomplete="off" />
+			autocomplete="off" /></div></div>
 	</c:if>
 
 	<c:if
 		test="${moduleType.datetimeContent3Name != null && moduleType.datetimeContent3Name != ''}">
-		<s:textfield label="%{moduleType.datetimeContent3Name}"
+		<div class="form-group"><s:label cssClass="col-sm-4 control-label" value="%{moduleType.datetimeContent3Name}"/>
+		<div class="col-sm-4"><s:textfield cssClass="form-control" label="%{moduleType.datetimeContent3Name}"
 			name="moduleExtended.moduleDatetime.datetime3Value"
-			autocomplete="off" />
+			autocomplete="off" /></div></div>
 	</c:if>
 
 
 	<br />
 
-	<s:submit value="create" />
+	<div class="form-group">
+		<div class="col-sm-offset-4 col-sm-10">
+		<s:submit cssClass="btn btn-light" value="Create" />
+		</div>
+		</div>
 </s:form>
-
+</div>
 

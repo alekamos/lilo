@@ -3,7 +3,7 @@
 <%@ taglib uri="/struts-tags" prefix="s"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<div class="container-fluid">
+<div class="container-fluid padding-top">
 <a class="btn btn-large btn-primary" type="button" href="gotoNewModuleType">New Module Type</a>
 <h2>Module List</h2>
 <table class="table">

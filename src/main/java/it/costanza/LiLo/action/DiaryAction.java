@@ -74,7 +74,7 @@ public class DiaryAction extends ActionSupport{
 			returnString = Const.MULTIPLE_MODULE_VIEW;
 		}
 		
-		navigatorElementList = ml.buildNavigator(user,moduleExtendedList.get(0).getModuleDayHost().getDateDayHost(),Utility.aggiungiTogliGiorno(new Date(), -14));
+		navigatorElementList = ml.buildNavigator(user,Utility.aggiungiTogliGiorno(moduleExtendedList.get(0).getModuleDayHost().getDateDayHost(),+7),Utility.aggiungiTogliGiorno(moduleExtendedList.get(0).getModuleDayHost().getDateDayHost(), -7));
 		
 
 		return returnString;
