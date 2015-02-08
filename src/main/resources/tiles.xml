@@ -80,7 +80,7 @@
 		<put-attribute name="body" value="/jsp/diary/multipleModuleView.jsp" />
 	</definition>
 
-	<definition name="SearchModulePage" extends="standardWithForm">
+	<definition name="SearchModulePage" extends="standard">
 		<put-attribute name="title" value="Lifelog - Diary - search Module" />
 		<put-attribute name="menu" value="/jsp/menu/intMenu.jsp" />
 		<put-attribute name="form" value="/jsp/diary/formModuleSearching.jsp" />

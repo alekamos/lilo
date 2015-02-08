@@ -9,7 +9,6 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Stylish Portfolio - Start Bootstrap Theme</title>
 
     <!-- Custom CSS -->
     

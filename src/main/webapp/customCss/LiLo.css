@@ -10,7 +10,11 @@ html,body {
 	height: 100%;
 	background-color: #2F3238;
 	color: #7F8289;
-	padding-top: 50px;
+font-family: 'Open Sans', sans-serif;
+}
+
+.padding-top{
+	padding-top: 70px;
 }
 
 a:hover,a:active,a:focus {
@@ -150,7 +154,7 @@ legend {
 	position: relative;
 	width: 100%;
 	height: 100%;
-	background: url(../img/1600x1067Commuters.jpg) no-repeat center center
+	background: url(../img/snow.jpg) no-repeat center center
 		scroll;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
@@ -180,7 +184,12 @@ legend {
 }
 
 .date-title {
-	color: #DE5E60;
+	color: #66afe9;
 	text-align: center;
-	font-size: 50px;
+	font-size: 40px;
+	text-transform: uppercase;	
+}
+
+.upper-case{
+text-transform: uppercase;	
 }

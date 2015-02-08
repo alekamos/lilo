@@ -3,37 +3,38 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
-<div class="container-fluid">
-
-	<table class="table">
-		<tr>
-			<c:forEach items="${navigatorElementList}" var="element">
-				<c:set var="link"
-					value="viewModule?moduleFinder.idModuleCluster=${element.idModuleCluster}" />
-				<td><c:choose>
-						<c:when test="${element.idModuleCluster != 0}">
-							<a href="${link}"><fmt:formatDate value="${element.dateDay}"
-									pattern="yy/MM/dd" /></a>
-						</c:when>
-						<c:when test="${element.idModuleCluster == 0}">
-							<fmt:formatDate value="${element.dateDay}" pattern="yy/MM/dd" />
-						</c:when>
-					</c:choose></td>
-			</c:forEach>
-		</tr>
-	</table>
+<div class="container-fluid padding-top">
 
 
-<c:forEach items="${moduleExtendedList}" var="moduleExtended" varStatus="idx">
-	<c:set var="moduleExtended" scope="request" value="${moduleExtended}"/>
-	
-	<c:if test="${idx.count==1}">
-	<h1 class="date-title"><fmt:formatDate pattern="EEEE d MMMM yyyy"
-	value="${moduleExtended.moduleDayHost.dateDayHost}" /></h1>
-	</c:if>
-	
-	<jsp:include page="singularModuleViewPerMultipleView.jsp" />
-</c:forEach>
+	<!-- START DAY NAVIGATOR -->
+	<c:set var="navigatorElementList" scope="request"
+		value="${navigatorElementList}" />
+	<jsp:include page="dayNavigator.jsp" />
+	<!-- END DAY NAVIGATOR -->
+
+	<c:forEach items="${moduleExtendedList}" var="moduleExtended"
+		varStatus="idx">
+		<c:set var="moduleExtended" scope="request" value="${moduleExtended}" />
+
+		<c:choose>
+			<c:when test="${idx.count==1}">
+				<c:if test="${idx.count==1}">
+					<h1 class="date-title">
+						<fmt:formatDate pattern="EEEE d MMMM yyyy"
+							value="${moduleExtended.moduleDayHost.dateDayHost}" />
+					</h1>
+				</c:if>
+
+			</c:when>
+			<c:otherwise>
+				<jsp:include page="singularModuleViewPerMultipleView.jsp" /></c:otherwise>
+		</c:choose>
+
+
+
+
+
+	</c:forEach>
 </div>
 
 
