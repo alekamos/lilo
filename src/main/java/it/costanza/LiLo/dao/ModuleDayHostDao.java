@@ -6,10 +6,8 @@ import org.apache.ibatis.exceptions.PersistenceException;
 import org.apache.ibatis.session.SqlSession;
 
 import it.costanza.LiLo.bean.ModuleDayHost;
-import it.costanza.LiLo.bean.ModuleExtended;
 import it.costanza.LiLo.bean.NavigatorElement;
 import it.costanza.LiLo.bean.NavigatorSearch;
-import it.costanza.LiLo.mybatis.bean.ModuleCluster;
 import it.costanza.LiLo.util.Const;
 
 

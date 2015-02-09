@@ -66,7 +66,7 @@ public class Utility {
 	}
 	
 	/**
-	 * Controlla se la stringa è vuota. risponde alla domanda: la stringa in input è vuota o nulla?
+	 * 
 	 * isEmpty se è nulla
 	 * isEmpty se è vuota
 	 * @param string

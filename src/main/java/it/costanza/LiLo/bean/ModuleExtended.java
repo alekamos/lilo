@@ -4,7 +4,6 @@ package it.costanza.LiLo.bean;
 
 
 import java.util.ArrayList;
-import java.util.Date;
 
 import it.costanza.LiLo.mybatis.bean.ModuleCluster;
 import it.costanza.LiLo.mybatis.bean.ModuleDatetime;
