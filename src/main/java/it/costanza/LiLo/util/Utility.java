@@ -67,8 +67,8 @@ public class Utility {
 	
 	/**
 	 * 
-	 * isEmpty se è nulla
-	 * isEmpty se è vuota
+	 * isEmpty se  nulla
+	 * isEmpty se  vuota
 	 * @param string
 	 * @return
 	 */
