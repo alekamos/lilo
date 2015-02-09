@@ -6,7 +6,6 @@ import it.costanza.LiLo.logic.UserLogic;
 import it.costanza.LiLo.mybatis.bean.User;
 import it.costanza.LiLo.util.Const;
 
-import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class UserAction extends ActionSupport{

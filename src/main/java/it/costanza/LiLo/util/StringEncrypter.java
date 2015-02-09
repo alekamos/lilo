@@ -13,8 +13,7 @@ import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.DESKeySpec;
 import javax.crypto.spec.DESedeKeySpec;
 
-import sun.misc.BASE64Decoder;
-import sun.misc.BASE64Encoder;
+
 
 /**
  * This class can be used to encrypt and decrypt using DES and a given key
@@ -119,8 +118,8 @@ public class StringEncrypter {
 			byte[] cleartext = unencryptedString.getBytes( UNICODE_FORMAT );
 			byte[] ciphertext = cipher.doFinal( cleartext );
 
-			BASE64Encoder base64encoder = new BASE64Encoder();
-			return  base64encoder.encode( ciphertext );
+			//BASE64Encoder base64encoder = new BASE64Encoder();
+			return  null;//base64encoder.encode( ciphertext );
 
 		}
 		catch (Exception e)
@@ -145,11 +144,11 @@ public class StringEncrypter {
 		{
 			SecretKey key = keyFactory.generateSecret( keySpec );
 			cipher.init( Cipher.DECRYPT_MODE, key );
-			BASE64Decoder base64decoder = new BASE64Decoder();
-			byte[] cleartext = base64decoder.decodeBuffer( encryptedString );
-			byte[] ciphertext = cipher.doFinal( cleartext );
+			//BASE64Decoder base64decoder = new BASE64Decoder();
+			//byte[] cleartext = base64decoder.decodeBuffer( encryptedString );
+			//byte[] ciphertext = cipher.doFinal( cleartext );
 
-			return decodeUTF8( ciphertext );
+			return null;//decodeUTF8( ciphertext );
 		}
 		catch (Exception e)
 		{

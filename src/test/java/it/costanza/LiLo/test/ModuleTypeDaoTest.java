@@ -13,7 +13,6 @@ public class ModuleTypeDaoTest {
 
 	@Test
 	public void testModuleTypeFinderByUser(){
-		ModuleType mt = new ModuleType();
 		ModuleTypeDao mtd = new ModuleTypeDao();
 
 		ArrayList<ModuleType> list = mtd.searchByUserId(1);	

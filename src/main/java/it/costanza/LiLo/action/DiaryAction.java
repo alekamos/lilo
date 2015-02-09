@@ -5,14 +5,12 @@ import java.util.Date;
 
 import org.apache.log4j.Logger;
 
-import it.costanza.LiLo.bean.ModuleDayHost;
 import it.costanza.LiLo.bean.ModuleExtended;
 import it.costanza.LiLo.bean.ModuleFinder;
 import it.costanza.LiLo.bean.NavigatorElement;
 import it.costanza.LiLo.exception.UnauthorizedContent;
 import it.costanza.LiLo.logic.ModuleLogic;
 import it.costanza.LiLo.logic.UserLogic;
-import it.costanza.LiLo.mybatis.bean.ModuleCluster;
 import it.costanza.LiLo.mybatis.bean.ModuleType;
 import it.costanza.LiLo.mybatis.bean.User;
 import it.costanza.LiLo.util.Const;
