@@ -1,5 +1,7 @@
 package it.costanza.LiLo.action;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -71,9 +73,16 @@ public class DiaryAction extends ActionSupport{
 			moduleExtendedList = ml.getModuleExtendList(moduleFinder.getIdModuleCluster(), user);
 			returnString = Const.MULTIPLE_MODULE_VIEW;
 		}
-		
-		navigatorElementList = ml.buildNavigator(user,Utility.aggiungiTogliGiorno(moduleExtendedList.get(0).getModuleDayHost().getDateDayHost(),+7),Utility.aggiungiTogliGiorno(moduleExtendedList.get(0).getModuleDayHost().getDateDayHost(), -7));
-		
+
+
+		//Costruzione navigator
+		Date dateStart = Utility.aggiungiTogliGiorno(new Date(),-14);
+		if(moduleExtendedList!=null && moduleExtendedList.size()>0)
+			dateStart = Utility.aggiungiTogliGiorno(moduleExtendedList.get(0).getModuleDayHost().getDateDayHost(),-7);
+		Date dateEnd = Utility.aggiungiTogliGiorno(dateStart,+14);
+
+		navigatorElementList = ml.buildNavigator(user, dateStart, dateEnd);
+
 
 		return returnString;
 
@@ -87,7 +96,48 @@ public class DiaryAction extends ActionSupport{
 		User user = ul.getUserInSession();
 		log.debug("User estratto dalla sessione: "+user.toString());
 		userModuleType = ml.getUserModuleType(user);
-		navigatorElementList = ml.buildNavigator(user,new Date(),Utility.aggiungiTogliGiorno(new Date(), -14));
+
+		//Costruzione navigator
+		navigatorElementList = ml.buildNavigator(user,Utility.aggiungiTogliGiorno(new Date(), -14),new Date());
+
+		return SUCCESS;
+	}
+
+	public String getNavigatorAjax(){
+		log.debug(Const.IN);
+		try {
+			Date startDate = null;
+			Date endDate = null;
+			ModuleLogic ml = new ModuleLogic();
+			UserLogic ul = new UserLogic();
+			User user = ul.getUserInSession();
+			log.debug("User estratto dalla sessione: "+user.toString());
+			userModuleType = ml.getUserModuleType(user);
+
+			//Costruzione navigator
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyymmdd");
+
+
+
+			startDate = sdf.parse(moduleFinder.getStartDate());
+			endDate = sdf.parse(moduleFinder.getStartDate());
+
+
+
+			if(startDate == null)
+				startDate = Utility.aggiungiTogliGiorno(endDate, -14);
+
+			if(endDate == null)
+				endDate = Utility.aggiungiTogliGiorno(startDate, +14);
+
+
+			navigatorElementList = ml.buildNavigator(user, startDate, endDate);
+
+		} catch (Exception e) {
+			log.error(e.getMessage());
+			return ERROR;
+		}
+
 
 		return SUCCESS;
 	}

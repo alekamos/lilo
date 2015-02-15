@@ -17,9 +17,9 @@
 		left
 		join MODULES_DAYHOST dh on ca.date = dh.date_dayhost and dh.id_user =
 		#{idUser,jdbcType=INTEGER}
-		where ca.date <![CDATA[ <= ]]>
+		where ca.date <![CDATA[ >= ]]>
 		#{dateStart,jdbcType=DATE}
-		and ca.date <![CDATA[ >= ]]>
+		and ca.date <![CDATA[ <= ]]>
 		#{dateEnd,jdbcType=DATE}
 	</select>
 
