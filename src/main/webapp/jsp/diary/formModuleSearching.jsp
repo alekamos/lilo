@@ -40,7 +40,7 @@
 		</div>
 
 		<div class="form-group">
-			<div class="col-sm-offset-4 col-sm-10">
+			<div class="col-sm-offset-4 col-sm-4">
 				<s:submit cssClass="btn btn-light" value="Search" />
 			</div>
 		</div>

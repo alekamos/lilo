@@ -28,10 +28,12 @@
 		<appender-ref ref="lifelogConsole.appender" />
 	</logger>
 
+	<!--  -->
 	<root>
 		<priority value="TRACE" />
 		<appender-ref ref="lifelog.appender" />
 		<appender-ref ref="lifelogConsole.appender" />
 	</root>
+	
 
 </log4j:configuration>

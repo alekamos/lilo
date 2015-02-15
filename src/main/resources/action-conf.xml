@@ -91,14 +91,22 @@
 
 		<action name="viewModule" class="it.costanza.LiLo.action.DiaryAction"
 			method="viewModule">
-			<result name="singular_module_view" type="tiles">ViewSingularModule</result>
-			<result name="multiple_module_view" type="tiles">ViewMultipleModule</result>
+			<result name="singular_module_view" type="tiles">ViewSingularModule
+			</result>
+			<result name="multiple_module_view" type="tiles">ViewMultipleModule
+			</result>
 		</action>
 
 		<action name="gotoSearchModule" class="it.costanza.LiLo.action.DiaryAction"
 			method="gotoSearchModule">
 			<result name="success" type="tiles">SearchModulePage</result>
 		</action>
+
+		<action name="getNavigatorAjax" class="it.costanza.LiLo.action.DiaryAction"
+			method="getNavigatorAjax">
+			<result name="success">\jsp\diary\dayNavigator.jsp</result>
+		</action>
+		
 
 
 	</package>

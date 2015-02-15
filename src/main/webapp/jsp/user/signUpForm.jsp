@@ -1,5 +1,5 @@
 <%@ taglib uri="/struts-tags" prefix="s"%>
-<div class="container-fluid padding-top">
+<div class="container-fluid padding-top" id="signUpDiv">
 
 	<s:form cssClass="form-horizontal" method="post" action="signUp"
 		validate="true">
@@ -61,7 +61,7 @@
 			</div>
 		</div>
 		<div class="form-group">
-		<div class="col-sm-offset-4 col-sm-10">
+		<div class="col-sm-offset-4 col-sm-4">
 		<s:submit cssClass="btn btn-light" value="Sign Up" />
 		</div>
 		</div>
