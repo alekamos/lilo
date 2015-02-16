@@ -112,24 +112,20 @@ public class DiaryAction extends ActionSupport{
 			UserLogic ul = new UserLogic();
 			User user = ul.getUserInSession();
 			log.debug("User estratto dalla sessione: "+user.toString());
-			userModuleType = ml.getUserModuleType(user);
 
 			//Costruzione navigator
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyymmdd");
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+			
+			
+			if(moduleFinder.getStartDate() == null)
+				startDate = Utility.aggiungiTogliGiorno(sdf.parse(moduleFinder.getEndDate()), -14);
+			else
+				startDate = sdf.parse(moduleFinder.getStartDate());
 
-
-
-			startDate = sdf.parse(moduleFinder.getStartDate());
-			endDate = sdf.parse(moduleFinder.getStartDate());
-
-
-
-			if(startDate == null)
-				startDate = Utility.aggiungiTogliGiorno(endDate, -14);
-
-			if(endDate == null)
-				endDate = Utility.aggiungiTogliGiorno(startDate, +14);
-
+			if(moduleFinder.getEndDate() == null)
+				endDate = Utility.aggiungiTogliGiorno(sdf.parse(moduleFinder.getStartDate()), +14);
+			else
+				endDate = sdf.parse(moduleFinder.getEndDate());
 
 			navigatorElementList = ml.buildNavigator(user, startDate, endDate);
 
@@ -137,7 +133,6 @@ public class DiaryAction extends ActionSupport{
 			log.error(e.getMessage());
 			return ERROR;
 		}
-
 
 		return SUCCESS;
 	}

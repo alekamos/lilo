@@ -36,13 +36,13 @@ $(document).ready(function() {
 });
 
 function ajaxCall(urlWithParam,divDaAggiornare){
-	$("#"+divDaAggiornare).html('<img src="img/loading.gif"></img>');
+	$("#"+divDaAggiornare).fadeOut( 50 );
 	$.ajax({
 		type:"GET",
 		url: urlWithParam,
 		success: function(data){
 			// Now you have your HTML in "data", do whatever you want with it here in this function         
-			$("#"+divDaAggiornare).html(data);
+			$("#"+divDaAggiornare).html(data).fadeIn( 200 );
 		}
 	});
 }
