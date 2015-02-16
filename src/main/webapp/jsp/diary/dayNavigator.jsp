@@ -11,17 +11,17 @@
 
 	<table class="table">
 		<tr>
-			<td><a onclick="ajaxCall('getNavigatorAjax?moduleFinder.endDate=${startDate}','dayNavigatorDiv')">
+			<td><a onclick="ajaxCall('getNavigatorAjax?moduleFinder.endDate=${startDate}','dayNavigatorDiv')" >
 			<span class="glyphicon glyphicon-circle-arrow-left"></span></a></td>
 			<c:forEach items="${navigatorElementList}" var="element" varStatus="idx">
 				<c:set var="link" value="viewModule?moduleFinder.idModuleCluster=${element.idModuleCluster}" />
 				<td><c:choose>
 						<c:when test="${element.idModuleCluster != 0}">
 							<a href="${link}"><fmt:formatDate value="${element.dateDay}"
-									pattern="yy/MM/dd" /></a>
+									pattern="dd/MM/yy" /></a>
 						</c:when>
 						<c:when test="${element.idModuleCluster == 0}">
-							<fmt:formatDate value="${element.dateDay}" pattern="yy/MM/dd" />
+							<fmt:formatDate value="${element.dateDay}" pattern="dd/MM/yy" />
 						</c:when>
 					</c:choose></td>
 			</c:forEach>

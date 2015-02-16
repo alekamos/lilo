@@ -21,6 +21,10 @@ a:hover,a:active,a:focus {
 	outline: 0;
 }
 
+a{
+	cursor: pointer;
+}
+
 .text-vertical-center {
 	display: table-cell;
 	text-align: center;
@@ -200,7 +204,7 @@ legend {
 }
 
 .date-title {
-	color: #66afe9;
+	color: #337AB7;
 	text-align: center;
 	font-size: 40px;
 	text-transform: uppercase;	
@@ -209,3 +213,11 @@ legend {
 .upper-case{
 text-transform: uppercase;	
 }
+
+legend {
+	color: #337AB7;
+	border-width: 0px 0px 1px;
+	border-style: none none solid;
+	border-color: -moz-use-text-color -moz-use-text-color #2E6DA4;
+
+	}
