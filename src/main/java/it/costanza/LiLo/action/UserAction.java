@@ -34,15 +34,15 @@ public class UserAction extends ActionSupport{
 			log.debug("Utente inserito in sessione sotto oggetto user");
 			log.debug(Const.OUT);
 			return SUCCESS;
-			
+
 		}else{
 			log.debug("Estratto utente null, credenziali non valide");
 			String error = ul.checkUserExist(user);
 			if(error.equals(Const.USERNAME_NOT_FOUND))
 				addFieldError("user.username", "Username not exist");
-			else if (error.equals(Const.USERNAME_FOUND)) //Se non è riuscito a loggarsi ma l'username esiste è per logica password errata
+			else if (error.equals(Const.USERNAME_FOUND)) //Se non ï¿½ riuscito a loggarsi ma l'username esiste ï¿½ per logica password errata
 				addFieldError("user.password", "Incorrect password");
-			
+
 			return INPUT;
 		}
 
@@ -55,19 +55,25 @@ public class UserAction extends ActionSupport{
 		log.debug("Verifico che l'utente non sia giÃ  iscritto con stesso user e stessa mail");
 		String errori = ul.checkUserExist(user);
 		log.debug("Errori segnalati dalle verifiche: ");
-		if(errori!=null && errori.equals(""))
+		if(!errori.equals(Const.USERNAME_FOUND) && !errori.equals(Const.EMAIL_FOUND) )
 			ul.insertUser(user);
-		else
+		else{
+			if(errori.equals(Const.USERNAME_FOUND))
+				addFieldError("user.username", "Username used yet");
+			if(errori.equals(Const.EMAIL_FOUND))
+				addFieldError("user.email", "Email registered yet");
+			
 			return INPUT;
+		}
 
 
 		return SUCCESS;
 	}
-	
+
 	public String logout(){
 		log.debug(Const.IN);
-		
-			ul.deleteUserInSession();
+
+		ul.deleteUserInSession();
 
 
 
