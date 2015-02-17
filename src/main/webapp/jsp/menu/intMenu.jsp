@@ -11,16 +11,17 @@
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">Lifelog</a>
+			<a class="navbar-brand" href="gotoDashboard">Lifelog</a>
 		</div>
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse"
 			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a class="upper-case" href="gotoModuleTypeManagement">Module Type
-						Management</a></li>
-				<li><a class="upper-case" href="gotoSearchModule">Search Module</a></li>
+				<li><a class="upper-case" href="gotoModuleTypeManagement">manage module</a></li>
+				<li><a class="upper-case" href="gotoSearchModule">search day</a></li>
+				<li><a class="upper-case" href="gotoSearchModule">write</a></li>
+				<li><a class="upper-case" href="gotoSearchModule">read</a></li>
 			
 				<li class="divider"></li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle upper-case"

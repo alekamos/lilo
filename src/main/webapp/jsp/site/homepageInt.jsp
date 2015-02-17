@@ -1,4 +1,4 @@
 <div class="container-fluid padding-top">
-<h1>Welcome inside Lifelog</h1>
+<h1>Dashboard</h1>
 </div>
 

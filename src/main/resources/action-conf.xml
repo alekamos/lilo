@@ -26,7 +26,7 @@
 		<action name="signIn" class="it.costanza.LiLo.action.UserAction"
 			method="signIn">
 			<result name="input" type="tiles">SignInPage</result>
-			<result name="success" type="tiles">HomepageInt</result>
+			<result name="success" type="redirect">gotoDashboard</result>
 		</action>
 
 		<action name="logout" class="it.costanza.LiLo.action.UserAction"
@@ -64,6 +64,12 @@
 			<result name="error">errorPage.jsp</result>
 			<result name="login" type="redirect">signIn</result>
 		</global-results>
+		
+		
+		<action name="gotoDashboard" class="it.costanza.LiLo.action.StatAction"
+			method="gotoDashboard">
+			<result name="success" type="tiles">HomepageInt</result>
+		</action>
 
 		<action name="gotoModuleTypeManagement" class="it.costanza.LiLo.action.ModuleAction"
 			method="gotoModuleTypeManagement">
