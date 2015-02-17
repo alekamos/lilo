@@ -12,8 +12,8 @@
 		<div class="col-sm-4">
 			<s:textfield cssClass="form-control"
 				name="user.username" placeholder="Username" autocomplete="off" />
+				<p class="help-block"><s:fielderror fieldName="user.username" /></p>
 		</div>
-
 	</div>
 	<div class="form-group">
 		<s:label cssClass="col-sm-4 control-label" name="user.password"
@@ -21,6 +21,7 @@
 		<div class="col-sm-4">
 			<s:password cssClass="form-control"
 				name="user.password" placeholder="Password" autocomplete="off" />
+				<p class="help-block"><s:fielderror fieldName="user.password" /></p>
 		</div>
 	</div>
 	<div class="form-group">

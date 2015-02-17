@@ -65,22 +65,28 @@ public class UserLogic {
 
 
 	/**
-	 * Verifica se l'utente è già presente controllando mail ed username, risponde un message resource
-	 * indicando se è duplicato l'username o la password
+	 * Verifica dapprima se esiste l'username nella base dati, successivamente passa al controllo sulla mail.
+	 * Pu� rispondere con:
+	 * USERNAME_NOT_FOUND non trova l'username
+	 * USERNAME_FOUND trova l'username
+	 * EMAIL_FOUND trova la mail
+	 * EMAIL_NOT_FOUND non trova la mail
 	 * @param user
 	 * @return
 	 */
 	public String checkUserExist(User user) {
 		log.debug(Const.IN);
-		String out = "";
+		String out = Const.USERNAME_NOT_FOUND;
 
 		User utenteEstratto = dao.searchByUsername(user);
 		if(utenteEstratto!=null)
-			out = "usrename.presente";
-		else{
+			out = Const.USERNAME_FOUND;
+		else if (user.getEmail()!=null) {
 			utenteEstratto = dao.searchByEmail(user);
 			if(utenteEstratto!=null)
-				out = "email.presente";
+				out = Const.EMAIL_FOUND;
+			else 
+				out = Const.EMAIL_NOT_FOUND;
 		}
 
 		return out;

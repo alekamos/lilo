@@ -41,5 +41,11 @@ public class Const {
 	public static final String UNAUTHORIZED_CONTENT = "unauthorized_content";
 	public static final String SINGULAR_MODULE_VIEW = "singular_module_view";
 	public static final String MULTIPLE_MODULE_VIEW = "multiple_module_view";
+	
+	//message resourse 
+	public static final String USERNAME_NOT_FOUND = "username.notfound";
+	public static final String USERNAME_FOUND = "username.found";
+	public static final String EMAIL_FOUND = "email.found";
+	public static final String EMAIL_NOT_FOUND = "email.notfound";
 
 }
