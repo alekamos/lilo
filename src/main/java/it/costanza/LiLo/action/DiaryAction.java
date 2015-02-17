@@ -1,6 +1,5 @@
 package it.costanza.LiLo.action;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -51,7 +50,7 @@ public class DiaryAction extends ActionSupport{
 		UserLogic ul = new UserLogic();
 		ModuleLogic ml = new ModuleLogic();
 		User user = ul.getUserInSession();
-		String returnString = "";
+		String strutsResult = "";
 		log.debug("User estratto dalla sessione: "+user.toString());
 		log.debug("Module finder in arrivo: "+moduleFinder.toString());
 
@@ -60,18 +59,18 @@ public class DiaryAction extends ActionSupport{
 			//caso in cui arriva direttamente un idModulo
 			ml.checkModuleOwnership(user,moduleFinder.getIdModule());
 			moduleExtended = ml.getModuleExtended(moduleFinder.getIdModule(), user);
-			returnString =  Const.SINGULAR_MODULE_VIEW;
+			strutsResult =  Const.SINGULAR_MODULE_VIEW;
 		}else if (moduleFinder.getDateDayHost()!=null) {
 			//caso in cui arriva una data TODO provare se metto una data ed un idModulo cosa succede se entra
 			//da entrambe le parti
 			Integer idCluster = ml.getIdClusterFromDate(moduleFinder.getDateDayHost(), user);
 			moduleExtendedList = ml.getModuleExtendList(idCluster, user);
-			returnString = Const.MULTIPLE_MODULE_VIEW;
+			strutsResult = Const.MULTIPLE_MODULE_VIEW;
 		}
 		else if (moduleFinder.getIdModuleCluster()!=null) {
 			//caso in cui arriva direttamente un idCluster
 			moduleExtendedList = ml.getModuleExtendList(moduleFinder.getIdModuleCluster(), user);
-			returnString = Const.MULTIPLE_MODULE_VIEW;
+			strutsResult = Const.MULTIPLE_MODULE_VIEW;
 		}
 
 
@@ -84,7 +83,7 @@ public class DiaryAction extends ActionSupport{
 		navigatorElementList = ml.buildNavigator(user, dateStart, dateEnd);
 
 
-		return returnString;
+		return strutsResult;
 
 
 	}

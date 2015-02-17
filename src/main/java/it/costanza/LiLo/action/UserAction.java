@@ -32,11 +32,17 @@ public class UserAction extends ActionSupport{
 			log.debug("Estratto utente non null, credenziali valide");
 			ul.putUserInSession(usrEstratto);
 			log.debug("Utente inserito in sessione sotto oggetto user");
-			
 			log.debug(Const.OUT);
 			return SUCCESS;
+			
 		}else{
 			log.debug("Estratto utente null, credenziali non valide");
+			String error = ul.checkUserExist(user);
+			if(error.equals(Const.USERNAME_NOT_FOUND))
+				addFieldError("user.username", "Username not exist");
+			else if (error.equals(Const.USERNAME_FOUND)) //Se non è riuscito a loggarsi ma l'username esiste è per logica password errata
+				addFieldError("user.password", "Incorrect password");
+			
 			return INPUT;
 		}
 
