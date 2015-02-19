@@ -23,22 +23,24 @@
 
 	<definition name="SignInPage" extends="standard">
 		<put-attribute name="title" value="Lifelog - Sign in" />
+		<put-attribute name="menu" value="/jsp/menu/baseMenu.jsp" />
 		<put-attribute name="body" value="/jsp/user/signInForm.jsp" />
 	</definition>
 
 	<definition name="SignUpPage" extends="standard">
 		<put-attribute name="title" value="Lifelog - Sign Up" />
 		<put-attribute name="body" value="/jsp/user/signUpForm.jsp" />
+		<put-attribute name="menu" value="/jsp/menu/baseMenu.jsp" />
 	</definition>
 
 	<definition name="SuccessefullLogin" extends="standard">
 		<put-attribute name="title" value="Lifelog - Successeful Login" />
 		<put-attribute name="body" value="/jsp/user/successfullSingUp.jsp" />
+		<put-attribute name="menu" value="/jsp/menu/baseMenu.jsp" />
 	</definition>
 
 	<definition name="HomepageExt" extends="standard">
 		<put-attribute name="title" value="Lifelog - Homepage" />
-<!-- 		<put-attribute name="menu" value="/jsp/menu/extMenu.jsp" /> -->
 		<put-attribute name="body" value="/jsp/site/homepageExt.jsp" />
 	</definition>
 

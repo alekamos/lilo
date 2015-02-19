@@ -221,3 +221,7 @@ legend {
 	border-color: -moz-use-text-color -moz-use-text-color #2E6DA4;
 
 	}
+	
+.control-label{
+	color: #C6C6C6;
+}
