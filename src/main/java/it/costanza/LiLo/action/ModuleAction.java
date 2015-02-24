@@ -79,6 +79,17 @@ public class ModuleAction extends ActionSupport{
 		log.debug("ModuleType caricato: "+moduleType.toString());
 		return SUCCESS;
 	}
+	
+	public String gotoUseModuleAjax(){
+		log.debug(Const.IN);
+		ModuleLogic ml = new ModuleLogic();
+		UserLogic ul = new UserLogic();
+		User user = ul.getUserInSession();
+		log.debug("User estratto dalla sessione: "+user.toString());
+		moduleType = ml.getModuleType(moduleType);
+		log.debug("ModuleType caricato: "+moduleType.toString());
+		return SUCCESS;
+	}
 
 	public ArrayList<ModuleType> getModuleTypeList() {
 		return moduleTypeList;

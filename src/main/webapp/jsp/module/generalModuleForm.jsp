@@ -2,7 +2,11 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="/struts-tags" prefix="s"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<div class="container-fluid padding-top">
+<div class="container-fluid padding-top" id="generalModuleForm">
+
+<c:if test="${moduleType.name != null}">
+
+
 <s:form method="post" cssClass="form-horizontal" action="saveModule.action" validate="false">
 
 <legend><span class="upper-case"><strong>${moduleType.name}</strong></span></legend>
@@ -120,5 +124,6 @@
 		</div>
 		</div>
 </s:form>
+</c:if>
 </div>
 

@@ -101,6 +101,18 @@ public class DiaryAction extends ActionSupport{
 
 		return SUCCESS;
 	}
+	
+	
+	public String gotoWriteModule(){
+		log.debug(Const.IN);
+		ModuleLogic ml = new ModuleLogic();
+		UserLogic ul = new UserLogic();
+		User user = ul.getUserInSession();
+		log.debug("User estratto dalla sessione: "+user.toString());
+		userModuleType = ml.getUserModuleType(user);
+
+		return SUCCESS;
+	}
 
 	public String getNavigatorAjax(){
 		log.debug(Const.IN);

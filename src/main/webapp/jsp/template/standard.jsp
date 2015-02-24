@@ -13,15 +13,13 @@
 	media="screen">
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css"
-	href="include/jquery-ui-1.9.2.custom/css/ui-darkness/jquery-ui-1.9.2.custom.css">
+	href="include/jquery-ui-1.9.2.custom/jquery-ui.css">
 <script type="text/javascript"
 	src="include/jquery-ui-1.9.2.custom/js/jquery-ui-1.9.2.custom.js"></script>
 <link href="customCss/LiLo.css" rel="stylesheet">
 
-
 <!-- google font -->
 <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-
 
 
 <title><tiles:insertAttribute name="title" /></title>
