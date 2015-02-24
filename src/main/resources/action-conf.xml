@@ -64,8 +64,8 @@
 			<result name="error">errorPage.jsp</result>
 			<result name="login" type="redirect">signIn</result>
 		</global-results>
-		
-		
+
+
 		<action name="gotoDashboard" class="it.costanza.LiLo.action.StatAction"
 			method="gotoDashboard">
 			<result name="success" type="tiles">HomepageInt</result>
@@ -112,7 +112,18 @@
 			method="getNavigatorAjax">
 			<result name="success">\jsp\diary\dayNavigator.jsp</result>
 		</action>
+
+		<action name="gotoWriteModule" class="it.costanza.LiLo.action.DiaryAction"
+			method="gotoWriteModule">
+			<result name="success" type="tiles">WriteModulePage</result>
+		</action>
 		
+		<action name="gotoUseModuleAjax" class="it.costanza.LiLo.action.ModuleAction"
+			method="gotoUseModuleAjax">
+			<result name="success">\jsp\module\generalModuleForm.jsp</result>
+		</action>
+		
+
 
 
 	</package>

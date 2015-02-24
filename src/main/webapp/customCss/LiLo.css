@@ -3,6 +3,28 @@
  * Code licensed under the Apache License v2.0.
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
  */
+ 
+ /* COLORI:
+ 
+ #2F3238 : sfondo grigio scuro
+ #7F8289 : testo grigetto
+ #3C3F45 : bottoni iniziali non cliccati
+ #DE5E60 #DE5E60: rosa 
+ #7F8289 testo form
+ #26292E sfondo testo form
+ #7F8289 bordo form
+ #66afe9 focus form
+ #337AB7 blu scuro, titolo date, titolo 
+ #C6C6C6 grigio chiaro label
+ 
+ 	
+
+
+ 
+ */
+ 
+ 
+ 
 
 /* Global Styles */
 html,body {
@@ -53,7 +75,7 @@ a{
 
 .btn-light:hover,.btn-light:focus,.btn-light:active {
 	color: black;
-	background-color: rgb(222, 94, 96);
+	background-color: #DE5E60;
 }
 
 /* Custom Horizontal Rule */
@@ -142,10 +164,10 @@ legend {
 	margin-bottom: 20px;
 	font-size: 21px;
 	line-height: inherit;
-	color: #7F8289;
+	color: #337AB7;
 	border-width: 0px 0px 1px;
 	border-style: none none solid;
-	border-color: -moz-use-text-color -moz-use-text-color #7F8289;
+	border-color: -moz-use-text-color -moz-use-text-color #337AB7;
 	-moz-border-top-colors: none;
 	-moz-border-right-colors: none;
 	-moz-border-bottom-colors: none;
@@ -214,13 +236,6 @@ legend {
 text-transform: uppercase;	
 }
 
-legend {
-	color: #337AB7;
-	border-width: 0px 0px 1px;
-	border-style: none none solid;
-	border-color: -moz-use-text-color -moz-use-text-color #2E6DA4;
-
-	}
 	
 .control-label{
 	color: #C6C6C6;

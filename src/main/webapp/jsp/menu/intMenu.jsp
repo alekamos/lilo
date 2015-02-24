@@ -20,7 +20,7 @@
 			<ul class="nav navbar-nav navbar-right">
 				<li><a class="upper-case" href="gotoModuleTypeManagement">manage module</a></li>
 				<li><a class="upper-case" href="gotoSearchModule">search day</a></li>
-				<li><a class="upper-case" href="gotoSearchModule">write</a></li>
+				<li><a class="upper-case" href="gotoWriteModule">write</a></li>
 				<li><a class="upper-case" href="gotoSearchModule">read</a></li>
 			
 				<li class="divider"></li>
