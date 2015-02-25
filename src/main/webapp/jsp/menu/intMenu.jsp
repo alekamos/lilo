@@ -21,7 +21,7 @@
 				<li><a class="upper-case" href="gotoModuleTypeManagement">manage module</a></li>
 				<li><a class="upper-case" href="gotoSearchModule">search day</a></li>
 				<li><a class="upper-case" href="gotoWriteModule">write</a></li>
-				<li><a class="upper-case" href="gotoSearchModule">read</a></li>
+				<li><a class="upper-case" href="viewModule?moduleFinder.criteria=rnd">read</a></li>
 			
 				<li class="divider"></li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle upper-case"

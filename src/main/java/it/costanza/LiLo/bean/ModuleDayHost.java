@@ -8,6 +8,7 @@ public class ModuleDayHost {
 	private long idModule;
 	private long idModuleType;
 	private long idModuleCluster;
+	private long idUser;
 	
 	
 	
@@ -35,6 +36,12 @@ public class ModuleDayHost {
 	}
 	public void setIdModuleCluster(long idModuleCluster) {
 		this.idModuleCluster = idModuleCluster;
+	}
+	public long getIdUser() {
+		return idUser;
+	}
+	public void setIdUser(long idUser) {
+		this.idUser = idUser;
 	}
 	
 	

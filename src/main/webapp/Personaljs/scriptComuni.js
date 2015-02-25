@@ -48,6 +48,19 @@ function ajaxCall(urlWithParam,divDaAggiornare){
 }
 
 
+function ajaxCallWParam(urlWithoutParam,param,divDaAggiornare){
+	$("#"+divDaAggiornare).fadeOut( 50 );
+	$.ajax({
+		type:"GET",
+		url: urlWithoutParam+param,
+		success: function(data){
+			// Now you have your HTML in "data", do whatever you want with it here in this function         
+			$("#"+divDaAggiornare).html(data).fadeIn( 200 );
+		}
+	});
+}
+
+
 function mostraDiv(idElemento){
 	$("#"+idElemento).show();
 

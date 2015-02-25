@@ -10,12 +10,29 @@
 		<result column="ID_USER" property="idUser" jdbcType="VARCHAR" />
 		<result column="DATE_DAYHOST" property="dateDay" jdbcType="VARCHAR" />
 	</resultMap>
-	
+
+
+	<resultMap id="DayHostBaseResultMap" type="it.costanza.LiLo.bean.ModuleDayHost">
+		<id column="ID_MODULE_CLUSTER" property="idModuleCluster" jdbcType="INTEGER" />
+		<result column="ID_MODULE" property="idModule" jdbcType="INTEGER" />
+		<result column="ID_MODULE_TYPE" property="idModuleType"
+			jdbcType="INTEGER" />
+		<result column="ID_USER" property="idUser" jdbcType="VARCHAR" />
+		<result column="DATE_DAYHOST" property="dateDayHost" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		ID_MODULE_CLUSTER,ID_MODULE,ID_MODULE_TYPE,ID_USER,DATE_DAYHOST
+	</sql>
+
+
 	<select id="selectListDayHostInDateRange" resultMap="BaseResultMap"
 		parameterType="it.costanza.LiLo.bean.NavigatorSearch">
-		select ca.date as DATE_DAYHOST,dh.id_module as ID_MODULE ,dh.id_module_cluster as ID_MODULE_CLUSTER from CALENDAR ca
+		select ca.date as DATE_DAYHOST,dh.id_module as ID_MODULE
+		,dh.id_module_cluster as ID_MODULE_CLUSTER from CALENDAR ca
 		left
-		join MODULES_DAYHOST dh on ca.date = dh.date_dayhost and dh.id_user =
+		join
+		MODULES_DAYHOST dh on ca.date = dh.date_dayhost and dh.id_user =
 		#{idUser,jdbcType=INTEGER}
 		where ca.date <![CDATA[ >= ]]>
 		#{dateStart,jdbcType=DATE}
@@ -24,6 +41,14 @@
 	</select>
 
 
+	<select id="selectRandomDayHost" resultMap="DayHostBaseResultMap"
+		parameterType="it.costanza.LiLo.bean.ModuleDayHost">
+		SELECT <include refid="Base_Column_List" />
+		FROM MODULES_DAYHOST
+		WHERE ID_USER = #{idUser,jdbcType=INTEGER}
+		ORDER BY RAND()
+		LIMIT 1;
+	</select>
 
 
 </mapper>

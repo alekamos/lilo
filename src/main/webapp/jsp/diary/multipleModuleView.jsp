@@ -6,11 +6,11 @@
 <div class="container-fluid padding-top">
 
 
-	<!-- START DAY NAVIGATOR -->
-	<c:set var="navigatorElementList" scope="request"
-		value="${navigatorElementList}" />
-	<jsp:include page="dayNavigator.jsp" />
-	<!-- END DAY NAVIGATOR -->
+ 	<!-- START DAY NAVIGATOR --> 
+<%-- 	<c:set var="navigatorElementList" scope="request" --%>
+<%-- 		value="${navigatorElementList}" /> --%>
+<%-- 	<jsp:include page="dayNavigator.jsp" /> --%>
+ 	<!-- END DAY NAVIGATOR --> 
 
 	<c:forEach items="${moduleExtendedList}" var="moduleExtended"
 		varStatus="idx">

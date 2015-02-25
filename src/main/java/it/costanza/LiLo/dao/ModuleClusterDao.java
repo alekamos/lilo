@@ -132,8 +132,7 @@ public class ModuleClusterDao extends MyBatisDAO<ModuleCluster, Integer>{
 		}   
 		return moduleCluster;
     }
-    
-    
+
     
 	
 }

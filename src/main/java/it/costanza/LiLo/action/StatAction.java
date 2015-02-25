@@ -1,5 +1,7 @@
 package it.costanza.LiLo.action;
 
+import it.costanza.LiLo.bean.DashBoardBean;
+import it.costanza.LiLo.logic.StatLogic;
 import it.costanza.LiLo.logic.UserLogic;
 import it.costanza.LiLo.mybatis.bean.User;
 import it.costanza.LiLo.util.Const;
@@ -20,6 +22,10 @@ public class StatAction extends ActionSupport{
 		User user = ul.getUserInSession();
 		log.debug("User estratto dalla sessione: "+user.toString());
 
+		StatLogic st = new StatLogic();
+		DashBoardBean dbBean = new DashBoardBean();
+		
+		
 
 		return SUCCESS;
 	}

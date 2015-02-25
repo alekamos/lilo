@@ -369,6 +369,23 @@ public class ModuleLogic {
 		return dayHostList;
 	}
 
+	
+	/**
+	 * Il metodo restituisce un idCluster dell'utente casuale
+	 * @param user
+	 * @return
+	 */
+	public Integer getRandomIdCluster(User user) {
+		ModuleDayHostDao dayHostdao = new ModuleDayHostDao();
+		ModuleDayHost dayHost = new ModuleDayHost();
+		dayHost.setIdUser(user.getIdUser());
+		
+		ModuleDayHost moduleDayHost = dayHostdao.searchRandomDayHost(dayHost);
+		Integer idModuleCluster = (int) moduleDayHost.getIdModuleCluster();
+		
+		return idModuleCluster; 
+	}
+
 
 
 }
