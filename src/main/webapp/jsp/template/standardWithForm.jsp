@@ -32,6 +32,8 @@
 	<tiles:insertAttribute name="menu" />
 	
 	<tiles:insertAttribute name="form" />
+	
+	<tiles:insertAttribute name="navigator" />
 
 	<tiles:insertAttribute name="body" />
 

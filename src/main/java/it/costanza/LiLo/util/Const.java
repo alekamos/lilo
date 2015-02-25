@@ -47,5 +47,9 @@ public class Const {
 	public static final String USERNAME_FOUND = "username.found";
 	public static final String EMAIL_FOUND = "email.found";
 	public static final String EMAIL_NOT_FOUND = "email.notfound";
+	
+	//Costanti varie azioni
+	public static final String RANDOM = "rnd";
+	
 
 }

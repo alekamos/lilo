@@ -18,6 +18,7 @@ public class ModuleFinder {
 	private Date dateDayHost;
 	private String startDate;
 	private String endDate;
+	private String criteria;
 	
 	//costruttore vuoto
 	public ModuleFinder(){};
@@ -92,6 +93,16 @@ public class ModuleFinder {
 
 	public void setEndDate(String endDate) {
 		this.endDate = endDate;
+	}
+
+
+	public String getCriteria() {
+		return criteria;
+	}
+
+
+	public void setCriteria(String criteria) {
+		this.criteria = criteria;
 	}
 
 

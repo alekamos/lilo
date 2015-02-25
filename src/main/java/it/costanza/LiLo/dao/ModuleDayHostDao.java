@@ -18,16 +18,16 @@ public class ModuleDayHostDao extends MyBatisDAO<ModuleDayHost, Integer>{
 		super(ModuleDayHost.class);
 	}
 
-	
+
 	/**
 	 * Il metodo estrae mettendo in left join con calendar i giorni ed affianco mette i dati sul dayhost che trova.
 	 * @param navigatorSearch
 	 * @return
 	 * @throws PersistenceException
 	 */
-    public ArrayList<NavigatorElement> searchDayHostList(NavigatorSearch navigatorSearch) throws PersistenceException {
-    	SqlSession session = MyBatisLoader.getSqlSession();
-    	List<NavigatorElement> list;
+	public ArrayList<NavigatorElement> searchDayHostList(NavigatorSearch navigatorSearch) throws PersistenceException {
+		SqlSession session = MyBatisLoader.getSqlSession();
+		List<NavigatorElement> list;
 		try
 		{					
 			String query = Const.NS_PREFIX+this.getClass().getSimpleName().replace("Dao", "")+Const.NS_SUFFIX+"."+"selectListDayHostInDateRange";
@@ -38,9 +38,30 @@ public class ModuleDayHostDao extends MyBatisDAO<ModuleDayHost, Integer>{
 			session.close();
 		}   
 		return (ArrayList<NavigatorElement>) list;
-    }
-    
-  
-    
-	
+	}
+
+	/**
+	 * Il metodo estrae un giorno random dell'utente
+	 * @param dayHost
+	 * @return
+	 */
+	public ModuleDayHost searchRandomDayHost(ModuleDayHost dayHost) {
+		SqlSession session = MyBatisLoader.getSqlSession();
+		ModuleDayHost moduleDayHost = new ModuleDayHost();
+		
+		try
+		{					
+			String query = Const.NS_PREFIX+this.getClass().getSimpleName().replace("Dao", "")+Const.NS_SUFFIX+"."+"selectRandomDayHost";
+			moduleDayHost = session.selectOne(query, dayHost);
+		}
+		finally
+		{
+			session.close();
+		}   
+		return moduleDayHost;
+	}
+
+
+
+
 }

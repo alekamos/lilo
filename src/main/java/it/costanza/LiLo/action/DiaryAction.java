@@ -44,7 +44,7 @@ public class DiaryAction extends ActionSupport{
 		return SUCCESS;
 	}
 
-
+//TODO gestire meglio gli struts result
 	public String viewModule() throws UnauthorizedContent{
 		log.debug(Const.IN);
 		UserLogic ul = new UserLogic();
@@ -71,6 +71,20 @@ public class DiaryAction extends ActionSupport{
 			//caso in cui arriva direttamente un idCluster
 			moduleExtendedList = ml.getModuleExtendList(moduleFinder.getIdModuleCluster(), user);
 			strutsResult = Const.MULTIPLE_MODULE_VIEW;
+		}
+		else if(moduleFinder.getCriteria()!=null){
+			//caso in cui è specificato un criterio
+			switch (moduleFinder.getCriteria()) {
+			case Const.RANDOM://caso in cui si cerca un giorno random dell'utente
+				Integer idCluster = ml.getRandomIdCluster(user);
+				moduleExtendedList = ml.getModuleExtendList(idCluster, user);
+				strutsResult = Const.MULTIPLE_MODULE_VIEW;
+				break;
+			}
+
+
+
+
 		}
 
 
@@ -101,8 +115,8 @@ public class DiaryAction extends ActionSupport{
 
 		return SUCCESS;
 	}
-	
-	
+
+
 	public String gotoWriteModule(){
 		log.debug(Const.IN);
 		ModuleLogic ml = new ModuleLogic();
@@ -126,8 +140,8 @@ public class DiaryAction extends ActionSupport{
 
 			//Costruzione navigator
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-			
-			
+
+
 			if(moduleFinder.getStartDate() == null)
 				startDate = Utility.aggiungiTogliGiorno(sdf.parse(moduleFinder.getEndDate()), -14);
 			else
