@@ -17,7 +17,7 @@
 				<s:select list="userModuleType" listValue="name"
 					listKey="idModuleType" headerKey="-1" headerValue="Choice"
 					name="moduleFinder.idModuleType" label="ModuleType"
-					cssClass="form-control" 
+					cssClass="form-control upper-case" 
 					onchange="ajaxCallWParam('gotoUseModuleAjax?moduleType.idModuleType=',this.value,'generalModuleForm')"></s:select>
 
 			</div>

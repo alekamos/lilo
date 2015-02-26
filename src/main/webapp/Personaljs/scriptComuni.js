@@ -30,7 +30,7 @@ $(document).ready(function() {
 
 	//Datepicker pronto al caricamento della pagina
 	$("#datePicker").datepicker({
-		
+		dateFormat: "dd/mm/yy"
 	});
 
 });
