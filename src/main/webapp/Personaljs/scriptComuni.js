@@ -29,11 +29,17 @@ $(document).ready(function() {
 
 
 	//Datepicker pronto al caricamento della pagina
-	$("#datePicker").datepicker({
+	$(".jqDatePicker").datepicker({
 		dateFormat: "dd/mm/yy"
 	});
+	
+	//datetimepicker
+	$(".jqDateTimePicker").datetimepicker();
 
 });
+
+
+
 
 function ajaxCall(urlWithParam,divDaAggiornare){
 	$("#"+divDaAggiornare).fadeOut( 50 );

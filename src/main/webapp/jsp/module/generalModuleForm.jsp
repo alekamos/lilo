@@ -8,9 +8,12 @@ $(document).ready(function() {
 
 
 	//Datepicker pronto al caricamento della pagina
-	$("#datePicker").datepicker({
-		
+	$(".jqDatePicker").datepicker({
+		dateFormat: "dd/mm/yy"
 	});
+	
+	//datetimepicker
+	$(".jqDateTimePicker").datetimepicker();
 
 });
 
@@ -35,7 +38,7 @@ $(document).ready(function() {
 			<s:label cssClass="col-md-4 control-label"
 				name="moduleExtended.moduleDayHost.dateDayHost" value="Day date" />
 			<div class="col-md-4">
-				<s:textfield id="datePicker" cssClass="form-control"
+				<s:textfield cssClass="form-control jqDatePicker"
 					name="moduleExtended.moduleDayHost.dateDayHost" placeholder="Date"
 					autocomplete="off" />
 				<p class="help-block">
@@ -108,24 +111,100 @@ $(document).ready(function() {
 		<h4 class="upper-case">date and time content</h4>
 		<br />
 		<div class="form-group"><s:label cssClass="col-md-4 control-label" value="%{moduleType.datetimeContent1Name}"/>
-		<div class="col-md-4"><s:textfield cssClass="form-control" name="moduleExtended.moduleDatetime.datetime1Value"
-			autocomplete="off" /></div></div>
+		<div class="col-md-4">
+		
+		<c:choose>
+		
+		<c:when test="${moduleType.datetimeContent1Type eq 'DATE'}">
+		<s:textfield cssClass="form-control" name="moduleExtended.moduleDatetime.datetime1Value"
+			autocomplete="off" />	
+		</c:when>
+		
+		<c:when test="${moduleType.datetimeContent1Type eq 'TIME'}">
+		<div class="input-group">
+		<span class="input-group-addon glyphicon glyphicon-time" id="basic-addon1"></span>
+		<s:textfield cssClass="form-control jqDateTimePicker" name="moduleExtended.moduleDatetime.datetime1Value"
+			autocomplete="off" aria-describedby="basic-addon1"/>
+			</div>	
+		</c:when>
+		
+		
+		<c:when test="${moduleType.datetimeContent1Type eq 'DATETIME'}">
+		<div class="input-group">
+		<span class="input-group-addon glyphicon glyphicon-time" id="basic-addon1"></span>
+		<s:textfield cssClass="form-control jqDateTimePicker" name="moduleExtended.moduleDatetime.datetime1Value"
+			autocomplete="off" aria-describedby="basic-addon1"/>
+		</div>	
+		</c:when>
+		
+		</c:choose>
+		
+			</div></div>
 	</c:if>
 
 	<c:if
 		test="${moduleType.datetimeContent2Name != null && moduleType.datetimeContent2Name != ''}">
 		<div class="form-group"><s:label cssClass="col-md-4 control-label" value="%{moduleType.datetimeContent2Name}"/>
-		<div class="col-md-4"><s:textfield cssClass="form-control" label="%{moduleType.datetimeContent2Name}"
-			name="moduleExtended.moduleDatetime.datetime2Value"
-			autocomplete="off" /></div></div>
+		<div class="col-md-4">
+		
+		<c:choose>
+		
+		<c:when test="${moduleType.datetimeContent2Type eq 'DATE'}">
+		<s:textfield cssClass="form-control" name="moduleExtended.moduleDatetime.datetime2Value"
+			autocomplete="off"/>	
+		</c:when>
+		
+		<c:when test="${moduleType.datetimeContent2Type eq 'TIME'}">
+		<div class="input-group">
+		<span class="input-group-addon glyphicon glyphicon-time" id="basic-addon1"></span>
+		<s:textfield cssClass="form-control jqDateTimePicker" name="moduleExtended.moduleDatetime.datetime2Value"
+			autocomplete="off" aria-describedby="basic-addon1"/></div>	
+		</c:when>
+		
+		<c:when test="${moduleType.datetimeContent2Type eq 'DATETIME'}">
+		<div class="input-group">
+		<span class="input-group-addon glyphicon glyphicon-time" id="basic-addon1"></span>
+		<s:textfield cssClass="form-control jqDateTimePicker" name="moduleExtended.moduleDatetime.datetime2Value"
+			autocomplete="off" aria-describedby="basic-addon1"/></div>	
+		</c:when>
+		
+		</c:choose>
+		
+		</div></div>
 	</c:if>
 
 	<c:if
 		test="${moduleType.datetimeContent3Name != null && moduleType.datetimeContent3Name != ''}">
 		<div class="form-group"><s:label cssClass="col-md-4 control-label" value="%{moduleType.datetimeContent3Name}"/>
-		<div class="col-md-4"><s:textfield cssClass="form-control" label="%{moduleType.datetimeContent3Name}"
-			name="moduleExtended.moduleDatetime.datetime3Value"
-			autocomplete="off" /></div></div>
+		<div class="col-md-4">
+		
+		<c:choose>
+		
+		<c:when test="${moduleType.datetimeContent3Type eq 'DATE'}">
+		
+		<s:textfield cssClass="form-control" name="moduleExtended.moduleDatetime.datetime3Value"
+			autocomplete="off" />	
+		</c:when>
+		
+		<c:when test="${moduleType.datetimeContent3Type eq 'TIME'}">
+		<div class="input-group">
+		<span class="input-group-addon glyphicon glyphicon-time" id="basic-addon1"></span>
+		<s:textfield cssClass="form-control jqDateTimePicker" name="moduleExtended.moduleDatetime.datetime3Value"
+			autocomplete="off" aria-describedby="basic-addon1"/></div>	
+		</c:when>
+		
+		<c:when test="${moduleType.datetimeContent3Type eq 'DATETIME'}">
+		<div class="input-group">
+		<span class="input-group-addon glyphicon glyphicon-time" id="basic-addon1"></span>
+		<s:textfield cssClass="form-control jqDateTimePicker" name="moduleExtended.moduleDatetime.datetime3Value"
+			autocomplete="off" aria-describedby="basic-addon1"/></div>	
+		</c:when>
+		
+		</c:choose>
+			
+			
+			
+			</div></div>
 	</c:if>
 
 
