@@ -13,8 +13,8 @@
 			<s:label cssClass="col-sm-4 control-label"
 				name="moduleFinder.dateDayHost" value="Date" />
 			<div class="col-sm-4">
-				<s:textfield name="moduleFinder.dateDayHost" id="datePicker"
-					cssClass="form-control" placeholder="Date"></s:textfield>
+				<s:textfield name="moduleFinder.dateDayHost"
+					cssClass="form-control jqDatePicker" placeholder="Date"></s:textfield>
 			</div>
 		</div>
 
