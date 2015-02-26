@@ -2,6 +2,19 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="/struts-tags" prefix="s"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<script type="text/javascript">
+$(document).ready(function() {
+
+
+	//Datepicker pronto al caricamento della pagina
+	$("#datePicker").datepicker({
+		
+	});
+
+});
+
+</script>
 <div class="container-fluid" id="generalModuleForm">
 
 <c:if test="${moduleType.name != null}">

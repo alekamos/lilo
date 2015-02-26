@@ -1,6 +1,7 @@
 <%@ taglib uri="/struts-tags" prefix="s"%>
 <div class="container-fluid" id="signInFormDiv">
 
+
 <s:form cssClass="form-horizontal padding-top" method="post" action="signIn.action"
 	validate="true">
 	<legend>Sign in</legend>
@@ -32,4 +33,5 @@
 
 </s:form>
 </div>
+
 
