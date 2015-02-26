@@ -2,7 +2,8 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<div id="dayNavigatorDiv">
+
+<div class="container-fluid" id="dayNavigatorDiv">
 
 
 <fmt:formatDate value="${navigatorElementList[1].dateDay}" pattern="yyyyMMdd" var="startDate" />

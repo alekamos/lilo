@@ -5,7 +5,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 
-<div class="container-fluid padding-top">
+<div class="container-fluid">
 	
 	<s:form cssClass="form-horizontal">
 		<legend>Select module</legend>

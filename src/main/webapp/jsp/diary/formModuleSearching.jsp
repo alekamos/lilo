@@ -5,7 +5,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 
-<div class="container-fluid padding-top">
+<div class="container-fluid">
 	<s:form cssClass="form-horizontal" action="viewModule">
 		<legend>Search day</legend>
 
@@ -47,11 +47,6 @@
 	</s:form>
 	<br />
 
-	<!-- START DAY NAVIGATOR -->
-	<c:set var="navigatorElementList" scope="request"
-		value="${navigatorElementList}" />
-	<jsp:include page="dayNavigator.jsp" />
-	<!-- END DAY NAVIGATOR -->
 </div>
 
 

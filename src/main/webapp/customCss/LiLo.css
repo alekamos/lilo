@@ -214,13 +214,15 @@ legend {
 
 /*Menu*/
 .navbar-default {
-	background-color: #26292E;
+ 	background-color: rgba(38,41,46,0.75); 
+/* 	background-color:transparent; */
 	border-color: #26292E;
 }
 
-.navbar-default .navbar-nav>li>a:hover,.navbar-default .navbar-nav>li>a:focus
+.navbar-default .navbar-nav>li>a:hover,.navbar-default .navbar-nav>li>a:focus, .dropdown-menu>li>a:hover
 	{
 	color: #DE5E60;
+	background-color: transparent;
 }
 
 .dropdown-menu {
@@ -242,3 +244,8 @@ text-transform: uppercase;
 .control-label{
 	color: #C6C6C6;
 }
+
+.dropdown-menu>li>a{
+	color: #777;
+}
+

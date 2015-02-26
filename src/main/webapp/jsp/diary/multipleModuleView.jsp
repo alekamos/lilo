@@ -3,14 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
-<div class="container-fluid padding-top">
-
-
- 	<!-- START DAY NAVIGATOR --> 
-<%-- 	<c:set var="navigatorElementList" scope="request" --%>
-<%-- 		value="${navigatorElementList}" /> --%>
-<%-- 	<jsp:include page="dayNavigator.jsp" /> --%>
- 	<!-- END DAY NAVIGATOR --> 
+<div class="container-fluid">
 
 	<c:forEach items="${moduleExtendedList}" var="moduleExtended"
 		varStatus="idx">

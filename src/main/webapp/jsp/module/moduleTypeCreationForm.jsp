@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="/struts-tags" prefix="s"%>
-<div class="container-fluid padding-top">
+<div class="container-fluid ">
 <s:form  cssClass="form-horizontal" method="post" action="createNewModuleType.action" validate="false">
 
 <legend><span class="upper-case"><strong>Create module type</strong></span></legend>
