@@ -7,7 +7,7 @@
 
 <div class="col-md-6">
 
-<h1><strong>
+<h1 class="upper-case"><strong>
 	<c:out value="${moduleExtended.moduleType.name}" /></strong>
 </h1>
 
