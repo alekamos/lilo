@@ -14,6 +14,9 @@ $(document).ready(function() {
 	
 	//datetimepicker
 	$(".jqDateTimePicker").datetimepicker();
+	
+	//timepicker only
+	$(".jqTimePicker").timepicker();
 
 });
 
@@ -38,7 +41,7 @@ $(document).ready(function() {
 			<s:label cssClass="col-md-4 control-label"
 				name="moduleExtended.moduleDayHost.dateDayHost" value="Day date" />
 			<div class="col-md-4">
-				<s:textfield cssClass="form-control jqDatePicker"
+				<s:textfield cssClass="form-control jqDatePicker" id="dateDayHost"
 					name="moduleExtended.moduleDayHost.dateDayHost" placeholder="Date"
 					autocomplete="off" />
 				<p class="help-block">
@@ -117,14 +120,14 @@ $(document).ready(function() {
 		
 		<c:when test="${moduleType.datetimeContent1Type eq 'DATE'}">
 		<s:textfield cssClass="form-control" name="moduleExtended.moduleDatetime.datetime1Value"
-			autocomplete="off" />	
+			autocomplete="off" id="datetime1Value"/>	
 		</c:when>
 		
 		<c:when test="${moduleType.datetimeContent1Type eq 'TIME'}">
 		<div class="input-group">
 		<span class="input-group-addon glyphicon glyphicon-time" id="basic-addon1"></span>
 		<s:textfield cssClass="form-control jqTimePicker" name="moduleExtended.moduleDatetime.datetime1Value"
-			autocomplete="off" aria-describedby="basic-addon1"/>
+			autocomplete="off" aria-describedby="basic-addon1" id="datetime1Value"/>
 			</div>	
 		</c:when>
 		
@@ -133,7 +136,7 @@ $(document).ready(function() {
 		<div class="input-group">
 		<span class="input-group-addon glyphicon glyphicon-time" id="basic-addon1"></span>
 		<s:textfield cssClass="form-control jqDateTimePicker" name="moduleExtended.moduleDatetime.datetime1Value"
-			autocomplete="off" aria-describedby="basic-addon1"/>
+			autocomplete="off" aria-describedby="basic-addon1" id="datetime1Value"/>
 		</div>	
 		</c:when>
 		
@@ -151,21 +154,21 @@ $(document).ready(function() {
 		
 		<c:when test="${moduleType.datetimeContent2Type eq 'DATE'}">
 		<s:textfield cssClass="form-control" name="moduleExtended.moduleDatetime.datetime2Value"
-			autocomplete="off"/>	
+			autocomplete="off" id="datetime1Value" id="datetime2Value"/>	
 		</c:when>
 		
 		<c:when test="${moduleType.datetimeContent2Type eq 'TIME'}">
 		<div class="input-group">
 		<span class="input-group-addon glyphicon glyphicon-time" id="basic-addon1"></span>
 		<s:textfield cssClass="form-control jqTimePicker" name="moduleExtended.moduleDatetime.datetime2Value"
-			autocomplete="off" aria-describedby="basic-addon1"/></div>	
+			autocomplete="off" aria-describedby="basic-addon1" id="datetime2Value"/></div>	
 		</c:when>
 		
 		<c:when test="${moduleType.datetimeContent2Type eq 'DATETIME'}">
 		<div class="input-group">
 		<span class="input-group-addon glyphicon glyphicon-time" id="basic-addon1"></span>
 		<s:textfield cssClass="form-control jqDateTimePicker" name="moduleExtended.moduleDatetime.datetime2Value"
-			autocomplete="off" aria-describedby="basic-addon1"/></div>	
+			autocomplete="off" aria-describedby="basic-addon1" id="datetime2Value"/></div>	
 		</c:when>
 		
 		</c:choose>
@@ -183,21 +186,21 @@ $(document).ready(function() {
 		<c:when test="${moduleType.datetimeContent3Type eq 'DATE'}">
 		
 		<s:textfield cssClass="form-control" name="moduleExtended.moduleDatetime.datetime3Value"
-			autocomplete="off" />	
+			autocomplete="off" id="datetime3Value"/>	
 		</c:when>
 		
 		<c:when test="${moduleType.datetimeContent3Type eq 'TIME'}">
 		<div class="input-group">
 		<span class="input-group-addon glyphicon glyphicon-time" id="basic-addon1"></span>
 		<s:textfield cssClass="form-control jqTimePicker" name="moduleExtended.moduleDatetime.datetime3Value"
-			autocomplete="off" aria-describedby="basic-addon1"/></div>	
+			autocomplete="off" aria-describedby="basic-addon1" id="datetime3Value"/></div>	
 		</c:when>
 		
 		<c:when test="${moduleType.datetimeContent3Type eq 'DATETIME'}">
 		<div class="input-group">
 		<span class="input-group-addon glyphicon glyphicon-time" id="basic-addon1"></span>
 		<s:textfield cssClass="form-control jqDateTimePicker" name="moduleExtended.moduleDatetime.datetime3Value"
-			autocomplete="off" aria-describedby="basic-addon1"/></div>	
+			autocomplete="off" aria-describedby="basic-addon1" id="datetime3Value"/></div>	
 		</c:when>
 		
 		</c:choose>
