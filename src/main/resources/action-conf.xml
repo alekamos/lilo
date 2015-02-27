@@ -123,6 +123,15 @@
 			<result name="success">\jsp\module\generalModuleForm.jsp</result>
 		</action>
 		
+		<action name="gotoUpdateModule" class="it.costanza.LiLo.action.ModuleAction"
+			method="gotoUpdateModule">
+			<result name="success" type="tiles">ViewSingularModule
+			</result>
+		</action>
+		
+		
+		
+		
 
 
 

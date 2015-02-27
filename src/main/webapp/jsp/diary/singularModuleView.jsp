@@ -5,10 +5,19 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 
+<!-- GENERAZIONE URL -->
+<c:url value="gotoUpdateModule" var="update_url">
+  <c:param name="moduleType.idModuleType" value="${moduleExtended.moduleType.idModuleType}" />
+  <c:param name="moduleFinder.idModule"    value="${moduleExtended.moduleHeader.idModule}" />
+</c:url>
+<!-- GENERAZIONE URL -->
+
 <div class="container-fluid">
 <h1>
 	<c:out value="${moduleExtended.moduleType.name}" />
 </h1>
+
+<a href="${update_url}"><span class="glyphicon glyphicon-pencil"></span></a>
 
 <h3>Module dayHost</h3>
 <fmt:formatDate pattern="EEEE d MMMM yyyy"
