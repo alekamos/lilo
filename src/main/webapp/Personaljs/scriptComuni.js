@@ -35,6 +35,10 @@ $(document).ready(function() {
 	
 	//datetimepicker
 	$(".jqDateTimePicker").datetimepicker();
+	
+	//timepicker only
+	$(".jqTimePicker").timepicker();
+
 
 });
 
