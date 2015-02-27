@@ -154,7 +154,7 @@ $(document).ready(function() {
 		
 		<c:when test="${moduleType.datetimeContent2Type eq 'DATE'}">
 		<s:textfield cssClass="form-control" name="moduleExtended.moduleDatetime.datetime2Value"
-			autocomplete="off" id="datetime1Value" id="datetime2Value"/>	
+			autocomplete="off" id="datetime2Value"/>	
 		</c:when>
 		
 		<c:when test="${moduleType.datetimeContent2Type eq 'TIME'}">

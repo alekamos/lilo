@@ -14,7 +14,7 @@
 				name="moduleFinder.dateDayHost" value="Date" />
 			<div class="col-sm-4">
 				<s:textfield name="moduleFinder.dateDayHost"
-					cssClass="form-control jqDatePicker" placeholder="Date"></s:textfield>
+					cssClass="form-control jqDatePicker" placeholder="Date" id="dateDayHost"></s:textfield>
 			</div>
 		</div>
 
@@ -23,7 +23,7 @@
 				name="moduleFinder.idModule" value="Id Module" />
 			<div class="col-sm-4">
 				<s:textfield name="moduleFinder.idModule" cssClass="form-control"
-					placeholder="Id Module"></s:textfield>
+					placeholder="Id Module" id="idModule"></s:textfield>
 			</div>
 		</div>
 
@@ -34,7 +34,7 @@
 				<s:select list="userModuleType" listValue="name"
 					listKey="idModuleType" headerKey="-1" headerValue="Choice"
 					name="moduleFinder.idModuleType" label="ModuleType"
-					cssClass="form-control"></s:select>
+					cssClass="form-control" id="idModuleType"></s:select>
 
 			</div>
 		</div>
