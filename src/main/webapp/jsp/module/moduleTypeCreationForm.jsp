@@ -80,8 +80,8 @@
 		
 
 	<div class="col-md-3"><s:select cssClass="form-control"
-		list="#{'int':'int', 'double':'double'}"
-		name="moduleType.numericDataContent1Type" value="int" /></div></div>
+		list="#{'INT':'INT', 'DOUBLE':'DOUBLE'}"
+		name="moduleType.numericDataContent1Type" value="INT" /></div></div>
 		
 
 <div class="form-group">
@@ -93,8 +93,8 @@
 		
 	
 	<div class="col-md-3"><s:select cssClass="form-control"
-		list="#{'int':'int', 'double':'double'}"
-		name="moduleType.numericDataContent2Type" value="int" /></div></div>
+		list="#{'INT':'INT', 'DOUBLE':'DOUBLE'}"
+		name="moduleType.numericDataContent2Type" value="INT" /></div></div>
 
 
 <div class="form-group">
@@ -104,8 +104,8 @@
 		name="moduleType.numericDataContent3Name" placeholder="field name"
 		autocomplete="off" /></div>
 	<div class="col-md-3"><s:select cssClass="form-control"
-		list="#{'int':'int', 'double':'double'}"
-		name="moduleType.numericDataContent3Type" value="int" /></div></div>
+		list="#{'INT':'INT', 'DOUBLE':'DOUBLE'}"
+		name="moduleType.numericDataContent3Type" value="INT" /></div></div>
 
 
 <!-- ========================DATE AND TIME======================= -->
@@ -117,8 +117,8 @@
 		name="moduleType.datetimeContent1Name" placeholder="field name"
 		autocomplete="off" /></div>
 	<div class="col-md-3"><s:select cssClass="form-control"
-		list="#{'date':'date', 'time':'time', 'datetime':'date&time' }"
-		name="moduleType.datetimeContent1Type" value="date" />
+		list="#{'DATE':'DATE', 'TIME':'TIME', 'DATETIME':'DATETIME'}"
+		name="moduleType.datetimeContent1Type" value="DATE" />
 </div></div>
 
 <div class="form-group">
@@ -127,8 +127,8 @@
 		name="moduleType.datetimeContent2Name" placeholder="field name"
 		autocomplete="off" /></div>
 	<div class="col-md-3"><s:select cssClass="form-control" 
-		list="#{'date':'date', 'time':'time', 'datetime':'date&time' }"
-		name="moduleType.datetimeContent2Type" value="date" /></div></div>
+		list="#{'DATE':'DATE', 'TIME':'TIME', 'DATETIME':'DATETIME'}"
+		name="moduleType.datetimeContent2Type" value="DATE" /></div></div>
 		
 		
 		<div class="form-group">
@@ -137,8 +137,8 @@
 		name="moduleType.datetimeContent3Name" placeholder="field name"
 		autocomplete="off" /></div>
 	<div class="col-md-3"><s:select cssClass="form-control"
-		list="#{'date':'date', 'time':'time', 'datetime':'date&time' }"
-		name="moduleType.datetimeContent3Type" value="date" /></div></div>
+		list="#{'DATE':'DATE', 'TIME':'TIME', 'DATETIME':'DATETIME'}"
+		name="moduleType.datetimeContent3Type" value="DATE" /></div></div>
 
 	<br />
 

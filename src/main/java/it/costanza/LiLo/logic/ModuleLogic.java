@@ -112,17 +112,17 @@ public class ModuleLogic {
 	 */
 	public ModuleType cleanModuleType(ModuleType moduleType) {
 
-		String listName1 = moduleType.getDatetimeContent1Name();
+		String listName1 = moduleType.getListContent1Name();
 		if(!Utility.isEmpty(listName1))
-			moduleType.setDatetimeContent1Type(listName1.toUpperCase().replace(" ", "_"));
+			moduleType.setListContent1Type(listName1.toUpperCase().replace(" ", "_"));
 
-		String listName2 = moduleType.getDatetimeContent2Name();
+		String listName2 = moduleType.getListContent2Name();
 		if(!Utility.isEmpty(listName2))
-			moduleType.setDatetimeContent2Type(listName2.toUpperCase().replace(" ", "_"));
+			moduleType.setListContent2Type(listName2.toUpperCase().replace(" ", "_"));
 
-		String listName3 = moduleType.getDatetimeContent3Name();
+		String listName3 = moduleType.getListContent3Name();
 		if(!Utility.isEmpty(listName3))
-			moduleType.setDatetimeContent3Type(listName3.toUpperCase().replace(" ", "_"));
+			moduleType.setListContent3Type(listName3.toUpperCase().replace(" ", "_"));
 
 
 		return moduleType;
