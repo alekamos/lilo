@@ -123,7 +123,7 @@ $(document).ready(function() {
 		<c:when test="${moduleType.datetimeContent1Type eq 'TIME'}">
 		<div class="input-group">
 		<span class="input-group-addon glyphicon glyphicon-time" id="basic-addon1"></span>
-		<s:textfield cssClass="form-control jqDateTimePicker" name="moduleExtended.moduleDatetime.datetime1Value"
+		<s:textfield cssClass="form-control jqTimePicker" name="moduleExtended.moduleDatetime.datetime1Value"
 			autocomplete="off" aria-describedby="basic-addon1"/>
 			</div>	
 		</c:when>
@@ -157,7 +157,7 @@ $(document).ready(function() {
 		<c:when test="${moduleType.datetimeContent2Type eq 'TIME'}">
 		<div class="input-group">
 		<span class="input-group-addon glyphicon glyphicon-time" id="basic-addon1"></span>
-		<s:textfield cssClass="form-control jqDateTimePicker" name="moduleExtended.moduleDatetime.datetime2Value"
+		<s:textfield cssClass="form-control jqTimePicker" name="moduleExtended.moduleDatetime.datetime2Value"
 			autocomplete="off" aria-describedby="basic-addon1"/></div>	
 		</c:when>
 		
@@ -189,7 +189,7 @@ $(document).ready(function() {
 		<c:when test="${moduleType.datetimeContent3Type eq 'TIME'}">
 		<div class="input-group">
 		<span class="input-group-addon glyphicon glyphicon-time" id="basic-addon1"></span>
-		<s:textfield cssClass="form-control jqDateTimePicker" name="moduleExtended.moduleDatetime.datetime3Value"
+		<s:textfield cssClass="form-control jqTimePicker" name="moduleExtended.moduleDatetime.datetime3Value"
 			autocomplete="off" aria-describedby="basic-addon1"/></div>	
 		</c:when>
 		
