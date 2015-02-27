@@ -386,6 +386,24 @@ public class ModuleLogic {
 		return idModuleCluster; 
 	}
 
+	
+	/**
+	 * Controlla se l'idModuloType esiste ed è dell'utente che vuole visualizzarlo.
+	 * Se il moduloType non è visualizzabile per l'utente in questione viene lanciata un eccezione	
+	 * @param user utente che ambisce a visualizzare il modulo
+	 * @param idModuleType id del moduloType che si deve visualizzare
+	 * @throws UnauthorizedContent
+	 */
+	public void checkModuleTypeOwnership(User user, Integer idModuleType) throws UnauthorizedContent{
+
+		ModuleTypeDao dao = new ModuleTypeDao();
+		ModuleType moduleTypeExtracted = dao.selectById(idModuleType);
+		
+		if(moduleTypeExtracted==null || !moduleTypeExtracted.getIdUser().equals(user.getIdUser()))
+			throw new UnauthorizedContent();
+
+	}
+
 
 
 }

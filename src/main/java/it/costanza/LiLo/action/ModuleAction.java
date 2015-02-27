@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import org.apache.log4j.Logger;
 
 import it.costanza.LiLo.bean.ModuleExtended;
+import it.costanza.LiLo.bean.ModuleFinder;
+import it.costanza.LiLo.exception.UnauthorizedContent;
 import it.costanza.LiLo.logic.ModuleLogic;
 import it.costanza.LiLo.logic.UserLogic;
 import it.costanza.LiLo.mybatis.bean.ModuleType;
@@ -25,6 +27,7 @@ public class ModuleAction extends ActionSupport{
 	private ArrayList<ModuleType> moduleTypeList;
 	private ModuleType moduleType;
 	private ModuleExtended moduleExtended;
+	private ModuleFinder moduleFinder;
 
 	
 	public String gotoModuleTypeManagement(){
@@ -68,24 +71,46 @@ public class ModuleAction extends ActionSupport{
 
 		return SUCCESS;
 	}
-
-	public String gotoUseModule(){
+	
+	public String updateModule(){
+		
+		return SUCCESS;
+	}
+	
+	public String gotoUpdateModule() throws UnauthorizedContent{
 		log.debug(Const.IN);
 		ModuleLogic ml = new ModuleLogic();
 		UserLogic ul = new UserLogic();
 		User user = ul.getUserInSession();
 		log.debug("User estratto dalla sessione: "+user.toString());
+		ml.checkModuleTypeOwnership(user,moduleType.getIdModuleType());
+		moduleType = ml.getModuleType(moduleType);
+		log.debug("ModuleType caricato: "+moduleType.toString());
+		ml.checkModuleOwnership(user,moduleFinder.getIdModule());
+		moduleExtended = ml.getModuleExtended(moduleFinder.getIdModule(), user);
+		
+		return SUCCESS;
+	}
+
+	public String gotoUseModule() throws UnauthorizedContent{
+		log.debug(Const.IN);
+		ModuleLogic ml = new ModuleLogic();
+		UserLogic ul = new UserLogic();
+		User user = ul.getUserInSession();
+		log.debug("User estratto dalla sessione: "+user.toString());
+		ml.checkModuleTypeOwnership(user,moduleType.getIdModuleType());
 		moduleType = ml.getModuleType(moduleType);
 		log.debug("ModuleType caricato: "+moduleType.toString());
 		return SUCCESS;
 	}
 	
-	public String gotoUseModuleAjax(){
+	public String gotoUseModuleAjax() throws UnauthorizedContent{
 		log.debug(Const.IN);
 		ModuleLogic ml = new ModuleLogic();
 		UserLogic ul = new UserLogic();
 		User user = ul.getUserInSession();
 		log.debug("User estratto dalla sessione: "+user.toString());
+		ml.checkModuleTypeOwnership(user,moduleType.getIdModuleType());
 		moduleType = ml.getModuleType(moduleType);
 		log.debug("ModuleType caricato: "+moduleType.toString());
 		return SUCCESS;
@@ -117,6 +142,16 @@ public class ModuleAction extends ActionSupport{
 
 	public void setModuleExtended(ModuleExtended moduleExtended) {
 		this.moduleExtended = moduleExtended;
+	}
+
+
+	public ModuleFinder getModuleFinder() {
+		return moduleFinder;
+	}
+
+
+	public void setModuleFinder(ModuleFinder moduleFinder) {
+		this.moduleFinder = moduleFinder;
 	}
 
 
