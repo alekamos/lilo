@@ -72,12 +72,12 @@ function ajaxCallWParam(urlWithoutParam,param,divDaAggiornare){
 
 
 function mostraDiv(idElemento){
-	$("#"+idElemento).show();
+	$("#"+idElemento).fadeIn( 250 );
 
 }
 
 function nascondiDiv(idElemento){
-	$("#"+idElemento).hide();
+	$("#"+idElemento).fadeOut( 250 );
 }
 
 function fadeinFadeOutDiv(idElemento){

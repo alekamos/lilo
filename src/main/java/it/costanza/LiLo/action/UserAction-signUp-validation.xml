@@ -16,17 +16,6 @@
 			<message>You must enter a email</message>
 		</field-validator>
 	</field>
-	<field name="user.birthDate">
-		<field-validator type="requiredstring">
-			<message>You must enter a birthdate</message>
-		</field-validator>
-		<field-validator type="date">
-			<param name="min">01/01/1950</param>
-			<param name="max">01/01/2005</param>
-			<message>Birth date must be in correct format and between 1930 and
-				2005</message>
-		</field-validator>
-	</field>
 	<field name="user.username">
 		<field-validator type="requiredstring">
 			<message>You must enter a username</message>

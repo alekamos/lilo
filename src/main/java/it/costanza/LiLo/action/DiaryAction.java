@@ -81,10 +81,16 @@ public class DiaryAction extends ActionSupport{
 				strutsResult = Const.MULTIPLE_MODULE_VIEW;
 				break;
 			}
-
-
-
-
+		}
+		else if(moduleFinder.getCriteria()!=null){
+			//caso in cui è specificato un criterio
+			switch (moduleFinder.getCriteria()) {
+			case Const.RANDOM://caso in cui si cerca un giorno random dell'utente
+				Integer idCluster = ml.getRandomIdCluster(user);
+				moduleExtendedList = ml.getModuleExtendList(idCluster, user);
+				strutsResult = Const.MULTIPLE_MODULE_VIEW;
+				break;
+			}
 		}
 
 
@@ -96,10 +102,7 @@ public class DiaryAction extends ActionSupport{
 
 		navigatorElementList = ml.buildNavigator(user, dateStart, dateEnd);
 
-
 		return strutsResult;
-
-
 	}
 
 	public String gotoSearchModule(){
@@ -188,13 +191,9 @@ public class DiaryAction extends ActionSupport{
 	public void setModuleExtendedList(ArrayList<ModuleExtended> moduleExtendedList) {
 		this.moduleExtendedList = moduleExtendedList;
 	}
-
-
 	public ArrayList<NavigatorElement> getNavigatorElementList() {
 		return navigatorElementList;
 	}
-
-
 	public void setNavigatorElementList(ArrayList<NavigatorElement> navigatorElementList) {
 		this.navigatorElementList = navigatorElementList;
 	}

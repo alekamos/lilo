@@ -25,7 +25,7 @@
 
 <br />
 <br />
-
+<!-- MODULE HEADER  
 <h3>Module Header</h3>
 <c:if test="${moduleExtended.moduleHeader.idModule != null}">
 	<s:label value="idModuleHeader" />
@@ -53,7 +53,7 @@
 </c:if>
 <br />
 <br />
-
+<!-- MODULE HEADER  -->
 <c:if
 	test="${(moduleExtended.moduleType.textContent1Name != null && moduleExtended.moduleType.textContent1Name != '') || (moduleExtended.moduleType.textContent2Name != null && moduleExtended.moduleType.textContent2Name != '') || (moduleExtended.moduleType.textContent3Name != null && moduleExtended.moduleType.textContent3Name != '')}">
 	<h3>Module text</h3>

@@ -20,7 +20,7 @@
 <a href="${update_url}"><span class="glyphicon glyphicon-pencil"></span></a>
 
 
-
+<!-- MODULE HEADER
 <c:if test="${moduleExtended.moduleHeader.idModule != null}">
 	<s:label cssClass="control-label" value="idModuleHeader" />
 	<c:out value="${moduleExtended.moduleHeader.idModule}" />
@@ -47,7 +47,7 @@
 </c:if>
 
 <br />
-
+<!-- MODULE HEADER  -->
 <c:if
 	test="${(moduleExtended.moduleType.textContent1Name != null && moduleExtended.moduleType.textContent1Name != '') || (moduleExtended.moduleType.textContent2Name != null && moduleExtended.moduleType.textContent2Name != '') || (moduleExtended.moduleType.textContent3Name != null && moduleExtended.moduleType.textContent3Name != '')}">
 <!-- 	<h3>Module text</h3> -->
