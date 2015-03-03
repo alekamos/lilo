@@ -18,7 +18,10 @@ public class ModuleFinder {
 	private Date dateDayHost;
 	private String startDate;
 	private String endDate;
+	private Date startDateDt;
+	private Date endDateDt;
 	private String criteria;
+	private String containedText;
 	
 	//costruttore vuoto
 	public ModuleFinder(){};
@@ -103,6 +106,36 @@ public class ModuleFinder {
 
 	public void setCriteria(String criteria) {
 		this.criteria = criteria;
+	}
+
+
+	public String getContainedText() {
+		return containedText;
+	}
+
+
+	public void setContainedText(String containedText) {
+		this.containedText = containedText;
+	}
+
+
+	public Date getStartDateDt() {
+		return startDateDt;
+	}
+
+
+	public void setStartDateDt(Date startDateDt) {
+		this.startDateDt = startDateDt;
+	}
+
+
+	public Date getEndDateDt() {
+		return endDateDt;
+	}
+
+
+	public void setEndDateDt(Date endDateDt) {
+		this.endDateDt = endDateDt;
 	}
 
 

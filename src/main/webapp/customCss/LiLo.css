@@ -34,7 +34,7 @@ html,body {
     background-repeat: repeat-y repeat-x;
 /* 	background-color: #2F3238; */
 	color: #7F8289;
-font-family: 'Open Sans', sans-serif;
+	font-family: 'Open Sans', sans-serif;
 }
 
 .padding-top{
@@ -192,7 +192,7 @@ legend {
 
 #signUpDiv{
 	
-	display: table;
+	
 	position: relative;
 	width: 100%;
 	height: 100%;
@@ -248,7 +248,6 @@ text-transform: uppercase;
 .dropdown-menu>li>a{
 	color: #777;
 }
-
 
 
 .ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }

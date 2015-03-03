@@ -90,15 +90,21 @@
 		<put-attribute name="form" value="/jsp/diary/formModuleSearching.jsp" />
 		<put-attribute name="body" value="/jsp/diary/listModuleFound.jsp" />
 	</definition>
-	
-	
+
+
 	<definition name="WriteModulePage" extends="standardWithForm">
 		<put-attribute name="title" value="Lifelog - Diary - write module" />
 		<put-attribute name="menu" value="/jsp/menu/intMenu.jsp" />
 		<put-attribute name="form" value="/jsp/diary/formWriteModule.jsp" />
 		<put-attribute name="body" value="/jsp/module/generalModuleForm.jsp" />
 	</definition>
-	
+
+	<definition name="UpdateModule" extends="standard">
+		<put-attribute name="title" value="Lifelog - Update Module" />
+		<put-attribute name="menu" value="/jsp/menu/intMenu.jsp" />
+		<put-attribute name="body" value="/jsp/module/updateModuleForm.jsp" />
+	</definition>
+
 
 
 </tiles-definitions>

@@ -34,15 +34,6 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<s:label cssClass="col-sm-4 control-label" name="user.birthDate"
-				value="BirthDate" />
-			<div class="col-sm-4">
-				<s:textfield cssClass="form-control" name="user.birthDate" placeholder="birthDate"
-					autocomplete="off" id="datePicker" />
-					<p class="help-block"><s:fielderror fieldName="user.birthDate" /></p>
-			</div>
-		</div>
-		<div class="form-group">
 			<s:label cssClass="col-sm-4 control-label" name="user.username"
 				value="Username" />
 			<div class="col-sm-4">
