@@ -134,6 +134,56 @@ public class ModuleExtendedDao{
 	}
 
 
+	/**
+	 * Update modulo TODO
+	 * @param me
+	 */
+	public int updateModuleExtended(ModuleExtended me) {
+		int idModule = 0;
+		if (me.getModuleHeader()!=null) {
+			ModuleHeaderDao dao = new ModuleHeaderDao();
+			dao.insert(me.getModuleHeader());
+			idModule = me.getModuleHeader().getIdModule();
+		}
+		if (me.getModuleCluster()!=null) {
+			ModuleClusterDao dao = new ModuleClusterDao();
+			me.getModuleCluster().setIdModule(idModule);
+			dao.insert(me.getModuleCluster());
+		}
+		if (me.getModuleDatetime()!=null) {
+			ModuleDatetimeDao dao = new ModuleDatetimeDao();
+			me.getModuleDatetime().setIdModule(idModule);
+			dao.insert(me.getModuleDatetime());
+		}
+		if (me.getModuleText()!=null) {
+			ModuleTextDao dao = new ModuleTextDao();
+			me.getModuleText().setIdModule(idModule);
+			dao.insert(me.getModuleText());
+		}
+		if (me.getModuleNumeric()!=null) {
+			ModuleNumericDao dao = new ModuleNumericDao();
+			me.getModuleNumeric().setIdModule(idModule);
+			dao.insert(me.getModuleNumeric());
+		}
+		if(me.getModuleListExtended()!= null && me.getModuleListExtended().size()>0){
+			ModuleListDao dao = new ModuleListDao();
+			for (ModuleListExtended mle : me.getModuleListExtended()) {
+				for (ListElement le : mle.getListaElementi()) {
+					ModuleList ml = new ModuleList();
+					ml.setIdElement(le.getIdElement());
+					ml.setIdListContent(mle.getIdListContent());
+					ml.setIdModule(idModule);
+					dao.insert(ml);
+				}
+			}
+		}
+
+
+		return idModule;
+
+	}
+
+
 }
 
 
