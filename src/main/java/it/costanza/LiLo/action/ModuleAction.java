@@ -72,7 +72,15 @@ public class ModuleAction extends ActionSupport{
 		return SUCCESS;
 	}
 	
-	public String updateModule(){
+	public String updateModule() throws UnauthorizedContent{
+		log.debug(Const.IN);
+		ModuleLogic ml = new ModuleLogic();
+		UserLogic ul = new UserLogic();
+		User user = ul.getUserInSession();
+		log.debug("User estratto dalla sessione: "+user.toString());
+		ml.checkModuleTypeOwnership(user,moduleExtended.getModuleType().getIdModuleType());
+		ml.checkModuleOwnership(user,moduleExtended.getModuleHeader().getIdModule());
+		ml.updateModuleExtend(user,moduleExtended);
 		
 		return SUCCESS;
 	}
