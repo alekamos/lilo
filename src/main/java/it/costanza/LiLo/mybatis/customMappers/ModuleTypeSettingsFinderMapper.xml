@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="it.costanza.LiLo.mybatis.mappers.ModuleTypeSettingsMapper" >
+
+  <select id="selectByIdProperyAndValue" resultMap="BaseResultMap" parameterType="it.costanza.LiLo.mybatis.bean.ModuleTypeSettings" >
+    select 
+    <include refid="Base_Column_List" />
+    from MODULE_TYPE_SETTINGS
+    where ID_PROPERTY = #{idProperty}
+    and VALUE = #{value}
+  </select>
+
+
+  
+</mapper>
+

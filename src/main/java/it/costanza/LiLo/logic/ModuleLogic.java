@@ -12,11 +12,14 @@ import it.costanza.LiLo.dao.ModuleDayHostDao;
 import it.costanza.LiLo.dao.ModuleExtendedDao;
 import it.costanza.LiLo.dao.ModuleHeaderDao;
 import it.costanza.LiLo.dao.ModuleTypeDao;
+import it.costanza.LiLo.dao.ModuleTypeSettingsDao;
+import it.costanza.LiLo.dao.PropertyDao;
 import it.costanza.LiLo.exception.UnauthorizedContent;
 import it.costanza.LiLo.mybatis.bean.ModuleCluster;
 import it.costanza.LiLo.mybatis.bean.ModuleDatetime;
 import it.costanza.LiLo.mybatis.bean.ModuleHeader;
 import it.costanza.LiLo.mybatis.bean.ModuleType;
+import it.costanza.LiLo.mybatis.bean.ModuleTypeSettings;
 import it.costanza.LiLo.mybatis.bean.User;
 import it.costanza.LiLo.util.Const;
 import it.costanza.LiLo.util.Utility;
@@ -80,15 +83,24 @@ public class ModuleLogic {
 	}
 
 	/**
-	 * Carica i moduli di default utilizzando i moduli dichiarati nella costante: Const.ARRAY_MODULI_DEFAULT
-	 * @param moduleTypeList 
+	 * Carica i moduli di default utilizzando cercando sul DB i moduli con proprieta ALL
+	 * @param moduleTypeList se passata nulla viene istanziato
 	 * @return
 	 */
 	public ArrayList<ModuleType> getDefaultModuleType(ArrayList<ModuleType> moduleTypeList) {
 		ModuleTypeDao dao = new ModuleTypeDao();
+		
+		if(moduleTypeList==null)
+			moduleTypeList = new ArrayList<ModuleType>();
 
-		for (int idModuloType : Const.ARRAY_MODULI_DEFAULT){ 
-			moduleTypeList.add(dao.selectById(idModuloType));
+		ModuleTypeSettings moduleTypeSettings = new ModuleTypeSettings();
+		moduleTypeSettings.setIdProperty(Const.ID_PROPERTY_VISIBILITY);
+		moduleTypeSettings.setValue(Const.PROPERTY_VALUE_ALL);
+		ModuleTypeSettingsDao moduleTypeSettingsdao = new ModuleTypeSettingsDao();
+		ArrayList<ModuleTypeSettings> publicModuleList = moduleTypeSettingsdao.searchByIdPropertyAndValue(moduleTypeSettings);
+
+		for (ModuleTypeSettings elem : publicModuleList) {
+			moduleTypeList.add(dao.selectById(elem.getIdModuleType()));
 		}
 
 		return moduleTypeList;
@@ -228,11 +240,29 @@ public class ModuleLogic {
 
 		ModuleHeaderDao dao = new ModuleHeaderDao();
 		ModuleHeader moduleHeaderEstratto = dao.selectById(idModule);
-
+		
 		if(moduleHeaderEstratto==null || !moduleHeaderEstratto.getIdUser().equals(user.getIdUser()))
 			throw new UnauthorizedContent();
 
 	}
+
+	/**
+	 * Il metodo cerca se il modulo type ha la proprieta di essere visibile a tutti gli utenti
+	 * @param idModule
+	 * @return true se è un modulo con visibilita per tutti false se è un modulo che non ha visibilita all
+	 */
+	private boolean isDefaultModuleType(Integer idModule){
+
+		ArrayList<ModuleType> publicModuleList = getDefaultModuleType(null);
+
+		for (ModuleType element : publicModuleList) {
+			if(element.getIdModuleType().equals(idModule))
+				return true;
+		}
+
+		return false;
+	}
+
 
 	/**
 	 * Il metodo estrae il moduloExtended con tutto quello che c'ï¿½ da estrarre basandosi solo sul idModule.
@@ -398,8 +428,9 @@ public class ModuleLogic {
 
 		ModuleTypeDao dao = new ModuleTypeDao();
 		ModuleType moduleTypeExtracted = dao.selectById(idModuleType);
-
-		if(moduleTypeExtracted==null || !moduleTypeExtracted.getIdUser().equals(user.getIdUser()))
+		
+		//Se oltre le condizioni non appartiene nemmeno ai moduli di defoult (AND) lancio eccezione
+		if((moduleTypeExtracted==null || !moduleTypeExtracted.getIdUser().equals(user.getIdUser())) && !isDefaultModuleType(idModuleType))
 			throw new UnauthorizedContent();
 
 	}
@@ -414,8 +445,8 @@ public class ModuleLogic {
 		//set idUser
 		moduleExtended.getModuleHeader().setIdUser(user.getIdUser());
 		boolean foundDayHost = false;
-		
-		
+
+
 		ModuleExtendedDao dao = new ModuleExtendedDao();
 		int idModuleCluster = checkDayHostExist(moduleExtended.getModuleHeader().getIdUser(),moduleExtended.getModuleDayHost().getDateDayHost());
 		//Vuol dire che non cÃ¨ un cluster
