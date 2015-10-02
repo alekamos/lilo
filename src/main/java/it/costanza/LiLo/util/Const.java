@@ -28,14 +28,17 @@ public class Const {
 	//costanti per le query
 	public static final String PREFIX_SELECTBYUSER_QUERY = "selectByUser";
 	public static final String PREFIX_SELECT_LIST_IDMODULE = "selectListByIdModule";
+	public static final String PREFIX_SELECTBYIDPROPERTY_QUERY = "selectByIdProperty";
 	
 	//costanti per i log
 	public static final Object IN = "<------   IN   ------>";
 	public static final Object OUT = "<------   OUT   ------>";
 	
-	//Costanti allineate con il DB
-	public static final int[] ARRAY_MODULI_DEFAULT = {1};
+	//Costanti allineate con il DB (vedi file in cartella DB per gli script.)
 	public static int ID_TYPE_DAY_HOST = 7;
+	public static int ID_PROPERTY_VISIBILITY = 1;
+	public static String PROPERTY_VALUE_ALL = "ALL";
+
 	
 	//Nomi costanti struts2
 	public static final String UNAUTHORIZED_CONTENT = "unauthorized_content";
@@ -50,6 +53,7 @@ public class Const {
 	
 	//Costanti varie azioni
 	public static final String RANDOM = "rnd";
+	
 	
 
 }

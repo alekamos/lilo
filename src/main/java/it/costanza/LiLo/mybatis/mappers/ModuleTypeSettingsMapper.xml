@@ -9,6 +9,9 @@
     <result column="INSERT_TIMESTAMP" property="insertTimestamp" jdbcType="TIMESTAMP" />
     <result column="UPDATE_TIMESTAMP" property="updateTimestamp" jdbcType="TIMESTAMP" />
   </resultMap>
+  <sql id="Base_Column_List" >
+    ID_MODULE_TYPE, ID_USER, ID_PROPERTY, VALUE, INSERT_TIMESTAMP, UPDATE_TIMESTAMP
+  </sql>
   <insert id="insert" parameterType="it.costanza.LiLo.mybatis.bean.ModuleTypeSettings" >
     <selectKey resultType="java.lang.Integer" keyProperty="idModuleType" order="AFTER" >
       SELECT LAST_INSERT_ID()
