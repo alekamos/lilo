@@ -25,6 +25,7 @@
 				<li><a class="upper-case" href="gotoWriteModule">write</a></li>
 				<li><a class="upper-case"
 					href="viewModule?moduleFinder.criteria=rnd">read</a></li>
+					<li><a class="upper-case" href="gotoPositionLog">position log</a></li>
 
 				<li class="divider"></li>
 				<li class="dropdown"><a href="#" class="upper-case" data-toggle="dropdown"><c:out

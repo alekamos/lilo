@@ -123,6 +123,8 @@ public class ModuleAction extends ActionSupport{
 		log.debug("ModuleType caricato: "+moduleType.toString());
 		return SUCCESS;
 	}
+	
+
 
 	public ArrayList<ModuleType> getModuleTypeList() {
 		return moduleTypeList;

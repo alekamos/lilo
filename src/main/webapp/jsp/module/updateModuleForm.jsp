@@ -51,6 +51,13 @@
 			<s:hidden name="moduleExtended.moduleCluster.idModuleCluster"
 				value="%{moduleExtended.moduleCluster.idModuleCluster}" />
 			<br />
+			
+			<s:label value="idModuleType" />
+			<c:out value="${moduleExtended.moduleType.idModuleType}" />
+			
+			<s:hidden name="moduleExtended.moduleType.idModuleType"
+				value="%{moduleExtended.moduleType.idModuleType}" />
+			<br />
 
 
 
