@@ -128,6 +128,16 @@
 			<result name="success" type="tiles">UpdateModule</result>
 		</action>
 		
+		<action name="gotoPositionLog" class="it.costanza.LiLo.action.ModuleAction"
+			method="gotoPositionLog">
+			<result name="success" type="tiles">LocationPage</result>
+		</action>
+		
+		<action name="updateModule" class="it.costanza.LiLo.action.ModuleAction"
+			method="updateModule">
+			<result name="success" type="tiles">gotoDashboard</result>
+		</action>
+		
 		
 		
 		
