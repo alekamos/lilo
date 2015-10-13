@@ -138,51 +138,46 @@ public class ModuleExtendedDao{
  * UPDATE modulo.
  * Il modulo viene aggiornato nelle sole componenti modificate
  * @param me
+ * @param listaTabelle 
  * @return
  */
-	public int updateModuleExtended(ModuleExtended me) {
-		int idModule = 0;
-		if (me.getModuleHeader()!=null) {
-			ModuleHeaderDao dao = new ModuleHeaderDao();
-			dao.insert(me.getModuleHeader());
-			idModule = me.getModuleHeader().getIdModule();
-		}
-		if (me.getModuleCluster()!=null) {
-			ModuleClusterDao dao = new ModuleClusterDao();
-			me.getModuleCluster().setIdModule(idModule);
-			dao.insert(me.getModuleCluster());
-		}
-		if (me.getModuleDatetime()!=null) {
-			ModuleDatetimeDao dao = new ModuleDatetimeDao();
-			me.getModuleDatetime().setIdModule(idModule);
-			dao.insert(me.getModuleDatetime());
-		}
-		if (me.getModuleText()!=null) {
-			ModuleTextDao dao = new ModuleTextDao();
-			me.getModuleText().setIdModule(idModule);
-			dao.insert(me.getModuleText());
-		}
-		if (me.getModuleNumeric()!=null) {
-			ModuleNumericDao dao = new ModuleNumericDao();
-			me.getModuleNumeric().setIdModule(idModule);
-			dao.insert(me.getModuleNumeric());
-		}
-		if(me.getModuleListExtended()!= null && me.getModuleListExtended().size()>0){
-			ModuleListDao dao = new ModuleListDao();
-			for (ModuleListExtended mle : me.getModuleListExtended()) {
-				for (ListElement le : mle.getListaElementi()) {
-					ModuleList ml = new ModuleList();
-					ml.setIdElement(le.getIdElement());
-					ml.setIdListContent(mle.getIdListContent());
-					ml.setIdModule(idModule);
-					dao.insert(ml);
-				}
+	public void updateModuleExtended(ModuleExtended me, ArrayList<String> listaTabelle) {
+
+		ModuleExtended outModule = new ModuleExtended();
+
+		for (String tabella : listaTabelle) {
+			switch (tabella) {
+			case Const.MODULE_HEADER:
+				ModuleHeaderDao headerDao = new ModuleHeaderDao();
+				
+				break;
+			
+			case Const.MODULES_CLUSTER:
+				ModuleClusterDao clusterDao = new ModuleClusterDao();
+				
+				break;
+			
+			case Const.MODULES_DATETIME:
+				ModuleDatetimeDao datetimeDao = new ModuleDatetimeDao();
+				
+				break;
+
+			case Const.MODULES_TEXT:
+				ModuleTextDao textDao = new ModuleTextDao();
+				
+				break;
+
+			case Const.MODULES_NUMERIC_DATA:
+				ModuleNumericDao numericDao = new ModuleNumericDao();
+				
+				break;
+			case Const.MODULES_LIST:
+				//TODO, qui è da pensare
+				break;
 			}
+
 		}
-
-
-		return idModule;
-
+		
 	}
 
 
