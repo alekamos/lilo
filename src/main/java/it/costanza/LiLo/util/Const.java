@@ -53,6 +53,9 @@ public class Const {
 	
 	//Costanti varie azioni
 	public static final String RANDOM = "rnd";
+	public static final String LOAD = "LOAD";
+	public static final String UPDATE = "UPDATE";
+
 	
 	
 

@@ -41,9 +41,10 @@ public class ModuleLogic {
 	/**
 	 * Crea un arraylist con la lista di tabelle che il metodo ModuleExtended.getModuleExtended deve caricare.
 	 * @param idModuleType del type di modulo
+	 * @param operation può valere LOAD, o UPDATE. Nel caso load carica anche moduleHeader e cluster nel caso update solo cluster
 	 * @return lista di tabelle da caricare
 	 */
-	private ArrayList<String> buildTableNameListToLoad(Integer idModuleType){
+	private ArrayList<String> buildTableNameListToLoad(Integer idModuleType,String operation){
 		ArrayList<String> listaTabelle = new ArrayList<String>();
 		ModuleTypeDao dao = new ModuleTypeDao();
 		ModuleType mt = dao.selectById(idModuleType);
@@ -67,6 +68,11 @@ public class ModuleLogic {
 		return listaTabelle;
 
 	}
+	
+	
+
+	
+	
 
 	/**
 	 * Carica i moduli type proprietari dell'utente
@@ -281,7 +287,7 @@ public class ModuleLogic {
 		ModuleHeaderDao headerDao = new ModuleHeaderDao();
 		ModuleHeader moduloHeaderEstratto = headerDao.selectById(idModule);
 		Integer idModuleType = moduloHeaderEstratto.getIdModuleType();
-		ArrayList<String> tableNameList = buildTableNameListToLoad(idModuleType);
+		ArrayList<String> tableNameList = buildTableNameListToLoad(idModuleType,Const.LOAD);
 		//In questo modo ho giï¿½ estratto il moduleHeader ma lo riestraggo,le cose corrette prevederebbero che eliminassi
 		//il modulo header dalla tableNameList e settarlo poi da quello che mi sono estratto qua sopra(moduloHeaderEstratto)
 		ModuleExtended moduleExtended = dao.getModuleExtended(idModule, tableNameList);
@@ -467,14 +473,17 @@ public class ModuleLogic {
 		//TODO
 		//Una volta salvati i dati della giornata principale (mainDay) ci si occupa di salvare i moduli che la compongono
 
-		if(!foundDayHost){//In questo caso è necessario creare un modulo cluster
+		if(!foundDayHost){//In questo caso è necessario creare un modulo cluster e salvarlo
 			ModuleCluster moduleClusterToAdd = new ModuleCluster();
 			moduleClusterToAdd.setIdModuleCluster(idModuleCluster);
 			moduleClusterToAdd.setIdUser(moduleExtended.getModuleHeader().getIdUser());
 			moduleClusterToAdd.setIdModuleType(moduleExtended.getModuleHeader().getIdModuleType());
 			moduleExtended.setModuleCluster(moduleClusterToAdd);
-		}
-		dao.updateModuleExtended(moduleExtended);
+		}else
+			moduleExtended.setModuleCluster(null);
+		
+		ArrayList<String> listaTabelle = buildTableNameListToLoad(moduleExtended.getModuleType().getIdModuleType(),Const.UPDATE);
+		dao.updateModuleExtended(moduleExtended,listaTabelle);
 
 	}
 
