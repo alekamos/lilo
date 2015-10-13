@@ -82,7 +82,7 @@ public class ModuleExtendedDao{
 
 	/**
 	 * DA UTILIZZARE PER IL SALVATAGGIO ACCOPPIATO CON UN METODO DI LOGICA(arricchimento dei dati,
-	 * annullamento delle tabelle non utilizzate, generazione dei cluster se già esistenti)
+	 * annullamento delle tabelle non utilizzate, generazione del cluster se gia esistenti)
 	 * Salvataggio di un modulo extended in tutte le sue tabelle, se un campo interno e null non verrà salvato
 	 * @param idModule
 	 * @param tabelleDaCaricare
@@ -134,10 +134,12 @@ public class ModuleExtendedDao{
 	}
 
 
-	/**
-	 * Update modulo TODO
-	 * @param me
-	 */
+/**
+ * UPDATE modulo.
+ * Il modulo viene aggiornato nelle sole componenti modificate
+ * @param me
+ * @return
+ */
 	public int updateModuleExtended(ModuleExtended me) {
 		int idModule = 0;
 		if (me.getModuleHeader()!=null) {

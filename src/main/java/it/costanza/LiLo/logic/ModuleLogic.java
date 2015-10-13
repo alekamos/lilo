@@ -89,7 +89,7 @@ public class ModuleLogic {
 	 */
 	public ArrayList<ModuleType> getDefaultModuleType(ArrayList<ModuleType> moduleTypeList) {
 		ModuleTypeDao dao = new ModuleTypeDao();
-		
+
 		if(moduleTypeList==null)
 			moduleTypeList = new ArrayList<ModuleType>();
 
@@ -152,8 +152,8 @@ public class ModuleLogic {
 	}
 
 	/**
-	 * Invoca il dao e restituisce un idModuleLCuster se trova gi� un cluster per la giornata in questione
-	 * Controlla se � gi� presente un dayHost dunque
+	 * Invoca il dao e restituisce un idModuleLCuster se trova gia un cluster per la giornata in questione
+	 * Controlla se ce gia presente un dayHost dunque
 	 * @param mextdIn che deve contenere la data
 	 * @return 0 se non trova niente, !0 se la data è già presente
 	 */
@@ -173,29 +173,36 @@ public class ModuleLogic {
 		return dao.searchIdClusterByDate(moduleExtendedProbe);
 	}
 
+	/**
+	 * Il metodo si occupa di costruire un moduloExtended per il MainDay, dunque un modulo extended
+	 * formato da Header,Cluster,e un modulo datetime
+	 * @param moduleExtended serve per l'utente e la data della giornata
+	 * @return modulo extended gia costrutito
+	 */
 	public ModuleExtended buildDayHostModuleExtended(ModuleExtended moduleExtended){
 
 		ModuleClusterDao daoCluster = new ModuleClusterDao();
 		int idModuleCluster = daoCluster.searchMaxIdCluster();
 
-
+		//Creazione del modulo Header ed aggiunta al modulo extended
 		ModuleExtended moduleMainDay = new ModuleExtended();
 		ModuleHeader moduleHeaderMainDay = new ModuleHeader();
 		moduleHeaderMainDay.setIdUser(moduleExtended.getModuleHeader().getIdUser());
 		moduleHeaderMainDay.setIdModuleType(Const.ID_TYPE_DAY_HOST);
 		moduleMainDay.setModuleHeader(moduleHeaderMainDay);
 
-
+		//Creazione del modulo Cluster e aggiunta al modulo extended
 		ModuleCluster moduleClusterMainDay = new ModuleCluster();
 		moduleClusterMainDay.setIdModuleType(Const.ID_TYPE_DAY_HOST);
 		moduleClusterMainDay.setIdUser(moduleExtended.getModuleHeader().getIdUser());
 		moduleClusterMainDay.setIdModuleCluster(idModuleCluster);
 		moduleMainDay.setModuleCluster(moduleClusterMainDay);
 
+		//Creazione del modulo datetime ed aggiunta al modulo extended
 		ModuleDatetime moduleDatetimeMainDay = new ModuleDatetime();
 		moduleDatetimeMainDay.setDatetime1Value(moduleExtended.getModuleDayHost().getDateDayHost());
 		moduleMainDay.setModuleDatetime(moduleDatetimeMainDay);
-		log.debug("Sto per salvare il modulo MainDay: "+moduleMainDay.toString());
+		log.debug("Creato modulo MainDay con le seguenti caratteristiche: "+moduleMainDay.toString());
 
 		return moduleMainDay;
 	}
@@ -203,7 +210,7 @@ public class ModuleLogic {
 
 	/**
 	 * Si occupa di salvare il modulo extended.
-	 * Dappirma se non è presente si salva il modulo dayHost necessario al funzionamento del diario, successivamente
+	 * Dappirma se non e' presente si salva il modulo dayHost necessario al funzionamento del diario, successivamente
 	 * si salva il modulo. I campi non presenti vengono annullati. Se già presente una dayHost viene usato quello per il salvataggio.
 	 * @param moduleExtended
 	 */
@@ -211,7 +218,7 @@ public class ModuleLogic {
 
 		ModuleExtendedDao dao = new ModuleExtendedDao();
 		int idModuleCluster = checkDayHostExist(moduleExtended.getModuleHeader().getIdUser(),moduleExtended.getModuleDayHost().getDateDayHost());
-		//Vuol dire che non cè un cluster
+		//Vuol dire che non c� un cluster
 		if(idModuleCluster == 0){
 			ModuleExtended mainDay = buildDayHostModuleExtended(moduleExtended);
 			idModuleCluster = mainDay.getModuleCluster().getIdModuleCluster();
@@ -240,7 +247,7 @@ public class ModuleLogic {
 
 		ModuleHeaderDao dao = new ModuleHeaderDao();
 		ModuleHeader moduleHeaderEstratto = dao.selectById(idModule);
-		
+
 		if(moduleHeaderEstratto==null || !moduleHeaderEstratto.getIdUser().equals(user.getIdUser()))
 			throw new UnauthorizedContent();
 
@@ -317,8 +324,8 @@ public class ModuleLogic {
 
 	/**
 	 *  Il metodo estrae in modo totalmente esaustivo un modulo in tutte le sue componenti compreso  il moduleType
-	 * @param idModule � l'id del modulo che occorre estrarre
-	 * @param user � l'user che possiede il modulo
+	 * @param idModule e' l'id del modulo che occorre estrarre
+	 * @param user e'l'user che possiede il modulo
 	 *  se != null viene impostato al moduloExtended in uscita quello passato al metodo
 	 * @return
 	 */
@@ -330,10 +337,10 @@ public class ModuleLogic {
 		ModuleType moduleType = getModuleType(new ModuleType(moduleExtended.getModuleHeader().getIdModuleType()));
 		moduleExtended.setModuleType(moduleType);
 
-
+		//Qui viene estratto il dayHost
 		ModuleCluster moduleClusterDayHost = getIdModuleDayHostFromIdCluster(moduleExtended.getModuleCluster().getIdModuleCluster(),user);
 		Integer idModuleDayHost = moduleClusterDayHost.getIdModule();
-		ModuleExtended moduleExtendedDayHost = getModule(idModuleDayHost);
+		ModuleExtended moduleExtendedDayHost = getModule(idModuleDayHost);//TODO in questo punto occorre creare un metodo che estrae il dayHost semplificando il reperimento ed utilizzando la vista
 		ModuleDayHost dayHost = buildDayHostFromModuleExtended(moduleExtendedDayHost);
 		moduleExtended.setModuleDayHost(dayHost);
 
@@ -428,7 +435,7 @@ public class ModuleLogic {
 
 		ModuleTypeDao dao = new ModuleTypeDao();
 		ModuleType moduleTypeExtracted = dao.selectById(idModuleType);
-		
+
 		//Se oltre le condizioni non appartiene nemmeno ai moduli di defoult (AND) lancio eccezione
 		if((moduleTypeExtracted==null || !moduleTypeExtracted.getIdUser().equals(user.getIdUser())) && !isDefaultModuleType(idModuleType))
 			throw new UnauthorizedContent();
@@ -439,7 +446,7 @@ public class ModuleLogic {
 	/**
 	 * Il metodo fa update del modulo extended. Se viene cambiato il giorno e si crea una nuovo dayHost viene creato
 	 * @param user 
-	 * @param moduleExtended
+	 * @param moduleExtended del modulo appena modificato
 	 */
 	public void updateModuleExtend(User user, ModuleExtended moduleExtended) {
 		//set idUser
@@ -449,7 +456,7 @@ public class ModuleLogic {
 
 		ModuleExtendedDao dao = new ModuleExtendedDao();
 		int idModuleCluster = checkDayHostExist(moduleExtended.getModuleHeader().getIdUser(),moduleExtended.getModuleDayHost().getDateDayHost());
-		//Vuol dire che non cè un cluster
+		//Vuol dire che non ce un cluster, cio� viene modificato il giorno e non era ancora presente.
 		if(idModuleCluster == 0){
 			ModuleExtended mainDay = buildDayHostModuleExtended(moduleExtended);
 			idModuleCluster = mainDay.getModuleCluster().getIdModuleCluster();
@@ -458,12 +465,15 @@ public class ModuleLogic {
 			foundDayHost = true;
 
 		//TODO
-		//Una volta salvati i dati della giornata principale (mainDay) ci si occupa di salvare la giornata
-		ModuleCluster moduleClusterToAdd = new ModuleCluster();
-		moduleClusterToAdd.setIdModuleCluster(idModuleCluster);
-		moduleClusterToAdd.setIdUser(moduleExtended.getModuleHeader().getIdUser());
-		moduleClusterToAdd.setIdModuleType(moduleExtended.getModuleHeader().getIdModuleType());
-		moduleExtended.setModuleCluster(moduleClusterToAdd);
+		//Una volta salvati i dati della giornata principale (mainDay) ci si occupa di salvare i moduli che la compongono
+
+		if(!foundDayHost){//In questo caso � necessario creare un modulo cluster
+			ModuleCluster moduleClusterToAdd = new ModuleCluster();
+			moduleClusterToAdd.setIdModuleCluster(idModuleCluster);
+			moduleClusterToAdd.setIdUser(moduleExtended.getModuleHeader().getIdUser());
+			moduleClusterToAdd.setIdModuleType(moduleExtended.getModuleHeader().getIdModuleType());
+			moduleExtended.setModuleCluster(moduleClusterToAdd);
+		}
 		dao.updateModuleExtended(moduleExtended);
 
 	}
