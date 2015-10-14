@@ -18,8 +18,8 @@ public class ModuleExtendedDao{
 	 * @param tabelleDaCaricare
 	 * @return
 	 */
-	
-	
+
+
 	public ModuleExtended getModuleExtended(Integer idModule, ArrayList<String> tabelleDaCaricare){
 
 		ModuleExtended outModule = new ModuleExtended();
@@ -30,12 +30,12 @@ public class ModuleExtendedDao{
 				ModuleHeaderDao headerDao = new ModuleHeaderDao();
 				outModule.setModuleHeader(headerDao.selectById(idModule));
 				break;
-			
+
 			case Const.MODULES_CLUSTER:
 				ModuleClusterDao clusterDao = new ModuleClusterDao();
 				outModule.setModuleCluster(clusterDao.searchByIdModule(idModule));
 				break;
-			
+
 			case Const.MODULES_DATETIME:
 				ModuleDatetimeDao datetimeDao = new ModuleDatetimeDao();
 				outModule.setModuleDatetime(datetimeDao.selectById(idModule));
@@ -134,54 +134,44 @@ public class ModuleExtendedDao{
 	}
 
 
-/**
- * UPDATE modulo.
- * Il modulo viene aggiornato nelle sole componenti modificate
- * @param me
- * @param listaTabelle 
- * @return
- */
+	/**
+	 * UPDATE modulo.
+	 * Il modulo viene aggiornato nelle sole componenti modificate
+	 * @param me
+	 * @param listaTabelle 
+	 * @return
+	 */
 	public void updateModuleExtended(ModuleExtended me, ArrayList<String> listaTabelle) {
-
-		ModuleExtended outModule = new ModuleExtended();
 
 		for (String tabella : listaTabelle) {
 			switch (tabella) {
 			case Const.MODULE_HEADER:
 				ModuleHeaderDao headerDao = new ModuleHeaderDao();
-				
+				headerDao.update(me.getModuleHeader());
 				break;
-			
-			case Const.MODULES_CLUSTER:
-				ModuleClusterDao clusterDao = new ModuleClusterDao();
-				
-				break;
-			
+
 			case Const.MODULES_DATETIME:
 				ModuleDatetimeDao datetimeDao = new ModuleDatetimeDao();
-				
+				datetimeDao.update(me.getModuleDatetime());
 				break;
 
 			case Const.MODULES_TEXT:
 				ModuleTextDao textDao = new ModuleTextDao();
-				
+				textDao.update(me.getModuleText());
 				break;
 
 			case Const.MODULES_NUMERIC_DATA:
 				ModuleNumericDao numericDao = new ModuleNumericDao();
-				
-				break;
-			case Const.MODULES_LIST:
-				//TODO, qui è da pensare
+				numericDao.update(me.getModuleNumeric());
 				break;
 			}
 
 		}
-		
 	}
-
-
 }
+
+
+
 
 
 

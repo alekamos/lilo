@@ -66,7 +66,7 @@ public class UserLogic {
 
 	/**
 	 * Verifica dapprima se esiste l'username nella base dati, successivamente passa al controllo sulla mail.
-	 * Può rispondere con
+	 * Puo rispondere con
 	 * USERNAME_NOT_FOUND non trova l'username
 	 * USERNAME_FOUND trova l'username
 	 * EMAIL_FOUND trova la mail
