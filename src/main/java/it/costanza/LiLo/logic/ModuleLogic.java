@@ -41,7 +41,7 @@ public class ModuleLogic {
 	/**
 	 * Crea un arraylist con la lista di tabelle che il metodo ModuleExtended.getModuleExtended deve caricare.
 	 * @param idModuleType del type di modulo
-	 * @param operation può valere LOAD, o UPDATE. Nel caso load carica anche moduleHeader e cluster nel caso update solo cluster
+	 * @param operation puo' valere LOAD, o UPDATE. Nel caso load carica anche moduleHeader e cluster nel caso update solo cluster
 	 * @return lista di tabelle da caricare
 	 */
 	private ArrayList<String> buildTableNameListToLoad(Integer idModuleType,String operation){
@@ -224,7 +224,7 @@ public class ModuleLogic {
 
 		ModuleExtendedDao dao = new ModuleExtendedDao();
 		int idModuleCluster = checkDayHostExist(moduleExtended.getModuleHeader().getIdUser(),moduleExtended.getModuleDayHost().getDateDayHost());
-		//Vuol dire che non cè un cluster
+		//Vuol dire che non ce' un cluster
 		if(idModuleCluster == 0){
 			ModuleExtended mainDay = buildDayHostModuleExtended(moduleExtended);
 			idModuleCluster = mainDay.getModuleCluster().getIdModuleCluster();
@@ -262,7 +262,7 @@ public class ModuleLogic {
 	/**
 	 * Il metodo cerca se il modulo type ha la proprieta di essere visibile a tutti gli utenti
 	 * @param idModule
-	 * @return true se è un modulo con visibilita per tutti false se è un modulo che non ha visibilita all
+	 * @return true se e' un modulo con visibilita per tutti false se e' un modulo che non ha visibilita all
 	 */
 	private boolean isDefaultModuleType(Integer idModule){
 
@@ -431,8 +431,8 @@ public class ModuleLogic {
 
 
 	/**
-	 * Controlla se l'idModuloType esiste ed è dell'utente che vuole visualizzarlo.
-	 * Se il moduloType non è visualizzabile per l'utente in questione viene lanciata un eccezione	
+	 * Controlla se l'idModuloType esiste ed e' dell'utente che vuole visualizzarlo.
+	 * Se il moduloType non e' visualizzabile per l'utente in questione viene lanciata un eccezione	
 	 * @param user utente che ambisce a visualizzare il modulo
 	 * @param idModuleType id del moduloType che si deve visualizzare
 	 * @throws UnauthorizedContent
@@ -462,7 +462,7 @@ public class ModuleLogic {
 
 		ModuleExtendedDao dao = new ModuleExtendedDao();
 		int idModuleCluster = checkDayHostExist(moduleExtended.getModuleHeader().getIdUser(),moduleExtended.getModuleDayHost().getDateDayHost());
-		//Vuol dire che non ce un cluster, cioè viene modificato il giorno e non era ancora presente.
+		//Vuol dire che non ce un cluster, cioe' viene modificato il giorno e non era ancora presente.
 		if(idModuleCluster == 0){
 			ModuleExtended mainDay = buildDayHostModuleExtended(moduleExtended);
 			idModuleCluster = mainDay.getModuleCluster().getIdModuleCluster();
@@ -473,7 +473,7 @@ public class ModuleLogic {
 		//TODO
 		//Una volta salvati i dati della giornata principale (mainDay) ci si occupa di salvare i moduli che la compongono
 
-		if(!foundDayHost){//In questo caso è necessario creare un modulo cluster e salvarlo
+		if(!foundDayHost){//In questo caso e' necessario creare un modulo cluster e salvarlo
 			ModuleCluster moduleClusterToAdd = new ModuleCluster();
 			moduleClusterToAdd.setIdModuleCluster(idModuleCluster);
 			moduleClusterToAdd.setIdUser(moduleExtended.getModuleHeader().getIdUser());

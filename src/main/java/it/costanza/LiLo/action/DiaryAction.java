@@ -73,7 +73,7 @@ public class DiaryAction extends ActionSupport{
 			strutsResult = Const.MULTIPLE_MODULE_VIEW;
 		}
 		else if(moduleFinder.getCriteria()!=null){
-			//caso in cui è specificato un criterio
+			//caso in cui e' specificato un criterio
 			switch (moduleFinder.getCriteria()) {
 			case Const.RANDOM://caso in cui si cerca un giorno random dell'utente
 				Integer idCluster = ml.getRandomIdCluster(user);
@@ -83,7 +83,7 @@ public class DiaryAction extends ActionSupport{
 			}
 		}
 		else if(moduleFinder.getCriteria()!=null){
-			//caso in cui è specificato un criterio
+			//caso in cui e' specificato un criterio
 			switch (moduleFinder.getCriteria()) {
 			case Const.RANDOM://caso in cui si cerca un giorno random dell'utente
 				Integer idCluster = ml.getRandomIdCluster(user);
