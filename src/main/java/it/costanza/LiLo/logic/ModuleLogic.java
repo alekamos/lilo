@@ -353,9 +353,6 @@ public class ModuleLogic {
 		return moduleExtended; 
 	}
 
-
-
-
 	/**
 	 * Carica tutto il dayHost, tutti i moduli appartenenti al dayHost identificato dal idModuleCluster
 	 * @param idModuleCluster � il cluster che accomuna tutti i moduli del dayHost
