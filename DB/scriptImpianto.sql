@@ -1,19 +1,10 @@
---Inserimento del modulo main_day
 INSERT INTO `modules_types` (`ID_MODULE_TYPE`, `ID_USER`, `NAME`, `DESCRIPTION`, `TEXT_CONTENT_1_NAME`, `TEXT_CONTENT_2_NAME`, `TEXT_CONTENT_3_NAME`, `LIST_CONTENT_1_NAME`, `LIST_CONTENT_1_TYPE`, `LIST_CONTENT_2_NAME`, `LIST_CONTENT_2_TYPE`, `LIST_CONTENT_3_NAME`, `LIST_CONTENT_3_TYPE`, `NUMERIC_DATA_CONTENT_1_NAME`, `NUMERIC_DATA_CONTENT_1_TYPE`, `NUMERIC_DATA_CONTENT_2_NAME`, `NUMERIC_DATA_CONTENT_2_TYPE`, `NUMERIC_DATA_CONTENT_3_NAME`, `NUMERIC_DATA_CONTENT_3_TYPE`, `DATETIME_CONTENT_1_NAME`, `DATETIME_CONTENT_1_TYPE`, `DATETIME_CONTENT_2_NAME`, `DATETIME_CONTENT_2_TYPE`, `DATETIME_CONTENT_3_NAME`, `DATETIME_CONTENT_3_TYPE`, `INSERT_TIMESTAMP`, `UPDATE_TIMESTAMP`) VALUES
 (7, 1, 'MAIN_DAY', 'ModuleDay, il modulo principale e core di tutte lapplicazione. Modulo intorno a cui si appiccicano tutti gli altri moduli,il contentitore di tutti i moduli,la giornata', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'DAY_DATE', 'DATE', NULL, NULL, NULL, NULL, '2014-12-20 17:25:37', '2014-12-20 17:25:37');
-
---Inserimento della proprieta di visibilita
 INSERT INTO `properties` (`ID_PROPERTY`, `NAME_PROPERTY`, `DESCR_PROPERTY`, `AVAILABLE_VALUES`, `INSERT_TIMESTAMP`, `UPDATE_TIMESTAMP`) VALUES
 (1, 'VISIBILITY', 'Visibilita del modulo se visibile ad un gruppo, a tutti o altre info.', 'ALL;', '2015-10-02 15:59:42', '2015-10-02 16:01:26');
-
---inserimento della proprieta sulla costante idmoduletype del dayhost
 INSERT INTO `properties` (`ID_PROPERTY`, `NAME_PROPERTY`, `DESCR_PROPERTY`, `AVAILABLE_VALUES`, `INSERT_TIMESTAMP`, `UPDATE_TIMESTAMP`) VALUES
 (2, 'ID_MODULE_TYPE_DAY_HOST', 'E'' l''id del modulo dayHost, il cuore di tutta l''applicazione, il modulo che ospita tutti gli altri moduli, quello che e definito giornata a cui si appiccicano tutti gli altri moduli. Nonostante questo e un modulo anche lui.', '7', '2015-10-13 11:03:40', '2015-10-13 11:05:42');
-
---Inserimento dei moduli di default
 INSERT INTO `a1db`.`module_type_settings` (`ID_MODULE_TYPE`, `ID_USER`, `ID_PROPERTY`, `VALUE`, `INSERT_TIMESTAMP`, `UPDATE_TIMESTAMP`) VALUES ('1', '1', '1', 'ALL', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP), ('14', '1', '1', 'ALL', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
-
-
 INSERT INTO `calendar` VALUES
 ('2001-02-05', 'MO'),
 ('2001-02-06', 'TU'),
