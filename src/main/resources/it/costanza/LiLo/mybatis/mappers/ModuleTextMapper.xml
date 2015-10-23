@@ -78,4 +78,19 @@
 			</if>
 		</trim>
 	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="it.costanza.LiLo.mybatis.bean.ModuleText">
+		update MODULES_TEXT
+		<set>
+			<if test="text2Value != null">
+				TEXT_2_VALUE =  #{text2Value,jdbcType=VARCHAR},
+			</if>
+			<if test="text3Value != null">
+				TEXT_3_VALUE =  #{text3Value,jdbcType=VARCHAR},
+			</if>
+			<if test="text1Value != null">
+				TEXT_1_VALUE =  #{text1Value,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where ID_MODULE = #{idModule,jdbcType=INTEGER}
+	</update>
 </mapper>

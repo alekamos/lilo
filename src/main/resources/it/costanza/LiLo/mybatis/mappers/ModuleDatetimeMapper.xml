@@ -13,7 +13,8 @@
 
 
 	<sql id="Base_Column_List">
-		ID_MODULE, DATETIME_1_VALUE, DATETIME_2_VALUE, DATETIME_3_VALUE
+		ID_MODULE, DATETIME_1_VALUE, DATETIME_2_VALUE,
+		DATETIME_3_VALUE
 	</sql>
 
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
@@ -24,7 +25,8 @@
 		where ID_MODULE = #{idModule,jdbcType=INTEGER}
 	</select>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-		delete from MODULES_DATETIME
+		delete from
+		MODULES_DATETIME
 		where ID_MODULE = #{idModule,jdbcType=INTEGER}
 	</delete>
 
@@ -76,4 +78,19 @@
 			</if>
 		</trim>
 	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="it.costanza.LiLo.mybatis.bean.ModuleDatetime">
+		update MODULES_DATETIME
+		<set>
+			<if test="datetime1Value != null">
+				DATETIME_1_VALUE = #{datetime1Value,jdbcType=TIMESTAMP},
+			</if>
+			<if test="datetime2Value != null">
+				DATETIME_2_VALUE = #{datetime2Value,jdbcType=TIMESTAMP},
+			</if>
+			<if test="datetime3Value != null">
+				DATETIME_3_VALUE = #{datetime3Value,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where ID_MODULE = #{idModule,jdbcType=INTEGER}
+	</update>
 </mapper>

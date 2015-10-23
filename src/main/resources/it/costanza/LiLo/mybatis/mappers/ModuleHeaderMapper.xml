@@ -67,27 +67,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="it.costanza.LiLo.mybatis.bean.ModuleHeader" >
     update MODULES_HEADER
     <set >
-      <if test="idModuleType != null" >
-        ID_MODULE_TYPE = #{idModuleType,jdbcType=INTEGER},
-      </if>
-      <if test="idUser != null" >
-        ID_USER = #{idUser,jdbcType=INTEGER},
-      </if>
-      <if test="insertTimestamp != null" >
-        INSERT_TIMESTAMP = #{insertTimestamp,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateTimestamp != null" >
-        UPDATE_TIMESTAMP = #{updateTimestamp,jdbcType=TIMESTAMP},
-      </if>
+        UPDATE_TIMESTAMP = NOW()
     </set>
-    where ID_MODULE = #{idModule,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="it.costanza.LiLo.mybatis.bean.ModuleHeader" >
-    update MODULES_HEADER
-    set ID_MODULE_TYPE = #{idModuleType,jdbcType=INTEGER},
-      ID_USER = #{idUser,jdbcType=INTEGER},
-      INSERT_TIMESTAMP = #{insertTimestamp,jdbcType=TIMESTAMP},
-      UPDATE_TIMESTAMP = #{updateTimestamp,jdbcType=TIMESTAMP}
     where ID_MODULE = #{idModule,jdbcType=INTEGER}
   </update>
 </mapper>
