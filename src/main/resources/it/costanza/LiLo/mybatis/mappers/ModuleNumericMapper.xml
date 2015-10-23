@@ -74,4 +74,19 @@
 			</if>
 		</trim>
 	</insert>
+		<update id="updateByPrimaryKeySelective" parameterType="it.costanza.LiLo.mybatis.bean.ModuleNumeric">
+		update MODULES_NUMERIC_DATA
+		<set>
+			<if test="numericData1Value != null">
+				NUMERIC_DATA_1_VALUE = #{numericData1Value,jdbcType=DOUBLE},
+			</if>
+			<if test="numericData2Value != null">
+				NUMERIC_DATA_2_VALUE = #{numericData2Value,jdbcType=DOUBLE},
+			</if>
+			<if test="numericData3Value != null">
+				NUMERIC_DATA_3_VALUE = #{numericData3Value,jdbcType=DOUBLE},
+			</if>
+		</set>
+		where ID_MODULE = #{idModule,jdbcType=INTEGER}
+	</update>
 </mapper>
