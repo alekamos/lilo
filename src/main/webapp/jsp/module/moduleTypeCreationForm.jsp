@@ -22,18 +22,19 @@
 		</div>
 
 	<br />
-		<h3 class="upper-case">text content</h3>
+		<h3 class="upper-case">long text content</h3>
 		<div class="form-group">
 		<s:label cssClass="col-md-3 control-label"
-				name="moduleType.textContent1Name" value="Field name 1" />
+				name="moduleType.textContent1Name" value="Field name" />
 	<div class="col-md-3"><s:textfield cssClass="form-control"
 		name="moduleType.textContent1Name" placeholder="field name"
 		autocomplete="off" /></div></div>
 		
-		
+	<br />
+		<h3 class="upper-case">short text content</h3>
 		<div class="form-group">
 		<s:label cssClass="col-md-3 control-label"
-				name="moduleType.textContent2Name" value="Field name 2" />
+				name="moduleType.textContent2Name" value="Field name 1" />
 	<div class="col-md-3"><s:textfield cssClass="form-control"
 		name="moduleType.textContent2Name" placeholder="field name"
 		autocomplete="off" /></div></div>
