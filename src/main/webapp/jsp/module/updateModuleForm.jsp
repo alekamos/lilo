@@ -79,8 +79,10 @@
 
 			<c:if
 				test="${moduleType.textContent1Name != null && moduleType.textContent1Name != ''}">
-				<h4 class="upper-case">text content</h4>
+<!-- 				<h4 class="upper-case">text content</h4> -->
 
+				<s:hidden name="moduleExtended.moduleText.idModule"	value="%{moduleExtended.moduleHeader.idModule}" />
+			
 				<div class="form-group">
 					<s:label cssClass="col-md-4 control-label"
 						name="moduleExtended.moduleText.text1Value"
@@ -122,7 +124,8 @@
 
 			<c:if
 				test="${moduleType.numericDataContent1Name != null && moduleType.numericDataContent1Name != ''}">
-				<h4 class="upper-case">numeric content</h4>
+<!-- 				<h4 class="upper-case">numeric content</h4> -->
+				<s:hidden name="moduleExtended.moduleNumeric.idModule"	value="%{moduleExtended.moduleHeader.idModule}" />
 				<br />
 				<div class="form-group">
 					<s:label cssClass="col-md-4 control-label"
@@ -168,8 +171,9 @@
 
 			<c:if
 				test="${moduleType.datetimeContent1Name != null && moduleType.datetimeContent1Name != ''}">
-				<h4 class="upper-case">date and time content</h4>
+<!-- 				<h4 class="upper-case">date and time content</h4> -->
 				<br />
+				<s:hidden name="moduleExtended.moduleDatetime.idModule"	value="%{moduleExtended.moduleHeader.idModule}" />
 				<div class="form-group">
 					<s:label cssClass="col-md-4 control-label"
 						value="%{moduleType.datetimeContent1Name}" />

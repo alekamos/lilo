@@ -52,13 +52,13 @@ $(document).ready(function() {
 
 
 		<c:if test="${moduleType.textContent1Name != null && moduleType.textContent1Name != ''}">
-		<h4 class="upper-case">text content</h4>
+<!-- 		<h4 class="upper-case">text content</h4> -->
 
 		<div class="form-group"><s:label cssClass="col-md-4 control-label" name="moduleExtended.moduleText.text1Value"
 			value="%{moduleType.textContent1Name}" />
 			<div class="col-md-4">
 		<s:textarea rows="3" cssClass="form-control" name="moduleExtended.moduleText.text1Value"
-			autocomplete="off" /></div>
+			autocomplete="on" /></div>
 			</div>
 	</c:if>
 
@@ -85,7 +85,7 @@ $(document).ready(function() {
 
 	<c:if
 		test="${moduleType.numericDataContent1Name != null && moduleType.numericDataContent1Name != ''}">
-		<h4 class="upper-case">numeric content</h4>
+<!-- 		<h4 class="upper-case">numeric content</h4> -->
 		<br />
 		<div class="form-group"><s:label cssClass="col-md-4 control-label" value="%{moduleType.numericDataContent1Name}" name="moduleExtended.moduleNumeric.numericData1Value"/>
 		<div class="col-md-4"><s:textfield cssClass="form-control" name="moduleExtended.moduleNumeric.numericData1Value"
@@ -111,7 +111,7 @@ $(document).ready(function() {
 
 	<c:if
 		test="${moduleType.datetimeContent1Name != null && moduleType.datetimeContent1Name != ''}">
-		<h4 class="upper-case">date and time content</h4>
+<!-- 		<h4 class="upper-case">date and time content</h4> -->
 		<br />
 		<div class="form-group"><s:label cssClass="col-md-4 control-label" value="%{moduleType.datetimeContent1Name}"/>
 		<div class="col-md-4">

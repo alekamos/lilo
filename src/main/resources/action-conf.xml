@@ -135,7 +135,7 @@
 		
 		<action name="updateModule" class="it.costanza.LiLo.action.ModuleAction"
 			method="updateModule">
-			<result name="success" type="tiles">gotoDashboard</result>
+			<result name="success" type="redirect">gotoDashboard</result>
 		</action>
 		
 		
