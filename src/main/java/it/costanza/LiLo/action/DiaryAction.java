@@ -127,6 +127,8 @@ public class DiaryAction extends ActionSupport{
 		User user = ul.getUserInSession();
 		log.debug("User estratto dalla sessione: "+user.toString());
 		userModuleType = ml.getUserModuleType(user);
+		userModuleType = ml.getDefaultModuleType(userModuleType);
+		
 
 		return SUCCESS;
 	}
