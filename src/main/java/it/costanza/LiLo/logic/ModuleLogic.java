@@ -483,7 +483,4 @@ public class ModuleLogic {
 		dao.updateModuleExtended(moduleExtended,listaTabelle);
 
 	}
-
-
-
 }
