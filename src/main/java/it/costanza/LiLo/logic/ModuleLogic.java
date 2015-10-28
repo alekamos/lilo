@@ -90,7 +90,7 @@ public class ModuleLogic {
 
 	/**
 	 * Carica i moduli di default utilizzando cercando sul DB i moduli con proprieta ALL
-	 * @param moduleTypeList se passata nulla viene istanziato
+	 * @param moduleTypeList se passata nulla viene istanziato, se presente li aggiunge a quelli gia presenti nella lista;
 	 * @return
 	 */
 	public ArrayList<ModuleType> getDefaultModuleType(ArrayList<ModuleType> moduleTypeList) {
