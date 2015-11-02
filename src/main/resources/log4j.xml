@@ -32,7 +32,7 @@
 
 	<!--  -->
 	<root>
-		<priority value="TRACE" />
+		<priority value="debug" />
 		<appender-ref ref="lifelog.appender" />
 		<appender-ref ref="lifelogConsole.appender" />
 	</root>
