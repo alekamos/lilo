@@ -33,6 +33,10 @@ public class ModuleExtended {
 		this.moduleDatetime = moduleDatetime;
 	}
 	
+	public ModuleExtended(ModuleCluster moduleCluster){
+		this.moduleCluster = moduleCluster;
+	}
+	
 	@Override
 	public String toString() {
 		String msg = "";

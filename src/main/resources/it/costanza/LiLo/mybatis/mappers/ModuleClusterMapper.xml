@@ -27,6 +27,11 @@
 		delete from MODULES_CLUSTER
 		where ID_MODULE_CLUSTER = #{idModuleCluster,jdbcType=INTEGER}
 	</delete>
+		<delete id="deleteByIdModule" parameterType="java.lang.Integer">
+		delete from MODULES_CLUSTER
+		where ID_MODULE = #{idModule,jdbcType=INTEGER}
+	</delete>
+	
 	<insert id="insert" parameterType="it.costanza.LiLo.mybatis.bean.ModuleCluster">
 		insert into MODULES_CLUSTER (ID_USER, ID_MODULE_TYPE,
 		ID_MODULE_CLUSTER , ID_MODULE,
