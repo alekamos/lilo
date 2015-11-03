@@ -220,7 +220,7 @@ public class ModuleLogic {
 	 * si salva il modulo. I campi non presenti vengono annullati. Se gi√† presente una dayHost viene usato quello per il salvataggio.
 	 * @param moduleExtended
 	 */
-	public void insertModuleExtended(ModuleExtended moduleExtended) {
+	public Integer insertModuleExtended(ModuleExtended moduleExtended) {
 
 		ModuleExtendedDao dao = new ModuleExtendedDao();
 		int idModuleCluster = checkDayHostExist(moduleExtended.getModuleHeader().getIdUser(),moduleExtended.getModuleDayHost().getDateDayHost());
@@ -239,6 +239,8 @@ public class ModuleLogic {
 		moduleClusterToAdd.setIdModuleType(moduleExtended.getModuleHeader().getIdModuleType());
 		moduleExtended.setModuleCluster(moduleClusterToAdd);
 		dao.saveModuleExtended(moduleExtended);
+		
+		return idModuleCluster;
 
 	}
 
@@ -451,7 +453,7 @@ public class ModuleLogic {
 	 * @param user 
 	 * @param moduleExtended del modulo appena modificato
 	 */
-	public void updateModuleExtend(User user, ModuleExtended moduleExtended) {
+	public Integer updateModuleExtend(User user, ModuleExtended moduleExtended) {
 
 		ModuleExtendedDao dao = new ModuleExtendedDao();
 		ModuleClusterDao mcdao = new ModuleClusterDao();
@@ -481,9 +483,9 @@ public class ModuleLogic {
 
 			//occorre eliminare il precedente cluster legato alla vecchia data
 			ArrayList<ModuleCluster> moduleClusterFound = mcdao.searchByUserAndIdCluster(moduleExtended.getModuleCluster());
-			//Sono presenti pi˘ di 2 moduli devo eliminare solo la riga del modulo modificato
+			//Sono presenti pi˘ di 2 moduli devo eliminare solo la riga del modulo modificato idMOdule
 			if(moduleClusterFound.size()>2)
-				mcdao.deleteByIdModule(moduleExtended.getModuleCluster());
+				mcdao.deleteByIdModule(moduleClusterToAdd);
 			else//avevo solo 2 moduli(MAIN_DAY+modulo attualmente in update) quindi posso eliminare tutto il precedente cluster 
 				mcdao.delete(moduleExtended.getModuleCluster().getIdModuleCluster());
 
@@ -493,5 +495,8 @@ public class ModuleLogic {
 
 		ArrayList<String> listaTabelle = buildTableNameListToLoad(moduleExtended.getModuleType().getIdModuleType(),Const.UPDATE);
 		dao.updateModuleExtended(moduleExtended,listaTabelle);
+	
+	return idModuleCluster;
+	
 	}
 }

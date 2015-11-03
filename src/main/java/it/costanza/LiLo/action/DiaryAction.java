@@ -80,18 +80,12 @@ public class DiaryAction extends ActionSupport{
 				moduleExtendedList = ml.getModuleExtendList(idCluster, user);
 				strutsResult = Const.MULTIPLE_MODULE_VIEW;
 				break;
-			}
-		}
-		else if(moduleFinder.getCriteria()!=null){
-			//caso in cui e' specificato un criterio
-			switch (moduleFinder.getCriteria()) {
-			case Const.RANDOM://caso in cui si cerca un giorno random dell'utente
-				Integer idCluster = ml.getRandomIdCluster(user);
-				moduleExtendedList = ml.getModuleExtendList(idCluster, user);
-				strutsResult = Const.MULTIPLE_MODULE_VIEW;
+			case Const.LAST_CREATE://caso in cui si cerca l'ultimo giorno inserito
+				
 				break;
 			}
 		}
+
 
 
 		//Costruzione navigator

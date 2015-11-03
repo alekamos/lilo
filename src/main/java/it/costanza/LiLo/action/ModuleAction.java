@@ -67,8 +67,9 @@ public class ModuleAction extends ActionSupport{
 		log.debug("User estratto dalla sessione: "+user.toString());
 		moduleExtended.getModuleHeader().setIdUser(user.getIdUser());
 		log.debug("Modulo in arrivo da jsP: "+moduleExtended.toString());
-		ml.insertModuleExtended(moduleExtended);
-
+		Integer idCluster = ml.insertModuleExtended(moduleExtended);
+		moduleFinder = new ModuleFinder();
+		moduleFinder.setIdModuleCluster(idCluster);
 		return SUCCESS;
 	}
 	
@@ -76,11 +77,14 @@ public class ModuleAction extends ActionSupport{
 		log.debug(Const.IN);
 		ModuleLogic ml = new ModuleLogic();
 		UserLogic ul = new UserLogic();
+		moduleFinder = new ModuleFinder();
 		User user = ul.getUserInSession();
 		log.debug("User estratto dalla sessione: "+user.toString());
 		ml.checkModuleTypeOwnership(user,moduleExtended.getModuleType().getIdModuleType());
 		ml.checkModuleOwnership(user,moduleExtended.getModuleHeader().getIdModule());
-		ml.updateModuleExtend(user,moduleExtended);
+		Integer idModuleCluster = ml.updateModuleExtend(user,moduleExtended);
+		
+		moduleFinder.setIdModuleCluster(idModuleCluster);
 		
 		return SUCCESS;
 	}

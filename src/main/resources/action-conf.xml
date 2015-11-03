@@ -92,7 +92,10 @@
 
 		<action name="saveModule" class="it.costanza.LiLo.action.ModuleAction"
 			method="saveModule">
-			<result name="success" type="redirect">gotoModuleTypeManagement</result>
+			<result name="success" type="redirectAction">
+			<param name="actionName">viewModule</param>
+    		<param name="moduleFinder.IdModuleCluster">${moduleFinder.IdModuleCluster}</param>
+			</result>
 		</action>
 
 		<action name="viewModule" class="it.costanza.LiLo.action.DiaryAction"
@@ -135,7 +138,10 @@
 		
 		<action name="updateModule" class="it.costanza.LiLo.action.ModuleAction"
 			method="updateModule">
-			<result name="success" type="redirect">gotoDashboard</result>
+			<result name="success" type="redirectAction">
+			<param name="actionName">viewModule</param>
+    		<param name="moduleFinder.IdModuleCluster">${moduleFinder.IdModuleCluster}</param>
+    		</result>
 		</action>
 		
 		
