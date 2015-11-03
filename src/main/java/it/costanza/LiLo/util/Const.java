@@ -55,6 +55,7 @@ public class Const {
 	public static final String RANDOM = "rnd";
 	public static final String LOAD = "LOAD";
 	public static final String UPDATE = "UPDATE";
+	public static final String LAST_CREATE = "lstcrt";
 
 	
 	
