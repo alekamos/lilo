@@ -68,11 +68,11 @@ public class ModuleLogic {
 		return listaTabelle;
 
 	}
-	
-	
 
-	
-	
+
+
+
+
 
 	/**
 	 * Carica i moduli type proprietari dell'utente
@@ -452,35 +452,46 @@ public class ModuleLogic {
 	 * @param moduleExtended del modulo appena modificato
 	 */
 	public void updateModuleExtend(User user, ModuleExtended moduleExtended) {
-		//set idUser
-		moduleExtended.getModuleHeader().setIdUser(user.getIdUser());
-		boolean foundDayHost = false;
-
 
 		ModuleExtendedDao dao = new ModuleExtendedDao();
+		ModuleClusterDao mcdao = new ModuleClusterDao();
+
+		//set idUser
+		moduleExtended.getModuleHeader().setIdUser(user.getIdUser());
+		moduleExtended.getModuleCluster().setIdUser(user.getIdUser());
+
 		int idModuleCluster = checkDayHostExist(moduleExtended.getModuleHeader().getIdUser(),moduleExtended.getModuleDayHost().getDateDayHost());
-		//Vuol dire che non ce un cluster, cioe' viene modificato il giorno e non era ancora presente.
-		if(idModuleCluster == 0){
-			ModuleExtended mainDay = buildDayHostModuleExtended(moduleExtended);
-			idModuleCluster = mainDay.getModuleCluster().getIdModuleCluster();
-			dao.saveModuleExtended(mainDay);
-		}else
-			foundDayHost = true;
 
-		//TODO
-		//Una volta salvati i dati della giornata principale (mainDay) ci si occupa di salvare i moduli che la compongono
+		//Test per verificare che l'idCluster in arrivo è diverso da quello recuperato dalla data -> è stata modificata la data
+		if(idModuleCluster!=moduleExtended.getModuleCluster().getIdModuleCluster()){
 
-		if(!foundDayHost){//In questo caso e' necessario creare un modulo cluster e salvarlo
+			//Vuol dire che non ce un cluster, cioe' viene modificato il giorno e non era ancora presente.
+			//Apro un nuovo cluster + nuovo modulo MAIN_DAY
+			if(idModuleCluster == 0){
+				ModuleExtended mainDay = buildDayHostModuleExtended(moduleExtended);
+				idModuleCluster = mainDay.getModuleCluster().getIdModuleCluster();
+				dao.saveModuleExtended(mainDay);
+			}
+			//Creazione di una nuova riga per il module cluster
 			ModuleCluster moduleClusterToAdd = new ModuleCluster();
 			moduleClusterToAdd.setIdModuleCluster(idModuleCluster);
 			moduleClusterToAdd.setIdUser(moduleExtended.getModuleHeader().getIdUser());
 			moduleClusterToAdd.setIdModuleType(moduleExtended.getModuleHeader().getIdModuleType());
-			moduleExtended.setModuleCluster(moduleClusterToAdd);
-		}else
-			moduleExtended.setModuleCluster(null);
-		
+			moduleClusterToAdd.setIdModule(moduleExtended.getModuleHeader().getIdModule());
+
+			//occorre eliminare il precedente cluster legato alla vecchia data
+			ArrayList<ModuleCluster> moduleClusterFound = mcdao.searchByUserAndIdCluster(moduleExtended.getModuleCluster());
+			//Sono presenti più di 2 moduli devo eliminare solo la riga del modulo modificato
+			if(moduleClusterFound.size()>2)
+				mcdao.deleteByIdModule(moduleExtended.getModuleCluster());
+			else//avevo solo 2 moduli(MAIN_DAY+modulo attualmente in update) quindi posso eliminare tutto il precedente cluster 
+				mcdao.delete(moduleExtended.getModuleCluster().getIdModuleCluster());
+
+			//salvo la nuova riga con le nuove informazioni
+			mcdao.insert(moduleClusterToAdd);
+		}
+
 		ArrayList<String> listaTabelle = buildTableNameListToLoad(moduleExtended.getModuleType().getIdModuleType(),Const.UPDATE);
 		dao.updateModuleExtended(moduleExtended,listaTabelle);
-
 	}
 }

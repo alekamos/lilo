@@ -19,6 +19,7 @@
 		from MODULES_CLUSTER
 		where ID_USER = #{idUser,jdbcType=INTEGER}
 		and ID_MODULE_CLUSTER = #{idModuleCluster,jdbcType=INTEGER}
+		order by case when ID_MODULE_TYPE = 7 then 1 else 2 end 
 	</select>
 
 	<select id="selectMaxIdCluster" resultType="java.lang.Integer">

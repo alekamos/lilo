@@ -18,17 +18,23 @@
 		<div class="collapse navbar-collapse"
 			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a class="upper-case" href="gotoModuleTypeManagement">manage
-						module</a></li>
-				<li><a class="upper-case" href="gotoSearchModule">search
-						day</a></li>
+				<li><a class="upper-case" href="gotoModuleTypeManagement">module
+						management</a></li>
+				<li class="dropdown"><a href="#"
+					class="upper-case" data-toggle="dropdown">search<span
+						class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a class="upper-case" href="viewModule?moduleFinder.criteria=rnd">random day</a></li>
+						<li><a class="upper-case" href="gotoSearchModule">search day</a></li>	
+					</ul></li>
+
 				<li><a class="upper-case" href="gotoWriteModule">write</a></li>
-				<li><a class="upper-case"
-					href="viewModule?moduleFinder.criteria=rnd">read</a></li>
-					<li><a class="upper-case" href="gotoPositionLog">position log</a></li>
+				<li><a class="upper-case" href="gotoPositionLog">position
+						log</a></li>
 
 				<li class="divider"></li>
-				<li class="dropdown"><a href="#" class="upper-case" data-toggle="dropdown"><c:out
+				<li class="dropdown"><a href="#" class="upper-case"
+					data-toggle="dropdown"><c:out
 							value="${session.user.name} ${session.user.surname}" /> <span
 						class="caret"></span></a>
 					<ul class="dropdown-menu">

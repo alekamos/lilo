@@ -132,6 +132,25 @@ public class ModuleClusterDao extends MyBatisDAO<ModuleCluster, Integer>{
 		}   
 		return moduleCluster;
     }
+	
+	
+    public int deleteByIdModule(ModuleCluster mc)  throws PersistenceException{
+    	SqlSession session = MyBatisLoader.getSqlSession();
+		Integer status = null;
+		try
+		{			
+			String query = Const.NS_PREFIX+this.getClass().getSimpleName().replace("Dao", "")+Const.NS_SUFFIX+"."+"deleteByIdModule";
+			status = session.delete(query,mc);
+			session.commit();
+		}	
+		finally
+		{
+			session.close();
+		}	
+		return status;
+		
+    }
+    
 
     
 	
