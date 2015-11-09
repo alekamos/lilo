@@ -136,6 +136,11 @@
 			<result name="success" type="tiles">LocationPage</result>
 		</action>
 		
+		<action name="gotoMassiveImport" class="it.costanza.LiLo.action.DiaryAction"
+			method="gotoMassiveImport">
+			<result name="success" type="tiles">MassiveImportPage</result>
+		</action>
+		
 		<action name="updateModule" class="it.costanza.LiLo.action.ModuleAction"
 			method="updateModule">
 			<result name="success" type="redirectAction">
