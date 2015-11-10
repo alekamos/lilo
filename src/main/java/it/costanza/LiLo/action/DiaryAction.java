@@ -1,5 +1,6 @@
 package it.costanza.LiLo.action;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -177,6 +178,31 @@ public class DiaryAction extends ActionSupport{
 
 		return SUCCESS;
 		
+	}
+	
+	
+	public String saveMultipleModuleXmlMassiveImport() throws JAXBException, ParseException, IOException{
+		log.debug(Const.IN);
+		ModuleLogic ml = new ModuleLogic();
+		XmlUtil xmlUtil = new XmlUtil();
+		UserLogic ul = new UserLogic();
+		User user = ul.getUserInSession();
+		Integer idCluster = 0;
+		log.debug("User estratto dalla sessione: "+user.toString());
+		
+		ArrayList<ModuleExtended> list = xmlUtil.unMarshaling2ModuleExtended(xmlInOut);
+		
+		for (ModuleExtended moduleExtended : list) {
+			
+			moduleExtended.getModuleHeader().setIdUser(user.getIdUser());
+			log.debug("Modulo in arrivo da jsP: "+moduleExtended.toString());
+			idCluster = ml.insertModuleExtended(moduleExtended);
+			
+		}
+			
+		moduleFinder = new ModuleFinder();
+		moduleFinder.setIdModuleCluster(idCluster);
+		return SUCCESS;
 	}
 
 
