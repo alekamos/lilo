@@ -7,18 +7,18 @@
 <div class="container-fluid" id="generalModuleForm">
 
 
-<s:form method="post" cssClass="form-horizontal" action="massiveImport.action" validate="false">
+<s:form method="post" cssClass="form-horizontal" action="saveMultipleModuleXmlMassiveImport.action" validate="false">
 
-<legend><span class="upper-case"><strong>Massive Import</strong></span></legend>
+<legend><span class="upper-case"><strong>Xml Massive Import</strong></span></legend>
 	
 <br/>
-<span><small>edit content and save</small></span>
+<span><small>Modificare il file xml aggiungendo all'inizio ed alla fine il tag 'listModuleExtended' e rimuovendo la prima riga dell'xml</small></span>
+<br/>
 <br/>
 	
 	
 
-		<div class="form-group"><s:label cssClass="col-md-3 control-label" name="content"
-			value="content" />
+		<div class="form-group"><s:label cssClass="col-md-3 control-label" value="xml" />
 			<div class="col-md-4">
 		<s:textarea rows="30" cols="100" cssClass="form-control" name="xmlInOut"
 			autocomplete="on" /></div>
