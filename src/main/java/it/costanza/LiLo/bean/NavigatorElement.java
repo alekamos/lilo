@@ -5,10 +5,11 @@ import java.util.Date;
 public class NavigatorElement {
 
 	private Date dateDay;
-	private long idModuleCluster;
-	private long idModuleType;
-	private long idModule;
-	private long idUser;
+	private Integer idModuleCluster;
+	private Integer idModuleType;
+	private Integer idModule;
+	private Integer idUser;
+	private Long size;
 	
 	//Costruttore pubblico
 	
@@ -23,31 +24,66 @@ public class NavigatorElement {
 		this.dateDay = dateDay;
 	}
 
-	public long getIdModuleType() {
-		return idModuleType;
-	}
-	public void setIdModuleType(long idModuleType) {
-		this.idModuleType = idModuleType;
-	}
-	public long getIdModule() {
-		return idModule;
-	}
-	public void setIdModule(long idModule) {
-		this.idModule = idModule;
-	}
-	public long getIdUser() {
-		return idUser;
-	}
-	public void setIdUser(long idUser) {
-		this.idUser = idUser;
-	}
-	public long getIdModuleCluster() {
+
+
+	public Integer getIdModuleCluster() {
 		return idModuleCluster;
 	}
-	public void setIdModuleCluster(long idModuleCluster) {
+
+
+
+	public void setIdModuleCluster(Integer idModuleCluster) {
 		this.idModuleCluster = idModuleCluster;
 	}
-	
+
+
+
+	public Integer getIdModuleType() {
+		return idModuleType;
+	}
+
+
+
+	public void setIdModuleType(Integer idModuleType) {
+		this.idModuleType = idModuleType;
+	}
+
+
+
+	public Integer getIdModule() {
+		return idModule;
+	}
+
+
+
+	public void setIdModule(Integer idModule) {
+		this.idModule = idModule;
+	}
+
+
+
+	public Integer getIdUser() {
+		return idUser;
+	}
+
+
+
+	public void setIdUser(Integer idUser) {
+		this.idUser = idUser;
+	}
+
+
+
+	public Long getSize() {
+		return size;
+	}
+
+
+
+	public void setSize(Long size) {
+		this.size = size;
+	}
+
 	
 	
 	
