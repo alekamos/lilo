@@ -41,15 +41,6 @@ public class DiaryAction extends ActionSupport{
 	private String xmlInOut;
 
 
-	public String viewDayHost(){
-		log.debug(Const.IN);
-		//occorre capire se � arrivato un id o una data da cercare
-		if(moduleExtended.getModuleCluster().getIdModuleCluster()!=0){
-			//Qui occorre la logica per vedere se la giornata � la sua e prendere tutti i moduli	
-		}
-
-		return SUCCESS;
-	}
 
 //TODO gestire meglio gli struts result
 	public String viewModule() throws UnauthorizedContent{
