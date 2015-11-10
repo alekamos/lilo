@@ -7,32 +7,39 @@
 <div class="container-fluid" id="generalModuleForm">
 
 
-<s:form method="post" cssClass="form-horizontal" action="saveMultipleModuleXmlMassiveImport.action" validate="false">
+	<s:form method="post" cssClass="form-horizontal"
+		action="saveMultipleModuleXmlMassiveImport.action" validate="false">
 
-<legend><span class="upper-case"><strong>Xml Massive Import</strong></span></legend>
-	
-<br/>
-<span><small>Modificare il file xml aggiungendo all'inizio ed alla fine il tag 'listModuleExtended' e rimuovendo la prima riga dell'xml</small></span>
-<br/>
-<br/>
-	
-	
+		<legend>
+			<span class="upper-case"><strong>Xml Massive Import</strong></span>
+		</legend>
 
-		<div class="form-group"><s:label cssClass="col-md-3 control-label" value="xml" />
-			<div class="col-md-4">
-		<s:textarea rows="30" cols="100" cssClass="form-control" name="xmlInOut"
-			autocomplete="on" /></div>
+		<br />
+		<span><small>Modificare il file xml aggiungendo
+				all'inizio ed alla fine il tag 'listModuleExtended' e rimuovendo la
+				prima riga dell'xml</small></span>
+		<br />
+		<br />
+
+
+
+		<div class="form-group">
+			<s:label cssClass="col-md-1 control-label" value="xml" />
+			<div class="col-md-12">
+				<s:textarea rows="35" cssClass="form-control" name="xmlInOut"
+					autocomplete="on" />
 			</div>
-			
-			
-			<div class="form-group">
-		<div class="col-sm-offset-4 col-md-4">
-		<s:submit cssClass="btn btn-light" value="Create" />
 		</div>
-		</div>
-	
 
-</s:form>
+
+		<div class="form-group">
+			<div class="col-md-1">
+				<s:submit cssClass="btn btn-light" value="Create" />
+			</div>
+		</div>
+
+
+	</s:form>
 
 </div>
 
