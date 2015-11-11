@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="it.costanza.LiLo.mybatis.mappers.ModuleClusterMapper">
+
+
+
+	<select id="selectByUser" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from MODULES_CLUSTER
+		where ID_USER = #{idUser,jdbcType=INTEGER}
+	</select>
+
+	<select id="selectByUserAndCluster" resultMap="BaseResultMap"
+		parameterType="it.costanza.LiLo.mybatis.bean.ModuleCluster">
+		select
+		<include refid="Base_Column_List" />
+		from MODULES_CLUSTER
+		where ID_USER = #{idUser,jdbcType=INTEGER}
+		and ID_MODULE_CLUSTER = #{idModuleCluster,jdbcType=INTEGER}
+		order by case when ID_MODULE_TYPE = 7 then 1 else 2 end 
+	</select>
+
+	<select id="selectMaxIdCluster" resultType="java.lang.Integer">
+		select
+		max(ID_MODULE_CLUSTER)
+		from MODULES_CLUSTER
+	</select>
+
+	<select id="selectIfExistIdClusterForUserAndIdModuleAndDate"
+		resultType="java.lang.Integer" parameterType="it.costanza.LiLo.bean.ModuleExtended">
+		select
+		MC.ID_MODULE_CLUSTER
+		from MODULES_CLUSTER MC WHERE MC.ID_MODULE =
+		(SELECT HE.ID_MODULE FROM MODULES_HEADER HE,MODULES_DATETIME DA
+		WHERE HE.ID_MODULE = DA.ID_MODULE
+		AND HE.ID_MODULE_TYPE = #{moduleHeader.idModuleType,jdbcType=INTEGER}
+		AND HE.ID_USER = #{moduleHeader.idUser,jdbcType=INTEGER}
+		AND DATE(DA.DATETIME_1_VALUE) = DATE(#{moduleDatetime.datetime1Value,jdbcType=DATE}))
+	</select>
+	
+	<select id="selectModuleClusterByIdModuleTypeAndIdClusterAndIdUser"
+		resultMap="BaseResultMap" parameterType="it.costanza.LiLo.mybatis.bean.ModuleCluster">
+		select
+		<include refid="Base_Column_List" />
+		from MODULES_CLUSTER MC 
+		WHERE MC.ID_MODULE_TYPE = #{idModuleType,jdbcType=INTEGER}
+		AND MC.ID_MODULE_CLUSTER = #{idModuleCluster,jdbcType=INTEGER}
+		AND MC.ID_USER = #{idUser,jdbcType=INTEGER}
+	</select>
+	
+		<select id="selectByIdModule"
+		resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from MODULES_CLUSTER MC 
+		WHERE MC.ID_MODULE = #{idModule,jdbcType=INTEGER}
+	</select>
+	
+	
+
+</mapper>

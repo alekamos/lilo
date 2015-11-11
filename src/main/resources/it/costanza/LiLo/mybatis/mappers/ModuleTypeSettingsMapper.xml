@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="it.costanza.LiLo.mybatis.mappers.ModuleTypeSettingsMapper" >
+  <resultMap id="BaseResultMap" type="it.costanza.LiLo.mybatis.bean.ModuleTypeSettings" >
+    <result column="ID_MODULE_TYPE" property="idModuleType" jdbcType="INTEGER" />
+    <result column="ID_USER" property="idUser" jdbcType="INTEGER" />
+    <result column="ID_PROPERTY" property="idProperty" jdbcType="INTEGER" />
+    <result column="VALUE" property="value" jdbcType="VARCHAR" />
+    <result column="INSERT_TIMESTAMP" property="insertTimestamp" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIMESTAMP" property="updateTimestamp" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID_MODULE_TYPE, ID_USER, ID_PROPERTY, VALUE, INSERT_TIMESTAMP, UPDATE_TIMESTAMP
+  </sql>
+  <insert id="insert" parameterType="it.costanza.LiLo.mybatis.bean.ModuleTypeSettings" >
+    <selectKey resultType="java.lang.Integer" keyProperty="idModuleType" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into MODULE_TYPE_SETTINGS (ID_USER, ID_PROPERTY, VALUE, 
+      INSERT_TIMESTAMP, UPDATE_TIMESTAMP)
+    values (#{idUser,jdbcType=INTEGER}, #{idProperty,jdbcType=INTEGER}, #{value,jdbcType=VARCHAR}, 
+      #{insertTimestamp,jdbcType=TIMESTAMP}, #{updateTimestamp,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="it.costanza.LiLo.mybatis.bean.ModuleTypeSettings" >
+    <selectKey resultType="java.lang.Integer" keyProperty="idModuleType" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into MODULE_TYPE_SETTINGS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="idUser != null" >
+        ID_USER,
+      </if>
+      <if test="idProperty != null" >
+        ID_PROPERTY,
+      </if>
+      <if test="value != null" >
+        VALUE,
+      </if>
+      <if test="insertTimestamp != null" >
+        INSERT_TIMESTAMP,
+      </if>
+      <if test="updateTimestamp != null" >
+        UPDATE_TIMESTAMP,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="idUser != null" >
+        #{idUser,jdbcType=INTEGER},
+      </if>
+      <if test="idProperty != null" >
+        #{idProperty,jdbcType=INTEGER},
+      </if>
+      <if test="value != null" >
+        #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="insertTimestamp != null" >
+        #{insertTimestamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTimestamp != null" >
+        #{updateTimestamp,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+</mapper>

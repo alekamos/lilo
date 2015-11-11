@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="it.costanza.LiLo.mybatis.mappers.UserMapper" >
+
+  <select id="selectByUsernameAndPassword" resultMap="BaseResultMap" parameterType="it.costanza.LiLo.mybatis.bean.User" >
+    select 
+    <include refid="Base_Column_List" />
+    from USERS
+    where BINARY USERNAME = #{username}
+    and PASSWORD = #{password}
+  </select>
+
+
+  <select id="selectByEmail" resultMap="BaseResultMap" parameterType="it.costanza.LiLo.mybatis.bean.User" >
+    select 
+    <include refid="Base_Column_List" />
+    from USERS
+    where EMAIL = #{email}
+  </select>
+  
+  
+    <select id="selectByUsername" resultMap="BaseResultMap" parameterType="it.costanza.LiLo.mybatis.bean.User" >
+    select 
+    <include refid="Base_Column_List" />
+    from USERS
+    where BINARY USERNAME = #{username}
+  </select>
+</mapper>
+

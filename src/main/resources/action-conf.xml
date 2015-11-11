@@ -1,0 +1,157 @@
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="standardPackage" namespace="/" extends="mainPackage">
+
+		<global-results>
+			<result name="error">\jsp\template\errorPage.jsp</result>
+			<result name="unauthorized_content">\jsp\template\unauthorizedContent.jsp</result>
+		</global-results>
+
+		<action name="startup" class="it.costanza.LiLo.action.StartupAction"
+			method="startupMethod">
+			<result name="success" type="tiles">HomepageExt</result>
+		</action>
+
+		<action name="gotoSignInPage">
+			<result type="tiles">SignInPage</result>
+		</action>
+
+		<action name="gotoSignUpPage">
+			<result type="tiles">SignUpPage</result>
+		</action>
+
+		<action name="signIn" class="it.costanza.LiLo.action.UserAction"
+			method="signIn">
+			<result name="input" type="tiles">SignInPage</result>
+			<result name="success" type="redirect">gotoDashboard</result>
+		</action>
+
+		<action name="logout" class="it.costanza.LiLo.action.UserAction"
+			method="logout">
+			<result name="success" type="tiles">HomepageExt</result>
+		</action>
+
+		<action name="signUp" class="it.costanza.LiLo.action.UserAction"
+			method="signUp">
+			<result name="input" type="tiles">SignUpPage</result>
+			<result name="success" type="tiles">SuccessefullLogin</result>
+		</action>
+
+	</package>
+
+	<package name="authenticationCheckAction" namespace="/"
+		extends="mainPackage">
+
+		<!-- definizione interceptors -->
+		<interceptors>
+			<interceptor class="it.costanza.interceptors.LoginInterceptor"
+				name="loginInterceptor">
+			</interceptor>
+			<interceptor-stack name="loginStack">
+				<interceptor-ref name="loginInterceptor" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+
+		<!-- definizione interceptor all'interno del package -->
+		<default-interceptor-ref name="loginStack" />
+
+		<!-- risultati globali all'interno del package -->
+		<global-results>
+			<result name="error">errorPage.jsp</result>
+			<result name="login" type="redirect">signIn</result>
+		</global-results>
+
+
+		<action name="gotoDashboard" class="it.costanza.LiLo.action.StatAction"
+			method="gotoDashboard">
+			<result name="success" type="tiles">HomepageInt</result>
+		</action>
+
+		<action name="gotoModuleTypeManagement" class="it.costanza.LiLo.action.ModuleAction"
+			method="gotoModuleTypeManagement">
+			<result name="success" type="tiles">ModuleTypeManagement</result>
+		</action>
+
+		<action name="createNewModuleType" class="it.costanza.LiLo.action.ModuleAction"
+			method="createNewModuleType">
+			<result name="success" type="redirect">gotoModuleTypeManagement</result>
+		</action>
+
+		<action name="gotoNewModuleType">
+			<result type="tiles">ModuleTypeCreation</result>
+		</action>
+
+		<action name="gotoUseModule" class="it.costanza.LiLo.action.ModuleAction"
+			method="gotoUseModule">
+			<result name="success" type="tiles">UseModule</result>
+		</action>
+
+		<action name="saveModule" class="it.costanza.LiLo.action.ModuleAction"
+			method="saveModule">
+			<result name="success" type="redirectAction">
+			<param name="actionName">viewModule</param>
+    		<param name="moduleFinder.IdModuleCluster">${moduleFinder.IdModuleCluster}</param>
+			</result>
+		</action>
+
+		<action name="viewModule" class="it.costanza.LiLo.action.DiaryAction"
+			method="viewModule">
+			<result name="singular_module_view" type="tiles">ViewSingularModule
+			</result>
+			<result name="multiple_module_view" type="tiles">ViewMultipleModule
+			</result>
+		</action>
+
+		<action name="gotoSearchModule" class="it.costanza.LiLo.action.DiaryAction"
+			method="gotoSearchModule">
+			<result name="success" type="tiles">SearchModulePage</result>
+		</action>
+
+		<action name="getNavigatorAjax" class="it.costanza.LiLo.action.DiaryAction"
+			method="getNavigatorAjax">
+			<result name="success">\jsp\diary\dayNavigator.jsp</result>
+		</action>
+
+		<action name="gotoWriteModule" class="it.costanza.LiLo.action.DiaryAction"
+			method="gotoWriteModule">
+			<result name="success" type="tiles">WriteModulePage</result>
+		</action>
+		
+		<action name="gotoUseModuleAjax" class="it.costanza.LiLo.action.ModuleAction"
+			method="gotoUseModuleAjax">
+			<result name="success">\jsp\module\generalModuleForm.jsp</result>
+		</action>
+		
+		<action name="gotoUpdateModule" class="it.costanza.LiLo.action.ModuleAction"
+			method="gotoUpdateModule">
+			<result name="success" type="tiles">UpdateModule</result>
+		</action>
+		
+		<action name="gotoPositionLog" class="it.costanza.LiLo.action.ModuleAction"
+			method="gotoPositionLog">
+			<result name="success" type="tiles">LocationPage</result>
+		</action>
+		
+		<action name="updateModule" class="it.costanza.LiLo.action.ModuleAction"
+			method="updateModule">
+			<result name="success" type="redirectAction">
+			<param name="actionName">viewModule</param>
+    		<param name="moduleFinder.IdModuleCluster">${moduleFinder.IdModuleCluster}</param>
+    		</result>
+		</action>
+		
+		
+		
+		
+
+
+
+	</package>
+
+
+
+</struts>

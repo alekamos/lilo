@@ -1,0 +1,263 @@
+/*!
+ * Start Bootstrap - Stylish Portfolio Bootstrap Theme (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+ 
+ /* COLORI:
+ 
+ #2F3238 : sfondo grigio scuro
+ #7F8289 : testo grigetto
+ #3C3F45 : bottoni iniziali non cliccati
+ #DE5E60 #DE5E60: rosa 
+ #7F8289 testo form
+ #26292E sfondo testo form
+ #7F8289 bordo form
+ #66afe9 focus form
+ #337AB7 blu scuro, titolo date, titolo 
+ #C6C6C6 grigio chiaro label
+ 
+ 	
+
+
+ 
+ */
+ 
+ 
+ 
+
+/* Global Styles */
+html,body {
+	width: 100%;
+	height: 100%;
+	background-image: url("../img/greyPattern.png");
+    background-repeat: repeat-y repeat-x;
+/* 	background-color: #2F3238; */
+	color: #7F8289;
+	font-family: 'Open Sans', sans-serif;
+}
+
+.padding-top{
+	padding-top: 70px;
+}
+
+a:hover,a:active,a:focus {
+	outline: 0;
+}
+
+a{
+	cursor: pointer;
+}
+
+.text-vertical-center {
+	display: table-cell;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.text-vertical-center h1 {
+	margin: 0;
+	padding: 0;
+	font-size: 4.5em;
+	font-weight: 700;
+}
+
+/* Custom Button Styles */
+.btn-dark {
+	border-radius: 0;
+	color: #fff;
+	background-color: rgba(167, 167, 123, 0.4);
+}
+
+.btn-light {
+	border-radius: 5px;
+	color: black;
+	background-color: #3C3F45;
+}
+
+.btn-light:hover,.btn-light:focus,.btn-light:active {
+	color: black;
+	background-color: #DE5E60;
+}
+
+/* Custom Horizontal Rule */
+hr.small {
+	max-width: 100px;
+}
+
+.header {
+	display: table;
+	position: relative;
+	width: 100%;
+	height: 100%;
+	background: url(../img/14705567962_c5d1922a9a_k.jpg) no-repeat center
+		center scroll;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	background-size: cover;
+	-o-background-size: cover;
+}
+
+/* About */
+.about {
+	padding: 100px 0;
+}
+/* Services */
+.services {
+	padding: 100px 0;
+}
+
+.service-item {
+	margin-bottom: 30px;
+}
+/* Callout */
+.callout {
+	display: table;
+	width: 100%;
+	height: 400px;
+	color: #fff;
+	background: url(../img/paper.jpg) no-repeat center center scroll;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	background-size: cover;
+	-o-background-size: cover;
+}
+
+/* Footer */
+footer {
+	padding: 100px 0;
+}
+
+/* Estesi da bootstrap*/
+.form-control {
+	display: block;
+	width: 100%;
+	height: 34px;
+	padding: 6px 12px;
+	font-size: 14px;
+	line-height: 1.42857143;
+	color: #7F8289;
+	background-color: #26292E;
+	background-image: none;
+	border: 1px solid #7F8289;
+	border-radius: 5px;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	-webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow
+		ease-in-out .15s;
+	-o-transition: border-color ease-in-out .15s, box-shadow ease-in-out
+		.15s;
+	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+.form-control:focus {
+	border-color: #66afe9;
+	outline: 0;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px
+		rgba(102, 175, 233, .6);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px
+		rgba(102, 175, 233, .6);
+}
+
+legend {
+	display: block;
+	width: 100%;
+	padding: 0px;
+	margin-bottom: 20px;
+	font-size: 21px;
+	line-height: inherit;
+	color: #337AB7;
+	border-width: 0px 0px 1px;
+	border-style: none none solid;
+	border-color: -moz-use-text-color -moz-use-text-color #337AB7;
+	-moz-border-top-colors: none;
+	-moz-border-right-colors: none;
+	-moz-border-bottom-colors: none;
+	-moz-border-left-colors: none;
+	border-image: none;
+}
+
+#signInFormDiv {
+	display: table;
+	position: relative;
+	width: 100%;
+	height: 100%;
+	background: url(../img/8286678395_fa9830ff79_k.jpg) no-repeat center center
+		scroll;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	background-size: cover;
+	-o-background-size: cover;
+}
+
+#signUpDiv{
+	
+	
+	position: relative;
+	width: 100%;
+	height: 100%;
+	background: url(../img/ny.jpg) no-repeat center center
+		scroll;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	background-size: cover;
+	-o-background-size: cover;
+	
+}
+
+
+.row-fluid {
+	height: 100%;
+	display: table-cell;
+	vertical-align: middle;
+}
+
+/*Menu*/
+.navbar-default {
+ 	background-color: rgba(38,41,46,0.75); 
+/* 	background-color:transparent; */
+	border-color: #26292E;
+}
+
+.navbar-default .navbar-nav>li>a:hover,.navbar-default .navbar-nav>li>a:focus, .dropdown-menu>li>a:hover
+	{
+	color: #DE5E60;
+	background-color: transparent;
+}
+
+.dropdown-menu {
+	background-color: #26292E;
+}
+
+.date-title {
+	color: #337AB7;
+	text-align: center;
+	font-size: 40px;
+	text-transform: uppercase;	
+}
+
+.upper-case{
+text-transform: uppercase;	
+}
+
+	
+.control-label{
+	color: #C6C6C6;
+}
+
+.dropdown-menu>li>a{
+	color: #777;
+}
+
+
+.ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
+.ui-timepicker-div dl { text-align: left; }
+.ui-timepicker-div dl dt { float: left; clear:left; padding: 0 0 0 5px; }
+.ui-timepicker-div dl dd { margin: 0 10px 10px 40%; }
+.ui-timepicker-div td { font-size: 90%; }
+.ui-tpicker-grid-label { background: none; border: none; margin: 0; padding: 0; }
+
+.ui-timepicker-rtl{ direction: rtl; }
+.ui-timepicker-rtl dl { text-align: right; padding: 0 5px 0 0; }
+.ui-timepicker-rtl dl dt{ float: right; clear: right; }
+.ui-timepicker-rtl dl dd { margin: 0 40% 10px 10px; }

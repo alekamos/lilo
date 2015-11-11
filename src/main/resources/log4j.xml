@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+
+	<!-- ********** APPENDER OK********** -->
+	<appender name="lifelog.appender" class="org.apache.log4j.FileAppender">
+		<!-- Path windows <param name="File" value="E:/workspace_personale/N_Lifelog/lflg.log" 	/> -->
+		
+		<!-- Path Tommaso <param name="File" value="E:/workspace_personale/N_Lifelog/lflg.log" 	/> -->
+		
+		<!-- path linux -->
+		<param name="File" value="/home/costanza/LiLo.log" />
+		<param name="Append" value="true" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="#%d{dd-MMM-yy HH.mm.ss:SSS} - %p - %C.%M - %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="lifelogConsole.appender" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="#%d{dd-MMM-yy HH.mm.ss:SSS} - %p - %C.%M - %m%n" />
+		</layout>
+	</appender>
+
+	<!-- logger relativo ai wsMonitor -->
+	<logger name="lifelogLogger" additivity="false">
+		<level value="debug" />
+		<appender-ref ref="lifelog.appender" />
+		<appender-ref ref="lifelogConsole.appender" />
+	</logger>
+
+	<!--  -->
+	<root>
+		<priority value="debug" />
+		<appender-ref ref="lifelog.appender" />
+		<appender-ref ref="lifelogConsole.appender" />
+	</root>
+	
+
+</log4j:configuration>
