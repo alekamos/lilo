@@ -9,44 +9,45 @@
   <c:param name="moduleType.idModuleType" value="${moduleExtended.moduleType.idModuleType}" />
   <c:param name="moduleFinder.idModule"    value="${moduleExtended.moduleHeader.idModule}" />
 </c:url>
+
+<c:url value="deleteModule" var="remove_url">
+  <c:param name="moduleExtended.moduleHeader.idModule" value="${moduleExtended.moduleHeader.idModule}" />
+</c:url>
 <!-- GENERAZIONE URL -->
 
 
 <div class="col-md-6">
-
 <h1 class="upper-case"><strong>
 	<c:out value="${moduleExtended.moduleType.name}" /></strong>
 </h1>
+
+<!-- TASTI DELETE/UPDATE -->
 <a href="${update_url}"><span class="glyphicon glyphicon-pencil"></span></a>
+<a><span class="glyphicon glyphicon-remove" data-toggle="modal" data-target="#myModal"></span></a>
 
 
-<!-- MODULE HEADER
-<c:if test="${moduleExtended.moduleHeader.idModule != null}">
-	<s:label cssClass="control-label" value="idModuleHeader" />
-	<c:out value="${moduleExtended.moduleHeader.idModule}" />
-	<br />
-</c:if>
 
-<c:if test="${moduleExtended.moduleHeader.idModuleType != null}">
-	<s:label cssClass="control-label" value="id ModuleType" />
-	<c:out value="${moduleExtended.moduleHeader.idModuleType}" />
-	<br />
-</c:if>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Delete</h4>
+      </div>
+      <div class="modal-body">
+        Are you sure delete this module?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
 
-<c:if test="${moduleExtended.moduleHeader.insertTimestamp != null}">
-	<s:label cssClass="control-label" value="insert" />
-	<fmt:formatDate pattern="d/M/yy HH:mm:ss"
-		value="${moduleExtended.moduleHeader.insertTimestamp}" />
-	<br />
-</c:if>
 
-<c:if test="${moduleExtended.moduleHeader.updateTimestamp != null}">
-	<s:label cssClass="control-label" value="update"/>
-	<fmt:formatDate pattern="d/M/yy HH:mm:ss"
-		value="${moduleExtended.moduleHeader.updateTimestamp}" />
-</c:if>
 
-<br />
 <!-- MODULE HEADER  -->
 <c:if
 	test="${(moduleExtended.moduleType.textContent1Name != null && moduleExtended.moduleType.textContent1Name != '') || (moduleExtended.moduleType.textContent2Name != null && moduleExtended.moduleType.textContent2Name != '') || (moduleExtended.moduleType.textContent3Name != null && moduleExtended.moduleType.textContent3Name != '')}">

@@ -17,11 +17,11 @@
 			<c:forEach items="${navigatorElementList}" var="element" varStatus="idx">
 				<c:set var="link" value="viewModule?moduleFinder.idModuleCluster=${element.idModuleCluster}" />
 				<td><c:choose>
-						<c:when test="${element.idModuleCluster != 0}">
+						<c:when test="${element.idModuleCluster != null && element.idModuleCluster != 0}">
 							<a href="${link}" <c:if test="${idx.count==8}">style="border:solid 1px;"</c:if>  ><fmt:formatDate value="${element.dateDay}"
 									pattern="dd/MM/yy" /></a>
 						</c:when>
-						<c:when test="${element.idModuleCluster == 0}">
+						<c:when test="${element.idModuleCluster == 0 || element.idModuleCluster == null}">
 							<fmt:formatDate value="${element.dateDay}" pattern="dd/MM/yy" />
 						</c:when>
 					</c:choose></td>
