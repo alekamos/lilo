@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="/struts-tags" prefix="s"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
@@ -25,23 +25,29 @@ var chart = AmCharts.makeChart( "chartdiv", {
 	  "gridAboveGraphs": true,
 	  "startDuration": 1,
 	  "graphs": [ {
+		"balloonText": "[[category]]: <b>[[value]]</b>",
 	    "fillAlphas": 0.8,
 	    "lineAlpha": 0.2,
 	    "type": "column",
 	    "valueField": ${ylabel}
 	  } ],
 	  "categoryField": ${xlabel},
+	  "dataDateFormat" : "YYYYMMDD",
 	  "categoryAxis": {
+		"parseDates" : true,
 	    "gridPosition": "start",
-	    "labelRotation": 45,
+	    "labelRotation": 0,
 	    "gridAlpha": 0,
 	    "tickPosition": "start",
-	    "tickLength": 20
+	    "tickLength": 5,
+	    "boldPeriodBeginning" : false
+
 	  }
 	} );
 
 </script>
 <div class="container-fluid">
-<h3>DashBoard</h3><h4>Word weight</h4>
-<div id="chartdiv"></div>
-</div>					
+	<h3>DashBoard</h3>
+	<h4>Word weight</h4>
+	<div id="chartdiv"></div>
+</div>
