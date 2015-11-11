@@ -13,7 +13,6 @@ import it.costanza.LiLo.dao.ModuleExtendedDao;
 import it.costanza.LiLo.dao.ModuleHeaderDao;
 import it.costanza.LiLo.dao.ModuleTypeDao;
 import it.costanza.LiLo.dao.ModuleTypeSettingsDao;
-import it.costanza.LiLo.dao.PropertyDao;
 import it.costanza.LiLo.exception.UnauthorizedContent;
 import it.costanza.LiLo.mybatis.bean.ModuleCluster;
 import it.costanza.LiLo.mybatis.bean.ModuleDatetime;

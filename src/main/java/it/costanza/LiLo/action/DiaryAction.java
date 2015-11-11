@@ -1,14 +1,19 @@
 package it.costanza.LiLo.action;
 
+import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+
+import javax.xml.bind.JAXBException;
 
 import org.apache.log4j.Logger;
 
 import it.costanza.LiLo.bean.ModuleExtended;
 import it.costanza.LiLo.bean.ModuleFinder;
 import it.costanza.LiLo.bean.NavigatorElement;
+import it.costanza.LiLo.dao.ModuleTypeDao;
 import it.costanza.LiLo.exception.UnauthorizedContent;
 import it.costanza.LiLo.logic.ModuleLogic;
 import it.costanza.LiLo.logic.UserLogic;
@@ -16,6 +21,7 @@ import it.costanza.LiLo.mybatis.bean.ModuleType;
 import it.costanza.LiLo.mybatis.bean.User;
 import it.costanza.LiLo.util.Const;
 import it.costanza.LiLo.util.Utility;
+import it.costanza.LiLo.util.XmlUtil;
 
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -32,17 +38,9 @@ public class DiaryAction extends ActionSupport{
 	private ArrayList<ModuleExtended> moduleExtendedList;
 	private ArrayList<ModuleType> userModuleType;
 	private ArrayList<NavigatorElement> navigatorElementList;
+	private String xmlInOut;
 
 
-	public String viewDayHost(){
-		log.debug(Const.IN);
-		//occorre capire se � arrivato un id o una data da cercare
-		if(moduleExtended.getModuleCluster().getIdModuleCluster()!=0){
-			//Qui occorre la logica per vedere se la giornata � la sua e prendere tutti i moduli	
-		}
-
-		return SUCCESS;
-	}
 
 //TODO gestire meglio gli struts result
 	public String viewModule() throws UnauthorizedContent{
@@ -160,6 +158,43 @@ public class DiaryAction extends ActionSupport{
 
 		return SUCCESS;
 	}
+	
+	
+	public String gotoMassiveImport() throws JAXBException, ParseException{
+		UserLogic ul = new UserLogic();
+		User user = ul.getUserInSession();
+				
+		XmlUtil util = new XmlUtil();
+		xmlInOut = util.marshalling(user);
+
+		return SUCCESS;
+		
+	}
+	
+	
+	public String saveMultipleModuleXmlMassiveImport() throws JAXBException, ParseException, IOException{
+		log.debug(Const.IN);
+		ModuleLogic ml = new ModuleLogic();
+		XmlUtil xmlUtil = new XmlUtil();
+		UserLogic ul = new UserLogic();
+		User user = ul.getUserInSession();
+		Integer idCluster = 0;
+		log.debug("User estratto dalla sessione: "+user.toString());
+		
+		ArrayList<ModuleExtended> list = xmlUtil.unMarshaling2ModuleExtended(xmlInOut);
+		
+		for (ModuleExtended moduleExtended : list) {
+			
+			moduleExtended.getModuleHeader().setIdUser(user.getIdUser());
+			log.debug("Modulo in arrivo da jsP: "+moduleExtended.toString());
+			idCluster = ml.insertModuleExtended(moduleExtended);
+			
+		}
+			
+		moduleFinder = new ModuleFinder();
+		moduleFinder.setIdModuleCluster(idCluster);
+		return SUCCESS;
+	}
 
 
 
@@ -192,6 +227,14 @@ public class DiaryAction extends ActionSupport{
 	}
 	public void setNavigatorElementList(ArrayList<NavigatorElement> navigatorElementList) {
 		this.navigatorElementList = navigatorElementList;
+	}
+
+	public String getXmlInOut() {
+		return xmlInOut;
+	}
+
+	public void setXmlInOut(String xmlInOut) {
+		this.xmlInOut = xmlInOut;
 	}
 
 }

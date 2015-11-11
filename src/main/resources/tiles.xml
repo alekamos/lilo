@@ -104,6 +104,14 @@
 		<put-attribute name="menu" value="/jsp/menu/intMenu.jsp" />
 		<put-attribute name="body" value="/jsp/module/updateModuleForm.jsp" />
 	</definition>
+	
+		<definition name="MassiveImportPage" extends="standard">
+		<put-attribute name="title" value="Lifelog - Massive Import" />
+		<put-attribute name="menu" value="/jsp/menu/intMenu.jsp" />
+		<put-attribute name="body" value="/jsp/diary/massiveImport.jsp" />
+	</definition>
+	
+	
 
 
 

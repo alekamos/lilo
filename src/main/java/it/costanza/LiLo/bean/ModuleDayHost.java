@@ -2,7 +2,7 @@ package it.costanza.LiLo.bean;
 
 import java.util.Date;
 
-public class ModuleDayHost {
+public class ModuleDayHost{
 
 	private Date dateDayHost;
 	private long idModule;

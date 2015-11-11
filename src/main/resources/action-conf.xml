@@ -136,6 +136,19 @@
 			<result name="success" type="tiles">LocationPage</result>
 		</action>
 		
+		<action name="gotoMassiveImport" class="it.costanza.LiLo.action.DiaryAction"
+			method="gotoMassiveImport">
+			<result name="success" type="tiles">MassiveImportPage</result>
+		</action>
+		
+		<action name="saveMultipleModuleXmlMassiveImport" class="it.costanza.LiLo.action.DiaryAction"
+			method="saveMultipleModuleXmlMassiveImport">
+			<result name="success" type="redirectAction">
+			<param name="actionName">viewModule</param>
+    		<param name="moduleFinder.IdModuleCluster">${moduleFinder.IdModuleCluster}</param>
+			</result>
+		</action>
+		
 		<action name="updateModule" class="it.costanza.LiLo.action.ModuleAction"
 			method="updateModule">
 			<result name="success" type="redirectAction">

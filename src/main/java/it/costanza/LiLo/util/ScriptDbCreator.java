@@ -28,6 +28,8 @@ public class ScriptDbCreator {
 					"INSERT INTO CALENDAR (DATE,DAY_OF_WEEK) VALUES (STR_TO_DATE('"+sdf.format(aggiungiTogliGiorno(new Date(), i))+"', '%Y%m%d'),'"+day+"');");	
 
 		}
+		
+		query.close();
 
 	}
 
