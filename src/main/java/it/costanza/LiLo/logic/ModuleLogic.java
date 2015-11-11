@@ -244,8 +244,8 @@ public class ModuleLogic {
 	}
 
 	/**
-	 * Controlla se l'idModulo esiste ed ï¿½ dell'utente che vuole visualizzarlo.
-	 * Se il modulo non ï¿½ visualizzabile per l'utente in questione viene lanciata un eccezione	
+	 * Controlla se l'idModulo esiste ed e' dell'utente che vuole visualizzarlo.
+	 * Se il modulo non e' visualizzabile per l'utente in questione viene lanciata un eccezione	
 	 * @param user utente che ambisce a visualizzare il modulo
 	 * @param idModule id del modulo che si deve visualizzare
 	 * @throws UnauthorizedContent
@@ -279,7 +279,7 @@ public class ModuleLogic {
 
 
 	/**
-	 * Il metodo estrae il moduloExtended con tutto quello che c'ï¿½ da estrarre basandosi solo sul idModule.
+	 * Il metodo estrae il moduloExtended con tutto quello che c'e' da estrarre basandosi solo sul idModule.
 	 * @param idModule
 	 * @return
 	 */
@@ -312,7 +312,7 @@ public class ModuleLogic {
 
 	/**
 	 * Partendo dall'idCluster necessariamente presente in tutti i moduli lui va a cercarsi l'id del modulo 
-	 * dayHost. Ovviamente ï¿½ necessario conoscere l'idModuleType del modulo DayHost, e l'utente che possiede il modulo.
+	 * dayHost. Ovviamente e' necessario conoscere l'idModuleType del modulo DayHost, e l'utente che possiede il modulo.
 	 * @param idModuleCluster
 	 * @param user
 	 * @return
@@ -463,7 +463,7 @@ public class ModuleLogic {
 
 		int idModuleCluster = checkDayHostExist(moduleExtended.getModuleHeader().getIdUser(),moduleExtended.getModuleDayHost().getDateDayHost());
 
-		//Test per verificare che l'idCluster in arrivo è diverso da quello recuperato dalla data -> è stata modificata la data
+		//Test per verificare che l'idCluster in arrivo e' diverso da quello recuperato dalla data -> e' stata modificata la data
 		if(idModuleCluster!=moduleExtended.getModuleCluster().getIdModuleCluster()){
 
 			//Vuol dire che non ce un cluster, cioe' viene modificato il giorno e non era ancora presente.
@@ -482,7 +482,7 @@ public class ModuleLogic {
 
 			//occorre eliminare il precedente cluster legato alla vecchia data
 			ArrayList<ModuleCluster> moduleClusterFound = mcdao.searchByUserAndIdCluster(moduleExtended.getModuleCluster());
-			//Sono presenti più di 2 moduli devo eliminare solo la riga del modulo modificato idMOdule
+			//Sono presenti piu' di 2 moduli devo eliminare solo la riga del modulo modificato idMOdule
 			if(moduleClusterFound.size()>2)
 				mcdao.deleteByIdModule(moduleClusterToAdd);
 			else//avevo solo 2 moduli(MAIN_DAY+modulo attualmente in update) quindi posso eliminare tutto il precedente cluster 
