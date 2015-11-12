@@ -17,6 +17,7 @@ import it.costanza.LiLo.dao.ModuleTypeDao;
 import it.costanza.LiLo.exception.UnauthorizedContent;
 import it.costanza.LiLo.logic.ModuleLogic;
 import it.costanza.LiLo.logic.UserLogic;
+import it.costanza.LiLo.mybatis.bean.ModuleHeader;
 import it.costanza.LiLo.mybatis.bean.ModuleType;
 import it.costanza.LiLo.mybatis.bean.User;
 import it.costanza.LiLo.util.Const;
@@ -193,6 +194,20 @@ public class DiaryAction extends ActionSupport{
 			
 		moduleFinder = new ModuleFinder();
 		moduleFinder.setIdModuleCluster(idCluster);
+		return SUCCESS;
+	}
+	
+	public String deleteModule() throws UnauthorizedContent{
+		log.debug(Const.IN);
+		ModuleLogic ml = new ModuleLogic();
+		UserLogic ul = new UserLogic();
+		User user = ul.getUserInSession();
+		log.debug("User estratto dalla sessione: "+user.toString());
+		
+		ml.checkModuleOwnership(user, moduleExtended.getModuleCluster().getIdModule());
+		moduleExtended.getModuleCluster().setIdUser(user.getIdUser());
+		ml.deleteModule(moduleExtended.getModuleCluster());
+
 		return SUCCESS;
 	}
 

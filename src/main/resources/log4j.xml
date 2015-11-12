@@ -10,7 +10,7 @@
 		<!-- Path Tommaso <param name="File" value="E:/workspace_personale/N_Lifelog/lflg.log" 	/> -->
 		
 		<!-- path linux -->
-		<param name="File" value="/home/costanza/LiLo.log" />
+		<param name="File" value="/home/pi/lilo.log" />
 		<param name="Append" value="true" />
 		<layout class="org.apache.log4j.PatternLayout">
 			<param name="ConversionPattern" value="#%d{dd-MMM-yy HH.mm.ss:SSS} - %p - %C.%M - %m%n" />
