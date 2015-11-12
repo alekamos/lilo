@@ -238,7 +238,7 @@ public class ModuleLogic {
 		moduleClusterToAdd.setIdModuleType(moduleExtended.getModuleHeader().getIdModuleType());
 		moduleExtended.setModuleCluster(moduleClusterToAdd);
 		dao.saveModuleExtended(moduleExtended);
-		
+
 		return idModuleCluster;
 
 	}
@@ -456,6 +456,7 @@ public class ModuleLogic {
 
 		ModuleExtendedDao dao = new ModuleExtendedDao();
 		ModuleClusterDao mcdao = new ModuleClusterDao();
+		ModuleHeaderDao mhdao = new ModuleHeaderDao();
 
 		//set idUser
 		moduleExtended.getModuleHeader().setIdUser(user.getIdUser());
@@ -482,11 +483,18 @@ public class ModuleLogic {
 
 			//occorre eliminare il precedente cluster legato alla vecchia data
 			ArrayList<ModuleCluster> moduleClusterFound = mcdao.searchByUserAndIdCluster(moduleExtended.getModuleCluster());
+			
+			//TODO CODICE RIPETUTO FIXARE (1) CERCARE (2)
 			//Sono presenti piu' di 2 moduli devo eliminare solo la riga del modulo modificato idMOdule
 			if(moduleClusterFound.size()>2)
 				mcdao.deleteByIdModule(moduleClusterToAdd);
-			else//avevo solo 2 moduli(MAIN_DAY+modulo attualmente in update) quindi posso eliminare tutto il precedente cluster 
+			else{//avevo solo 2 moduli(MAIN_DAY+modulo attualmente in update) quindi posso eliminare tutto il precedente cluster 
 				mcdao.delete(moduleExtended.getModuleCluster().getIdModuleCluster());
+				//Carico il modulo relativo al dayHost (7)
+				Integer idDayHost = moduleClusterFound.get(0).getIdModule();
+				//Elimino il modulo dayHost
+				mhdao.delete(idDayHost);
+			}
 
 			//salvo la nuova riga con le nuove informazioni
 			mcdao.insert(moduleClusterToAdd);
@@ -494,8 +502,37 @@ public class ModuleLogic {
 
 		ArrayList<String> listaTabelle = buildTableNameListToLoad(moduleExtended.getModuleType().getIdModuleType(),Const.UPDATE);
 		dao.updateModuleExtended(moduleExtended,listaTabelle);
-	
-	return idModuleCluster;
-	
+
+		return idModuleCluster;
+
+	}
+
+	public void deleteModule(ModuleCluster moduleCluster) {
+		ModuleClusterDao mcdao = new ModuleClusterDao();
+		ModuleHeaderDao mhdao = new ModuleHeaderDao();
+
+		//occorre eliminare il precedente cluster legato alla vecchia data
+		ArrayList<ModuleCluster> moduleClusterFound = mcdao.searchByUserAndIdCluster(moduleCluster);
+		//Sono presenti più di 2 moduli devo eliminare solo la riga del modulo elminato idMOdule+il modulo
+		
+		//CANCELLO IL MODULO IN QUESTIONE
+		mhdao.delete(moduleCluster.getIdModule());
+		
+		//TODO CODICE RIPETUTO FIXARE (1) CERCARE (2)
+		if(moduleClusterFound.size()>2){
+			mcdao.deleteByIdModule(moduleCluster);
+		}else{
+			//avevo solo 2 moduli(MAIN_DAY+modulo attualmente in update) quindi posso eliminare tutto il precedente cluster 
+			mcdao.delete(moduleCluster.getIdModuleCluster());
+			//Carico il modulo relativo al dayHost (7)
+			Integer idDayHost = moduleClusterFound.get(0).getIdModule();
+			//Elimino il modulo dayHost
+			mhdao.delete(idDayHost);
+		}
+
+
+
+
+
 	}
 }

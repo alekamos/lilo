@@ -10,8 +10,9 @@
   <c:param name="moduleFinder.idModule"    value="${moduleExtended.moduleHeader.idModule}" />
 </c:url>
 
-<c:url value="deleteModule" var="remove_url">
-  <c:param name="moduleExtended.moduleHeader.idModule" value="${moduleExtended.moduleHeader.idModule}" />
+<c:url value="deleteModule" var="delete_url">
+  <c:param name="moduleExtended.moduleCluster.idModule" value="${moduleExtended.moduleHeader.idModule}" />
+  <c:param name="moduleExtended.moduleCluster.idModuleCluster" value="${moduleExtended.moduleCluster.idModuleCluster}" />
 </c:url>
 <!-- GENERAZIONE URL -->
 
@@ -40,7 +41,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Delete</button>
+        <a href="${delete_url}" class="btn btn-danger" role="button">Delete</a>
       </div>
     </div>
   </div>
