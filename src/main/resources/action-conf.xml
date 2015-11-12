@@ -157,6 +157,11 @@
     		</result>
 		</action>
 		
+		<action name="deleteModule" class="it.costanza.LiLo.action.DiaryAction"
+			method="deleteModule">
+			<result name="success" type="redirect">gotoDashboard</result>
+		</action>
+		
 		
 		
 		

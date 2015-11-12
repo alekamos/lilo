@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import it.costanza.LiLo.bean.DashBoardBean;
+import it.costanza.LiLo.bean.GraphBean;
 import it.costanza.LiLo.bean.ModuleExtended;
 import it.costanza.LiLo.bean.NavigatorElement;
 import it.costanza.LiLo.mybatis.bean.User;
@@ -78,34 +79,40 @@ public class StatLogic {
 
 
 	/**
-	 * Crea il datasset per l'istogramma di amchart con data in formato dd-MM-yy
+	 * Crea il datasset per l'istogramma di amchart con data in formato yyyyMMdd, in out setta nuovamente il dashBoardBean
 	 * @param nav
 	 * @param xlabel senza apici
 	 * @param ylabel senza apici
 	 * @return
 	 */
-	public String buildDatasetTotalWordFromNavigator(
-			ArrayList<NavigatorElement> nav,String xlabel,String ylabel) {
+	public GraphBean buildDatasetTotalWordFromNavigator(
+			DashBoardBean dbBean,String xlabel,String ylabel) {
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-		String out = "";
+		String dataset = "";
 		String xdata = "";
 		String ydata = "";
+		ArrayList<NavigatorElement> nav = dbBean.getNav();
 
 		for (NavigatorElement navigatorElement : nav) {
-
 			//Creazione Stringa
-			if(!out.equals(""))
-				out+=V;
+			if(!dataset.equals(""))
+				dataset+=V;
 
 			xdata =sdf.format(navigatorElement.getDateDay());
 			ydata = navigatorElement.getSize()+"";
 
-
-			out += OG+AP+xlabel+AP+DP+AP+xdata+AP+V+AP+ylabel+AP+DP+ydata+CG;
+			dataset += OG+AP+xlabel+AP+DP+AP+xdata+AP+V+AP+ylabel+AP+DP+ydata+CG;
+				
 		}
-
-		return out;
+		//Set dei parametri
+		GraphBean gpBean = new GraphBean();
+		gpBean.setXlabel(AP+xlabel+AP);
+		gpBean.setYlabel(AP+ylabel+AP);
+		gpBean.setDataset(dataset);
+		
+		
+		return gpBean;
 	}
 
 

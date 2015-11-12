@@ -3,6 +3,7 @@ package it.costanza.LiLo.action;
 import java.io.IOException;
 
 import it.costanza.LiLo.bean.DashBoardBean;
+import it.costanza.LiLo.bean.GraphBean;
 import it.costanza.LiLo.logic.ModuleLogic;
 import it.costanza.LiLo.logic.StatLogic;
 import it.costanza.LiLo.logic.UserLogic;
@@ -19,10 +20,8 @@ public class StatAction extends ActionSupport{
 	private static final long serialVersionUID = 4275395776711759333L;
 	private static final Logger log = Logger.getLogger("lifelogLogger");
 	
-	private DashBoardBean dbBean;
-	private String xlabel;
-	private String ylabel;
-	private String dataset;
+	private DashBoardBean dashBoardBean;
+	
 	
 	public String gotoDashboard() throws IOException{
 		log.debug(Const.IN);
@@ -31,50 +30,27 @@ public class StatAction extends ActionSupport{
 		log.debug("User estratto dalla sessione: "+user.toString());
 
 		StatLogic st = new StatLogic();
-		dbBean = st.getDatiDashBoard(user);
-		
+		dashBoardBean = st.getDatiDashBoard(user);
 		
 		//dati histo
-		xlabel = "Date";
-		ylabel = "Content";
-		dataset = st.buildDatasetTotalWordFromNavigator(dbBean.getNav(), xlabel, ylabel);
+		GraphBean graph = st.buildDatasetTotalWordFromNavigator(dashBoardBean, "Date", "Size Content");
+		dashBoardBean.setGraphBean(graph);
 		
-		xlabel = "\"Date\"";
-		ylabel = "\"Content\"";
 		
 		return SUCCESS;
 	}
 
-	public DashBoardBean getDbBean() {
-		return dbBean;
+
+	public DashBoardBean getDashBoardBean() {
+		return dashBoardBean;
 	}
 
-	public void setDbBean(DashBoardBean dbBean) {
-		this.dbBean = dbBean;
+
+	public void setDashBoardBean(DashBoardBean dashBoardBean) {
+		this.dashBoardBean = dashBoardBean;
 	}
 
-	public String getXlabel() {
-		return xlabel;
-	}
 
-	public void setXlabel(String xlabel) {
-		this.xlabel = xlabel;
-	}
 
-	public String getYlabel() {
-		return ylabel;
-	}
-
-	public void setYlabel(String ylabel) {
-		this.ylabel = ylabel;
-	}
-
-	public String getDataset() {
-		return dataset;
-	}
-
-	public void setDataset(String dataset) {
-		this.dataset = dataset;
-	}
 	
 }

@@ -16,7 +16,7 @@
 var chart = AmCharts.makeChart( "chartdiv", {
 	  "type": "serial",
 	  "theme": "light",
-	  "dataProvider": [ ${dataset}],
+	  "dataProvider": [ ${dashBoardBean.graphBean.dataset}],
 	  "valueAxes": [ {
 	    "gridColor": "#FFFFFF",
 	    "gridAlpha": 0.2,
@@ -29,9 +29,9 @@ var chart = AmCharts.makeChart( "chartdiv", {
 	    "fillAlphas": 0.8,
 	    "lineAlpha": 0.2,
 	    "type": "column",
-	    "valueField": ${ylabel}
+	    "valueField": ${dashBoardBean.graphBean.ylabel}
 	  } ],
-	  "categoryField": ${xlabel},
+	  "categoryField": ${dashBoardBean.graphBean.xlabel},
 	  "dataDateFormat" : "YYYYMMDD",
 	  "categoryAxis": {
 		"parseDates" : true,
