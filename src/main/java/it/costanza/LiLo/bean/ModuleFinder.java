@@ -55,13 +55,27 @@ public class ModuleFinder {
     	
     	
     	chiavi.add("idModule");
+    	chiavi.add("idModuleCluster");
     	chiavi.add("idModuleType");
     	chiavi.add("dateDayHost");
+    	chiavi.add("startDate");
+    	chiavi.add("endDate");
+    	chiavi.add("startDateDt");
+    	chiavi.add("endDateDt");
+    	chiavi.add("criteria");
+    	chiavi.add("containedText");
 
     	
-    	valori.add(idModule+"");
-    	valori.add(idModuleType+"");
-    	valori.add(dateDayHost+"");
+    	valori.add("idModule"+"");
+    	valori.add("idModuleCluster"+"");
+    	valori.add("idModuleType"+"");
+    	valori.add("dateDayHost"+"");
+    	valori.add("startDate"+"");
+    	valori.add("endDate"+"");
+    	valori.add("startDateDt"+"");
+    	valori.add("endDateDt"+"");
+    	valori.add("criteria"+"");
+    	valori.add("containedText"+"");
 
     	
     	return Utility.toStringPerBean(chiavi, valori);

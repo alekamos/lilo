@@ -46,7 +46,7 @@
 
 			<div class="form-group">
 				<s:label cssClass="col-md-3 control-label"
-					name="moduleFinder.startDateDt" value="Date Range" />
+					value="Date Range" />
 					
 					
 				<div class="col-md-3">

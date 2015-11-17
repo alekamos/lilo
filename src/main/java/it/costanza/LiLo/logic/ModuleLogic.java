@@ -5,6 +5,7 @@ package it.costanza.LiLo.logic;
 
 import it.costanza.LiLo.bean.ModuleDayHost;
 import it.costanza.LiLo.bean.ModuleExtended;
+import it.costanza.LiLo.bean.ModuleFinder;
 import it.costanza.LiLo.bean.NavigatorElement;
 import it.costanza.LiLo.bean.NavigatorSearch;
 import it.costanza.LiLo.dao.ModuleClusterDao;
@@ -534,5 +535,13 @@ public class ModuleLogic {
 
 
 
+	}
+
+
+
+	public ArrayList<ModuleExtended> getDayHostList(ModuleFinder moduleFinder,
+			User user) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

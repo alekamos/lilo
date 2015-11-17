@@ -71,6 +71,11 @@ public class DiaryAction extends ActionSupport{
 			moduleExtendedList = ml.getModuleExtendList(moduleFinder.getIdModuleCluster(), user);
 			strutsResult = Const.MULTIPLE_MODULE_VIEW;
 		}
+		else if (moduleFinder.getStartDate()!=null && moduleFinder.getEndDate()!=null && moduleFinder.getIdModuleType()!=null) {
+			//caso in cui si cercano tutte le giornate contenenti un dato modulo
+			moduleExtendedList = ml.getDayHostList(moduleFinder,user);
+			strutsResult = Const.MULTIPLE_MODULE_VIEW;
+		}
 		else if(moduleFinder.getCriteria()!=null){
 			//caso in cui e' specificato un criterio
 			switch (moduleFinder.getCriteria()) {
