@@ -9,7 +9,10 @@ $(document).ready(function() {
 
 	//Datepicker pronto al caricamento della pagina
 	$(".jqDatePicker").datepicker({
-		dateFormat: "dd/mm/yy"
+		dateFormat: "dd/mm/yy",
+		changeMonth: true,
+		changeYear: true
+		
 	});
 	
 	//datetimepicker
