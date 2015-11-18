@@ -23,8 +23,8 @@
 </h1>
 
 <!-- TASTI DELETE/UPDATE -->
-<a href="${update_url}"><span class="glyphicon glyphicon-pencil"></span></a>
-<a><span class="glyphicon glyphicon-remove" data-toggle="modal" data-target="#myModal"></span></a>
+<a href="${update_url}" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+<a type="button" class="btn btn-primary"><span class="glyphicon glyphicon-remove"  data-toggle="modal" data-target="#myModal"></span> Delete</a>
 
 
 
