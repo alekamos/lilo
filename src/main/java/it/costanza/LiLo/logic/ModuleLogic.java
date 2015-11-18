@@ -514,7 +514,7 @@ public class ModuleLogic {
 
 		//occorre eliminare il precedente cluster legato alla vecchia data
 		ArrayList<ModuleCluster> moduleClusterFound = mcdao.searchByUserAndIdCluster(moduleCluster);
-		//Sono presenti più di 2 moduli devo eliminare solo la riga del modulo elminato idMOdule+il modulo
+		//Sono presenti piu' di 2 moduli devo eliminare solo la riga del modulo elminato idMOdule+il modulo
 		
 		//CANCELLO IL MODULO IN QUESTIONE
 		mhdao.delete(moduleCluster.getIdModule());
