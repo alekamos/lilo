@@ -3,6 +3,12 @@
 <%@ taglib uri="/struts-tags" prefix="s"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+
+<% pageContext.setAttribute("newLine", "\n"); %>
+<c:set var="subs" value="<br/>"/>
+
+
 
 <!-- GENERAZIONE URL -->
 <c:url value="gotoUpdateModule" var="update_url">
@@ -48,26 +54,22 @@
 </div>
 
 
-
-<!-- MODULE HEADER  -->
 <c:if
 	test="${(moduleExtended.moduleType.textContent1Name != null && moduleExtended.moduleType.textContent1Name != '') || (moduleExtended.moduleType.textContent2Name != null && moduleExtended.moduleType.textContent2Name != '') || (moduleExtended.moduleType.textContent3Name != null && moduleExtended.moduleType.textContent3Name != '')}">
 <!-- 	<h3>Module text</h3> -->
 	<c:if test="${moduleExtended.moduleType.textContent1Name != null}">
-
 		<h3 class="upper-case"><c:out value="${moduleExtended.moduleType.textContent1Name}"/></h3>
-		<c:out value="${moduleExtended.moduleText.text1Value}"/>
-		
+		<c:out value="${fn:replace(moduleExtended.moduleText.text1Value, newLine, subs)}" escapeXml="false"/>
 	</c:if>
 	<br />
 	<c:if test="${moduleExtended.moduleType.textContent2Name != null}">
 		<h3 class="upper-case"><c:out value="${moduleExtended.moduleType.textContent2Name}" /></h3>
-		<c:out value="${moduleExtended.moduleText.text2Value}"></c:out>
+		<c:out value="${moduleExtended.moduleText.text2Value}" escapeXml="false"/>
 	</c:if>
 	<br />
 	<c:if test="${moduleExtended.moduleType.textContent3Name != null}">
 		<h3 class="upper-case"><c:out value="${moduleExtended.moduleType.textContent3Name}" /></h3>
-		<c:out value="${moduleExtended.moduleText.text3Value}"></c:out>
+		<c:out value="${moduleExtended.moduleText.text3Value}" escapeXml="false"/>
 	</c:if>
 	<br />
 </c:if>
