@@ -3,6 +3,7 @@
  */
 package it.costanza.LiLo.logic;
 
+import it.costanza.LiLo.bean.GraphBean;
 import it.costanza.LiLo.bean.ModuleDayHost;
 import it.costanza.LiLo.bean.ModuleExtended;
 import it.costanza.LiLo.bean.ModuleFinder;
@@ -28,6 +29,8 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import org.apache.log4j.Logger;
+
+import sun.security.pkcs11.Secmod.DbMode;
 
 /**
  * @author costanza
@@ -532,16 +535,23 @@ public class ModuleLogic {
 		}
 
 
-
-
-
 	}
 
 
-
+/**
+ * Metodo che cerca più dayHost
+ * @param moduleFinder
+ * @param user
+ * @return
+*/
 	public ArrayList<ModuleExtended> getDayHostList(ModuleFinder moduleFinder,
 			User user) {
-		// TODO Auto-generated method stub
+
+		ModuleDayHostDao mdhDao = new ModuleDayHostDao();
+		ArrayList<ModuleDayHost> dayHostList = mdhDao.searchDayHostListCriteria(moduleFinder);
+
+		
+		
 		return null;
 	}
 }

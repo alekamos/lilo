@@ -6,6 +6,7 @@ import org.apache.ibatis.exceptions.PersistenceException;
 import org.apache.ibatis.session.SqlSession;
 
 import it.costanza.LiLo.bean.ModuleDayHost;
+import it.costanza.LiLo.bean.ModuleFinder;
 import it.costanza.LiLo.bean.NavigatorElement;
 import it.costanza.LiLo.bean.NavigatorSearch;
 import it.costanza.LiLo.util.Const;
@@ -59,6 +60,23 @@ public class ModuleDayHostDao extends MyBatisDAO<ModuleDayHost, Integer>{
 			session.close();
 		}   
 		return moduleDayHost;
+	}
+
+
+	public ArrayList<ModuleDayHost> searchDayHostListCriteria(
+			ModuleFinder moduleFinder) {
+		SqlSession session = MyBatisLoader.getSqlSession();
+		List<ModuleDayHost> list;
+		try
+		{					
+			String query = Const.NS_PREFIX+this.getClass().getSimpleName().replace("Dao", "")+Const.NS_SUFFIX+"."+"selectListDayHostCriteria";
+			list = session.selectList(query,moduleFinder); 
+		}
+		finally
+		{
+			session.close();
+		}   
+		return (ArrayList<ModuleDayHost>) list;
 	}
 
 
