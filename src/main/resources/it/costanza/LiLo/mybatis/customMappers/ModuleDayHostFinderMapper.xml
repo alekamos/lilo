@@ -49,6 +49,13 @@
 		ORDER BY RAND()
 		LIMIT 1;
 	</select>
+	
+	<select id="selectListDayHostCriteria" resultMap="DayHostBaseResultMap"
+		parameterType="it.costanza.LiLo.bean.ModuleFinder">
+		SELECT <include refid="Base_Column_List" />
+		FROM MODULES_DAYHOST
+		WHERE ID_USER = #{idUser,jdbcType=INTEGER};
+	</select>
 
 
 </mapper>
