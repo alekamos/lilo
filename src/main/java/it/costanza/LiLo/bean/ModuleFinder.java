@@ -15,6 +15,7 @@ public class ModuleFinder {
 	private Integer idModule;
 	private Integer idModuleCluster;
 	private Integer idModuleType;
+	private Integer idUser;
 	private Date dateDayHost;
 	private String startDate;
 	private String endDate;
@@ -45,8 +46,19 @@ public class ModuleFinder {
 	public void setDateDayHost(Date dateDayHost) {
 		this.dateDayHost = dateDayHost;
 	}
+	
 
 	
+	public Integer getIdUser() {
+		return idUser;
+	}
+
+
+	public void setIdUser(Integer idUser) {
+		this.idUser = idUser;
+	}
+
+
 	@Override
 	public String toString() {
     	
@@ -54,6 +66,8 @@ public class ModuleFinder {
     	ArrayList<String> valori = new ArrayList<String>();
     	
     	
+    	
+    	chiavi.add("idUser");
     	chiavi.add("idModule");
     	chiavi.add("idModuleCluster");
     	chiavi.add("idModuleType");
@@ -65,17 +79,17 @@ public class ModuleFinder {
     	chiavi.add("criteria");
     	chiavi.add("containedText");
 
-    	
-    	valori.add("idModule"+"");
-    	valori.add("idModuleCluster"+"");
-    	valori.add("idModuleType"+"");
-    	valori.add("dateDayHost"+"");
-    	valori.add("startDate"+"");
-    	valori.add("endDate"+"");
-    	valori.add("startDateDt"+"");
-    	valori.add("endDateDt"+"");
-    	valori.add("criteria"+"");
-    	valori.add("containedText"+"");
+    	valori.add(idUser+"");
+    	valori.add(idModule+"");
+    	valori.add(idModuleCluster+"");
+    	valori.add(idModuleType+"");
+    	valori.add(dateDayHost+"");
+    	valori.add(startDate+"");
+    	valori.add(endDate+"");
+    	valori.add(startDateDt+"");
+    	valori.add(endDateDt+"");
+    	valori.add(criteria+"");
+    	valori.add(containedText+"");
 
     	
     	return Utility.toStringPerBean(chiavi, valori);

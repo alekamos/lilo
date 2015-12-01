@@ -487,7 +487,7 @@ public class ModuleLogic {
 
 			//occorre eliminare il precedente cluster legato alla vecchia data
 			ArrayList<ModuleCluster> moduleClusterFound = mcdao.searchByUserAndIdCluster(moduleExtended.getModuleCluster());
-			
+
 			//TODO CODICE RIPETUTO FIXARE (1) CERCARE (2)
 			//Sono presenti piu' di 2 moduli devo eliminare solo la riga del modulo modificato idMOdule
 			if(moduleClusterFound.size()>2)
@@ -518,10 +518,10 @@ public class ModuleLogic {
 		//occorre eliminare il precedente cluster legato alla vecchia data
 		ArrayList<ModuleCluster> moduleClusterFound = mcdao.searchByUserAndIdCluster(moduleCluster);
 		//Sono presenti piu' di 2 moduli devo eliminare solo la riga del modulo elminato idMOdule+il modulo
-		
+
 		//CANCELLO IL MODULO IN QUESTIONE
 		mhdao.delete(moduleCluster.getIdModule());
-		
+
 		//TODO CODICE RIPETUTO FIXARE (1) CERCARE (2)
 		if(moduleClusterFound.size()>2){
 			mcdao.deleteByIdModule(moduleCluster);
@@ -538,20 +538,24 @@ public class ModuleLogic {
 	}
 
 
-/**
- * Metodo che cerca più dayHost
- * @param moduleFinder
- * @param user
- * @return
-*/
+	/**
+	 * Metodo che cerca più dayHost
+	 * @param moduleFinder
+	 * @param user
+	 * @return
+	 */
 	public ArrayList<ModuleExtended> getDayHostList(ModuleFinder moduleFinder,
 			User user) {
 
+		moduleFinder.setIdUser(user.getIdUser());
+		
 		ModuleDayHostDao mdhDao = new ModuleDayHostDao();
 		ArrayList<ModuleDayHost> dayHostList = mdhDao.searchDayHostListCriteria(moduleFinder);
+		for (ModuleDayHost moduleDayHost : dayHostList) {
+			log.debug(moduleDayHost);
+		}
 
-		
-		
+
 		return null;
 	}
 }
