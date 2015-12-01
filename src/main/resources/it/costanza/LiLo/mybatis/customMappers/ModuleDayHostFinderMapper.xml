@@ -43,18 +43,39 @@
 
 	<select id="selectRandomDayHost" resultMap="DayHostBaseResultMap"
 		parameterType="it.costanza.LiLo.bean.ModuleDayHost">
-		SELECT <include refid="Base_Column_List" />
+		SELECT
+		<include refid="Base_Column_List" />
 		FROM MODULES_DAYHOST
 		WHERE ID_USER = #{idUser,jdbcType=INTEGER}
-		ORDER BY RAND()
+		ORDER BY
+		RAND()
 		LIMIT 1;
 	</select>
-	
+
 	<select id="selectListDayHostCriteria" resultMap="DayHostBaseResultMap"
 		parameterType="it.costanza.LiLo.bean.ModuleFinder">
-		SELECT <include refid="Base_Column_List" />
-		FROM MODULES_DAYHOST
-		WHERE ID_USER = #{idUser,jdbcType=INTEGER};
+		SELECT
+		DISTINCT(DH.DATE_DAYHOST)
+		FROM MODULES_DAYHOST DH
+		<if test="idModuleType != null">
+			, MODULES_CLUSTER MC
+		</if>
+		<if test="containedText != null">
+			, MODULES_TEXT MT
+		</if>
+		WHERE DH.ID_USER = #{idUser,jdbcType=INTEGER}
+		<if test="idModuleType != null">
+			AND MC.id_module_cluster = DH.id_module_cluster
+			AND MC.id_module_type = #{idModuleType,jdbcType=INTEGER}
+		</if>
+		<if test="startDateDt != null">
+			AND DH.DATE_DAYHOST <![CDATA[ >= ]]>
+			#{startDateDt,jdbcType=DATE}
+		</if>
+		<if test="endDateDt != null">
+			AND DH.DATE_DAYHOST <![CDATA[ <= ]]>
+			#{endDateDt,jdbcType=DATE}
+		</if>
 	</select>
 
 
