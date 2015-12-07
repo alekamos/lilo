@@ -3,7 +3,6 @@
  */
 package it.costanza.LiLo.logic;
 
-import it.costanza.LiLo.bean.GraphBean;
 import it.costanza.LiLo.bean.ModuleDayHost;
 import it.costanza.LiLo.bean.ModuleExtended;
 import it.costanza.LiLo.bean.ModuleFinder;
@@ -30,7 +29,6 @@ import java.util.Date;
 
 import org.apache.log4j.Logger;
 
-import sun.security.pkcs11.Secmod.DbMode;
 
 /**
  * @author costanza
@@ -539,26 +537,68 @@ public class ModuleLogic {
 
 
 	/**
-	 * Metodo che cerca piï¿½ dayHost
+	 * Metodo che cerca piu dayHost
 	 * @param moduleFinder
 	 * @param user
 	 * @return
 	 */
-	public ArrayList<ModuleExtended> getDayHostList(ModuleFinder moduleFinder,
+	public ArrayList<ModuleDayHost> getDayHostList(ModuleFinder moduleFinder,
 			User user) {
-		
-		ArrayList<ModuleExtended> meList = new ArrayList<ModuleExtended>();
-		moduleFinder.setIdUser(user.getIdUser());
-		StatLogic sl = new StatLogic();
 
+		moduleFinder.setIdUser(user.getIdUser());
 		ModuleDayHostDao mdhDao = new ModuleDayHostDao();
 		ArrayList<ModuleDayHost> dayHostList = mdhDao.searchDayHostListCriteria(moduleFinder);
-		for (ModuleDayHost moduleDayHost : dayHostList) {
-			log.debug(moduleDayHost);
-			getModuleExtendList((int) moduleDayHost.getIdModuleCluster(), user);
+
+
+
+		return dayHostList;
+	}
+
+
+
+
+
+	/**
+	 * Il metodo crea l'oggetto navigator a partire da una lista di dayHostList
+	 * @param dayHostList
+	 * @return
+	 */
+	public ArrayList<NavigatorElement> buildNavigatorFromDayHostList(
+			ArrayList<ModuleDayHost> dayHostList, Date dateStart,Date dateEnd) {
+		
+		if(dayHostList==null || dayHostList.size()==0)
+			return null;
+		
+		if(dateStart==null)
+			dateStart = dayHostList.get(0).getDateDayHost();
+		
+		if(dateEnd==null)
+			dateEnd = dayHostList.get(dayHostList.size()-1).getDateDayHost();
+		
+		ArrayList<NavigatorElement> neList = new ArrayList<NavigatorElement>();
+
+		//Contorllo se la data di partenza è uguale al primo giorno del dayHostList
+		int contatoreDayHostList = 0;
+
+
+		while (Utility.calcolaDiffGiorni(dateStart,dateEnd)>=0) {
+			NavigatorElement ne = new NavigatorElement();
+			//caso in cui è presente la data all'interno del moduleDayHostList
+			if(Utility.calcolaDiffGiorni(dateStart, dayHostList.get(contatoreDayHostList).getDateDayHost())==0){
+				ne.setDateDay(dayHostList.get(contatoreDayHostList).getDateDayHost());
+				ne.setIdModuleCluster((int) dayHostList.get(contatoreDayHostList).getIdModuleCluster());
+				contatoreDayHostList++;
+			}else{//caso in cui non è presente un giorno nell'array di ModuleDayHostList
+				ne.setDateDay(dateStart);
+				ne.setIdModuleCluster(null);
+			}
+				
+			
+			neList.add(ne);
+			//Aumento contatori e data iniziale
+			dateStart = Utility.aggiungiTogliGiorno(dateStart, 1);
 		}
 
-
-		return null;
+		return neList;
 	}
 }

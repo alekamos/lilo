@@ -10,14 +10,16 @@ import javax.xml.bind.JAXBException;
 
 import org.apache.log4j.Logger;
 
+import it.costanza.LiLo.bean.DashBoardBean;
+import it.costanza.LiLo.bean.GraphBean;
+import it.costanza.LiLo.bean.ModuleDayHost;
 import it.costanza.LiLo.bean.ModuleExtended;
 import it.costanza.LiLo.bean.ModuleFinder;
 import it.costanza.LiLo.bean.NavigatorElement;
-import it.costanza.LiLo.dao.ModuleTypeDao;
 import it.costanza.LiLo.exception.UnauthorizedContent;
 import it.costanza.LiLo.logic.ModuleLogic;
+import it.costanza.LiLo.logic.StatLogic;
 import it.costanza.LiLo.logic.UserLogic;
-import it.costanza.LiLo.mybatis.bean.ModuleHeader;
 import it.costanza.LiLo.mybatis.bean.ModuleType;
 import it.costanza.LiLo.mybatis.bean.User;
 import it.costanza.LiLo.util.Const;
@@ -40,6 +42,7 @@ public class DiaryAction extends ActionSupport{
 	private ArrayList<ModuleType> userModuleType;
 	private ArrayList<NavigatorElement> navigatorElementList;
 	private String xmlInOut;
+	private DashBoardBean dashBoardBean;
 
 
 
@@ -71,10 +74,19 @@ public class DiaryAction extends ActionSupport{
 			moduleExtendedList = ml.getModuleExtendList(moduleFinder.getIdModuleCluster(), user);
 			strutsResult = Const.MULTIPLE_MODULE_VIEW;
 		}
-		else if (moduleFinder.getStartDate()!=null || moduleFinder.getEndDate()!=null || moduleFinder.getIdModuleType()!=null || moduleFinder.getContainedText()!=null) {
+		else if (moduleFinder.getStartDateDt()!=null || moduleFinder.getEndDateDt()!=null || moduleFinder.getIdModuleType()!=null || moduleFinder.getContainedText()!=null) {
 			//caso in cui si cercano tutte le giornate contenenti un dato modulo
-			moduleExtendedList = ml.getDayHostList(moduleFinder,user);
-			strutsResult = Const.MULTIPLE_MODULE_VIEW;
+			ArrayList<ModuleDayHost> dayHostList = ml.getDayHostList(moduleFinder,user);
+			strutsResult = Const.NAVIGATOR_SHOW_VIEW;
+			navigatorElementList = ml.buildNavigatorFromDayHostList(dayHostList,moduleFinder.getStartDateDt(),moduleFinder.getEndDateDt());
+			
+			StatLogic st = new StatLogic();
+			dashBoardBean = new DashBoardBean();
+			//dati histo
+			GraphBean graph = st.buildDatasetPresenceModuleFromNavigator(navigatorElementList, "Date", "Presence");
+			dashBoardBean.setGraphBean(graph);
+			
+			return strutsResult;
 		}
 		else if(moduleFinder.getCriteria()!=null){
 			//caso in cui e' specificato un criterio
@@ -255,6 +267,12 @@ public class DiaryAction extends ActionSupport{
 
 	public void setXmlInOut(String xmlInOut) {
 		this.xmlInOut = xmlInOut;
+	}
+	public DashBoardBean getDashBoardBean() {
+		return dashBoardBean;
+	}
+	public void setDashBoardBean(DashBoardBean dashBoardBean) {
+		this.dashBoardBean = dashBoardBean;
 	}
 
 }

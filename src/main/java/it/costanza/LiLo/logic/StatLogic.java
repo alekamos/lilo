@@ -114,6 +114,48 @@ public class StatLogic {
 		
 		return gpBean;
 	}
+	
+	/**
+	 * Crea il datasset per l'istogramma di amchart con data in formato yyyyMMdd, in out setta nuovamente il dashBoardBean
+	 * @param nav
+	 * @param xlabel senza apici
+	 * @param ylabel senza apici
+	 * @return
+	 */
+	public GraphBean buildDatasetPresenceModuleFromNavigator(
+			ArrayList<NavigatorElement> nav,String xlabel,String ylabel) {
+
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		String dataset = "";
+		String xdata = "";
+		String ydata = "";
+		
+
+		for (NavigatorElement navigatorElement : nav) {
+			//Creazione Stringa
+			if(!dataset.equals(""))
+				dataset+=V;
+
+			xdata =sdf.format(navigatorElement.getDateDay());
+			
+			if(navigatorElement.getIdModuleCluster() != null && navigatorElement.getIdModuleCluster()!=0)
+				ydata = 1+"";
+			else
+				ydata = 0+"";
+			
+
+			dataset += OG+AP+xlabel+AP+DP+AP+xdata+AP+V+AP+ylabel+AP+DP+ydata+CG;
+				
+		}
+		//Set dei parametri
+		GraphBean gpBean = new GraphBean();
+		gpBean.setXlabel(AP+xlabel+AP);
+		gpBean.setYlabel(AP+ylabel+AP);
+		gpBean.setDataset(dataset);
+		
+		
+		return gpBean;
+	}
 
 
 }
