@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+
+	<context id="A1DBTables" targetRuntime="MyBatis3">
+
+		<commentGenerator>
+			<property name="suppressAllComments" value="true" />
+			<property name="suppressDate" value="true" />
+		</commentGenerator>
+
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://localhost:3306/A1DB" userId="root"
+			password="maverick02">
+		</jdbcConnection>
+
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<javaModelGenerator targetPackage="it.costanza.LiLo.mybatis.bean"
+			targetProject="LiLo/src/main/java">
+		</javaModelGenerator>
+
+		<sqlMapGenerator targetPackage="it.costanza.LiLo.mybatis.mappers"
+			targetProject="LiLo/src/main/java">
+		</sqlMapGenerator>
+
+
+
+
+		<table schema="A1DB" tableName="CALENDAR" domainObjectName="Calendar"
+			enableCountByExample="false" enableSelectByExample="false"
+			enableDeleteByExample="false" enableUpdateByExample="false"
+			selectByExampleQueryId="false"></table>
+		<table schema="A1DB" tableName="USERS" domainObjectName="User"
+			enableCountByExample="false" enableSelectByExample="false"
+			enableDeleteByExample="false" enableUpdateByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="ID_USER" sqlStatement="MySql"
+				identity="true" />
+		</table>
+		<table schema="A1DB" tableName="MODULES_HEADER"
+			domainObjectName="ModuleHeader" enableCountByExample="false"
+			enableSelectByExample="false" enableDeleteByExample="false"
+			enableUpdateByExample="false" selectByExampleQueryId="false">
+			<generatedKey column="ID_MODULE" sqlStatement="MySql"
+				identity="true" />
+		</table>
+		<table schema="A1DB" tableName="MODULES_CLUSTER"
+			domainObjectName="ModuleCluster" enableCountByExample="false"
+			enableSelectByExample="false" enableDeleteByExample="false"
+			enableUpdateByExample="false" selectByExampleQueryId="false">
+
+		</table>
+		<table schema="A1DB" tableName="MODULES_TYPES" domainObjectName="ModuleType"
+			enableCountByExample="false" enableSelectByExample="false"
+			enableDeleteByExample="false" enableUpdateByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="ID_MODULE_TYPE" sqlStatement="MySql"
+				identity="true" />
+		</table>
+		<table schema="A1DB" tableName="MODULES_NUMERIC_DATA"
+			domainObjectName="ModuleNumeric" enableCountByExample="false"
+			enableSelectByExample="false" enableDeleteByExample="false"
+			enableUpdateByExample="false" selectByExampleQueryId="false">
+			
+		</table>
+		<table schema="A1DB" tableName="MODULES_DATETIME"
+			domainObjectName="ModuleDatetime" enableCountByExample="false"
+			enableSelectByExample="false" enableDeleteByExample="false"
+			enableUpdateByExample="false" selectByExampleQueryId="false">
+
+		</table>
+		<table schema="A1DB" tableName="MODULES_TEXT" domainObjectName="ModuleText"
+			enableCountByExample="false" enableSelectByExample="false"
+			enableDeleteByExample="false" enableUpdateByExample="false"
+			selectByExampleQueryId="false">
+		</table>
+		<table schema="A1DB" tableName="MODULES_LIST" domainObjectName="ModuleList"
+			enableCountByExample="false" enableSelectByExample="false"
+			enableDeleteByExample="false" enableUpdateByExample="false"
+			selectByExampleQueryId="false">
+		</table>
+		<table schema="A1DB" tableName="LIST_ELEMENTS" domainObjectName="ListElement"
+			enableCountByExample="false" enableSelectByExample="false"
+			enableDeleteByExample="false" enableUpdateByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="ID_ELEMENT" sqlStatement="MySql"
+				identity="true" />
+		</table>
+		<table schema="A1DB" tableName="USER_SETTINGS" domainObjectName="UserSettings"
+			enableCountByExample="false" enableSelectByExample="false"
+			enableDeleteByExample="false" enableUpdateByExample="false"
+			selectByExampleQueryId="false">
+		</table>
+		<table schema="A1DB" tableName="MODULE_TYPE_SETTINGS"
+			domainObjectName="ModuleTypeSettings" enableCountByExample="false"
+			enableSelectByExample="false" enableDeleteByExample="false"
+			enableUpdateByExample="false" selectByExampleQueryId="false">
+			<generatedKey column="ID_MODULE_TYPE" sqlStatement="MySql"
+				identity="true" />
+		</table>
+		<table schema="A1DB" tableName="PROPERTIES" domainObjectName="Property"
+			enableCountByExample="false" enableSelectByExample="false"
+			enableDeleteByExample="false" enableUpdateByExample="false"
+			selectByExampleQueryId="false">
+			<generatedKey column="ID_PROPERTY" sqlStatement="MySql"
+				identity="true" />
+		</table>
+
+
+
+	</context>
+</generatorConfiguration>

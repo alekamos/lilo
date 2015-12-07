@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="it.costanza.LiLo.mybatis.mappers.ModuleTypeMapper" >
+  <resultMap id="BaseResultMap" type="it.costanza.LiLo.mybatis.bean.ModuleType" >
+    <id column="ID_MODULE_TYPE" property="idModuleType" jdbcType="INTEGER" />
+    <result column="ID_USER" property="idUser" jdbcType="INTEGER" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+    <result column="TEXT_CONTENT_1_NAME" property="textContent1Name" jdbcType="VARCHAR" />
+    <result column="TEXT_CONTENT_2_NAME" property="textContent2Name" jdbcType="VARCHAR" />
+    <result column="TEXT_CONTENT_3_NAME" property="textContent3Name" jdbcType="VARCHAR" />
+    <result column="LIST_CONTENT_1_NAME" property="listContent1Name" jdbcType="VARCHAR" />
+    <result column="LIST_CONTENT_1_TYPE" property="listContent1Type" jdbcType="VARCHAR" />
+    <result column="LIST_CONTENT_2_NAME" property="listContent2Name" jdbcType="VARCHAR" />
+    <result column="LIST_CONTENT_2_TYPE" property="listContent2Type" jdbcType="VARCHAR" />
+    <result column="LIST_CONTENT_3_NAME" property="listContent3Name" jdbcType="VARCHAR" />
+    <result column="LIST_CONTENT_3_TYPE" property="listContent3Type" jdbcType="VARCHAR" />
+    <result column="NUMERIC_DATA_CONTENT_1_NAME" property="numericDataContent1Name" jdbcType="VARCHAR" />
+    <result column="NUMERIC_DATA_CONTENT_1_TYPE" property="numericDataContent1Type" jdbcType="VARCHAR" />
+    <result column="NUMERIC_DATA_CONTENT_2_NAME" property="numericDataContent2Name" jdbcType="VARCHAR" />
+    <result column="NUMERIC_DATA_CONTENT_2_TYPE" property="numericDataContent2Type" jdbcType="VARCHAR" />
+    <result column="NUMERIC_DATA_CONTENT_3_NAME" property="numericDataContent3Name" jdbcType="VARCHAR" />
+    <result column="NUMERIC_DATA_CONTENT_3_TYPE" property="numericDataContent3Type" jdbcType="VARCHAR" />
+    <result column="DATETIME_CONTENT_1_NAME" property="datetimeContent1Name" jdbcType="VARCHAR" />
+    <result column="DATETIME_CONTENT_1_TYPE" property="datetimeContent1Type" jdbcType="VARCHAR" />
+    <result column="DATETIME_CONTENT_2_NAME" property="datetimeContent2Name" jdbcType="VARCHAR" />
+    <result column="DATETIME_CONTENT_2_TYPE" property="datetimeContent2Type" jdbcType="VARCHAR" />
+    <result column="DATETIME_CONTENT_3_NAME" property="datetimeContent3Name" jdbcType="VARCHAR" />
+    <result column="DATETIME_CONTENT_3_TYPE" property="datetimeContent3Type" jdbcType="VARCHAR" />
+    <result column="INSERT_TIMESTAMP" property="insertTimestamp" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIMESTAMP" property="updateTimestamp" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID_MODULE_TYPE, ID_USER, NAME, DESCRIPTION, TEXT_CONTENT_1_NAME, TEXT_CONTENT_2_NAME, 
+    TEXT_CONTENT_3_NAME, LIST_CONTENT_1_NAME, LIST_CONTENT_1_TYPE, LIST_CONTENT_2_NAME, 
+    LIST_CONTENT_2_TYPE, LIST_CONTENT_3_NAME, LIST_CONTENT_3_TYPE, NUMERIC_DATA_CONTENT_1_NAME, 
+    NUMERIC_DATA_CONTENT_1_TYPE, NUMERIC_DATA_CONTENT_2_NAME, NUMERIC_DATA_CONTENT_2_TYPE, 
+    NUMERIC_DATA_CONTENT_3_NAME, NUMERIC_DATA_CONTENT_3_TYPE, DATETIME_CONTENT_1_NAME, 
+    DATETIME_CONTENT_1_TYPE, DATETIME_CONTENT_2_NAME, DATETIME_CONTENT_2_TYPE, DATETIME_CONTENT_3_NAME, 
+    DATETIME_CONTENT_3_TYPE, INSERT_TIMESTAMP, UPDATE_TIMESTAMP
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from MODULES_TYPES
+    where ID_MODULE_TYPE = #{idModuleType,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from MODULES_TYPES
+    where ID_MODULE_TYPE = #{idModuleType,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="it.costanza.LiLo.mybatis.bean.ModuleType" >
+    <selectKey resultType="java.lang.Integer" keyProperty="idModuleType" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into MODULES_TYPES (ID_USER, NAME, DESCRIPTION, 
+      TEXT_CONTENT_1_NAME, TEXT_CONTENT_2_NAME, TEXT_CONTENT_3_NAME, 
+      LIST_CONTENT_1_NAME, LIST_CONTENT_1_TYPE, LIST_CONTENT_2_NAME, 
+      LIST_CONTENT_2_TYPE, LIST_CONTENT_3_NAME, LIST_CONTENT_3_TYPE, 
+      NUMERIC_DATA_CONTENT_1_NAME, NUMERIC_DATA_CONTENT_1_TYPE, 
+      NUMERIC_DATA_CONTENT_2_NAME, NUMERIC_DATA_CONTENT_2_TYPE, 
+      NUMERIC_DATA_CONTENT_3_NAME, NUMERIC_DATA_CONTENT_3_TYPE, 
+      DATETIME_CONTENT_1_NAME, DATETIME_CONTENT_1_TYPE, 
+      DATETIME_CONTENT_2_NAME, DATETIME_CONTENT_2_TYPE, 
+      DATETIME_CONTENT_3_NAME, DATETIME_CONTENT_3_TYPE, 
+      INSERT_TIMESTAMP, UPDATE_TIMESTAMP)
+    values (#{idUser,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{textContent1Name,jdbcType=VARCHAR}, #{textContent2Name,jdbcType=VARCHAR}, #{textContent3Name,jdbcType=VARCHAR}, 
+      #{listContent1Name,jdbcType=VARCHAR}, #{listContent1Type,jdbcType=VARCHAR}, #{listContent2Name,jdbcType=VARCHAR}, 
+      #{listContent2Type,jdbcType=VARCHAR}, #{listContent3Name,jdbcType=VARCHAR}, #{listContent3Type,jdbcType=VARCHAR}, 
+      #{numericDataContent1Name,jdbcType=VARCHAR}, #{numericDataContent1Type,jdbcType=VARCHAR}, 
+      #{numericDataContent2Name,jdbcType=VARCHAR}, #{numericDataContent2Type,jdbcType=VARCHAR}, 
+      #{numericDataContent3Name,jdbcType=VARCHAR}, #{numericDataContent3Type,jdbcType=VARCHAR}, 
+      #{datetimeContent1Name,jdbcType=VARCHAR}, #{datetimeContent1Type,jdbcType=VARCHAR}, 
+      #{datetimeContent2Name,jdbcType=VARCHAR}, #{datetimeContent2Type,jdbcType=VARCHAR}, 
+      #{datetimeContent3Name,jdbcType=VARCHAR}, #{datetimeContent3Type,jdbcType=VARCHAR}, 
+      #{insertTimestamp,jdbcType=TIMESTAMP}, #{updateTimestamp,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="it.costanza.LiLo.mybatis.bean.ModuleType" >
+    <selectKey resultType="java.lang.Integer" keyProperty="idModuleType" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into MODULES_TYPES
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="idUser != null" >
+        ID_USER,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="description != null" >
+        DESCRIPTION,
+      </if>
+      <if test="textContent1Name != null" >
+        TEXT_CONTENT_1_NAME,
+      </if>
+      <if test="textContent2Name != null" >
+        TEXT_CONTENT_2_NAME,
+      </if>
+      <if test="textContent3Name != null" >
+        TEXT_CONTENT_3_NAME,
+      </if>
+      <if test="listContent1Name != null" >
+        LIST_CONTENT_1_NAME,
+      </if>
+      <if test="listContent1Type != null" >
+        LIST_CONTENT_1_TYPE,
+      </if>
+      <if test="listContent2Name != null" >
+        LIST_CONTENT_2_NAME,
+      </if>
+      <if test="listContent2Type != null" >
+        LIST_CONTENT_2_TYPE,
+      </if>
+      <if test="listContent3Name != null" >
+        LIST_CONTENT_3_NAME,
+      </if>
+      <if test="listContent3Type != null" >
+        LIST_CONTENT_3_TYPE,
+      </if>
+      <if test="numericDataContent1Name != null" >
+        NUMERIC_DATA_CONTENT_1_NAME,
+      </if>
+      <if test="numericDataContent1Type != null" >
+        NUMERIC_DATA_CONTENT_1_TYPE,
+      </if>
+      <if test="numericDataContent2Name != null" >
+        NUMERIC_DATA_CONTENT_2_NAME,
+      </if>
+      <if test="numericDataContent2Type != null" >
+        NUMERIC_DATA_CONTENT_2_TYPE,
+      </if>
+      <if test="numericDataContent3Name != null" >
+        NUMERIC_DATA_CONTENT_3_NAME,
+      </if>
+      <if test="numericDataContent3Type != null" >
+        NUMERIC_DATA_CONTENT_3_TYPE,
+      </if>
+      <if test="datetimeContent1Name != null" >
+        DATETIME_CONTENT_1_NAME,
+      </if>
+      <if test="datetimeContent1Type != null" >
+        DATETIME_CONTENT_1_TYPE,
+      </if>
+      <if test="datetimeContent2Name != null" >
+        DATETIME_CONTENT_2_NAME,
+      </if>
+      <if test="datetimeContent2Type != null" >
+        DATETIME_CONTENT_2_TYPE,
+      </if>
+      <if test="datetimeContent3Name != null" >
+        DATETIME_CONTENT_3_NAME,
+      </if>
+      <if test="datetimeContent3Type != null" >
+        DATETIME_CONTENT_3_TYPE,
+      </if>
+      <if test="insertTimestamp != null" >
+        INSERT_TIMESTAMP,
+      </if>
+      <if test="updateTimestamp != null" >
+        UPDATE_TIMESTAMP,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="idUser != null" >
+        #{idUser,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="textContent1Name != null" >
+        #{textContent1Name,jdbcType=VARCHAR},
+      </if>
+      <if test="textContent2Name != null" >
+        #{textContent2Name,jdbcType=VARCHAR},
+      </if>
+      <if test="textContent3Name != null" >
+        #{textContent3Name,jdbcType=VARCHAR},
+      </if>
+      <if test="listContent1Name != null" >
+        #{listContent1Name,jdbcType=VARCHAR},
+      </if>
+      <if test="listContent1Type != null" >
+        #{listContent1Type,jdbcType=VARCHAR},
+      </if>
+      <if test="listContent2Name != null" >
+        #{listContent2Name,jdbcType=VARCHAR},
+      </if>
+      <if test="listContent2Type != null" >
+        #{listContent2Type,jdbcType=VARCHAR},
+      </if>
+      <if test="listContent3Name != null" >
+        #{listContent3Name,jdbcType=VARCHAR},
+      </if>
+      <if test="listContent3Type != null" >
+        #{listContent3Type,jdbcType=VARCHAR},
+      </if>
+      <if test="numericDataContent1Name != null" >
+        #{numericDataContent1Name,jdbcType=VARCHAR},
+      </if>
+      <if test="numericDataContent1Type != null" >
+        #{numericDataContent1Type,jdbcType=VARCHAR},
+      </if>
+      <if test="numericDataContent2Name != null" >
+        #{numericDataContent2Name,jdbcType=VARCHAR},
+      </if>
+      <if test="numericDataContent2Type != null" >
+        #{numericDataContent2Type,jdbcType=VARCHAR},
+      </if>
+      <if test="numericDataContent3Name != null" >
+        #{numericDataContent3Name,jdbcType=VARCHAR},
+      </if>
+      <if test="numericDataContent3Type != null" >
+        #{numericDataContent3Type,jdbcType=VARCHAR},
+      </if>
+      <if test="datetimeContent1Name != null" >
+        #{datetimeContent1Name,jdbcType=VARCHAR},
+      </if>
+      <if test="datetimeContent1Type != null" >
+        #{datetimeContent1Type,jdbcType=VARCHAR},
+      </if>
+      <if test="datetimeContent2Name != null" >
+        #{datetimeContent2Name,jdbcType=VARCHAR},
+      </if>
+      <if test="datetimeContent2Type != null" >
+        #{datetimeContent2Type,jdbcType=VARCHAR},
+      </if>
+      <if test="datetimeContent3Name != null" >
+        #{datetimeContent3Name,jdbcType=VARCHAR},
+      </if>
+      <if test="datetimeContent3Type != null" >
+        #{datetimeContent3Type,jdbcType=VARCHAR},
+      </if>
+      <if test="insertTimestamp != null" >
+        #{insertTimestamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTimestamp != null" >
+        #{updateTimestamp,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="it.costanza.LiLo.mybatis.bean.ModuleType" >
+    update MODULES_TYPES
+    <set >
+      <if test="idUser != null" >
+        ID_USER = #{idUser,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        DESCRIPTION = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="textContent1Name != null" >
+        TEXT_CONTENT_1_NAME = #{textContent1Name,jdbcType=VARCHAR},
+      </if>
+      <if test="textContent2Name != null" >
+        TEXT_CONTENT_2_NAME = #{textContent2Name,jdbcType=VARCHAR},
+      </if>
+      <if test="textContent3Name != null" >
+        TEXT_CONTENT_3_NAME = #{textContent3Name,jdbcType=VARCHAR},
+      </if>
+      <if test="listContent1Name != null" >
+        LIST_CONTENT_1_NAME = #{listContent1Name,jdbcType=VARCHAR},
+      </if>
+      <if test="listContent1Type != null" >
+        LIST_CONTENT_1_TYPE = #{listContent1Type,jdbcType=VARCHAR},
+      </if>
+      <if test="listContent2Name != null" >
+        LIST_CONTENT_2_NAME = #{listContent2Name,jdbcType=VARCHAR},
+      </if>
+      <if test="listContent2Type != null" >
+        LIST_CONTENT_2_TYPE = #{listContent2Type,jdbcType=VARCHAR},
+      </if>
+      <if test="listContent3Name != null" >
+        LIST_CONTENT_3_NAME = #{listContent3Name,jdbcType=VARCHAR},
+      </if>
+      <if test="listContent3Type != null" >
+        LIST_CONTENT_3_TYPE = #{listContent3Type,jdbcType=VARCHAR},
+      </if>
+      <if test="numericDataContent1Name != null" >
+        NUMERIC_DATA_CONTENT_1_NAME = #{numericDataContent1Name,jdbcType=VARCHAR},
+      </if>
+      <if test="numericDataContent1Type != null" >
+        NUMERIC_DATA_CONTENT_1_TYPE = #{numericDataContent1Type,jdbcType=VARCHAR},
+      </if>
+      <if test="numericDataContent2Name != null" >
+        NUMERIC_DATA_CONTENT_2_NAME = #{numericDataContent2Name,jdbcType=VARCHAR},
+      </if>
+      <if test="numericDataContent2Type != null" >
+        NUMERIC_DATA_CONTENT_2_TYPE = #{numericDataContent2Type,jdbcType=VARCHAR},
+      </if>
+      <if test="numericDataContent3Name != null" >
+        NUMERIC_DATA_CONTENT_3_NAME = #{numericDataContent3Name,jdbcType=VARCHAR},
+      </if>
+      <if test="numericDataContent3Type != null" >
+        NUMERIC_DATA_CONTENT_3_TYPE = #{numericDataContent3Type,jdbcType=VARCHAR},
+      </if>
+      <if test="datetimeContent1Name != null" >
+        DATETIME_CONTENT_1_NAME = #{datetimeContent1Name,jdbcType=VARCHAR},
+      </if>
+      <if test="datetimeContent1Type != null" >
+        DATETIME_CONTENT_1_TYPE = #{datetimeContent1Type,jdbcType=VARCHAR},
+      </if>
+      <if test="datetimeContent2Name != null" >
+        DATETIME_CONTENT_2_NAME = #{datetimeContent2Name,jdbcType=VARCHAR},
+      </if>
+      <if test="datetimeContent2Type != null" >
+        DATETIME_CONTENT_2_TYPE = #{datetimeContent2Type,jdbcType=VARCHAR},
+      </if>
+      <if test="datetimeContent3Name != null" >
+        DATETIME_CONTENT_3_NAME = #{datetimeContent3Name,jdbcType=VARCHAR},
+      </if>
+      <if test="datetimeContent3Type != null" >
+        DATETIME_CONTENT_3_TYPE = #{datetimeContent3Type,jdbcType=VARCHAR},
+      </if>
+      <if test="insertTimestamp != null" >
+        INSERT_TIMESTAMP = #{insertTimestamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTimestamp != null" >
+        UPDATE_TIMESTAMP = #{updateTimestamp,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID_MODULE_TYPE = #{idModuleType,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="it.costanza.LiLo.mybatis.bean.ModuleType" >
+    update MODULES_TYPES
+    set ID_USER = #{idUser,jdbcType=INTEGER},
+      NAME = #{name,jdbcType=VARCHAR},
+      DESCRIPTION = #{description,jdbcType=VARCHAR},
+      TEXT_CONTENT_1_NAME = #{textContent1Name,jdbcType=VARCHAR},
+      TEXT_CONTENT_2_NAME = #{textContent2Name,jdbcType=VARCHAR},
+      TEXT_CONTENT_3_NAME = #{textContent3Name,jdbcType=VARCHAR},
+      LIST_CONTENT_1_NAME = #{listContent1Name,jdbcType=VARCHAR},
+      LIST_CONTENT_1_TYPE = #{listContent1Type,jdbcType=VARCHAR},
+      LIST_CONTENT_2_NAME = #{listContent2Name,jdbcType=VARCHAR},
+      LIST_CONTENT_2_TYPE = #{listContent2Type,jdbcType=VARCHAR},
+      LIST_CONTENT_3_NAME = #{listContent3Name,jdbcType=VARCHAR},
+      LIST_CONTENT_3_TYPE = #{listContent3Type,jdbcType=VARCHAR},
+      NUMERIC_DATA_CONTENT_1_NAME = #{numericDataContent1Name,jdbcType=VARCHAR},
+      NUMERIC_DATA_CONTENT_1_TYPE = #{numericDataContent1Type,jdbcType=VARCHAR},
+      NUMERIC_DATA_CONTENT_2_NAME = #{numericDataContent2Name,jdbcType=VARCHAR},
+      NUMERIC_DATA_CONTENT_2_TYPE = #{numericDataContent2Type,jdbcType=VARCHAR},
+      NUMERIC_DATA_CONTENT_3_NAME = #{numericDataContent3Name,jdbcType=VARCHAR},
+      NUMERIC_DATA_CONTENT_3_TYPE = #{numericDataContent3Type,jdbcType=VARCHAR},
+      DATETIME_CONTENT_1_NAME = #{datetimeContent1Name,jdbcType=VARCHAR},
+      DATETIME_CONTENT_1_TYPE = #{datetimeContent1Type,jdbcType=VARCHAR},
+      DATETIME_CONTENT_2_NAME = #{datetimeContent2Name,jdbcType=VARCHAR},
+      DATETIME_CONTENT_2_TYPE = #{datetimeContent2Type,jdbcType=VARCHAR},
+      DATETIME_CONTENT_3_NAME = #{datetimeContent3Name,jdbcType=VARCHAR},
+      DATETIME_CONTENT_3_TYPE = #{datetimeContent3Type,jdbcType=VARCHAR},
+      INSERT_TIMESTAMP = #{insertTimestamp,jdbcType=TIMESTAMP},
+      UPDATE_TIMESTAMP = #{updateTimestamp,jdbcType=TIMESTAMP}
+    where ID_MODULE_TYPE = #{idModuleType,jdbcType=INTEGER}
+  </update>
+</mapper>

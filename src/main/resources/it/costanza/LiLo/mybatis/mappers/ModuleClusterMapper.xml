@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="it.costanza.LiLo.mybatis.mappers.ModuleClusterMapper">
+	<resultMap id="BaseResultMap" type="it.costanza.LiLo.mybatis.bean.ModuleCluster">
+		<id column="ID_MODULE_CLUSTER" property="idModuleCluster" jdbcType="INTEGER" />
+		<result column="ID_USER" property="idUser" jdbcType="INTEGER" />
+		<result column="ID_MODULE_TYPE" property="idModuleType"
+			jdbcType="INTEGER" />
+		<result column="ID_MODULE" property="idModule" jdbcType="INTEGER" />
+		<result column="INSERT_TIMESTAMP" property="insertTimestamp"
+			jdbcType="TIMESTAMP" />
+		<result column="UPDATE_TIMESTAMP" property="updateTimestamp"
+			jdbcType="TIMESTAMP" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ID_MODULE_CLUSTER, ID_USER, ID_MODULE_TYPE, ID_MODULE, INSERT_TIMESTAMP,
+		UPDATE_TIMESTAMP
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from MODULES_CLUSTER
+		where ID_MODULE_CLUSTER = #{idModuleCluster,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from MODULES_CLUSTER
+		where ID_MODULE_CLUSTER = #{idModuleCluster,jdbcType=INTEGER}
+	</delete>
+		<delete id="deleteByIdModule" parameterType="java.lang.Integer">
+		delete from MODULES_CLUSTER
+		where ID_MODULE = #{idModule,jdbcType=INTEGER}
+	</delete>
+	
+	<insert id="insert" parameterType="it.costanza.LiLo.mybatis.bean.ModuleCluster">
+		insert into MODULES_CLUSTER (ID_USER, ID_MODULE_TYPE,
+		ID_MODULE_CLUSTER , ID_MODULE,
+		INSERT_TIMESTAMP, UPDATE_TIMESTAMP)
+		values (#{idUser,jdbcType=INTEGER}, #{idModuleType,jdbcType=INTEGER},
+		#{idModuleCluster,jdbcType=INTEGER}, #{idModule,jdbcType=INTEGER},
+		#{insertTimestamp,jdbcType=TIMESTAMP},
+		#{updateTimestamp,jdbcType=TIMESTAMP})
+	</insert>
+	<insert id="insertSelective" parameterType="it.costanza.LiLo.mybatis.bean.ModuleCluster">
+		insert into MODULES_CLUSTER
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="idUser != null">
+				ID_USER,
+			</if>
+			<if test="idModuleType != null">
+				ID_MODULE_TYPE,
+			</if>
+			<if test="idModule != null">
+				ID_MODULE,
+			</if>
+			<if test="idModuleCluster != null">
+				ID_MODULE_CLUSTER,
+			</if>
+			<if test="insertTimestamp != null">
+				INSERT_TIMESTAMP,
+			</if>
+			<if test="updateTimestamp != null">
+				UPDATE_TIMESTAMP,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="idUser != null">
+				#{idUser,jdbcType=INTEGER},
+			</if>
+			<if test="idModuleType != null">
+				#{idModuleType,jdbcType=INTEGER},
+			</if>
+			<if test="idModule != null">
+				#{idModule,jdbcType=INTEGER},
+			</if>
+			<if test="idModuleCluster != null">
+				#{idModuleCluster,jdbcType=INTEGER},
+			</if>
+			<if test="insertTimestamp != null">
+				#{insertTimestamp,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTimestamp != null">
+				#{updateTimestamp,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="it.costanza.LiLo.mybatis.bean.ModuleCluster">
+		update MODULES_CLUSTER
+		<set>
+			<if test="idUser != null">
+				ID_USER = #{idUser,jdbcType=INTEGER},
+			</if>
+			<if test="idModuleType != null">
+				ID_MODULE_TYPE = #{idModuleType,jdbcType=INTEGER},
+			</if>
+			<if test="idModule != null">
+				ID_MODULE = #{idModule,jdbcType=INTEGER},
+			</if>
+			<if test="insertTimestamp != null">
+				INSERT_TIMESTAMP = #{insertTimestamp,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTimestamp != null">
+				UPDATE_TIMESTAMP = #{updateTimestamp,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where ID_MODULE_CLUSTER = #{idModuleCluster,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="it.costanza.LiLo.mybatis.bean.ModuleCluster">
+		update MODULES_CLUSTER
+		set ID_USER = #{idUser,jdbcType=INTEGER},
+		ID_MODULE_TYPE = #{idModuleType,jdbcType=INTEGER},
+		ID_MODULE = #{idModule,jdbcType=INTEGER},
+		INSERT_TIMESTAMP = #{insertTimestamp,jdbcType=TIMESTAMP},
+		UPDATE_TIMESTAMP = #{updateTimestamp,jdbcType=TIMESTAMP}
+		where ID_MODULE_CLUSTER = #{idModuleCluster,jdbcType=INTEGER}
+	</update>
+</mapper>

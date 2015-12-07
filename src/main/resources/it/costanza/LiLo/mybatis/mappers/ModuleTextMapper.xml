@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="it.costanza.LiLo.mybatis.mappers.ModuleTextMapper">
+	<resultMap id="BaseResultMap" type="it.costanza.LiLo.mybatis.bean.ModuleText">
+		<result column="ID_MODULE" property="idModule" jdbcType="INTEGER" />
+		<result column="TEXT_2_VALUE" property="text2Value" jdbcType="VARCHAR" />
+		<result column="TEXT_3_VALUE" property="text3Value" jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap id="ResultMapWithBLOBs" type="it.costanza.LiLo.mybatis.bean.ModuleText"
+		extends="BaseResultMap">
+		<result column="TEXT_1_VALUE" property="text1Value" jdbcType="LONGVARCHAR" />
+	</resultMap>
+	<sql id="Blob_Column_List">
+		TEXT_1_VALUE
+	</sql>
+	<sql id="Base_Column_List" >
+    ID_MODULE, TEXT_1_VALUE, TEXT_2_VALUE, TEXT_3_VALUE
+  	</sql>
+	 
+	 
+   <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from MODULES_TEXT
+    where ID_MODULE = #{idModule,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from MODULES_TEXT
+    where ID_MODULE = #{idModule,jdbcType=INTEGER}
+  </delete>
+	
+	
+	
+	
+	<insert id="insert" parameterType="it.costanza.LiLo.mybatis.bean.ModuleText">
+		<selectKey resultType="java.lang.Integer" keyProperty="idModule"
+			order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into MODULES_TEXT (TEXT_2_VALUE, TEXT_3_VALUE, TEXT_1_VALUE
+		)
+		values (#{text2Value,jdbcType=VARCHAR}, #{text3Value,jdbcType=VARCHAR},
+		#{text1Value,jdbcType=LONGVARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="it.costanza.LiLo.mybatis.bean.ModuleText">
+		<selectKey resultType="java.lang.Integer" keyProperty="idModule"
+			order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into MODULES_TEXT
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="idModule != null">
+				ID_MODULE,
+			</if>
+			<if test="text2Value != null">
+				TEXT_2_VALUE,
+			</if>
+			<if test="text3Value != null">
+				TEXT_3_VALUE,
+			</if>
+			<if test="text1Value != null">
+				TEXT_1_VALUE,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="idModule != null">
+				#{idModule,jdbcType=INTEGER},
+			</if>
+			<if test="text2Value != null">
+				#{text2Value,jdbcType=VARCHAR},
+			</if>
+			<if test="text3Value != null">
+				#{text3Value,jdbcType=VARCHAR},
+			</if>
+			<if test="text1Value != null">
+				#{text1Value,jdbcType=LONGVARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="it.costanza.LiLo.mybatis.bean.ModuleText">
+		update MODULES_TEXT
+		<set>
+			<if test="text2Value != null">
+				TEXT_2_VALUE =  #{text2Value,jdbcType=VARCHAR},
+			</if>
+			<if test="text3Value != null">
+				TEXT_3_VALUE =  #{text3Value,jdbcType=VARCHAR},
+			</if>
+			<if test="text1Value != null">
+				TEXT_1_VALUE =  #{text1Value,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where ID_MODULE = #{idModule,jdbcType=INTEGER}
+	</update>
+</mapper>
