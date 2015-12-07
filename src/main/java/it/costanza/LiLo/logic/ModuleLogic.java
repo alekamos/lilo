@@ -577,18 +577,18 @@ public class ModuleLogic {
 		
 		ArrayList<NavigatorElement> neList = new ArrayList<NavigatorElement>();
 
-		//Contorllo se la data di partenza è uguale al primo giorno del dayHostList
+		//Contorllo se la data di partenza e uguale al primo giorno del dayHostList
 		int contatoreDayHostList = 0;
 
 
 		while (Utility.calcolaDiffGiorni(dateStart,dateEnd)>=0) {
 			NavigatorElement ne = new NavigatorElement();
-			//caso in cui è presente la data all'interno del moduleDayHostList
+			//caso in cui e presente la data all'interno del moduleDayHostList
 			if(Utility.calcolaDiffGiorni(dateStart, dayHostList.get(contatoreDayHostList).getDateDayHost())==0){
 				ne.setDateDay(dayHostList.get(contatoreDayHostList).getDateDayHost());
 				ne.setIdModuleCluster((int) dayHostList.get(contatoreDayHostList).getIdModuleCluster());
 				contatoreDayHostList++;
-			}else{//caso in cui non è presente un giorno nell'array di ModuleDayHostList
+			}else{//caso in cui non e presente un giorno nell'array di ModuleDayHostList
 				ne.setDateDay(dateStart);
 				ne.setIdModuleCluster(null);
 			}
