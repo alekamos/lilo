@@ -104,6 +104,8 @@
 			</result>
 			<result name="multiple_module_view" type="tiles">ViewMultipleModule
 			</result>
+			<result name="navigator_show_view" type="tiles">ViewNavigatorShowview
+			</result>
 		</action>
 
 		<action name="gotoSearchModule" class="it.costanza.LiLo.action.DiaryAction"

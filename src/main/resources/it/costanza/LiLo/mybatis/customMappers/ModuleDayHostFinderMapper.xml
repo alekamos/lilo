@@ -55,7 +55,7 @@
 	<select id="selectListDayHostCriteria" resultMap="DayHostBaseResultMap"
 		parameterType="it.costanza.LiLo.bean.ModuleFinder">
 		SELECT
-		DISTINCT DH.MODULE_CLUSTER, DH.DATE_DAYHOST
+		DISTINCT DH.ID_MODULE_CLUSTER, DH.DATE_DAYHOST
 		FROM MODULES_DAYHOST DH
 		<if test="idModuleType != null">
 			, MODULES_CLUSTER MC

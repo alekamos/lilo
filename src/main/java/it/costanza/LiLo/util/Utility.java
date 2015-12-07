@@ -1,9 +1,11 @@
 package it.costanza.LiLo.util;
 
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
@@ -79,6 +81,21 @@ public class Utility {
 		else
 			return true;
 		
+	}
+
+
+/**
+ * Il metodo calcola la differenza in giorni tra due date
+ * @param dateStart
+ * @param dateDayHost
+ * @return
+ */
+	public static int calcolaDiffGiorni(Date dateStart, Date dateEnd) {
+		
+		
+		long diffInMillies = dateEnd.getTime() - dateStart.getTime();
+	    Double ris = (double) (diffInMillies/(1000*60*60*24));
+	    return ris.intValue();
 	}
 
 

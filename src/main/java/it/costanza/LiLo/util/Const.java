@@ -44,6 +44,7 @@ public class Const {
 	public static final String UNAUTHORIZED_CONTENT = "unauthorized_content";
 	public static final String SINGULAR_MODULE_VIEW = "singular_module_view";
 	public static final String MULTIPLE_MODULE_VIEW = "multiple_module_view";
+	public static final String NAVIGATOR_SHOW_VIEW = "navigator_show_view";
 	
 	//message resourse 
 	public static final String USERNAME_NOT_FOUND = "username.notfound";
@@ -56,6 +57,7 @@ public class Const {
 	public static final String LOAD = "LOAD";
 	public static final String UPDATE = "UPDATE";
 	public static final String LAST_CREATE = "lstcrt";
+	
 
 	
 	
