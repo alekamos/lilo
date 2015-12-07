@@ -539,20 +539,23 @@ public class ModuleLogic {
 
 
 	/**
-	 * Metodo che cerca più dayHost
+	 * Metodo che cerca piï¿½ dayHost
 	 * @param moduleFinder
 	 * @param user
 	 * @return
 	 */
 	public ArrayList<ModuleExtended> getDayHostList(ModuleFinder moduleFinder,
 			User user) {
-
-		moduleFinder.setIdUser(user.getIdUser());
 		
+		ArrayList<ModuleExtended> meList = new ArrayList<ModuleExtended>();
+		moduleFinder.setIdUser(user.getIdUser());
+		StatLogic sl = new StatLogic();
+
 		ModuleDayHostDao mdhDao = new ModuleDayHostDao();
 		ArrayList<ModuleDayHost> dayHostList = mdhDao.searchDayHostListCriteria(moduleFinder);
 		for (ModuleDayHost moduleDayHost : dayHostList) {
 			log.debug(moduleDayHost);
+			getModuleExtendList((int) moduleDayHost.getIdModuleCluster(), user);
 		}
 
 
