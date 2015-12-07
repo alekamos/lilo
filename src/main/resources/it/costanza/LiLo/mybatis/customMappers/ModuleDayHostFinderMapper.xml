@@ -76,6 +76,10 @@
 			AND DH.DATE_DAYHOST <![CDATA[ <= ]]>
 			#{endDateDt,jdbcType=DATE}
 		</if>
+		<if test="containedText != null">
+			AND MC.id_module = MT.id_module
+			AND MT.text_1_value like #{containedText,jdbcType=VARCHAR}
+		</if>
 	</select>
 
 

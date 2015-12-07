@@ -80,11 +80,14 @@ public class DiaryAction extends ActionSupport{
 			strutsResult = Const.NAVIGATOR_SHOW_VIEW;
 			navigatorElementList = ml.buildNavigatorFromDayHostList(dayHostList,moduleFinder.getStartDateDt(),moduleFinder.getEndDateDt());
 			
+			
+			if(dayHostList!=null && dayHostList.size()!=0){
 			StatLogic st = new StatLogic();
 			dashBoardBean = new DashBoardBean();
 			//dati histo
 			GraphBean graph = st.buildDatasetPresenceModuleFromNavigator(navigatorElementList, "Date", "Presence");
 			dashBoardBean.setGraphBean(graph);
+			}
 			
 			return strutsResult;
 		}
