@@ -57,16 +57,19 @@
 		SELECT
 		DISTINCT DH.ID_MODULE_CLUSTER, DH.DATE_DAYHOST
 		FROM MODULES_DAYHOST DH
-		<if test="idModuleType != null">
+		<if test="(containedText == null or containedText == '%%') and idModuleType != -1">
 			, MODULES_CLUSTER MC
 		</if>
-		<if test="containedText != null">
-			, MODULES_TEXT MT
+		<if test="(containedText != null or containedText != '%%') and idModuleType != -1">
+			, MODULES_TEXT MT , MODULES_CLUSTER MC
+		</if>
+		<if test="(containedText != null or containedText != '%%') and idModuleType == -1">
+			, MODULES_TEXT MT , MODULES_CLUSTER MC
 		</if>
 		WHERE DH.ID_USER = #{idUser,jdbcType=INTEGER}
-		<if test="idModuleType != null">
-			AND MC.id_module_cluster = DH.id_module_cluster
-			AND MC.id_module_type = #{idModuleType,jdbcType=INTEGER}
+		<if test="idModuleType != -1 or (containedText != null or containedText != '%%')">
+			AND MC.ID_MODULE_CLUSTER = DH.ID_MODULE_CLUSTER
+			AND MC.ID_MODULE_TYPE = #{idModuleType,jdbcType=INTEGER}
 		</if>
 		<if test="startDateDt != null">
 			AND DH.DATE_DAYHOST <![CDATA[ >= ]]>
@@ -76,10 +79,12 @@
 			AND DH.DATE_DAYHOST <![CDATA[ <= ]]>
 			#{endDateDt,jdbcType=DATE}
 		</if>
-		<if test="containedText != null">
-			AND MC.id_module = MT.id_module
-			AND MT.text_1_value like #{containedText,jdbcType=VARCHAR}
+		<if test="containedText != null or containedText != '%%'">
+			AND MC.ID_MODULE = MT.ID_MODULE
+			AND MT.TEXT_1_VALUE like #{containedText,jdbcType=VARCHAR}
 		</if>
+		ORDER BY DH.DATE_DAYHOST ASC
+		
 	</select>
 
 
