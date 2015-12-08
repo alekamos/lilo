@@ -544,12 +544,13 @@ public class ModuleLogic {
 	 */
 	public ArrayList<ModuleDayHost> getDayHostList(ModuleFinder moduleFinder,
 			User user) {
-
+		log.debug(Const.IN);
 		moduleFinder.setIdUser(user.getIdUser());
 		ModuleDayHostDao mdhDao = new ModuleDayHostDao();
 		ArrayList<ModuleDayHost> dayHostList = mdhDao.searchDayHostListCriteria(moduleFinder);
 
-
+		log.debug("Size array extracted : "+dayHostList.size());
+		log.debug(Const.OUT);
 
 		return dayHostList;
 	}
@@ -565,26 +566,30 @@ public class ModuleLogic {
 	 */
 	public ArrayList<NavigatorElement> buildNavigatorFromDayHostList(
 			ArrayList<ModuleDayHost> dayHostList, Date dateStart,Date dateEnd) {
-		
+
 		if(dayHostList==null || dayHostList.size()==0)
 			return null;
-		
+
 		if(dateStart==null)
 			dateStart = dayHostList.get(0).getDateDayHost();
-		
+
 		if(dateEnd==null)
 			dateEnd = dayHostList.get(dayHostList.size()-1).getDateDayHost();
-		
+
 		ArrayList<NavigatorElement> neList = new ArrayList<NavigatorElement>();
 
 		//Contorllo se la data di partenza e uguale al primo giorno del dayHostList
 		int contatoreDayHostList = 0;
+		boolean exhaustedArray = false;
 
 
 		while (Utility.calcolaDiffGiorni(dateStart,dateEnd)>=0) {
 			NavigatorElement ne = new NavigatorElement();
-			//caso in cui e presente la data all'interno del moduleDayHostList
-			if(Utility.calcolaDiffGiorni(dateStart, dayHostList.get(contatoreDayHostList).getDateDayHost())==0){
+			if(contatoreDayHostList>=dayHostList.size())
+				exhaustedArray = true;			
+
+			//caso in cui e presente la data all'interno del moduleDayHostList viene fatto anche il controllo sul fatto che 
+			if(!exhaustedArray && Utility.calcolaDiffGiorni(dateStart, dayHostList.get(contatoreDayHostList).getDateDayHost())==0){
 				ne.setDateDay(dayHostList.get(contatoreDayHostList).getDateDayHost());
 				ne.setIdModuleCluster((int) dayHostList.get(contatoreDayHostList).getIdModuleCluster());
 				contatoreDayHostList++;
@@ -592,8 +597,8 @@ public class ModuleLogic {
 				ne.setDateDay(dateStart);
 				ne.setIdModuleCluster(null);
 			}
-				
-			
+
+
 			neList.add(ne);
 			//Aumento contatori e data iniziale
 			dateStart = Utility.aggiungiTogliGiorno(dateStart, 1);

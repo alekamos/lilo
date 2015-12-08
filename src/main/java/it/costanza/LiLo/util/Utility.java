@@ -61,12 +61,17 @@ public class Utility {
 	public static String toStringPerBean(ArrayList<String> chiavi,ArrayList<String> valori){
 		String out = "\n";
 		for (int i = 0; i < chiavi.size(); i++) {
-			out += "["+ chiavi.get(i) + " : " + valori.get(i) + "]\n";
+			if(valori.get(i)==null)
+				out += "["+ chiavi.get(i) + " : " + "{NULL STRING}" + "}]\n";
+			else if (valori.get(i).equals("")) 
+				out += "["+ chiavi.get(i) + " : " + "{EMPTY STRING}" + "]\n";	
+			else
+				out += "["+ chiavi.get(i) + " : {" + valori.get(i) + "}]\n";
 		}
 
 		return out;
 	}
-	
+
 	/**
 	 * 
 	 * isEmpty se  nulla
@@ -75,27 +80,27 @@ public class Utility {
 	 * @return
 	 */
 	public static boolean isEmpty(String string){
-		
+
 		if(string!=null && !string.equals(""))
 			return false;
 		else
 			return true;
-		
+
 	}
 
 
-/**
- * Il metodo calcola la differenza in giorni tra due date
- * @param dateStart
- * @param dateDayHost
- * @return
- */
+	/**
+	 * Il metodo calcola la differenza in giorni tra due date
+	 * @param dateStart
+	 * @param dateDayHost
+	 * @return
+	 */
 	public static int calcolaDiffGiorni(Date dateStart, Date dateEnd) {
-		
-		
+
+
 		long diffInMillies = dateEnd.getTime() - dateStart.getTime();
-	    Double ris = (double) (diffInMillies/(1000*60*60*24));
-	    return ris.intValue();
+		Double ris = (double) (diffInMillies/(1000*60*60*24));
+		return ris.intValue();
 	}
 
 
