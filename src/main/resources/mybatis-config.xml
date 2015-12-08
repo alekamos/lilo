@@ -9,9 +9,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	<settings>
 		<setting name="logImpl" value="LOG4J" />
 	</settings>
-	<!-- <typeAliases> -->
-	<!-- <typeAlias type="bean.UtenteBean" alias="utente" /> -->
-	<!-- </typeAliases> -->
 
 
 	<environments default="development">

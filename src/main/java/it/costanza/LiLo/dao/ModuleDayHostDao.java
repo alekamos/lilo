@@ -70,7 +70,7 @@ public class ModuleDayHostDao extends MyBatisDAO<ModuleDayHost, Integer>{
 		try
 		{					
 			String query = Const.NS_PREFIX+this.getClass().getSimpleName().replace("Dao", "")+Const.NS_SUFFIX+"."+"selectListDayHostCriteria";
-			list = session.selectList(query,moduleFinder); 
+			list = session.selectList(query,moduleFinder);
 		}
 		finally
 		{

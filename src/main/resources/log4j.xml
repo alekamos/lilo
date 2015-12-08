@@ -5,12 +5,8 @@
 
 	<!-- ********** APPENDER OK********** -->
 	<appender name="lifelog.appender" class="org.apache.log4j.FileAppender">
-		<!-- Path windows <param name="File" value="E:/workspace_personale/N_Lifelog/lflg.log" 	/> -->
-		
-		<!-- Path Tommaso <param name="File" value="E:/workspace_personale/N_Lifelog/lflg.log" 	/> -->
-		
-		<!-- path linux -->
 		<param name="File" value="/home/pi/lilo.log" />
+<!-- 		<param name="File" value="/home/costanza/pi/lilo.log" /> -->
 		<param name="Append" value="true" />
 		<layout class="org.apache.log4j.PatternLayout">
 			<param name="ConversionPattern" value="#%d{dd-MMM-yy HH.mm.ss:SSS} - %p - %C.%M - %m%n" />
@@ -23,19 +19,28 @@
 		</layout>
 	</appender>
 
-	<!-- logger relativo ai wsMonitor -->
+
 	<logger name="lifelogLogger" additivity="false">
 		<level value="debug" />
 		<appender-ref ref="lifelog.appender" />
 		<appender-ref ref="lifelogConsole.appender" />
 	</logger>
 
-	<!--  -->
+	<!-- Per loggare le query sql di una specifico namespace per loggare tutti i namespace fermarsi a ..mybatis.mappers.
+	<logger
+		name="it.costanza.LiLo.mybatis.mappers.ModuleDayHostMapper"
+		additivity="false">
+		<level value="trace" />
+		<appender-ref ref="lifelog.appender" />
+		<appender-ref ref="lifelogConsole.appender" />
+	</logger>
+ -->
+	<!-- -->
 	<root>
 		<priority value="error" />
 		<appender-ref ref="lifelog.appender" />
 		<appender-ref ref="lifelogConsole.appender" />
 	</root>
-	
+
 
 </log4j:configuration>
