@@ -76,6 +76,10 @@ public class DiaryAction extends ActionSupport{
 		}
 		else if (moduleFinder.getStartDateDt()!=null || moduleFinder.getEndDateDt()!=null || moduleFinder.getIdModuleType()!=null || moduleFinder.getContainedText()!=null) {
 			//caso in cui si cercano tutte le giornate contenenti un dato modulo
+			
+			//filtro per la ricerca per testo
+			moduleFinder.setContainedText("%"+moduleFinder.getContainedText()+"%");
+			
 			ArrayList<ModuleDayHost> dayHostList = ml.getDayHostList(moduleFinder,user);
 			strutsResult = Const.NAVIGATOR_SHOW_VIEW;
 			navigatorElementList = ml.buildNavigatorFromDayHostList(dayHostList,moduleFinder.getStartDateDt(),moduleFinder.getEndDateDt());
