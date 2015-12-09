@@ -80,6 +80,20 @@ public class ModuleDayHostDao extends MyBatisDAO<ModuleDayHost, Integer>{
 	}
 
 
-
+	public ModuleDayHost searchMostRecentDayHost(ModuleDayHost dayHost) {
+		SqlSession session = MyBatisLoader.getSqlSession();
+		ModuleDayHost moduleDayHost = new ModuleDayHost();
+		
+		try
+		{					
+			String query = Const.NS_PREFIX+this.getClass().getSimpleName().replace("Dao", "")+Const.NS_SUFFIX+"."+"selectMostRecentDayHost";
+			moduleDayHost = session.selectOne(query, dayHost);
+		}
+		finally
+		{
+			session.close();
+		}   
+		return moduleDayHost;
+	}
 
 }

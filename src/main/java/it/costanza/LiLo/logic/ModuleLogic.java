@@ -606,4 +606,20 @@ public class ModuleLogic {
 
 		return neList;
 	}
+
+	/**
+	 * Restituisce il dayHost piu recente dell'utente
+	 * @param user
+	 * @return
+	 */
+	public Integer getMostRecentIdCluster(User user) {
+		ModuleDayHostDao dayHostdao = new ModuleDayHostDao();
+		ModuleDayHost dayHost = new ModuleDayHost();
+		dayHost.setIdUser(user.getIdUser());
+
+		ModuleDayHost moduleDayHost = dayHostdao.searchMostRecentDayHost(dayHost);
+		Integer idModuleCluster = (int) moduleDayHost.getIdModuleCluster();
+
+		return idModuleCluster; 
+	}
 }

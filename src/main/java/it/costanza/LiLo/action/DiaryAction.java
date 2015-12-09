@@ -76,15 +76,11 @@ public class DiaryAction extends ActionSupport{
 		}
 		else if (moduleFinder.getStartDateDt()!=null || moduleFinder.getEndDateDt()!=null || moduleFinder.getIdModuleType()!=null || moduleFinder.getContainedText()!=null) {
 			//caso in cui si cercano tutte le giornate contenenti un dato modulo
-			
 			//filtro per la ricerca per testo
 			moduleFinder.setContainedText("%"+moduleFinder.getContainedText()+"%");
-			
 			ArrayList<ModuleDayHost> dayHostList = ml.getDayHostList(moduleFinder,user);
 			strutsResult = Const.NAVIGATOR_SHOW_VIEW;
 			navigatorElementList = ml.buildNavigatorFromDayHostList(dayHostList,moduleFinder.getStartDateDt(),moduleFinder.getEndDateDt());
-			
-			
 			if(dayHostList!=null && dayHostList.size()!=0){
 			StatLogic st = new StatLogic();
 			dashBoardBean = new DashBoardBean();
@@ -92,7 +88,6 @@ public class DiaryAction extends ActionSupport{
 			GraphBean graph = st.buildDatasetPresenceModuleFromNavigator(navigatorElementList, "Date", "Presence");
 			dashBoardBean.setGraphBean(graph);
 			}
-			
 			return strutsResult;
 		}
 		else if(moduleFinder.getCriteria()!=null){
@@ -105,6 +100,11 @@ public class DiaryAction extends ActionSupport{
 				break;
 			case Const.LAST_CREATE://caso in cui si cerca l'ultimo giorno inserito
 				
+				break;
+			case Const.MOST_RECENT://caso in cui si cerca l'ultimo giorno inserito
+				Integer idClstr = ml.getMostRecentIdCluster(user);
+				moduleExtendedList = ml.getModuleExtendList(idClstr, user);
+				strutsResult = Const.MULTIPLE_MODULE_VIEW;
 				break;
 			}
 		}
