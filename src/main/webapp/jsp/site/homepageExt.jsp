@@ -70,7 +70,7 @@
                     </h3>
                     <h5>Conceived, designed and made by Alessandro Costanza</h5>
                     <ul class="list-unstyled">
-                        <li><a href="mailto:spinore@gmail.com">assistance@lifelog.com</a>
+                        <li><a href="mailto:spinore@gmail.com">spinore@gmail.com</a>
                         </li>
                     </ul>
                     <br>
