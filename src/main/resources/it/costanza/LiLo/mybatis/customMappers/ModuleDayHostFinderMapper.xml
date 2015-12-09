@@ -85,6 +85,19 @@
 		ORDER BY DH.DATE_DAYHOST ASC
 		
 	</select>
+	
+	
+		<select id="selectMostRecentDayHost" resultMap="DayHostBaseResultMap"
+		parameterType="it.costanza.LiLo.bean.ModuleDayHost">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM MODULES_DAYHOST A
+		WHERE A.DATE_DAYHOST = 
+		(SELECT MAX(B.DATE_DAYHOST) FROM MODULES_DAYHOST B WHERE B.ID_USER = #{idUser,jdbcType=INTEGER})
+		AND A.ID_USER = #{idUser,jdbcType=INTEGER};
+	</select>
+	
+	
 
 
 </mapper>

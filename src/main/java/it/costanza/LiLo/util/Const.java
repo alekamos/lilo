@@ -57,6 +57,8 @@ public class Const {
 	public static final String LOAD = "LOAD";
 	public static final String UPDATE = "UPDATE";
 	public static final String LAST_CREATE = "lstcrt";
+	public static final String MOST_RECENT = "mstrcnt";
+	
 	
 
 	
