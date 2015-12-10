@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import it.costanza.LiLo.bean.DashBoardBean;
 import it.costanza.LiLo.bean.GraphBean;
-import it.costanza.LiLo.logic.ModuleLogic;
 import it.costanza.LiLo.logic.StatLogic;
 import it.costanza.LiLo.logic.UserLogic;
 import it.costanza.LiLo.mybatis.bean.User;
@@ -25,6 +24,7 @@ public class StatAction extends ActionSupport{
 	
 	public String gotoDashboard() throws IOException{
 		log.debug(Const.IN);
+		long tStart = System.currentTimeMillis();
 		UserLogic ul = new UserLogic();
 		User user = ul.getUserInSession();
 		log.debug("User estratto dalla sessione: "+user.toString());
@@ -36,7 +36,9 @@ public class StatAction extends ActionSupport{
 		GraphBean graph = st.buildDatasetTotalWordFromNavigator(dashBoardBean, "Date", "Size Content");
 		dashBoardBean.setGraphBean(graph);
 		
-		
+		long tEnd = System.currentTimeMillis();
+		log.debug("Elapsed : "+(tEnd-tStart)+"ms");
+		log.debug(Const.OUT);
 		return SUCCESS;
 	}
 
