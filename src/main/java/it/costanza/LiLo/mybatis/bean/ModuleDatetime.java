@@ -5,9 +5,13 @@ import it.costanza.LiLo.util.Utility;
 import java.util.ArrayList;
 import java.util.Date;
 
+import com.opensymphony.xwork2.conversion.annotations.Conversion;
+import com.opensymphony.xwork2.conversion.annotations.TypeConversion;
+@Conversion()
 public class ModuleDatetime {
     private Integer idModule;
 
+    
     private Date datetime1Value;
 
     private Date datetime2Value;
@@ -25,7 +29,8 @@ public class ModuleDatetime {
     public Date getDatetime1Value() {
         return datetime1Value;
     }
-
+    
+    @TypeConversion(converter="it.costanza.LiLo.util.DatetimeCustomConverter")
     public void setDatetime1Value(Date datetime1Value) {
         this.datetime1Value = datetime1Value;
     }
@@ -34,6 +39,7 @@ public class ModuleDatetime {
         return datetime2Value;
     }
 
+    @TypeConversion(converter="it.costanza.LiLo.util.DatetimeCustomConverter")
     public void setDatetime2Value(Date datetime2Value) {
         this.datetime2Value = datetime2Value;
     }
@@ -42,6 +48,7 @@ public class ModuleDatetime {
         return datetime3Value;
     }
 
+    @TypeConversion(converter="it.costanza.LiLo.util.DatetimeCustomConverter")
     public void setDatetime3Value(Date datetime3Value) {
         this.datetime3Value = datetime3Value;
     }

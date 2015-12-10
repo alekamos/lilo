@@ -32,6 +32,7 @@ public class ModuleAction extends ActionSupport{
 	
 	public String gotoModuleTypeManagement(){
 		log.debug(Const.IN);
+		long tStart = System.currentTimeMillis();
 		ModuleLogic ml = new ModuleLogic();
 		UserLogic ul = new UserLogic();
 		User user = ul.getUserInSession();
@@ -40,13 +41,17 @@ public class ModuleAction extends ActionSupport{
 
 		//Aggiungo i moduli di default
 		moduleTypeList = ml.getDefaultModuleType(moduleTypeList);
-
+		
+		long tEnd = System.currentTimeMillis();
+		log.debug("Elapsed : "+(tEnd-tStart)+"ms");
+		log.debug(Const.OUT);
 		return SUCCESS;
 	}
 
 
 	public String createNewModuleType(){
 		log.debug(Const.IN);
+		long tStart = System.currentTimeMillis();
 		ModuleLogic ml = new ModuleLogic();
 		UserLogic ul = new UserLogic();
 		User user = ul.getUserInSession();
@@ -55,12 +60,16 @@ public class ModuleAction extends ActionSupport{
 		moduleType = ml.cleanModuleType(moduleType);
 		ml.insertModuleType(moduleType);
 
+		long tEnd = System.currentTimeMillis();
+		log.debug("Elapsed : "+(tEnd-tStart)+"ms");
+		log.debug(Const.OUT);
 		return SUCCESS;
 	}
 
 
 	public String saveModule(){
 		log.debug(Const.IN);
+		long tStart = System.currentTimeMillis();
 		ModuleLogic ml = new ModuleLogic();
 		UserLogic ul = new UserLogic();
 		User user = ul.getUserInSession();
@@ -70,11 +79,16 @@ public class ModuleAction extends ActionSupport{
 		Integer idCluster = ml.insertModuleExtended(moduleExtended);
 		moduleFinder = new ModuleFinder();
 		moduleFinder.setIdModuleCluster(idCluster);
+		
+		long tEnd = System.currentTimeMillis();
+		log.debug("Elapsed : "+(tEnd-tStart)+"ms");
+		log.debug(Const.OUT);
 		return SUCCESS;
 	}
 	
 	public String updateModule() throws UnauthorizedContent{
 		log.debug(Const.IN);
+		long tStart = System.currentTimeMillis();
 		ModuleLogic ml = new ModuleLogic();
 		UserLogic ul = new UserLogic();
 		moduleFinder = new ModuleFinder();
@@ -86,11 +100,15 @@ public class ModuleAction extends ActionSupport{
 		
 		moduleFinder.setIdModuleCluster(idModuleCluster);
 		
+		long tEnd = System.currentTimeMillis();
+		log.debug("Elapsed : "+(tEnd-tStart)+"ms");
+		log.debug(Const.OUT);
 		return SUCCESS;
 	}
 	
 	public String gotoUpdateModule() throws UnauthorizedContent{
 		log.debug(Const.IN);
+		long tStart = System.currentTimeMillis();
 		ModuleLogic ml = new ModuleLogic();
 		UserLogic ul = new UserLogic();
 		User user = ul.getUserInSession();
@@ -101,11 +119,15 @@ public class ModuleAction extends ActionSupport{
 		ml.checkModuleOwnership(user,moduleFinder.getIdModule());
 		moduleExtended = ml.getModuleExtended(moduleFinder.getIdModule(), user);
 		
+		long tEnd = System.currentTimeMillis();
+		log.debug("Elapsed : "+(tEnd-tStart)+"ms");
+		log.debug(Const.OUT);
 		return SUCCESS;
 	}
 
 	public String gotoUseModule() throws UnauthorizedContent{
 		log.debug(Const.IN);
+		long tStart = System.currentTimeMillis();
 		ModuleLogic ml = new ModuleLogic();
 		UserLogic ul = new UserLogic();
 		User user = ul.getUserInSession();
@@ -113,11 +135,16 @@ public class ModuleAction extends ActionSupport{
 		ml.checkModuleTypeOwnership(user,moduleType.getIdModuleType());
 		moduleType = ml.getModuleType(moduleType);
 		log.debug("ModuleType caricato: "+moduleType.toString());
+		
+		long tEnd = System.currentTimeMillis();
+		log.debug("Elapsed : "+(tEnd-tStart)+"ms");
+		log.debug(Const.OUT);
 		return SUCCESS;
 	}
 	
 	public String gotoUseModuleAjax() throws UnauthorizedContent{
 		log.debug(Const.IN);
+		long tStart = System.currentTimeMillis();
 		ModuleLogic ml = new ModuleLogic();
 		UserLogic ul = new UserLogic();
 		User user = ul.getUserInSession();
@@ -125,6 +152,10 @@ public class ModuleAction extends ActionSupport{
 		ml.checkModuleTypeOwnership(user,moduleType.getIdModuleType());
 		moduleType = ml.getModuleType(moduleType);
 		log.debug("ModuleType caricato: "+moduleType.toString());
+		
+		long tEnd = System.currentTimeMillis();
+		log.debug("Elapsed : "+(tEnd-tStart)+"ms");
+		log.debug(Const.OUT);
 		return SUCCESS;
 	}
 	

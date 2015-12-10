@@ -46,9 +46,11 @@ public class DiaryAction extends ActionSupport{
 
 
 
-//TODO gestire meglio gli struts result
+	//TODO gestire meglio gli struts result
 	public String viewModule() throws UnauthorizedContent{
 		log.debug(Const.IN);
+		long tStart = System.currentTimeMillis();
+
 		UserLogic ul = new UserLogic();
 		ModuleLogic ml = new ModuleLogic();
 		User user = ul.getUserInSession();
@@ -82,11 +84,11 @@ public class DiaryAction extends ActionSupport{
 			strutsResult = Const.NAVIGATOR_SHOW_VIEW;
 			navigatorElementList = ml.buildNavigatorFromDayHostList(dayHostList,moduleFinder.getStartDateDt(),moduleFinder.getEndDateDt());
 			if(dayHostList!=null && dayHostList.size()!=0){
-			StatLogic st = new StatLogic();
-			dashBoardBean = new DashBoardBean();
-			//dati histo
-			GraphBean graph = st.buildDatasetPresenceModuleFromNavigator(navigatorElementList, "Date", "Presence");
-			dashBoardBean.setGraphBean(graph);
+				StatLogic st = new StatLogic();
+				dashBoardBean = new DashBoardBean();
+				//dati histo
+				GraphBean graph = st.buildDatasetPresenceModuleFromNavigator(navigatorElementList, "Date", "Presence");
+				dashBoardBean.setGraphBean(graph);
 			}
 			return strutsResult;
 		}
@@ -99,7 +101,7 @@ public class DiaryAction extends ActionSupport{
 				strutsResult = Const.MULTIPLE_MODULE_VIEW;
 				break;
 			case Const.LAST_CREATE://caso in cui si cerca l'ultimo giorno inserito
-				
+
 				break;
 			case Const.MOST_RECENT://caso in cui si cerca l'ultimo giorno inserito
 				Integer idClstr = ml.getMostRecentIdCluster(user);
@@ -119,11 +121,15 @@ public class DiaryAction extends ActionSupport{
 
 		navigatorElementList = ml.buildNavigator(user, dateStart, dateEnd);
 
+		long tEnd = System.currentTimeMillis();
+		log.debug("Elapsed : "+(tEnd-tStart)+"ms");
+		log.debug(Const.OUT);
 		return strutsResult;
 	}
 
 	public String gotoSearchModule(){
 		log.debug(Const.IN);
+		long tStart = System.currentTimeMillis();
 		ModuleLogic ml = new ModuleLogic();
 		UserLogic ul = new UserLogic();
 		User user = ul.getUserInSession();
@@ -133,25 +139,33 @@ public class DiaryAction extends ActionSupport{
 		//Costruzione navigator
 		navigatorElementList = ml.buildNavigator(user,Utility.aggiungiTogliGiorno(new Date(), -14),new Date());
 
+
+		long tEnd = System.currentTimeMillis();
+		log.debug("Elapsed : "+(tEnd-tStart)+"ms");
+		log.debug(Const.OUT);
 		return SUCCESS;
 	}
 
 
 	public String gotoWriteModule(){
 		log.debug(Const.IN);
+		long tStart = System.currentTimeMillis();
 		ModuleLogic ml = new ModuleLogic();
 		UserLogic ul = new UserLogic();
 		User user = ul.getUserInSession();
 		log.debug("User estratto dalla sessione: "+user.toString());
 		userModuleType = ml.getUserModuleType(user);
 		userModuleType = ml.getDefaultModuleType(userModuleType);
-		
 
+		long tEnd = System.currentTimeMillis();
+		log.debug("Elapsed : "+(tEnd-tStart)+"ms");
+		log.debug(Const.OUT);
 		return SUCCESS;
 	}
 
 	public String getNavigatorAjax(){
 		log.debug(Const.IN);
+		long tStart = System.currentTimeMillis();
 		try {
 			Date startDate = null;
 			Date endDate = null;
@@ -181,57 +195,75 @@ public class DiaryAction extends ActionSupport{
 			return ERROR;
 		}
 
+		long tEnd = System.currentTimeMillis();
+		log.debug("Elapsed : "+(tEnd-tStart)+"ms");
+		log.debug(Const.OUT);
 		return SUCCESS;
 	}
-	
-	
+
+
 	public String gotoMassiveImport() throws JAXBException, ParseException{
+		log.debug(Const.IN);
+		long tStart = System.currentTimeMillis();
 		UserLogic ul = new UserLogic();
 		User user = ul.getUserInSession();
-				
+
 		XmlUtil util = new XmlUtil();
 		xmlInOut = util.marshalling(user);
 
+		long tEnd = System.currentTimeMillis();
+		log.debug("Elapsed : "+(tEnd-tStart)+"ms");
+		log.debug(Const.OUT);
 		return SUCCESS;
-		
+
 	}
-	
-	
+
+
 	public String saveMultipleModuleXmlMassiveImport() throws JAXBException, ParseException, IOException{
 		log.debug(Const.IN);
+		long tStart = System.currentTimeMillis();
 		ModuleLogic ml = new ModuleLogic();
 		XmlUtil xmlUtil = new XmlUtil();
 		UserLogic ul = new UserLogic();
 		User user = ul.getUserInSession();
 		Integer idCluster = 0;
 		log.debug("User estratto dalla sessione: "+user.toString());
-		
+
 		ArrayList<ModuleExtended> list = xmlUtil.unMarshaling2ModuleExtended(xmlInOut);
-		
+
 		for (ModuleExtended moduleExtended : list) {
-			
+
 			moduleExtended.getModuleHeader().setIdUser(user.getIdUser());
 			log.debug("Modulo in arrivo da jsP: "+moduleExtended.toString());
 			idCluster = ml.insertModuleExtended(moduleExtended);
-			
+
 		}
-			
+
 		moduleFinder = new ModuleFinder();
 		moduleFinder.setIdModuleCluster(idCluster);
+
+		long tEnd = System.currentTimeMillis();
+		log.debug("Elapsed : "+(tEnd-tStart)+"ms");
+		log.debug(Const.OUT);
 		return SUCCESS;
 	}
-	
+
 	public String deleteModule() throws UnauthorizedContent{
 		log.debug(Const.IN);
+		long tStart = System.currentTimeMillis();
 		ModuleLogic ml = new ModuleLogic();
 		UserLogic ul = new UserLogic();
 		User user = ul.getUserInSession();
 		log.debug("User estratto dalla sessione: "+user.toString());
-		
+
 		ml.checkModuleOwnership(user, moduleExtended.getModuleCluster().getIdModule());
 		moduleExtended.getModuleCluster().setIdUser(user.getIdUser());
 		ml.deleteModule(moduleExtended.getModuleCluster());
 
+
+		long tEnd = System.currentTimeMillis();
+		log.debug("Elapsed : "+(tEnd-tStart)+"ms");
+		log.debug(Const.OUT);
 		return SUCCESS;
 	}
 

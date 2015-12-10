@@ -19,7 +19,7 @@ $(document).ready(function() {
 	$(".jqDateTimePicker").datetimepicker();
 	
 	//timepicker only
-	$(".jqTimePicker").timepicker();
+	$(".jqTimePicker").timepicker({timeFormat: 'HH:mm:ss'});
 
 });
 

@@ -12,8 +12,5 @@ public interface GenericDaoInterface<T, PK>{
     int update(T transientObject) throws PersistenceException; //update an object of type T    
     int delete(PK id)  throws PersistenceException;//delete an object of type T
     
-    /*
-    public T getByName(String name) throws PersistenceException;//get obj of type T by the 'name' field, if one exists for that table
-	public ArrayList<T> getAll() throws PersistenceException;//get all objects of type T
-*/
+
 }

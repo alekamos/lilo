@@ -24,6 +24,7 @@ public class UserAction extends ActionSupport{
 
 	public String signIn(){
 		log.debug(Const.IN);
+		long tStart = System.currentTimeMillis();
 		log.debug("Utente in arrivo da JSP "+user.toString());
 
 		User usrEstratto = ul.getUserByUsrPwd(user);
@@ -32,6 +33,8 @@ public class UserAction extends ActionSupport{
 			log.debug("Estratto utente non null, credenziali valide");
 			ul.putUserInSession(usrEstratto);
 			log.debug("Utente inserito in sessione sotto oggetto user");
+			long tEnd = System.currentTimeMillis();
+			log.debug("Elapsed : "+(tEnd-tStart)+"ms");
 			log.debug(Const.OUT);
 			return SUCCESS;
 
@@ -43,6 +46,9 @@ public class UserAction extends ActionSupport{
 			else if (error.equals(Const.USERNAME_FOUND)) //Se non � riuscito a loggarsi ma l'username esiste � per logica password errata
 				addFieldError("user.password", "Incorrect password");
 
+			long tEnd = System.currentTimeMillis();
+			log.debug("Elapsed : "+(tEnd-tStart)+"ms");
+			log.debug(Const.OUT);
 			return INPUT;
 		}
 
@@ -51,6 +57,7 @@ public class UserAction extends ActionSupport{
 
 	public String signUp(){
 		log.debug(Const.IN);
+		long tStart = System.currentTimeMillis();
 		log.debug("Utente in arrivo da JSP "+user.toString());
 		log.debug("Verifico che l'utente non sia già iscritto con stesso user e stessa mail");
 		String errori = ul.checkUserExist(user);
@@ -63,10 +70,15 @@ public class UserAction extends ActionSupport{
 			if(errori.equals(Const.EMAIL_FOUND))
 				addFieldError("user.email", "Email registered yet");
 			
+			long tEnd = System.currentTimeMillis();
+			log.debug("Elapsed : "+(tEnd-tStart)+"ms");
+			log.debug(Const.OUT);
 			return INPUT;
 		}
 
-
+		long tEnd = System.currentTimeMillis();
+		log.debug("Elapsed : "+(tEnd-tStart)+"ms");
+		log.debug(Const.OUT);
 		return SUCCESS;
 	}
 
